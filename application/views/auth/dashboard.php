@@ -641,34 +641,34 @@ The above copyright notice and this permission notice shall be included in all c
                 </li>
                 <li class="header-title">Images</li>
                 <li class="active">
-                    <a class="img-holder switch-trigger" href="<?= base_url(); ?>javascript:void(0)">
-                        <img src="../assets/img/sidebar-1.jpg" alt="">
+                    <a class="img-holder switch-trigger" href="javascript:void(0)">
+                        <img src="<?= base_url(); ?>assets/img/sidebar-1.jpg" alt="">
                     </a>
                 </li>
                 <li>
-                    <a class="img-holder switch-trigger" href="<?= base_url(); ?>javascript:void(0)">
-                        <img src="../assets/img/sidebar-2.jpg" alt="">
+                    <a class="img-holder switch-trigger" href="javascript:void(0)">
+                        <img src="<?= base_url(); ?>assets/img/sidebar-2.jpg" alt="">
                     </a>
                 </li>
                 <li>
-                    <a class="img-holder switch-trigger" href="<?= base_url(); ?>javascript:void(0)">
-                        <img src="../assets/img/sidebar-3.jpg" alt="">
+                    <a class="img-holder switch-trigger" href="javascript:void(0)">
+                        <img src="<?= base_url(); ?>assets/img/sidebar-3.jpg" alt="">
                     </a>
                 </li>
                 <li>
-                    <a class="img-holder switch-trigger" href="<?= base_url(); ?>javascript:void(0)">
-                        <img src="../assets/img/sidebar-4.jpg" alt="">
+                    <a class="img-holder switch-trigger" href="javascript:void(0)">
+                        <img src="<?= base_url(); ?>assets/img/sidebar-4.jpg" alt="">
                     </a>
                 </li>
                 <li class="button-container">
                     <a href="https://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-primary btn-block">Free Download</a>
                 </li>
-                <!-- <li class="header-title">Want more components?</li>
-            <li class="button-container">
-                <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
-                  Get the pro version
-                </a>
-            </li> -->
+                <li class="header-title">Want more components?</li>
+                <li class="button-container">
+                    <a href="https://www.creative-tim.com/product/material-dashboard-pro" target="_blank" class="btn btn-warning btn-block">
+                        Get the pro version
+                    </a>
+                </li>
                 <li class="button-container">
                     <a href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
                         View Documentation

@@ -12,7 +12,7 @@ class Auth extends CI_Controller
     public function index()
     {
         $data['title'] = 'Login E-Kecamatan';
-        $this->load->view('templates/auth_header', '$data');
+        $this->load->view('templates/auth_header', $data);
         $this->load->view('auth/login');
         $this->load->view('templates/auth_footer');
     }
@@ -32,7 +32,7 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Registrasi';
-            $this->load->view('templates/auth_header', '$data');
+            $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/registration');
         } else {
             $data = [
@@ -45,9 +45,16 @@ class Auth extends CI_Controller
                 'date_create' => time()
             ];
 
-            $query = $this->db->insert('user', $data);
-            return $query->result_array();
-            redirect('auth');
+            var_dump($data);
+            exit;
+            // $this->db->insert('user', $data);
+            // redirect('auth');
         }
+    }
+
+    public function dashboard()
+    {
+
+        $this->load->view('auth/dashboard');
     }
 }

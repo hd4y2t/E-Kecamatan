@@ -9,8 +9,8 @@
                             <p class="card-category">Registrasi</p>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="<?= base_url('auth/registration') ?>">
-                                <div class="row center">
+                            <form method="POST" action="<?= base_url('auth'); ?>">
+                                <div class="col center">
                                     <div class="col-md">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">NIP/NIK</label>

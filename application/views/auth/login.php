@@ -29,7 +29,7 @@
                                         <button type="submit" class="btn btn-success pull-right">Login</button>
 
                                         <div class="text-center">
-                                            <a class="small" href="forgot-password.html">Lupa Password?</a>
+                                            <a class="small" href="<?= base_url('auth/dashboard'); ?>">Lupa Password?</a>
                                             <br>
                                             <a class="small" href="<?= base_url('auth/registration'); ?>">Buat Akun!</a>
                                         </div>
