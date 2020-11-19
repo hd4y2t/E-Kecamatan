@@ -1,4 +1,4 @@
-<body class="bg-gradient-primary">
+<body class="">
     <div class="content">
         <div class="row justify-content-center">
             <div class="col-lg-5">
@@ -9,7 +9,7 @@
                             <p class="card-category">Registrasi</p>
                         </div>
                         <div class="card-body">
-                            <form method="POST" action="<?= base_url('auth'); ?>">
+                            <form class="user" method="post" action="<?= base_url('auth/register'); ?>">
                                 <div class="col center">
                                     <div class="col-md">
                                         <div class="form-group">

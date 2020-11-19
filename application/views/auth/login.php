@@ -31,7 +31,7 @@
                                         <div class="text-center">
                                             <a class="small" href="<?= base_url('auth/dashboard'); ?>">Lupa Password?</a>
                                             <br>
-                                            <a class="small" href="<?= base_url('auth/registration'); ?>">Buat Akun!</a>
+                                            <a class="small" href="<?= base_url('auth/register'); ?>">Buat Akun!</a>
                                         </div>
                                     </div>
 
