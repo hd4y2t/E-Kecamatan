@@ -25,12 +25,12 @@
                                         <div class="row-lg-4">
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Password</label>
-                                                <input type="password" id="password1" name="password1" class="form-control">
-                                                <?= form_error('password1', '<small class="text-danger-pl-3">', '</small'); ?>
+                                                <input type="password" id="password" name="password" class="form-control">
+                                                <?= form_error('password', '<small class="text-danger-pl-3">', '</small'); ?>
                                             </div>
                                             <div class="form-group">
                                                 <label class="bmd-label-floating">Ulangi Password</label>
-                                                <input type="password" id="password2" name="password2" class="form-control">
+                                                <input type="password" id="pwd" name="pwd" class="form-control">
                                             </div>
 
                                         </div>

@@ -11,16 +11,18 @@
                         </div>
                         <br>
                         <div class="card-body">
-                            <form>
+                            <form method="post" action="<?= base_url('auth'); ?>">
                                 <div class="row center">
                                     <div class="col-md">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">NIP/NIK</label>
                                             <input type="number" class="form-control" id="ni" name="ni">
+                                            <?= form_error('ni', '<small class="text-danger-pl-3">', '</small'); ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Password</label>
                                             <input type="password" id="password" name="password" class="form-control">
+                                            <?= form_error('password', '<small class="text-danger-pl-3">', '</small'); ?>
                                         </div>
                                     </div>
                                 </div>
