@@ -14,9 +14,10 @@
                             <form method="post" action="<?= base_url('auth'); ?>">
                                 <div class="row center">
                                     <div class="col-md">
+                                        <?= $this->session->flashdata('message'); ?>
                                         <div class="form-group">
                                             <label class="bmd-label-floating">NIP/NIK</label>
-                                            <input type="number" class="form-control" id="ni" name="ni">
+                                            <input type="number" class="form-control" id="ni" name="ni" value="<?= set_value('ni'); ?>">
                                             <?= form_error('ni', '<small class="text-danger-pl-3">', '</small'); ?>
                                         </div>
                                         <div class="form-group">
