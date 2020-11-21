@@ -6,6 +6,7 @@ class User extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
-        echo 'selamat datang ' . $data['user']['nama'];
+
+        $this->load->view('user/index');
     }
 }

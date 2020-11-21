@@ -117,11 +117,56 @@ class Auth extends CI_Controller
         }
     }
 
+    public function user()
+    {
+        $this->load->view('auth/user');
+    }
+
     public function dashboard()
     {
-
         $this->load->view('auth/dashboard');
     }
+
+    public function icons()
+    {
+        $this->load->view('auth/icons');
+    }
+
+    public function map()
+    {
+        $this->load->view('auth/map');
+    }
+
+    public function maps()
+    {
+        $this->load->view('auth/maps');
+    }
+
+    public function rtl()
+    {
+        $this->load->view('auth/rtl');
+    }
+    public function tables()
+    {
+        $this->load->view('auth/tables');
+    }
+
+    public function typography()
+    {
+        $this->load->view('auth/typography');
+    }
+
+    public function upgrade()
+    {
+        $this->load->view('auth/upgrade');
+    }
+
+    public function notification()
+    {
+        $this->load->view('auth/notification');
+    }
+
+
 
     public function logout()
     {
