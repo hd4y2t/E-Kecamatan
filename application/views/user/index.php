@@ -115,7 +115,7 @@ The above copyright notice and this permission notice shall be included in all c
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="javascript:;">Dashboard</a>
+                        <a class="navbar-brand" href="javascript:;">Selamat Datang, <?= $user['nama']; ?></a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="sr-only">Toggle navigation</span>
@@ -167,9 +167,8 @@ The above copyright notice and this permission notice shall be included in all c
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                     <a class="dropdown-item" href="#">Profile</a>
-                                    <a class="dropdown-item" href="#">Settings</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Log out</a>
+                                    <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Log out</a>
                                 </div>
                             </li>
                         </ul>
@@ -182,44 +181,11 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="row">
                         <div class="card">
                             <div class="card-header card-header-success">
-                                <h4 class="card-title">Employees Stats</h4>
-                                <p class="card-category">New employees on 15th September, 2016</p>
+                                <h4 class="card-title">Hallo <?= $user['nama']; ?> </h4>
+                                <p class="card-category"></p>
                             </div>
                             <div class="card-body table-responsive">
-                                <table class="table table-hover">
-                                    <thead class="text-success">
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Salary</th>
-                                        <th>Country</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Dakota Rice</td>
-                                            <td>$36,738</td>
-                                            <td>Niger</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Minerva Hooper</td>
-                                            <td>$23,789</td>
-                                            <td>Curaçao</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Sage Rodriguez</td>
-                                            <td>$56,142</td>
-                                            <td>Netherlands</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Philip Chaney</td>
-                                            <td>$38,735</td>
-                                            <td>Korea, South</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            
                             </div>
                         </div>
                     </div>
