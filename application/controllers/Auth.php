@@ -119,51 +119,72 @@ class Auth extends CI_Controller
 
     public function user()
     {
-        $this->load->view('auth/user');
+        $data['title'] = 'Dashboard';
+        $this->load->view('templates/auth_header' . $data);
+        $this->load->view('user/index');
+        $this->load->view('templates/auth_footer');
     }
 
     public function dashboard()
     {
+        // $this->load->view('templates/auth_header');
         $this->load->view('auth/dashboard');
+        // $this->load->view('templates/auth_footer');
     }
 
     public function icons()
     {
+        // $this->load->view('templates/auth_header');
         $this->load->view('auth/icons');
+        // $this->load->view('templates/auth_footer');
     }
 
     public function map()
     {
+        // $this->load->view('templates/auth_header');
         $this->load->view('auth/map');
+        // $this->load->view('templates/auth_footer');
     }
 
     public function maps()
     {
+        // $this->load->view('templates/auth_header');
         $this->load->view('auth/maps');
+        // $this->load->view('templates/auth_footer');
     }
 
     public function rtl()
     {
+        // $this->load->view('templates/auth_header');
         $this->load->view('auth/rtl');
+        // $this->load->view('templates/auth_footer');
     }
     public function tables()
     {
+        // $this->load->view('templates/auth_header');
         $this->load->view('auth/tables');
+        // $this->load->view('templates/auth_footer');
     }
 
     public function typography()
     {
+        // $this->load->view('templates/auth_header');
         $this->load->view('auth/typography');
+        // $this->load->view('templates/auth_footer');
     }
 
     public function upgrade()
     {
+        // $this->load->view('templates/auth_header');
         $this->load->view('auth/upgrade');
+        // $this->load->view('templates/auth_footer');
     }
 
     public function notification()
     {
+        // $this->load->view('templates/auth_header');
         $this->load->view('auth/notification');
+        // $this->load->view('templates/auth_footer');
     }
 
 

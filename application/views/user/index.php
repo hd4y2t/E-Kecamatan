@@ -32,39 +32,37 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
     <div class="wrapper ">
-        <div class="sidebar" data-color="purple" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-1.jpg">
+        <div class="sidebar" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-4.jpg">
             <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
-            <div class="logo"><a href="" class="simple-text logo-normal">
-                    Creative Tim
-                </a></div>
+            <div class="logo">
+                <a href="" class="simple-text logo-normal">
+                    E-Kecamatan
+                    <br>
+                    Sematang Borang
+                </a>
+            </div>
             <div class="sidebar-wrapper">
                 <ul class="nav">
-                    <li class="nav-item  ">
+                    <li class="nav-item ">
+                        <div class="sidebar-heading">
+                            <p>Administrator</p>
+                        </div>
+                    </li>
+
+                    <li class="nav-item active ">
                         <a class="nav-link" href="<?= base_url('auth/dashboard'); ?>">
                             <i class="material-icons">dashboard</i>
                             <p>Dashboard</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/user'); ?>">
-                            <i class="material-icons">person</i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
                         <a class="nav-link" href="<?= base_url('auth/tables'); ?>">
                             <i class="material-icons">content_paste</i>
                             <p>Table List</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/typography'); ?>">
-                            <i class="material-icons">library_books</i>
-                            <p>Typography</p>
                         </a>
                     </li>
                     <li class="nav-item ">
@@ -79,6 +77,24 @@ The above copyright notice and this permission notice shall be included in all c
                             <p>Maps</p>
                         </a>
                     </li>
+                </ul>
+                <ul class="nav">
+                    <div class="sidebar-heading">
+                        <p> User </p>
+                    </div>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="<?= base_url('auth/user'); ?>">
+                            <i class="material-icons">person</i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link" href="<?= base_url('auth/typography'); ?>">
+                            <i class="material-icons">library_books</i>
+                            <p>Typography</p>
+                        </a>
+                    </li>
                     <li class="nav-item ">
                         <a class="nav-link" href="<?= base_url('auth/notification'); ?>">
                             <i class="material-icons">notifications</i>
@@ -86,15 +102,9 @@ The above copyright notice and this permission notice shall be included in all c
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/rtl'); ?>">
-                            <i class="material-icons">language</i>
-                            <p>RTL Support</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active-pro ">
-                        <a class="nav-link" href="<?= base_url('auth/upgrade'); ?>">
-                            <i class="material-icons">unarchive</i>
-                            <p>Upgrade to PRO</p>
+                        <a class="nav-link" href="<?= base_url('auth/logout'); ?>">
+                            <i class="material-icons">west</i>
+                            <p>Logout</p>
                         </a>
                     </li>
                 </ul>
@@ -105,7 +115,7 @@ The above copyright notice and this permission notice shall be included in all c
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="javascript:;"><?= $title; ?></a>
+                        <a class="navbar-brand" href="javascript:;">Dashboard</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="sr-only">Toggle navigation</span>
@@ -133,7 +143,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="material-icons">notifications</i>
                                     <span class="notification">5</span>
                                     <p class="d-lg-none d-md-block">
@@ -167,10 +177,51 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
             </nav>
             <!-- End Navbar -->
-            <div class="content">
+            <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
                 <div class="container-fluid">
                     <div class="row">
-
+                        <div class="card">
+                            <div class="card-header card-header-success">
+                                <h4 class="card-title">Employees Stats</h4>
+                                <p class="card-category">New employees on 15th September, 2016</p>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="text-success">
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Salary</th>
+                                        <th>Country</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Dakota Rice</td>
+                                            <td>$36,738</td>
+                                            <td>Niger</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Minerva Hooper</td>
+                                            <td>$23,789</td>
+                                            <td>Curaçao</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Sage Rodriguez</td>
+                                            <td>$56,142</td>
+                                            <td>Netherlands</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Philip Chaney</td>
+                                            <td>$38,735</td>
+                                            <td>Korea, South</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
 
