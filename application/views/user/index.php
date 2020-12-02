@@ -1,35 +1,3 @@
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
-
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url(); ?>assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/img/favicon.png">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>
-        <?= $title; ?>
-    </title>
-    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <!-- CSS Files -->
-    <link href="<?= base_url(); ?>assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="<?= base_url(); ?>assets/demo/demo.css" rel="stylesheet" />
-</head>
-
 <body class="">
     <div class="wrapper ">
         <div class="sidebar" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-4.jpg">
@@ -178,22 +146,73 @@ The above copyright notice and this permission notice shall be included in all c
             <!-- End Navbar -->
             <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
                 <div class="container-fluid">
-                    <div class="row">
+                    <div class="row ">
                         <div class="card">
                             <div class="card-header card-header-success">
                                 <h4 class="card-title">Hallo <?= $user['nama']; ?> </h4>
                                 <p class="card-category"></p>
                             </div>
                             <div class="card-body table-responsive">
-                            
+                                <h3>Silakan memilih surat izin</h3>
+                                <div class="row">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <th>
+                                                Surat perizinan
+                                            </th>
+                                            <th>
+                                            <th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    Surat izin usaha mikro
+                                                </td>
+                                                <td>
+                                                    <a class="button-primary" href="#">Buat</a>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <th>
+                                                Surat non perizinan
+                                            </th>
+                                            <th>
+                                            <th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    1
+                                                </td>
+                                                <td>
+                                                    Pembuatan E-KTP
+                                                </td>
+                                                <td>
+                                                    <a class="button-primary" href="#">Buat</a>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="row">
 
-                    </div>
-                    <div class="row">
-
-                    </div>
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+
+        </div>
+    </div>
+    </div>
