@@ -14,6 +14,7 @@
                                         <?= validation_errors(); ?>
                                     </div>
                                 <?php endif; ?>
+
                                 <?= $this->session->flashdata('message'); ?>
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newSubMenuModal"> Tambah Sub Menu</a>
                                 <div class="row">
@@ -61,7 +62,6 @@
     </div>
 
 </div>
-</div>
 
 
 <!-- Modal -->
@@ -74,11 +74,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('menu/inputSubmenu'); ?>" method="post">
+            <form action="<?= base_url('menu/submenu'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="bmd-label-floating">Title</label>
-                        <input type=" text" class="form-control" id="title" name="title">
+                        <input type="text" class="form-control" id="title" name="title">
                     </div>
                     <div class="form-group">
                         <select name="menu_id" id="menu_id" class="form-control">
@@ -101,13 +101,14 @@
                             <td>
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input class="form-check-input" id="is_active" name="is_active" type="checkbox" value="1" checked>
+                                        <input class="form-check-input" id="active" name="active" type="checkbox" value="1" checked>
                                         <span class="form-check-sign">
                                             <span class="check"></span>
                                         </span>
-                            <td>Aktif ?</td>
+                            <td>
+                                Aktif ?
+                            </td>
                             </label>
-
                             </td>
                         </tr>
                     </div>

@@ -14,8 +14,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url(); ?>assets/img/favicon.gif">
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/img/favicon.gif">
+    <link rel="apple-touch-icon" sizes="76x76" href="<?= base_url('assets/'); ?>img/favicon.gif">
+    <link rel="icon" type="image/png" href="<?= base_url('assets/'); ?>img/favicon.gif">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
         <?= $title; ?>
@@ -28,6 +28,22 @@ The above copyright notice and this permission notice shall be included in all c
     <link href="<?= base_url(); ?>assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="<?= base_url(); ?>assets/demo/demo.css" rel="stylesheet" />
+
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="<?= base_url(); ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="<?= base_url(); ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="<?= base_url(); ?>plugins/jqvmap/jqvmap.min.css">
+
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="<?= base_url(); ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="<?= base_url(); ?>plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="<?= base_url(); ?>plugins/summernote/summernote-bs4.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 
 <body class="">

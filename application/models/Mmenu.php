@@ -22,7 +22,7 @@ class Mmenu extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function inputSubmenu($array)
+    public function inputsubmenu($array)
     {
         $this->db->insert('user_sub_menu', $array);
     }

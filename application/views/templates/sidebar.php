@@ -1,7 +1,6 @@
 <div class="sidebar" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-4.jpg">
     <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
@@ -53,7 +52,7 @@
                         <?php else : ?>
                         <li class="nav-item">
                         <?php endif; ?>
-                        <a class="nav-link" href="<?= $sm['url']; ?>">
+                        <a class="nav-link" href="<?= base_url($sm['url']); ?>">
                             <i class="material-icons"><?= $sm['icon']; ?></i>
                             <p><?= $sm['title']; ?></p>
                         </a>

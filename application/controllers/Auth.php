@@ -199,6 +199,13 @@ class Auth extends CI_Controller
 
     public function block()
     {
-        echo 'access blok';
+        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+
+        $data['title'] = 'Block Aksess';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('auth/block');
+        $this->load->view('templates/footer');
     }
 }
