@@ -1,218 +1,99 @@
-<body class="">
-    <div class="wrapper ">
-        <div class="sidebar" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-4.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+<div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
+    <div class="container-fluid">
 
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="logo">
-                <a href="" class="simple-text logo-normal">
-                    E-Kecamatan
-                    <br>
-                    Sematang Borang
-                </a>
-            </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
-                    <li class="nav-item ">
-                        <div class="sidebar-heading">
-                            <p>Administrator</p>
-                        </div>
-                    </li>
+        <div class="row ">
+            <div class="col-lg-7">
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
 
-                    <li class="nav-item active ">
-                        <a class="nav-link" href="<?= base_url('auth/dashboard'); ?>">
-                            <i class="material-icons">dashboard</i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/tables'); ?>">
-                            <i class="material-icons">content_paste</i>
-                            <p>Table List</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/icons'); ?>">
-                            <i class="material-icons">bubble_chart</i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/map'); ?>">
-                            <i class="material-icons">location_ons</i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="nav">
-                    <div class="sidebar-heading">
-                        <p> User </p>
-                    </div>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/user'); ?>">
-                            <i class="material-icons">person</i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
+                            <div class="card">
+                                <div class="card-header card-header-success">
+                                    <h3 class="card-title">Perizinan</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Perihal</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/typography'); ?>">
-                            <i class="material-icons">library_books</i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/notification'); ?>">
-                            <i class="material-icons">notifications</i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?= base_url('auth/logout'); ?>">
-                            <i class="material-icons">west</i>
-                            <p>Logout</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-                <div class="container-fluid">
-                    <div class="navbar-wrapper">
-                        <a class="navbar-brand" href="javascript:;">Selamat Datang, <?= $user['nama']; ?></a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                        <span class="navbar-toggler-icon icon-bar"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end">
-                        <form class="navbar-form">
-                            <div class="input-group no-border">
-                                <input type="text" value="" class="form-control" placeholder="Search...">
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
+                                                    <?php
+                                                    $i = 1;
+                                                    $querySurat = "SELECT *
+                                                                FROM surat 
+                                                                  WHERE id_kategori = 1
+                                                                  ";
+                                                    $surat = $this->db->query($querySurat)->result_array();
+                                                    ?>
+                                                    <?php foreach ($surat as $s) : ?>
+                                                        <tr>
+                                                            <th scope="row"><?= $i ?></th>
+                                                            <td><?= $s['nm_surat']; ?></td>
+                                                            <td>
+                                                                <a href="" class="btn btn-primary">Ajukan </a>
+
+                                                                <?php $i++; ?>
+                                                        </tr>
+                                                    <?php endforeach ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="javascript:;">
-                                    <i class="material-icons">dashboard</i>
-                                    <p class="d-lg-none d-md-block">
-                                        Stats
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">notifications</i>
-                                    <span class="notification">5</span>
-                                    <p class="d-lg-none d-md-block">
-                                        Some Actions
-                                    </p>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                                    <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                                    <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                                    <a class="dropdown-item" href="#">Another Notification</a>
-                                    <a class="dropdown-item" href="#">Another One</a>
+                            <div class="card">
+                                <div class="card-header card-header-success">
+                                    <h3 class="card-title">Non-Perizinan</h3>
                                 </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="material-icons">person</i>
-                                    <p class="d-lg-none d-md-block">
-                                        Account
-                                    </p>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                    <a class="dropdown-item" href="#">Profile</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Log out</a>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Perihal</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    $i = 1;
+                                                    $querySurat = "SELECT *
+                                                                FROM surat 
+                                                                  WHERE id_kategori = 2
+                                                                  ";
+                                                    $surat = $this->db->query($querySurat)->result_array();
+                                                    ?>
+                                                    <?php foreach ($surat as $s) : ?>
+                                                        <tr>
+                                                            <th scope="row"><?= $i ?></th>
+                                                            <td><?= $s['nm_surat']; ?></td>
+                                                            <td>
+                                                                <a href="" class="btn btn-primary">Ajukan </a>
+
+                                                                <?php $i++; ?>
+                                                        </tr>
+                                                    <?php endforeach ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- End Navbar -->
-            <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
-                <div class="container-fluid">
-                    <div class="row ">
-                        <div class="card">
-                            <div class="card-header card-header-success">
-                                <h4 class="card-title">Hallo <?= $user['nama']; ?> </h4>
-                                <p class="card-category"></p>
-                            </div>
-                            <div class="card-body table-responsive">
-                                <h3>Silakan memilih surat izin</h3>
-                                <div class="row">
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                            <th>
-                                                Surat perizinan
-                                            </th>
-                                            <th>
-                                            <th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    Surat izin usaha mikro
-                                                </td>
-                                                <td>
-                                                    <a class="button-primary" href="#">Buat</a>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                    <table class="table">
-                                        <thead class=" text-primary">
-                                            <th>
-                                                Surat non perizinan
-                                            </th>
-                                            <th>
-                                            <th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    1
-                                                </td>
-                                                <td>
-                                                    Pembuatan E-KTP
-                                                </td>
-                                                <td>
-                                                    <a class="button-primary" href="#">Buat</a>
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
-        <div class="row">
-
-        </div>
     </div>
-    </div>
+</div>
+</div>
+</body>

@@ -6,7 +6,7 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Muser');
+        $this->load->model('Mauth');
         $this->load->library('form_validation');
     }
 
@@ -45,7 +45,13 @@ class Auth extends CI_Controller
                         'role_id' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('user');
+                    if ($user['role_id'] == 1) {
+                        redirect('admin');
+                    } else if ($user['role_id'] == 2) {
+                        redirect('pegawai');
+                    } else if ($user['role_id'] == 3) {
+                        redirect('user');
+                    }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Password salah! </div>');
                     redirect('auth');
@@ -86,7 +92,7 @@ class Auth extends CI_Controller
             $this->load->view('templates/auth_header', $data);
             $this->load->view('auth/register');
         } else {
-            $id = "";
+            $id = '';
             $ni = htmlspecialchars($this->input->post('ni', true));
             $nama = htmlspecialchars($this->input->post('nama', true));
             $foto = 'default.jpg';
@@ -95,7 +101,7 @@ class Auth extends CI_Controller
             $is_active = 1;
             $date_create = time();
             $data = array(
-                'id' => $id,
+                'id_user' => $id,
                 'ni' => $ni,
                 'nama' => $nama,
                 'foto' => $foto,
@@ -106,8 +112,11 @@ class Auth extends CI_Controller
 
             );
 
-            $this->Muser->register($data);
-            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Selamat! akun anda telah terdaftar, Silakan login! </div>');
+            $this->Mauth->register($data);
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert"> Selamat! akun anda telah terdaftar, Silakan login! </div>'
+            );
             redirect('auth');
             // var_dump($user_data);
             // die();
@@ -116,15 +125,6 @@ class Auth extends CI_Controller
             // redirect('auth');
         }
     }
-
-    public function user()
-    {
-        $data['title'] = 'Dashboard';
-        $this->load->view('templates/header' . $data);
-        $this->load->view('user/index');
-        $this->load->view('templates/footer');
-    }
-
     public function dashboard()
     {
         // $this->load->view('templates/auth_header');
@@ -195,5 +195,10 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil logout </div>');
         redirect('auth');
+    }
+
+    public function block()
+    {
+        echo 'access blok';
     }
 }
