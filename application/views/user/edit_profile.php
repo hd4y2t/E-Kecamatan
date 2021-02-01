@@ -4,7 +4,7 @@
             <div class="col-lg-7">
                 <div class="content">
                     <div class="container-fluid">
-                        <form class="card">
+                        <div class="card">
                             <div class="card-header card-header-success">
                                 <h3 class="card-title"><?= $title ?></h3>
                             </div>
@@ -20,6 +20,7 @@
                                     <label for="nama" class="col-sm-2 col-form-label">Nama</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['nama']; ?>">
+                                        <?= form_error('nama', '<small class="text-danger-pl-3">', '</small'); ?>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -32,19 +33,20 @@
                                             <div class="col-sm-9">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="foto" name="foto">
-                                                    <label class="custom-file-label" for="foto"><?= $user['foto']; ?></label>
+                                                    <label class="custom-file-label" for="foto">Choose file</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="form-group row justife-content-end">
-                                <div class="col-sm 10">
-                                    <button type="submit" class="btn btn-success">Edit</button>
+                                <div class=" form-group row">
+                                    <div class="col-sm 10">
+                                        <button type="submit" class="btn btn-success">Edit</button>
+                                    </div>
                                 </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
                 </div>

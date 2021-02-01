@@ -1,7 +1,3 @@
-<aside class="control-sidebar control-sidebar-light">
-    <!-- Control sidebar content goes here -->
-</aside>
-
 <script src="<?= base_url(); ?>assets/js/core/jquery.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/core/popper.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js"></script>
@@ -35,7 +31,7 @@
 <!-- Library for adding dinamically elements -->
 <script src="<?= base_url(); ?>assets/js/plugins/arrive.min.js"></script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
 <!-- Chartist JS -->
 <script src="<?= base_url(); ?>assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->

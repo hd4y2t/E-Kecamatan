@@ -11,6 +11,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
+                                        <?= $this->ssession->flashdata('message'); ?>
                                         <div class="row">
                                             <img src="<?= base_url('assets/img/profile/' . $user['foto']); ?>" alt="..." class="img-thumbnail">
                                             <div class="card-header card-header">

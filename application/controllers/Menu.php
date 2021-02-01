@@ -91,7 +91,6 @@ class Menu extends CI_Controller
                 'message',
                 '<div class="alert alert-success" role="alert"> Sub Menu Baru ditambahkan </div>'
             );
-            redirect('menu/submenu');
         }
     }
 

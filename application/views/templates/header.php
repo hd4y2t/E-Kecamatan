@@ -43,7 +43,7 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- summernote -->
     <link rel="stylesheet" href="<?= base_url(); ?>plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
 </head>
 
 <body class="">
