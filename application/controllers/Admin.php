@@ -71,4 +71,28 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('admin/role');
     }
+
+    public function changeakses()
+    {
+        $meun_id = $this->input->post('menuId');
+        $role_id = $this->input->post('roleId');
+
+        $data = [
+            'role_id' => $role_id,
+            'menu_id' => $meun_id
+        ];
+
+        $result = $this->db->get_where('user_access_menu', $data);
+
+        if ($result->num_rows() < 1) {
+            $this->db->insert('user_access_menu', $data);
+        } else {
+            $this->db->delete('user_access_menu', $data);
+        }
+
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success" role="alert"> Akses telah diubah </div>'
+        );
+    }
 }

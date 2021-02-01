@@ -29,7 +29,7 @@
         <?php foreach ($menu as $m) : ?>
 
             <ul class="nav">
-                <li class="nav-item ">
+                <li class="nav-item">
                     <div class="sidebar-heading">
                         <?= $m['menu']; ?>
                     </div>

@@ -1,4 +1,4 @@
-<aside class="control-sidebar control-sidebar-dark">
+<aside class="control-sidebar control-sidebar-light">
     <!-- Control sidebar content goes here -->
 </aside>
 
@@ -53,27 +53,6 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
-<!-- Bootstrap 4 -->
-<script src="<?= base_url(); ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="<?= base_url(); ?>plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="<?= base_url(); ?>plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="<?= base_url(); ?>plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?= base_url(); ?>plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?= base_url(); ?>plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="<?= base_url(); ?>plugins/moment/moment.min.js"></script>
-<script src="<?= base_url(); ?>plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="<?= base_url(); ?>plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="<?= base_url(); ?>plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="<?= base_url(); ?>plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
 <script>
     $(document).ready(function() {
         $().ready(function() {
@@ -244,13 +223,33 @@
             });
         });
     });
-</script>
-<script>
+
     $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
         md.initDashboardPageCharts();
 
     });
+    // $('.costum-file-input').on('change', function() {
+    //     let fileName = $(this).val().split('\\').pop();
+    //     $(this).next('.costum-file-label').addClass("selected").html(fileName);
+    // });
+
+    $('.form-check-input').on('click', function() {
+        const menuId = $(this).data('menu');
+        const roleId = $(this).data('role');
+
+        $.ajax({
+            url: "<?= base_url('admin/changeakses'); ?>",
+            type: 'post',
+            data: {
+                menuId: menuId,
+                roleId: roleId
+            },
+            success: function() {
+                document.location.href = "<?= base_url('admin/role_akses/'); ?>" + roleId;
+            }
+        });
+    })
 </script>
 </body>
 

@@ -12,6 +12,9 @@ class Auth extends CI_Controller
 
     public function index()
     {
+        if ($this->session->userdata('ni')) {
+            redirect('user/profile');
+        }
         $this->form_validation->set_rules('ni', 'Nomor induk', 'trim|required', [
             'required' => 'Nomor induk harus diisi!'
         ]);
@@ -71,6 +74,9 @@ class Auth extends CI_Controller
 
     public function register()
     {
+        if ($this->session->userdata('ni')) {
+            redirect('user/profile');
+        }
         $this->form_validation->set_rules('ni', 'Ni', 'required|trim|is_unique[user.ni]', [
             'required' => 'Nomor induk harus diisi!',
             'is_unique' => 'Nomor induk telah dipakai'

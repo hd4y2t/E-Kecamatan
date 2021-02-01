@@ -22,14 +22,26 @@ class User extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    // public function edit()
-    // {
-    //     $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
-    //     $data['title'] = 'User Edit Profile';
-    //     $this->load->view('templates/header', $data);
-    //     $this->load->view('templates/sidebar', $data);
-    //     $this->load->view('templates/navbar', $data);
-    //     $this->load->view('user/edit', $data);
-    //     $this->load->view('templates/footer');
-    // }
+    public function profile()
+    {
+        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['title'] = 'My Profile';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('user/profile', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function edit_profile()
+    {
+        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['title'] = 'Edit Profile';
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('user/edit_profile', $data);
+        $this->load->view('templates/footer');
+    }
 }
