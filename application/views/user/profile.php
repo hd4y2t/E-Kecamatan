@@ -9,11 +9,12 @@
                                 <h3 class="card-title"><?= $title ?></h3>
                             </div>
                             <div class="card-body">
+                                <?= $this->session->flashdata('message'); ?>
                                 <div class="row">
-                                    <?= $this->session->flashdata('message'); ?>
                                     <div class="row-md-2">
-                                        <img height="30%" width="30%" src="<?= base_url('assets/img/profile/' . $user['foto']); ?>" class="img-thumbnail">
-                                        <div class="card-header card-header">
+                                        <div class="card">
+                                            <img height="30%" width="30%" src="<?= base_url('assets/img/profile/' . $user['foto']); ?>" class="img-thumbnail">
+                                            <h1>perbaiki tata letak</h1>
                                             <h3 class="card-title"> Nama : <?= $user['nama']; ?></h3>
                                             <h4 class="card-title"> Nik : <?= $user['ni']; ?></h4>
                                             <h4 class="card-title"> alamat : </h4>
