@@ -38,17 +38,10 @@
 <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="<?= base_url(); ?>assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
-<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-<script src="<?= base_url(); ?>assets/demo/demo.js"></script>
-
-<!-- jQuery -->
-<script src="<?= base_url(); ?>plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="<?= base_url(); ?>plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
+<!-- <script>
     $.widget.bridge('uibutton', $.ui.button)
-</script>
+</script> -->
 <script>
     $(document).ready(function() {
         $().ready(function() {

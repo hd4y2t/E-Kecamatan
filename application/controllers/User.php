@@ -82,11 +82,10 @@ class User extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
         $data['title'] = 'Ganti Password';
         $this->form_validation->set_rules('currentpassword', 'Current Password', 'required|trim');
-        $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_lenght[5]|matches[new_password2]');
-        $this->form_validation->set_rules('new_password2', 'Confirm Password', 'required|trim|min_lenght[5]|matches[new_password1]');
+        $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|matches[new_password2]');
+        $this->form_validation->set_rules('new_password2', 'Confirm Password', 'required|trim|matches[new_password1]');
 
         if ($this->form_validation->run() == false) {
-
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
