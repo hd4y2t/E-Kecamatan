@@ -36,4 +36,16 @@ function is_logged_in()
             return "checked='checked'";
         }
     }
+
+    function check_active($ni, $is_active)
+    {
+        $ci = get_instance();
+        $ci->db->where('ni', $ni);
+        $active = $ci->db->where('is_active =', $is_active);
+
+
+        if ($active = 1) {
+            return "checked='checked'";
+        }
+    }
 }

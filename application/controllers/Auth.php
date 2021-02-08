@@ -60,7 +60,7 @@ class Auth extends CI_Controller
                     redirect('auth');
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> NIP/NIK belum aktif </div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Akun anda belum aktif, silakan aktifasi ke kantor kecamatan </div>');
                 redirect('auth');
             }
         } else {
@@ -104,7 +104,7 @@ class Auth extends CI_Controller
             $foto = 'default.jpg';
             $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
             $role_id = 3;
-            $is_active = 1;
+            $is_active = 0;
             $date_create = time();
             $data = array(
                 'id_user' => $id,
@@ -119,16 +119,12 @@ class Auth extends CI_Controller
             );
 
             $this->Mauth->register($data);
+
             $this->session->set_flashdata(
                 'message',
-                '<div class="alert alert-success" role="alert"> Selamat! akun anda telah terdaftar, Silakan login! </div>'
+                '<div class="alert alert-success" role="alert"> Selamat! akun anda telah terdaftar, Silakan datang ke Kecamatan untuk aktifasi akun </div>'
             );
             redirect('auth');
-            // var_dump($user_data);
-            // die();
-            // echo 'data berhasil';
-            // $this->db->insert('user', $user_data);
-            // redirect('auth');
         }
     }
     public function dashboard()

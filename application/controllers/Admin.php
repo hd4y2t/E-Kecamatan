@@ -95,4 +95,16 @@ class Admin extends CI_Controller
             '<div class="alert alert-success" role="alert"> Akses telah diubah </div>'
         );
     }
+    public function activasi()
+    {
+        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['title'] = 'Activasion';
+        $data['active'] = $this->db->get('user')->result_array();
+        $this->db->where('ni !=', 12345);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('admin/activasi', $data);
+        $this->load->view('templates/footer');
+    }
 }

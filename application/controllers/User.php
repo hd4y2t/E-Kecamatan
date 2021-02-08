@@ -112,4 +112,15 @@ class User extends CI_Controller
             }
         }
     }
+    public function antrian()
+    {
+        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['title'] = 'Antrian Surat';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('user/antrian', $data);
+        $this->load->view('templates/footer');
+    }
 }

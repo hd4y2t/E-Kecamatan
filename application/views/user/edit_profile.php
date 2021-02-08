@@ -8,22 +8,19 @@
                             <div class="card-header card-header-success">
                                 <h3 class="card-title"><?= $title ?></h3>
                             </div>
-                            <div class="card-body" align='center'>
+                            <div class="card-body">
                                 <?= form_open_multipart('user/edit_profile'); ?>
-                                <div class="form-group row">
-                                    <label for="ni" class="col-sm-2 col-form-label">Nomor Induk</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="ni" name="ni" value="<?= $user['ni']; ?>" readonly>
-                                    </div>
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Nomor Induk</label>
+                                    <input type="number" class="form-control" id="ni" name="ni" value="<?= $user['ni']; ?>" readonly>
+                                    <?= form_error('ni', '<small class="text-danger-pl-3">', '</small'); ?>
                                 </div>
-                                <div class="form-group row">
-                                    <label for="nama" class="col-sm-2 col-form-label">Nama</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['nama']; ?>">
-                                        <?= form_error('nama', '<small class="text-danger-pl-3">', '</small'); ?>
-                                    </div>
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Nama</label>
+                                    <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['nama']; ?>">
+                                    <?= form_error('nama', '<small class="text-danger-pl-3">', '</small'); ?>
                                 </div>
-                                <div class="form-group row">
+                                <div class=" form-group row">
                                     <div class="col-sm-2">Foto</div>
                                     <div class="col-sm-10">
                                         <div class="row">
