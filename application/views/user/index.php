@@ -41,6 +41,7 @@
                                                             <td><?= $s['nm_surat']; ?></td>
                                                             <td>
                                                                 <a href="" class="btn btn-primary">Ajukan </a>
+                                                                <a href="" class="btn btn-warning">Aksi </a>
 
                                                                 <?php $i++; ?>
                                                         </tr>
@@ -81,6 +82,7 @@
                                                             <td><?= $s['nm_surat']; ?></td>
                                                             <td>
                                                                 <a href="" class="btn btn-primary">Ajukan </a>
+                                                                <a href="" class="btn btn-warning">Aksi </a>
 
                                                                 <?php $i++; ?>
                                                         </tr>
