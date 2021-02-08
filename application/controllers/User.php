@@ -16,11 +16,33 @@ class User extends CI_Controller
         $data['title'] = 'Pengajuan Surat';
         $data['surat'] = $this->db->get('kategori')->result_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('user/index', $data);
-        $this->load->view('templates/footer');
+        $this->form_validation->set_rules('title', 'Title', 'required');
+        $this->form_validation->set_rules('menu_id', 'Menu', 'required');
+        $this->form_validation->set_rules('url', 'URL', 'required');
+        $this->form_validation->set_rules('icon', 'Icon', 'required');
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('user/index', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $array = [
+
+                'title' => $this->input->post('title', true),
+                'menu_id' => $this->input->post('menu_id', true),
+                'url' => $this->input->post('url', true),
+                'icon' => $this->input->post('icon', true),
+                'is_active' => $this->input->post('active', true),
+            ];
+            $this->db->insert('user_sub_menu', $array);
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert"> Sub Menu Baru ditambahkan </div>'
+            );
+        }
     }
 
     public function profile()
@@ -112,6 +134,7 @@ class User extends CI_Controller
             }
         }
     }
+
     public function antrian()
     {
         $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
