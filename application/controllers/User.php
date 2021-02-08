@@ -14,12 +14,11 @@ class User extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
         $data['title'] = 'Pengajuan Surat';
-        $data['surat'] = $this->db->get('kategori')->result_array();
+        $data['surat'] = $this->db->get('surat')->result_array();
+        $data['kategori'] = $this->db->get('kategori')->result_array();
 
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('menu_id', 'Menu', 'required');
-        $this->form_validation->set_rules('url', 'URL', 'required');
-        $this->form_validation->set_rules('icon', 'Icon', 'required');
+        $this->form_validation->set_rules('id_kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('nm_surat', 'Nama Surat', 'required');
 
         if ($this->form_validation->run() == false) {
 
@@ -31,16 +30,14 @@ class User extends CI_Controller
         } else {
             $array = [
 
-                'title' => $this->input->post('title', true),
-                'menu_id' => $this->input->post('menu_id', true),
-                'url' => $this->input->post('url', true),
-                'icon' => $this->input->post('icon', true),
-                'is_active' => $this->input->post('active', true),
+                'id_kategori' => $this->input->post('id_kategori', true),
+                'nm_surat' => $this->input->post('nm_surat', true),
+
             ];
-            $this->db->insert('user_sub_menu', $array);
+            $this->db->insert('surat', $array);
             $this->session->set_flashdata(
                 'message',
-                '<div class="alert alert-success" role="alert"> Sub Menu Baru ditambahkan </div>'
+                '<div class="alert alert-success" role="alert">Surat Baru ditambahkan </div>'
             );
         }
     }

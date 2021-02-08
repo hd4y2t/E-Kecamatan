@@ -6,13 +6,13 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
+                            <a href="" class="btn btn-success" data-toggle="modal" data-target="#newSuratModal"> Tambah Surat Permohonan Baru</a>
+
 
                             <div class="card">
                                 <div class="card-header card-header-success">
                                     <h3 class="card-title">Perizinan</h3>
                                 </div>
-                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#newSuratModal"> Tambah Surat Baru</a>
-
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
@@ -106,25 +106,25 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newSuratModalLabel">Tambahkan Surat Baru</h5>
+                <h5 class="modal-title" id="newSuratModalLabel">Tambahkan Surat Permohonan Baru</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('user/inputsurat'); ?>" method="post">
+            <form action="<?= base_url('user/index'); ?>" method="post">
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <select name="menu_id" id="menu_id" class="form-control">
+                        <select name="id_kategori" id="id_kategori" class="form-control">
                             <option value="">Kategori Surat</option>
-                            <?php foreach ($surat as $m) : ?>
+                            <?php foreach ($kategori as $k) : ?>
                                 <option value="<?= $k['id_kategori']; ?>"><?= $k['nm_kategori']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label class="bmd-label-floating">Nama Surat</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <input type="text" class="form-control" id="nm_surat" name="nm_surat">
                     </div>
 
 
