@@ -7,8 +7,6 @@
                     <div class="container-fluid">
                         <div class="row">
                             <a href="" class="btn btn-success" data-toggle="modal" data-target="#newSuratModal"> Tambah Surat Permohonan Baru</a>
-
-
                             <div class="card">
                                 <div class="card-header card-header-success">
                                     <h3 class="card-title">Perizinan</h3>
