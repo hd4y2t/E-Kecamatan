@@ -101,7 +101,7 @@
 </div>
 </body>
 
--- Modal -->
+<!-- Modal -->
 <div class=" modal fade" id="newSuratModal" tabindex="-1" aria-labelledby="newSuratModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
