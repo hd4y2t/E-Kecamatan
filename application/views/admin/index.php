@@ -11,14 +11,13 @@
                                     <i class="material-icons">content_copy</i>
                                 </div>
                                 <p class="card-category">Antrian Surat</p>
-                                <h3 class="card-title">49/50
-                                    <small>GB</small>
+                                <h3 class="card-title"><?= $surat; ?>
                                 </h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons text-danger">warning</i>
-                                    <a href="javascript:;">Get More Space...</a>
+                                    Antrian yang belum di tangani
                                 </div>
                             </div>
                         </div>
@@ -27,7 +26,7 @@
                         <div class="card card-stats">
                             <div class="card-header card-header-success card-header-icon">
                                 <div class="card-icon">
-                                    <i class="material-icons">store</i>
+                                    <i class="material-icons">people</i>
                                 </div>
                                 <p class="card-category">Warga</p>
                                 <h3 class="card-title"><?= $warga; ?></h3>
@@ -46,8 +45,8 @@
                                 <div class="card-icon">
                                     <i class="material-icons">info_outline</i>
                                 </div>
-                                <p class="card-category">Fixed Issues</p>
-                                <h3 class="card-title">75</h3>
+                                <p class="card-category">Warga yang belum aktif</p>
+                                <h3 class="card-title"><?= $user_non; ?></h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">

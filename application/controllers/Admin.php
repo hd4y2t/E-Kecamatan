@@ -15,7 +15,11 @@ class Admin extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
         $data['title'] = 'Dashboard';
-        $$data['warga'] = $this->db->count_all_results('user');
+        $data['warga'] = $this->db->get('user')->num_rows();
+        $data['surat'] = $this->db->get('antrian_surat')->num_rows();
+
+        $this->db->where('is_active =', 0);
+        $data['user_non'] = $this->db->get('user')->num_rows();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);
