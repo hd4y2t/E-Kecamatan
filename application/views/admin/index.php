@@ -29,8 +29,8 @@
                                 <div class="card-icon">
                                     <i class="material-icons">store</i>
                                 </div>
-                                <p class="card-category">Revenue</p>
-                                <h3 class="card-title">$34,245</h3>
+                                <p class="card-category">Warga</p>
+                                <h3 class="card-title"><?= $warga; ?></h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -39,6 +39,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">
                             <div class="card-header card-header-danger card-header-icon">
