@@ -3,6 +3,7 @@
 
         <div class="content">
             <div class="container-fluid">
+                <h1 class="text black">BUAT YANG PENTING PENTING DULU, YG ERROR KAGEK</h1>
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">

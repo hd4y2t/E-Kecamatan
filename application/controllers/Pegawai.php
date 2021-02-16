@@ -52,7 +52,7 @@ class Pegawai extends CI_Controller
         $data['surat'] = $this->db->get('surat')->result_array();
 
         $this->form_validation->set_rules('surat', 'surat', 'required');
-        $this->form_validation->set_rules('kategori', 'kategori', 'required');
+        $this->form_validation->set_rules('syarat', 'syarat', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -63,14 +63,14 @@ class Pegawai extends CI_Controller
         } else {
             $array = [
 
-                'id_kategori' => $this->input->post('kategori', true),
-                'nm_surat' => $this->input->post('surat', true),
+                'id_surat' => $this->input->post('surat', true),
+                'syarat' => $this->input->post('syarat', true),
 
             ];
-            $this->db->insert('surat', $array);
+            $this->db->insert('persyaratan', $array);
             $this->session->set_flashdata(
                 'message',
-                '<div class="alert alert-success" role="alert"> Surat Baru ditambahkan </div>'
+                '<div class="alert alert-success" role="alert"> Persyaratan telah ditambahkan </div>'
             );
             redirect('pegawai/syarat');
         }
