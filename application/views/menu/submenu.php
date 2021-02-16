@@ -35,7 +35,7 @@
                                                 <?php $i = 1; ?>
                                                 <?php foreach ($subMenu as $sm) : ?>
                                                     <tr>
-                                                        <th scope="row"><?= $i ?></th>
+                                                        <th scope="row"><?= $i ?></th> 
                                                         <td><?= $sm['title']; ?></td>
                                                         <td><?= $sm['menu']; ?></td>
                                                         <td><?= $sm['url']; ?></td>
