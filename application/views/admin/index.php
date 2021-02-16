@@ -11,7 +11,7 @@
                                     <i class="material-icons">content_copy</i>
                                 </div>
                                 <p class="card-category">Antrian Surat</p>
-                                <h3 class="card-title"><?= $surat; ?>
+                                <h3 class="card-title">
                                 </h3>
                             </div>
                             <div class="card-footer">
@@ -28,7 +28,7 @@
                                 <div class="card-icon">
                                     <i class="material-icons">people</i>
                                 </div>
-                                <p class="card-category">Warga</p>
+                                <p class="card-category">User</p>
                                 <h3 class="card-title"><?= $warga; ?></h3>
                             </div>
                             <div class="card-footer">
@@ -45,7 +45,7 @@
                                 <div class="card-icon">
                                     <i class="material-icons">info_outline</i>
                                 </div>
-                                <p class="card-category">Warga yang belum aktif</p>
+                                <p class="card-category">User yang belum aktif</p>
                                 <h3 class="card-title"><?= $user_non; ?></h3>
                             </div>
                             <div class="card-footer">

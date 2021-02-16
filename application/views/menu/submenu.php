@@ -1,7 +1,7 @@
 <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-lg-5">
+            <div class="col-lg">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="card">

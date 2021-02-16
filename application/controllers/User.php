@@ -13,7 +13,7 @@ class User extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
-        $data['title'] = 'Pengajuan Surat';
+        $data['title'] = 'My Profile';
         $data['surat'] = $this->db->get('surat')->result_array();
         $data['kategori'] = $this->db->get('kategori')->result_array();
 
@@ -25,7 +25,7 @@ class User extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
-            $this->load->view('user/index', $data);
+            $this->load->view('user/profile', $data);
             $this->load->view('templates/footer');
         } else {
             $array = [
@@ -42,17 +42,7 @@ class User extends CI_Controller
         }
     }
 
-    public function profile()
-    {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
-        $data['title'] = 'My Profile';
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('user/profile', $data);
-        $this->load->view('templates/footer');
-    }
 
     public function edit_profile()
     {
