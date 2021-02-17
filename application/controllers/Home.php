@@ -7,7 +7,7 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // $this->load->model('galery_model', 'galery');
+        $this->load->model('galery_model', 'galery');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
@@ -16,7 +16,7 @@ class Home extends CI_Controller
     public function index()
     {
         // $data = $this->dashboard->user();
-        // $data['profil'] = $this->galery->profil();
+        $data['profile'] = $this->galery->profil();
         $judul = [
             'title' => 'Home - Kecamatan Sematang Borang',
             'sub_title' => ''
@@ -25,7 +25,7 @@ class Home extends CI_Controller
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
         $this->load->view('frontend/header', $judul);
-        $this->load->view('frontend/home');
-        $this->load->view('frontend/footer');
+        $this->load->view('frontend/home', $data);
+        $this->load->view('frontend/footer', $data);
     }
 }

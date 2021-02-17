@@ -8,14 +8,14 @@
  </header>
 
  <!-- profil-->
- <section class="page-section" id="profil">
+ <section class="page-section" id="profile">
  	<div class="container">
  		<div class="text-center">
  			<h2 class="section-heading text-uppercase">Profil</h2>
  			<h3 class="section-subheading text-muted">Kecamatan Sematang Borang, Kota Palembang</h3>
  		</div>
  		<div class="row text-justify pl-5 pr-5">
- 			<p><?= $profil[0]['profile'] ?></p>
+ 			<p><?= $profile[0]['profile'] ?></p>
  		</div>
  	</div>
  </section>
@@ -34,8 +34,8 @@
  						<div class="portfolio-hover">
  							<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
  						</div>
- 						<img class="img-fluid" src="<?= base_url('/assets/galery/');
-														echo $profil[0]['s_kelurahan'] ?>" alt="struktur-kelurahan" />
+ 						<img class="img-fluid" src="<?= base_url('/assets1/galery/');
+														echo $profile[0]['s_kelurahan'] ?>" alt="struktur-kelurahan" />
  					</a>
  					<div class="portfolio-caption">
  						<div class="portfolio-caption-heading">Sruktur Kecamatan Sematang Boraang</div>
@@ -49,8 +49,8 @@
  						<div class="portfolio-hover">
  							<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
  						</div>
- 						<img class="img-fluid" src="<?= base_url('/assets/galery/');
-														echo $profil[0]['s_lpm'] ?>" alt="struktur-LPM" />
+ 						<img class="img-fluid" src="<?= base_url('/assets1/galery/');
+														echo $profile[0]['s_lpm'] ?>" alt="struktur-LPM" />
  					</a>
  					<div class="portfolio-caption">
  						<div class="portfolio-caption-heading">Sruktur LPM</div>
@@ -64,8 +64,8 @@
  						<div class="portfolio-hover">
  							<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
  						</div>
- 						<img class="img-fluid" src="<?= base_url('/assets/galery/');
-														echo $profil[0]['s_linmas'] ?>" alt="struktur-linmas" />
+ 						<img class="img-fluid" src="<?= base_url('/assets1/galery/');
+														echo $profile[0]['s_linmas'] ?>" alt="struktur-linmas" />
  					</a>
  					<div class="portfolio-caption">
  						<div class="portfolio-caption-heading">Sruktur LINMAS</div>
@@ -79,8 +79,8 @@
  						<div class="portfolio-hover">
  							<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
  						</div>
- 						<img class="img-fluid" src="<?= base_url('/assets/galery/');
-														echo $profil[0]['s_pemuda'] ?>" alt="struktur-pemuda" />
+ 						<img class="img-fluid" src="<?= base_url('/assets1/galery/');
+														echo $profile[0]['s_pemuda'] ?>" alt="struktur-pemuda" />
  					</a>
  					<div class="portfolio-caption">
  						<div class="portfolio-caption-heading">Sruktur Pemuda Kelurahan</div>
@@ -94,8 +94,8 @@
  						<div class="portfolio-hover">
  							<div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
  						</div>
- 						<img class="img-fluid" src="<?= base_url('/assets/galery/');
-														echo $profil[0]['k_rtrw'] ?>" alt="struktur-rtrw" />
+ 						<img class="img-fluid" src="<?= base_url('/assets1/galery/');
+														echo $profile[0]['k_rtrw'] ?>" alt="struktur-rtrw" />
  					</a>
  					<div class="portfolio-caption">
  						<div class="portfolio-caption-heading">RT & RW</div>

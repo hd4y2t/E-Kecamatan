@@ -4,12 +4,12 @@ class Galery_model extends CI_Model
 {
     public function profil()
     {
-        return $this->db->get("galery")->result_array();
+        return $this->db->get("gallery")->result_array();
     }
 
     public function UpdateProfil($id)
     {
-        $profil = $this->input->post('profil');
+        $profil = $this->input->post('profile');
 
         $this->db->set('profile', $profil);
 

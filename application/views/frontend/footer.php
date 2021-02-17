@@ -22,7 +22,7 @@
 <div class="portfolio-modal modal fade" id="skelurahan" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets1/img/close-icon.svg" alt="Close modal" /></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
@@ -30,8 +30,8 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Struktur Kelurahan</h2>
                             <p class="item-intro text-muted">|</p>
-                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets/galery/');
-                                                                        echo $profil[0]['s_kelurahan'] ?>" alt="struktur-kelurahan" />
+                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets1/galery/');
+                                                                        echo $profile[0]['s_kelurahan'] ?>" alt="struktur-kelurahan" />
                             <!-- <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>Date: January 2020</li>
@@ -54,7 +54,7 @@
 <div class="portfolio-modal modal fade" id="slpm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets1/img/close-icon.svg" alt="Close modal" /></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
@@ -62,8 +62,8 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Struktur LPM</h2>
                             <p class="item-intro text-muted">|</p>
-                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets/galery/');
-                                                                        echo $profil[0]['s_lpm'] ?>" alt="struktur-lpm" />
+                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets1/galery/');
+                                                                        echo $profile[0]['s_lpm'] ?>" alt="struktur-lpm" />
                             <!-- <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>Date: January 2020</li>
@@ -86,7 +86,7 @@
 <div class="portfolio-modal modal fade" id="slinmas" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets1/img/close-icon.svg" alt="Close modal" /></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
@@ -94,8 +94,8 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Struktur LINMAS</h2>
                             <p class="item-intro text-muted">|</p>
-                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets/galery/');
-                                                                        echo $profil[0]['s_linmas'] ?>" alt="struktur-linmas" />
+                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets1/galery/');
+                                                                        echo $profile[0]['s_linmas'] ?>" alt="struktur-linmas" />
                             <!-- <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>Date: January 2020</li>
@@ -118,7 +118,7 @@
 <div class="portfolio-modal modal fade" id="spemuda" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets1/img/close-icon.svg" alt="Close modal" /></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
@@ -126,8 +126,8 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Struktur Pemuda Kelurahan</h2>
                             <p class="item-intro text-muted">|</p>
-                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets/galery/');
-                                                                        echo $profil[0]['s_pemuda'] ?>" alt="struktur-pemuda" />
+                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets1/galery/');
+                                                                        echo $profile[0]['s_pemuda'] ?>" alt="struktur-pemuda" />
                             <!-- <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>Date: January 2020</li>
@@ -150,7 +150,7 @@
 <div class="portfolio-modal modal fade" id="rtrw" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets/img/close-icon.svg" alt="Close modal" /></div>
+            <div class="close-modal" data-dismiss="modal"><img src="<?= base_url() ?>assets1/img/close-icon.svg" alt="Close modal" /></div>
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
@@ -158,8 +158,8 @@
                             <!-- Project Details Go Here-->
                             <h2 class="text-uppercase">Struktur RT & RW</h2>
                             <p class="item-intro text-muted">|</p>
-                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets/galery/');
-                                                                        echo $profil[0]['k_rtrw'] ?>" alt="struktur-rtrw" />
+                            <img class="img-fluid d-block mx-auto" src="<?= base_url('/assets1/galery/');
+                                                                        echo $profile[0]['k_rtrw'] ?>" alt="struktur-rtrw" />
                             <!-- <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
                                     <ul class="list-inline">
                                         <li>Date: January 2020</li>
@@ -184,11 +184,11 @@
 <!-- Third party plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 <!-- Contact form JS-->
-<script src="<?= base_url() ?>assets/mail/jqBootstrapValidation.js"></script>
-<script src="<?= base_url() ?>assets/mail/contact_me.js"></script>
+<script src="<?= base_url() ?>assets1/mail/jqBootstrapValidation.js"></script>
+<script src="<?= base_url() ?>assets1/mail/contact_me.js"></script>
 <!-- Core theme JS-->
-<script src="<?= base_url() ?>assets/js/scripts.js"></script>
-<script src="<?= base_url(); ?>assets/jquery-ui-1.12.1/jquery-ui.js"></script>
+<script src="<?= base_url() ?>assets1/js/scripts.js"></script>
+<script src="<?= base_url(); ?>assets1/jquery-ui-1.12.1/jquery-ui.js"></script>
 </body>
 
 </html>
