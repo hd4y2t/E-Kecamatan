@@ -3,7 +3,7 @@
  	<div class="container">
  		<div class="masthead-subheading">Selamat Datang!</div>
  		<div class="masthead-heading text-uppercase">Kecamatan Sematang Borang</div>
- 		<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#profil">Lihat Profil</a>
+ 		<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#profile">Lihat Profil</a>
  	</div>
  </header>
 

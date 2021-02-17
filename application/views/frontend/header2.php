@@ -7,7 +7,7 @@
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<title><?= $title ?></title>
-	<link rel="icon" type="image/x-icon" href="<?= base_url() ?>assets1/img/favicon.ico" />
+	<link rel="icon" type="image/png" href="<?= base_url('assets/'); ?>img/favicon.gif">
 	<!-- Font Awesome icons (free version)-->
 	<script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
 	<!-- Google fonts-->
