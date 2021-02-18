@@ -10109,11 +10109,12 @@ header.masthead {
   padding-bottom: 6rem;
   text-align: center;
   color: #fff;
-  background-image: url("../img/kantorlurahpulau.jpg");
+  background-image: url("../img/kantor.jpg");
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: center center;
   background-size: cover;
+  
 }
 header.masthead .masthead-subheading {
   font-size: 1.5rem;

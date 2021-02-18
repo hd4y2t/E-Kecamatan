@@ -24,7 +24,7 @@
  <section class="page-section bg-light" id="struktur">
  	<div class="container">
  		<div class="text-center">
- 			<h2 class="section-heading text-uppercase">Struktur Organisasi</h2>
+ 			<h2 class="section-heading text-uppercase">Galery</h2>
  			<h3 class="section-subheading text-muted">Kecamatan Sematang Borang, Kota Palembang</h3>
  		</div>
  		<div class="row">
@@ -38,7 +38,7 @@
 														echo $profile[0]['s_kelurahan'] ?>" alt="struktur-kelurahan" />
  					</a>
  					<div class="portfolio-caption">
- 						<div class="portfolio-caption-heading">Sruktur Kecamatan Sematang Boraang</div>
+ 						<div class="portfolio-caption-heading">Sruktur Kecamatan</div>
  						<div class="portfolio-caption-subheading text-muted">Klik + lihat detail</div>
  					</div>
  				</div>
@@ -53,7 +53,7 @@
 														echo $profile[0]['s_lpm'] ?>" alt="struktur-LPM" />
  					</a>
  					<div class="portfolio-caption">
- 						<div class="portfolio-caption-heading">Sruktur LPM</div>
+ 						<div class="portfolio-caption-heading">Denah Kecamatan</div>
  						<div class="portfolio-caption-subheading text-muted">Klik + lihat detail</div>
  					</div>
  				</div>
@@ -112,7 +112,7 @@
  				<div class="row text-justify pl-5 pr-5">
  					<p>Diberitahukan untuk melakukan Pengajuan Surat Online dimohon untuk melengkapi data dengan benar dan
  						berkas persyaratan untuk Pengajuan Surat Online di Upload. Jika terdapat permasalahan dalam mengisi
- 						form Pengajuan Surat Online dimohon kepada pengaju untuk datang langsung ke Kantor Kelurahan Pulau,
+ 						form Pengajuan Surat Online dimohon kepada pengaju untuk datang langsung ke Kantor Kecamatan Sematang Borang,
  						atas perhatiannya terimakasih.</p>
  				</div>
  			</div>

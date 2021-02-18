@@ -30,7 +30,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ml-auto">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#profil">Profil</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#profile">Profil</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#struktur">Struktur Organisasi</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="<?= base_url('suratonline') ?>">Pengajuan Surat</a></li>

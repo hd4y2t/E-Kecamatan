@@ -31,7 +31,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ml-auto">
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= base_url('home/#profil') ?>">Profil</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= base_url('home/#profile') ?>">Profil</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="<?= base_url('home/#struktur') ?>">Struktur Organisasi</a>
 					</li>
 					<li class="nav-item"><a class="nav-link <?php if ($title == 'Pengajuan Surat Online') : ?><?= 'active'; ?><?php endif; ?>" href="<?= base_url('suratonline') ?>">Pengajuan Surat</a></li>

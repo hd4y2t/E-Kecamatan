@@ -23,8 +23,13 @@
                     <?= form_input(['type' => 'text', 'name' => 'no_hp', 'id' => 'no_hp', 'class' => 'form-control', "required" => "required", 'placeholder' => 'Silahkan masukkan No Hp anda']); ?>
                 </div>
                 <div class="col-lg-6 mt-2">
-                    <label for="jenis">Pilih Jenis Surat *</label>
-                    <?= form_dropdown('jenis_surat', $options, '', ['id' => 'jenis', 'class' => 'form-control']); ?>
+                    <label for="surat">Pilih Surat</label>
+                    <select name="surat" id="surat" class="form-control">
+                        <option value="">Pilih Surat</option>
+                        <?php foreach ($surat as $s) : ?>
+                            <option value="<?= $s['id_surat']; ?>"><?= $s['nm_surat']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="col-lg-12 mt-2">
                     <label for="file">File Berkas/Lampiran <sup class="text-danger">*PDF Recommended! | Max 5MB</sup></label>

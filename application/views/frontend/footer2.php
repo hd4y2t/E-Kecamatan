@@ -52,10 +52,10 @@
 </script>
 
 <script>
-    $('#jenis').change(function() {
-        var e = document.getElementById("jenis");
+    $('#surat').change(function() {
+        var e = document.getElementById("surat");
         var jenisSurat = e.value;
-        // console.log(jenisSurat)
+        // console.log(jenisSurat);
 
         const spkk = ['KK Lama (Asli & FC)', 'KTP', 'Surat Pindah dari daerah asal', 'FC Buku Nikah', 'Surat Pengantar/Keterangan RT & RW']
         const spna = ['FC KK Calon Suami & Istri', 'FC KTP Calon Suami & Istri', 'Pas Foto 3x4 Calon Suami & Istri', 'Surat Pengantar/Keterangan RT & RW', 'FC Akta Cerai (Bagi Janda/Duda)']
