@@ -3,7 +3,7 @@
 function is_logged_in()
 {
     $ci = get_instance();
-    if (!$ci->session->userdata('ni')) {
+    if (!$ci->session->userdata('username')) {
         redirect('auth');
     } else {
         $role_id = $ci->session->userdata('role_id');
@@ -37,10 +37,10 @@ function is_logged_in()
         }
     }
 
-    function check_active($ni, $is_active)
+    function check_active($username, $is_active)
     {
         $ci = get_instance();
-        $ci->db->where('ni', $ni);
+        $ci->db->where('username', $username);
         $active = $ci->db->where('is_active =', $is_active);
 
 

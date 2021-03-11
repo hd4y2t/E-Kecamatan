@@ -35,7 +35,7 @@
 					</li>
 					<li class="nav-item"><a class="nav-link" href="<?= base_url('suratonline') ?>">Pengajuan Surat</a></li>
 					<li class="nav-item"><a class="nav-link" href="<?= base_url('tracking') ?>">Track Surat</a></li>
-					<li class="nav-item"><a class="nav-link" target="_blank" href="<?= base_url('auth/login') ?>">Login</a></li>
+					<li class="nav-item"><a class="nav-link" target="_blank" href="<?= base_url('auth') ?>">Login</a></li>
 				</ul>
 			</div>
 		</div>

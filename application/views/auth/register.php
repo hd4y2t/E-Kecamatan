@@ -43,7 +43,7 @@
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Lupa Password?</a>
                                         <br>
-                                        <a class="small" href="<?= base_url('auth'); ?>">Sudah Punya Akun? Login!</a>
+                                        <!-- <a class="small" href="<?= base_url('auth'); ?>">Sudah Punya Akun? Login!</a> -->
                                     </div>
                                 </div>
                             </form>

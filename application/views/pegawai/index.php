@@ -18,8 +18,8 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
-                                                    <th scope="col">Katergori</th>
                                                     <th scope="col">Nama Surat</th>
+                                                    <th scope="col">Persyaratan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -27,11 +27,11 @@
                                                 <?php foreach ($surat as $s) : ?>
                                                     <tr>
                                                         <th scope="row"><?= $i ?></th>
-                                                        <td><?= $s['nm_kategori']; ?></td>
                                                         <td><?= $s['nm_surat']; ?></td>
+                                                        <td><?= $s['syarat']; ?></td>
                                                         <td>
-                                                            <a href="<?= base_url('admin/pegawai/edit_surat') . $s['id_surat']; ?>" class="btn btn-warning">akses </a>
-                                                            <a href="" class="btn btn-primary">edit </a>
+                                                            <a href="" class="btn btn-primary">Akses </a>
+                                                            <a href="<?= base_url('pegawai/edit_surat/') . $s['id_surat']; ?>" class="btn btn-warning">Edit </a>
 
                                                         </td>
                                                         <?php $i++; ?>
@@ -78,13 +78,26 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                    <button type="Submit" class="btn btn-primary">Tambah</button>
+                    <div class="form-group">
+                        <select name="bidang" id="bidang" class="form-control">
+                            <option value="">Pilih Bidang</option>
+                            <?php foreach ($bidang as $b) : ?>
+                                <option value="<?= $b['id']; ?>"><?= $b['nm_bidang']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Persyaratan</label>
+                        <input type="text" class="form-control" id="syarat" name="syarat">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                        <button type="Submit" class="btn btn-primary">Tambah</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 </body>

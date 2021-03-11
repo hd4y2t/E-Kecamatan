@@ -12,6 +12,16 @@ class Mpegawai extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+
+    public function getBagian()
+    {
+        $query = "SELECT `surat`.*, `bidang`.`nm_bidang`
+                   FROM `surat` JOIN `bidang`
+                   ON `surat`.`id_bidang` = `bidang`.`id`
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+
     public function getSurat()
     {
         $query = "SELECT `persyaratan`.*, `surat`.`nm_surat`

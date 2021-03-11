@@ -13,7 +13,7 @@ class Admin extends CI_Controller
 
     public function index()
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Dashboard';
         $data['warga'] = $this->db->get('user')->num_rows();
 
@@ -28,7 +28,7 @@ class Admin extends CI_Controller
 
     public function role()
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Role';
         $data['role'] = $this->db->get('user_role')->result_array();
 
@@ -56,7 +56,7 @@ class Admin extends CI_Controller
 
     public function role_akses($role_id)
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Role Access';
         $data['role'] = $this->db->get_where('user_role', ['id' => $role_id])->row_array();
 
@@ -101,10 +101,10 @@ class Admin extends CI_Controller
     }
     public function activasi()
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Activasion';
         $data['active'] = $this->db->get('user')->result_array();
-        $this->db->where('ni !=', 12345);
+        $this->db->where('id !=', 13);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);

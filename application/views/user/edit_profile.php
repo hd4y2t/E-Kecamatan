@@ -12,8 +12,8 @@
                                 <?= form_open_multipart('user/edit_profile'); ?>
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Nomor Induk</label>
-                                    <input type="number" class="form-control" id="ni" name="ni" value="<?= $user['ni']; ?>" readonly>
-                                    <?= form_error('ni', '<small class="text-danger-pl-3">', '</small'); ?>
+                                    <input type="number" class="form-control" id="username" name="username" value="<?= $user['username']; ?>" readonly>
+                                    <?= form_error('username', '<small class="text-danger-pl-3">', '</small'); ?>
                                 </div>
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Nama</label>

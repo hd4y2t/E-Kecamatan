@@ -12,7 +12,7 @@ class User extends CI_Controller
 
     public function index()
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'My Profile';
         $data['surat'] = $this->db->get('surat')->result_array();
         $data['kategori'] = $this->db->get('kategori')->result_array();
@@ -46,7 +46,7 @@ class User extends CI_Controller
 
     public function edit_profile()
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Edit Profile';
         $this->form_validation->set_rules('nama', 'Nama lengkap', 'required|trim');
 
@@ -57,7 +57,7 @@ class User extends CI_Controller
             $this->load->view('user/edit_profile', $data);
             $this->load->view('templates/footer');
         } else {
-            $ni = $this->input->post('ni');
+            $username = $this->input->post('username');
             $nama = $this->input->post('nama');
             //cek jika ada gambar yang akan di upload
             $upload_image = $_FILES['foto']['name'];
@@ -80,7 +80,7 @@ class User extends CI_Controller
             }
 
             $this->db->set('nama', $nama);
-            $this->db->where('ni', $ni);
+            $this->db->where('username', $username);
             $this->db->update('user');
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Profile berhasil diedit</div>');
             redirect('user/profile');
@@ -88,7 +88,7 @@ class User extends CI_Controller
     }
     public function changepassword()
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Ganti Password';
         $this->form_validation->set_rules('currentpassword', 'Current Password', 'required|trim');
         $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|matches[new_password2]');
@@ -124,7 +124,7 @@ class User extends CI_Controller
 
     public function antrian()
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Antrian Surat';
 
         $this->load->view('templates/header', $data);

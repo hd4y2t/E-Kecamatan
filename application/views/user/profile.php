@@ -16,11 +16,8 @@
                                             <img height="30%" width="30%" src="<?= base_url('assets/img/profile/' . $user['foto']); ?>" class="img-thumbnail">
                                             <h1>perbaiki tata letak</h1>
                                             <h3 class="card-title"> Nama : <?= $user['nama']; ?></h3>
-                                            <h4 class="card-title"> Nik : <?= $user['ni']; ?></h4>
-                                            <h4 class="card-title"> alamat : </h4>
-                                            <h4 class="card-title"> Kelurahan : </h4>
-                                            <h4 class="card-title"> RT : </h4>
-                                            <h4 class="card-title"> RW : </h4>
+                                            <h4 class="card-title"> Nik : <?= $user['username']; ?></h4>
+
                                         </div>
                                     </div>
 

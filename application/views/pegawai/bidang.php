@@ -1,7 +1,7 @@
 <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-lg-7">
+            <div class="col-lg-4">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="card">
@@ -9,34 +9,28 @@
                                 <h3 class="card-title"><?= $title ?></h3>
                             </div>
                             <div class="card-body">
-                                <?= form_error('role', '<div class="text-danger" role="alert">', '</div>'); ?>
+                                <?= form_error('bidang', '<div class="text-danger" bidang="alert">', '</div>'); ?>
                                 <?= $this->session->flashdata('message'); ?>
-                                <a>proses edit aktivasi masih error</a>
+                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#newbidangModal">Tambah bidang</a>
                                 <div class="row">
                                     <div class="col">
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
-                                                    <th scope="col">Nomor induk</th>
-                                                    <th scope="col">Keterangan</th>
+                                                    <th scope="col">Nama Bidang</th>
+                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $i = 1; ?>
-                                                <?php foreach ($active as $a) : ?>
+                                                <?php foreach ($bidang as $b) : ?>
                                                     <tr>
                                                         <th scope="row"><?= $i ?></th>
-                                                        <td><?= $a['username']; ?></td>
+                                                        <td><?= $b['nm_bidang']; ?></td>
                                                         <td>
-                                                            <div class="form-check">
-                                                                <label class="form-check-label">
-                                                                    <input class="form-check-input" type="checkbox" <?= check_active($a['username'], $a['is_active']); ?>>
-                                                                    <span class="form-check-sign">
-                                                                        <span class="check"></span>
-                                                                    </span>
-                                                                </label>
-                                                            </div>
+                                                            <a href="<?= base_url("pegawai/editbidang/" . $b['id']); ?>" class="btn btn-warning">Edit</a>
+
                                                         </td>
                                                         <?php $i++; ?>
                                                     </tr>
@@ -56,3 +50,33 @@
 
 </div>
 </div>
+
+
+<!-- Modal -->
+<div class=" modal fade" id="newbidangModal" tabindex="-1" aria-labelledby="newbidangModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newbidangModalLabel">Tambahkan bidang Baru</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="<?= base_url('pegawai/bidang'); ?>" method="post">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Nama bidang</label>
+                        <input type="text" class="form-control" id="bidang" name="bidang">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                        <button type="Submit" class="btn btn-primary">Tambah</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>

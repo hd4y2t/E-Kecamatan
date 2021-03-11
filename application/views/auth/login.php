@@ -1,8 +1,9 @@
 <body class="bg-gradient-primary">
 
     <div class="content">
+        <div class="row"></div>
         <div class="row justify-content-center">
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="card o-hidden border-0 shadow-lg mx-auto">
                     <div class="card-body p-0">
                         <div class="card-header card-header-success">
@@ -16,9 +17,9 @@
                                     <div class="col-md">
                                         <?= $this->session->flashdata('message'); ?>
                                         <div class="form-group">
-                                            <label class="bmd-label-floating">NIP/NIK</label>
-                                            <input type="number" class="form-control" id="ni" name="ni" value="<?= set_value('ni'); ?>">
-                                            <?= form_error('ni', '<small class="text-danger-pl-3">', '</small'); ?>
+                                            <label class="bmd-label-floating">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username" value="<?= set_value('username'); ?>">
+                                            <?= form_error('username', '<small class="text-danger-pl-3">', '</small'); ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Password</label>
@@ -32,9 +33,9 @@
                                         <button type="submit" class="btn btn-success pull-right">Login</button>
 
                                         <div class="text-center">
-                                            <a class="small" href="<?= base_url('auth/dashboard'); ?>">Lupa Password?</a>
+                                            <!-- <a class="small" href="<?= base_url('auth/dashboard'); ?>">Lupa Password?</a> -->
                                             <br>
-                                            <a class="small" href="<?= base_url('auth/register'); ?>">Buat Akun!</a>
+                                            <!-- <a class="small" href="<?= base_url('auth/register'); ?>">Buat Akun!</a> -->
                                         </div>
                                     </div>
 
@@ -44,5 +45,6 @@
                 </div>
             </div>
         </div>
+        <div class="row"></div>
     </div>
     </div>

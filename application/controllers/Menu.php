@@ -13,7 +13,7 @@ class Menu extends CI_Controller
 
     public function index()
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Menu Management';
         $data['menu'] = $this->db->get('user_menu')->result_array();
         $this->load->view('templates/header', $data);
@@ -27,7 +27,7 @@ class Menu extends CI_Controller
     {
         $this->form_validation->set_rules('menu', 'Menu', 'required');
         if ($this->form_validation->run() == false) {
-            $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+            $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
             $data['title'] = 'Menu Management';
             $data['menu'] = $this->db->get('user_menu')->result_array();
             $this->load->view('templates/header', $data);
@@ -59,7 +59,7 @@ class Menu extends CI_Controller
 
     public function submenu()
     {
-        $data['user'] = $this->db->get_where('user', ['ni' => $this->session->userdata('ni')])->row_array();
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Sub Menu';
         $this->load->model('Mmenu', 'menu');
         $data['subMenu'] = $this->menu->getSubMenu();
