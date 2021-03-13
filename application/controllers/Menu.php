@@ -142,7 +142,7 @@ class Menu extends CI_Controller
 
     public function deleteSubMenu($id)
     {
-        $this->Mmenu->delete($id);
+        $this->Mmenu->deleteSubmenu($id);
         $this->session->set_flashdata('flash', 'Dihapus');
         redirect('menu/submenu');
     }
