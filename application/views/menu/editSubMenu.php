@@ -15,23 +15,29 @@
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Title</label>
-                                            <input type="text" class="form-control" id="title" name="title" value=" <?= $edit_submenu['nm_kategori']; ?>">
+                                            <input type="text" class="form-control" id="title" name="title" value=" <?= $edit_submenu['title']; ?>">
                                         </div>
                                         <div class="form-group">
+
                                             <select name="menu_id" id="menu_id" class="form-control">
-                                                <option value="">Pilih Menu</option>
+                                                <option value="">Pilih Bidang</option>
                                                 <?php foreach ($menu as $m) : ?>
-                                                    <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+                                                    <?php if ($edit_submenu['menu_id'] == $m['id']) : ?>
+                                                        <option value="<?= $m['id']; ?>" selected><?= $m['menu']; ?></option>
+                                                    <?php else : ?>
+                                                        <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+                                                    <?php endif; ?>
+
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Url</label>
-                                            <input type="text" class="form-control" id="url" name="url" value=" <?= $edit_submenu['nm_kategori']; ?>">
+                                            <input type="text" class="form-control" id="url" name="url" value=" <?= $edit_submenu['url']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Icon</label>
-                                            <input type="text" class="form-control" id="icon" name="icon" value=" <?= $edit_submenu['nm_kategori']; ?>">
+                                            <input type="text" class="form-control" id="icon" name="icon" value=" <?= $edit_submenu['icon']; ?>">
                                         </div>
                                         <div class="form-group">
                                             <tr>

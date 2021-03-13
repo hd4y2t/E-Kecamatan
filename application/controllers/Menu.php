@@ -99,17 +99,21 @@ class Menu extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Edit SubMenu';
+        $this->load->model('Mmenu', 'menu');
+        $data['subMenu'] = $this->menu->getSubMenu();
+        $data['menu'] = $this->db->get('user_menu')->result_array();
+        $data['edit_submenu'] = $this->db->get_where('user_sub_menu', ['id' => $id])->row_array();
+
         $this->form_validation->set_rules('menu_id', 'Menu', 'required');
         $this->form_validation->set_rules('title', 'title', 'required');
         $this->form_validation->set_rules('url', 'icon', 'required');
         $this->form_validation->set_rules('is_active', 'Is Active', 'required');
-        $data['edit_submenu'] = $this->db->get_where('user_sub_menu', ['id' => $id])->row_array();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
-            $this->load->view('pegawai/editSubMenu', $data);
+            $this->load->view('menu/editSubMenu', $data);
             $this->load->view('templates/footer');
         } else {
             $menu_id =  $this->input->post("menu_id", TRUE);
@@ -132,7 +136,7 @@ class Menu extends CI_Controller
                 'message',
                 '<div class="alert alert-success" role="alert"> Sub Menu berhasil di edit </div>'
             );
-            redirect('pegawai/submenu');
+            redirect('menu/submenu');
         }
     }
 
