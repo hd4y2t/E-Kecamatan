@@ -35,14 +35,14 @@
                                                 <?php $i = 1; ?>
                                                 <?php foreach ($subMenu as $sm) : ?>
                                                     <tr>
-                                                        <th scope="row"><?= $i ?></th> 
+                                                        <th scope="row"><?= $i ?></th>
                                                         <td><?= $sm['title']; ?></td>
                                                         <td><?= $sm['menu']; ?></td>
                                                         <td><?= $sm['url']; ?></td>
                                                         <td><?= $sm['icon']; ?></td>
                                                         <td><?= $sm['is_active']; ?></td>
                                                         <td>
-                                                            <a href="" class="badge bg-success text-dark">Edit </a>
+                                                            <a href="<?= base_url(); ?>menu/editSubMenu/<?= $sm['id']; ?>" class="badge bg-success text-dark">Edit </a>
                                                             <a href="<?= base_url(); ?>menu/deleteSubmenu/<?= $sm['id']; ?>" onclick="return confirm('yakin?');" class="badge bg-danger text-white"> Delete</a>
                                                         </td>
                                                         <?php $i++; ?>

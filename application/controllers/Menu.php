@@ -95,8 +95,48 @@ class Menu extends CI_Controller
         }
     }
 
+    public function editSubMenu($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Edit SubMenu';
+        $this->form_validation->set_rules('menu_id', 'Menu', 'required');
+        $this->form_validation->set_rules('title', 'title', 'required');
+        $this->form_validation->set_rules('url', 'icon', 'required');
+        $this->form_validation->set_rules('is_active', 'Is Active', 'required');
+        $data['edit_submenu'] = $this->db->get_where('user_sub_menu', ['id' => $id])->row_array();
 
-    public function deleteSubmenu($id)
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('pegawai/editSubMenu', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $menu_id =  $this->input->post("menu_id", TRUE);
+            $title =  $this->input->post("title", TRUE);
+            $url =  $this->input->post("url", TRUE);
+            $is_active =  $this->input->post("is_active", TRUE);
+            $array = [
+                'menu_id' => $menu_id,
+                'title' => $title,
+                'url' => $url,
+                'is_active' => $is_active
+            ];
+            $this->db->set('menu_id', $menu_id);
+            $this->db->set('title', $title);
+            $this->db->set('url', $url);
+            $this->db->set('is_active', $is_active);
+            $this->db->where('id', $id);
+            $this->db->update('user_sub_menu', $array);
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert"> Sub Menu berhasil di edit </div>'
+            );
+            redirect('pegawai/submenu');
+        }
+    }
+
+    public function deleteSubMenu($id)
     {
         $this->Mmenu->delete($id);
         $this->session->set_flashdata('flash', 'Dihapus');
