@@ -216,11 +216,51 @@ class Pegawai extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Antrian Surat';
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Syarat Tidak Terpenuhi',
+            3 => 'Diterima dan Dilanjutkan',
+            4 => 'Sudah Diketik dan Diparaf',
+            5 => 'Ditandatangani Camat/<b>Selesai</b>',
+        ];
+        // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
+        $this->db->select('*');
+        $this->db->from('pengajuan_surat');
+        $this->db->join('penduduk', 'penduduk.nik=pengajuan_surat.nik');
+        $this->db->order_by("tgl", "desc");
+        $query = $this->db->get();
+        $data['pengajuan'] = $query->result_array();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('pegawai/antrian', $data);
+        $this->load->view('templates/footer');
+    }
+
+
+    public function surat_masuk()
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Surat Masuk';
+        $data['surat_masuk'] = $this->db->get('surat_masuk')->result_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);
-        $this->load->view('user/antrian', $data);
+        $this->load->view('pegawai/surat_masuk', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function surat_keluar()
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Surat Keluar';
+        $data['surat_keluar'] = $this->db->get('surat_keluar')->result_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('pegawai/surat_keluar', $data);
         $this->load->view('templates/footer');
     }
 }
