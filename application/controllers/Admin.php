@@ -15,8 +15,11 @@ class Admin extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Dashboard';
-        $data['warga'] = $this->db->get('user')->num_rows();
-
+        $data['warga'] = $this->db->get('penduduk')->num_rows();
+        $data['antrian'] = $this->db->get('pengajuan_surat')->num_rows();
+        $data['antrian_non'] = $this->db->get_where('pengajuan_surat', ['status' => 1])->num_rows();
+        $data['antrian_done'] = $this->db->get_where('pengajuan_surat', ['status' => 5])->num_rows();
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $this->db->where('is_active =', 0);
         $data['user_non'] = $this->db->get('user')->num_rows();
         $this->load->view('templates/header', $data);

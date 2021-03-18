@@ -12,7 +12,7 @@
                             </div>
                             <div class="card-body">
                                 <h6>Halaman tidak ditemukan</h6>
-                                <a href="<?= base_url('user'); ?>">Kembali ke dashboard</a>
+                                <a href="<?= base_url('pegawai'); ?>">Kembali ke dashboard</a>
                             </div>
 
                         </div>

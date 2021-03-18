@@ -20,6 +20,7 @@
                                                     <th scope="col"></th>
                                                     <th scope="col">Nama Surat</th>
                                                     <th scope="col">Persyaratan</th>
+                                                    <th scope="col">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

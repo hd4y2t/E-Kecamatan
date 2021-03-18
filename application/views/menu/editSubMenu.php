@@ -11,7 +11,7 @@
                             <div class="card-body">
                                 <?= form_error('submenu', '<div class="text-danger" kategori="alert">', '</div>'); ?>
                                 <?= $this->session->flashdata('message'); ?>
-                                <form action="<?= base_url('menu/submenu'); ?>" method="post">
+                                <form action="" method="post">
                                     <div class="modal-body">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Title</label>
@@ -57,7 +57,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="Submit" class="btn btn-primary">Tambah</button>
+                                        <button type="Submit" class="btn btn-primary">Edit</button>
                                     </div>
                                 </form>
 

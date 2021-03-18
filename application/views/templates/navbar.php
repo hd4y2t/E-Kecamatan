@@ -59,6 +59,8 @@
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="<?= base_url('user/edit_profile'); ?>">Edit Profile</a>
                                   <div class="dropdown-divider"></div>
+                                  <a class="dropdown-item" href="<?= base_url('user/changepassword'); ?>">Ganti Password</a>
+                                  <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>">Log out</a>
                               </div>
                           </li>

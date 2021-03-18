@@ -41,6 +41,37 @@ class User extends CI_Controller
             );
         }
     }
+    public function profile()
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'My Profile';
+        $data['surat'] = $this->db->get('surat')->result_array();
+        $data['kategori'] = $this->db->get('kategori')->result_array();
+
+        $this->form_validation->set_rules('id_kategori', 'Kategori', 'required');
+        $this->form_validation->set_rules('nm_surat', 'Nama Surat', 'required');
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('user/profile', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $array = [
+
+                'id_kategori' => $this->input->post('id_kategori', true),
+                'nm_surat' => $this->input->post('nm_surat', true),
+
+            ];
+            $this->db->insert('surat', $array);
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert">Surat Baru ditambahkan </div>'
+            );
+        }
+    }
 
 
 
