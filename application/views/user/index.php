@@ -17,10 +17,8 @@
                                             <h1>perbaiki tata letak</h1>
                                             <h3 class="card-title"> Nama : <?= $user['nama']; ?></h3>
                                             <h4 class="card-title"> Username : <?= $user['username']; ?></h4>
-
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <p>Tanggal mendaftar :</p>
