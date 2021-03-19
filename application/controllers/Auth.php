@@ -126,6 +126,12 @@ class Auth extends CI_Controller
     //     }
     // }
 
+    public function tables()
+    {
+        $this->load->view('auth/notification');
+    }
+
+
 
 
     public function logout()

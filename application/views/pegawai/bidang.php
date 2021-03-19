@@ -14,41 +14,43 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newbidangModal">Tambah bidang</a>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table table-hover" id="myTable">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">Nama Bidang</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($bidang as $b) : ?>
-                                                    <tr>
-                                                        <th scope="row"><?= $i ?></th>
-                                                        <td><?= $b['nm_bidang']; ?></td>
-                                                        <td>
-                                                            <a href="<?= base_url("pegawai/editbidang/" . $b['id']); ?>" class="btn btn-warning">Edit</a>
 
-                                                        </td>
-                                                        <?php $i++; ?>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover" id="myTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Nama Bidang</th>
+                                                        <th scope="col">Action</th>
                                                     </tr>
-                                                <?php endforeach ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $i = 1; ?>
+                                                    <?php foreach ($bidang as $b) : ?>
+                                                        <tr>
+                                                            <th scope="row"><?= $i ?></th>
+                                                            <td><?= $b['nm_bidang']; ?></td>
+                                                            <td>
+                                                                <a href="<?= base_url("pegawai/editbidang/" . $b['id']); ?>" class="btn btn-warning">Edit</a>
+
+                                                            </td>
+                                                            <?php $i++; ?>
+                                                        </tr>
+                                                    <?php endforeach ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </div>
 
 

@@ -17,8 +17,8 @@
 
                                 <?= $this->session->flashdata('message'); ?>
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newSubMenuModal"> Tambah Sub Menu</a>
-                                <div class="row">
-                                    <div class="col">
+                                <div class="card-body">
+                                    <div class="table-responsive">
                                         <table class="table fs-6" id="myTable">
                                             <thead>
                                                 <tr>
@@ -50,6 +50,7 @@
                                                 <?php endforeach ?>
                                             </tbody>
                                         </table>
+
                                     </div>
                                 </div>
                             </div>

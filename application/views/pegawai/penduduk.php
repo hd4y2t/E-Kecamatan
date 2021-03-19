@@ -14,58 +14,60 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newpendudukModal">Tambah penduduk</a>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table table-hover" id="myTable">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">NIK</th>
-                                                    <th scope="col">Nama</th>
-                                                    <th scope="col">No.HP</th>
-                                                    <th scope="col">Tempat Lahir</th>
-                                                    <th scope="col">Tanggal Lahir</th>
-                                                    <th scope="col">Pekerjaan</th>
-                                                    <th scope="col">Alamat</th>
-                                                    <th scope="col">Kelurahan</th>
-                                                    <th scope="col">Pengajuan Surat</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($warga as $w) : ?>
-                                                    <tr>
-                                                        <th scope="row"><?= $i ?></th>
-                                                        <td><?= $w['nik']; ?></td>
-                                                        <td><?= $w['nama']; ?></td>
-                                                        <td><?= $w['no_hp']; ?></td>
-                                                        <td><?= $w['tmpt_lhr']; ?></td>
-                                                        <td><?= $w['tgl_lhr']; ?></td>
-                                                        <td><?= $w['pekerjaan']; ?></td>
-                                                        <td><?= $w['alamat']; ?></td>
-                                                        <td><?= $w['kelurahan']; ?></td>
-                                                        <td><?= $w['pengajuan']; ?></td>
-                                                        <td>
-                                                            <a href="<?= base_url('pegawai/edit_penduduk/') . $w['nik']; ?>" class="btn btn-warning btn-sm">Edit </a>
-                                                            <a href="<?= base_url('pegawai/hapus_penduduk/') . $w['nik']; ?>" class=" btn btn-danger btn-sm">Hapus </a>
 
-                                                        </td>
-                                                        <?php $i++; ?>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover" id="myTable">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">NIK</th>
+                                                        <th scope="col">Nama</th>
+                                                        <th scope="col">No.HP</th>
+                                                        <th scope="col">Tempat Lahir</th>
+                                                        <th scope="col">Tanggal Lahir</th>
+                                                        <th scope="col">Pekerjaan</th>
+                                                        <th scope="col">Alamat</th>
+                                                        <th scope="col">Kelurahan</th>
+                                                        <th scope="col">Pengajuan Surat</th>
+                                                        <th scope="col">Action</th>
                                                     </tr>
-                                                <?php endforeach ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $i = 1; ?>
+                                                    <?php foreach ($warga as $w) : ?>
+                                                        <tr>
+                                                            <th scope="row"><?= $i ?></th>
+                                                            <td><?= $w['nik']; ?></td>
+                                                            <td><?= $w['nama']; ?></td>
+                                                            <td><?= $w['no_hp']; ?></td>
+                                                            <td><?= $w['tmpt_lhr']; ?></td>
+                                                            <td><?= $w['tgl_lhr']; ?></td>
+                                                            <td><?= $w['pekerjaan']; ?></td>
+                                                            <td><?= $w['alamat']; ?></td>
+                                                            <td><?= $w['kelurahan']; ?></td>
+                                                            <td><?= $w['pengajuan']; ?></td>
+                                                            <td>
+                                                                <a href="<?= base_url('pegawai/edit_penduduk/') . $w['nik']; ?>" class="btn btn-warning btn-sm">Edit </a>
+                                                                <a href="<?= base_url('pegawai/hapus_penduduk/') . $w['nik']; ?>" class=" btn btn-danger btn-sm">Hapus </a>
+
+                                                            </td>
+                                                            <?php $i++; ?>
+                                                        </tr>
+                                                    <?php endforeach ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </div>
 
 

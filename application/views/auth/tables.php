@@ -310,7 +310,7 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="card-header card-header-primary">
                   <h4 class="card-title mt-0"> Table on Plain Background</h4>
                   <p class="card-category"> Here is a subtitle for this table</p>
-                </div>
+                </div> 
                 <div class="card-body">
                   <div class="table-responsive">
                     <table class="table table-hover">

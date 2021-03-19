@@ -12,46 +12,45 @@
                                     <h3 class="card-title">Antrian Surat</h3>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <table class="table table-hover table-sm" id="myTable">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col"></th>
-                                                        <th scope="col">ID Pengajuan</th>
-                                                        <th scope="col">Kategori</th>
-                                                        <th scope="col">Nama Pengaju(NIK)</th>
-                                                        <th scope="col">No.HP</th>
-                                                        <th scope="col">Tanggal</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">File</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php $i = 1; ?>
-                                                    <?php foreach ($pengajuan as $m) : ?>
-                                                        <tr>
-                                                            <th scope="row"><?= $i ?></th>
-                                                            <td><?= $m['id']; ?></td>
-                                                            <td><?= $m['id_surat']; ?></td>
-                                                            <td><?= $m['nama'] . '(' . $m['nik'] . ')'; ?></td>
-                                                            <td><?= $m['tgl']; ?></td>
-                                                            <td><?= $m['no_hp']; ?></td>
-                                                            <td><?= $status[$m['status']]; ?></td>
-                                                            <td>
-                                                                <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                            </td>
-                                                            <td>
-                                                                <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $m['id']; ?>"><i class="material-icons">outbond</i>Status</button>
 
-                                                            </td>
-                                                            <?php $i++; ?>
-                                                        </tr>
-                                                    <?php endforeach ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover table-sm" id="myTable">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">ID Pengajuan</th>
+                                                    <th scope="col">Kategori</th>
+                                                    <th scope="col">Nama Pengaju(NIK)</th>
+                                                    <th scope="col">No.HP</th>
+                                                    <th scope="col">Tanggal</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">File</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                <?php foreach ($pengajuan as $m) : ?>
+                                                    <tr>
+                                                        <th scope="row"><?= $i ?></th>
+                                                        <td><?= $m['id']; ?></td>
+                                                        <td><?= $m['id_surat']; ?></td>
+                                                        <td><?= $m['nama'] . '(' . $m['nik'] . ')'; ?></td>
+                                                        <td><?= $m['tgl']; ?></td>
+                                                        <td><?= $m['no_hp']; ?></td>
+                                                        <td><?= $status[$m['status']]; ?></td>
+                                                        <td>
+                                                            <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $m['id']; ?>"><i class="material-icons">outbond</i>Status</button>
+
+                                                        </td>
+                                                        <?php $i++; ?>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>

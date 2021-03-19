@@ -14,54 +14,55 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table table-hover" id="myTable">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">Nomor Surat</th>
-                                                    <th scope="col">Jenis</th>
-                                                    <th scope="col">Nama Surat</th>
-                                                    <th scope="col">Tanggal</th>
-                                                    <th scope="col">Keterangan</th>
-                                                    <th scope="col">File</th>
-                                                    <th scope="col">Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($surat_keluar as $s) : ?>
+                                        <div class="table-responsive">
+                                            <table class="table table-hover" id="myTable">
+                                                <thead>
                                                     <tr>
-                                                        <th scope="row"><?= $i ?></th>
-                                                        <td><?= $s['no_surat']; ?></td>
-                                                        <td><?= $s['jenis']; ?></td>
-                                                        <td><?= $s['nm_surat_keluar']; ?></td>
-                                                        <td><?= $s['tgl']; ?></td>
-                                                        <td><?= $s['keterangan']; ?></td>
-                                                        <td>
-                                                            <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                        </td>
-                                                        <td>
-                                                            <a href="<?= base_url('pegawai/edit_surat_keluar/') . $s['id']; ?>" class="btn btn-warning btn-sm">Edit </a>
-                                                            <a href="" class="btn btn-danger btn-sm">hapus </a>
-
-                                                        </td>
-                                                        <?php $i++; ?>
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Nomor Surat</th>
+                                                        <th scope="col">Jenis</th>
+                                                        <th scope="col">Nama Surat</th>
+                                                        <th scope="col">Tanggal</th>
+                                                        <th scope="col">Keterangan</th>
+                                                        <th scope="col">File</th>
+                                                        <th scope="col">Action</th>
                                                     </tr>
-                                                <?php endforeach ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $i = 1; ?>
+                                                    <?php foreach ($surat_keluar as $s) : ?>
+                                                        <tr>
+                                                            <th scope="row"><?= $i ?></th>
+                                                            <td><?= $s['no_surat']; ?></td>
+                                                            <td><?= $s['jenis']; ?></td>
+                                                            <td><?= $s['nm_surat_keluar']; ?></td>
+                                                            <td><?= $s['tgl']; ?></td>
+                                                            <td><?= $s['keterangan']; ?></td>
+                                                            <td>
+                                                                <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                            </td>
+                                                            <td>
+                                                                <a href="<?= base_url('pegawai/edit_surat_keluar/') . $s['id']; ?>" class="btn btn-warning btn-sm">Edit </a>
+                                                                <a href="" class="btn btn-danger btn-sm">hapus </a>
+
+                                                            </td>
+                                                            <?php $i++; ?>
+                                                        </tr>
+                                                    <?php endforeach ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
 </div>
 
 
