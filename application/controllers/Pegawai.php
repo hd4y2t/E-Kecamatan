@@ -244,11 +244,52 @@ class Pegawai extends CI_Controller
         $data['title'] = 'Surat Masuk';
         $data['surat_masuk'] = $this->db->get('surat_masuk')->result_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('pegawai/surat_masuk', $data);
-        $this->load->view('templates/footer');
+        $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
+        $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
+        $this->form_validation->set_rules('nm_surat_masuk', 'Nama Surat', 'required');
+        $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('pegawai/surat_masuk', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $no_surat =  $this->input->post("no_surat", TRUE);
+            $jenis =  $this->input->post("jenis", TRUE);
+            $nm_surat_masuk =  $this->input->post("nm_surat_masuk", TRUE);
+            $tgl =  $this->input->post("tgl", TRUE);
+            $keterangan =  $this->input->post("keterangan", TRUE);
+            // $file_surat =  $this->input->post("file_surat", TRUE);
+
+            $config['upload_path']          = './upload/surat_masuk';
+            $config['allowed_types']        = 'pdf|doc|docx';
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('file_surat')) {
+
+                $data = array('upload_data' => $this->upload->data());
+                $file_surat = $data['upload_data']['file_name'];
+
+                $save = [
+                    'id' => '',
+                    'no_surat' => $no_surat,
+                    'jenis' => $jenis,
+                    'nm_surat_masuk' => $nm_surat_masuk,
+                    'tgl' => date('Y-m-d', strtotime($tgl)),
+                    'keterangan' => $keterangan,
+                    'file' => $file_surat
+                ];
+
+                $this->db->insert('surat_masuk', $save);
+                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+                redirect(base_url("pegawai/surat_masuk"));
+            }
+        }
     }
 
     public function surat_keluar()
