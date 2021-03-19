@@ -57,20 +57,20 @@
         var jenisSurat = e.value;
         // console.log(jenisSurat);
 
-        const spkk = ['KK Lama (Asli & FC)', 'KTP', 'Surat Pindah dari daerah asal', 'FC Buku Nikah', 'Surat Pengantar/Keterangan RT & RW']
-        const spna = ['FC KK Calon Suami & Istri', 'FC KTP Calon Suami & Istri', 'Pas Foto 3x4 Calon Suami & Istri', 'Surat Pengantar/Keterangan RT & RW', 'FC Akta Cerai (Bagi Janda/Duda)']
-        const skkl = ['KK (Asli & FC)', 'KTP', 'Surat Keterangan Kelahiran dari Bidan/RS (Jika ada/ Optional)', 'Surat Pengantar/Keterangan RT & RW']
-        const skkm = ['KK (Asli & FC)', 'KTP', 'Surat Keterangan Kematian (Jika ada/Optional)', 'Surat Pengantar/Keterangan RT & RW']
-        const skp = ['KK (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW', 'Data alamat daerah tujuan']
-        const skd = ['KK (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW', 'Data alamat daerah asal']
-        const skbm = ['KK (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW']
-        const skph = ['KK (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pernyataan dari yang bersangkutan(Optional)', 'Surat Pengantar/Keterangan RT & RW']
-        const skm = ['KK (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW']
-        const sku = ['KK (Asli & FC)', 'KTP (Asli & FC)', 'Izin Usaha', 'Surat Pengantar/Keterangan RT & RW']
-        const skt = ['KTP (Asli & FC)', 'Surat Dasar Kepemilikan']
-        const skgg = ['KTP (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW']
-        const situ = ['KTP (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW']
-        const simb = ['KTP (Asli & FC)', 'FC Surat Tanah Lokasi Bangunan', 'Surat Pengantar/Keterangan RT & RW']
+        // const spkk = ['KK Lama (Asli & FC)', 'KTP', 'Surat Pindah dari daerah asal', 'FC Buku Nikah', 'Surat Pengantar/Keterangan RT & RW']
+        // const spna = ['FC KK Calon Suami & Istri', 'FC KTP Calon Suami & Istri', 'Pas Foto 3x4 Calon Suami & Istri', 'Surat Pengantar/Keterangan RT & RW', 'FC Akta Cerai (Bagi Janda/Duda)']
+        // const skkl = ['KK (Asli & FC)', 'KTP', 'Surat Keterangan Kelahiran dari Bidan/RS (Jika ada/ Optional)', 'Surat Pengantar/Keterangan RT & RW']
+        // const skkm = ['KK (Asli & FC)', 'KTP', 'Surat Keterangan Kematian (Jika ada/Optional)', 'Surat Pengantar/Keterangan RT & RW']
+        // const skp = ['KK (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW', 'Data alamat daerah tujuan']
+        // const skd = ['KK (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW', 'Data alamat daerah asal']
+        // const skbm = ['KK (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW']
+        // const skph = ['KK (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pernyataan dari yang bersangkutan(Optional)', 'Surat Pengantar/Keterangan RT & RW']
+        // const skm = ['KK (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW']
+        // const sku = ['KK (Asli & FC)', 'KTP (Asli & FC)', 'Izin Usaha', 'Surat Pengantar/Keterangan RT & RW']
+        // const skt = ['KTP (Asli & FC)', 'Surat Dasar Kepemilikan']
+        // const skgg = ['KTP (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW']
+        // const situ = ['KTP (Asli & FC)', 'KTP (Asli & FC)', 'Surat Pengantar/Keterangan RT & RW']
+        // const simb = ['KTP (Asli & FC)', 'FC Surat Tanah Lokasi Bangunan', 'Surat Pengantar/Keterangan RT & RW']
 
         const showList = (surat) => {
             surat.forEach(item => {
@@ -84,51 +84,51 @@
             });
         }
 
-        if (jenisSurat == 'SPKK') {
-            $('#syarat').html('')
-            showList(spkk)
-        } else if (jenisSurat == 'SPNA') {
-            $('#syarat').html('')
-            showList(spna)
-        } else if (jenisSurat == 'SKKL') {
-            $('#syarat').html('')
-            showList(skkl)
-        } else if (jenisSurat == 'SKKM') {
-            $('#syarat').html('')
-            showList(skkm)
-        } else if (jenisSurat == 'SKP') {
-            $('#syarat').html('')
-            showList(skp)
-        } else if (jenisSurat == 'SKD') {
-            $('#syarat').html('')
-            showList(skd)
-        } else if (jenisSurat == 'SKBM') {
-            $('#syarat').html('')
-            showList(skbm)
-        } else if (jenisSurat == 'SKPH') {
-            $('#syarat').html('')
-            showList(skph)
-        } else if (jenisSurat == 'SKM') {
-            $('#syarat').html('')
-            showList(skm)
-        } else if (jenisSurat == 'SKU') {
-            $('#syarat').html('')
-            showList(sku)
-        } else if (jenisSurat == 'SKT') {
-            $('#syarat').html('')
-            showList(skt)
-        } else if (jenisSurat == 'SKGG') {
-            $('#syarat').html('')
-            showList(skgg)
-        } else if (jenisSurat == 'SITU') {
-            $('#syarat').html('')
-            showList(situ)
-        } else if (jenisSurat == 'SIMB') {
-            $('#syarat').html('')
-            showList(simb)
-        } else {
-            console.log('Nothing')
-        }
+        // if (jenisSurat == 'SPKK') {
+        //     $('#syarat').html('')
+        //     showList(spkk)
+        // } else if (jenisSurat == 'SPNA') {
+        //     $('#syarat').html('')
+        //     showList(spna)
+        // } else if (jenisSurat == 'SKKL') {
+        //     $('#syarat').html('')
+        //     showList(skkl)
+        // } else if (jenisSurat == 'SKKM') {
+        //     $('#syarat').html('')
+        //     showList(skkm)
+        // } else if (jenisSurat == 'SKP') {
+        //     $('#syarat').html('')
+        //     showList(skp)
+        // } else if (jenisSurat == 'SKD') {
+        //     $('#syarat').html('')
+        //     showList(skd)
+        // } else if (jenisSurat == 'SKBM') {
+        //     $('#syarat').html('')
+        //     showList(skbm)
+        // } else if (jenisSurat == 'SKPH') {
+        //     $('#syarat').html('')
+        //     showList(skph)
+        // } else if (jenisSurat == 'SKM') {
+        //     $('#syarat').html('')
+        //     showList(skm)
+        // } else if (jenisSurat == 'SKU') {
+        //     $('#syarat').html('')
+        //     showList(sku)
+        // } else if (jenisSurat == 'SKT') {
+        //     $('#syarat').html('')
+        //     showList(skt)
+        // } else if (jenisSurat == 'SKGG') {
+        //     $('#syarat').html('')
+        //     showList(skgg)
+        // } else if (jenisSurat == 'SITU') {
+        //     $('#syarat').html('')
+        //     showList(situ)
+        // } else if (jenisSurat == 'SIMB') {
+        //     $('#syarat').html('')
+        //     showList(simb)
+        // } else {
+        //     console.log('Nothing')
+        // }
     })
 </script>
 </body>
