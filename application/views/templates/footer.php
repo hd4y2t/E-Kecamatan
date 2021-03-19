@@ -225,6 +225,11 @@
         md.initDashboardPageCharts();
 
     });
+    $(function() {
+        $('#datetimepicker').datetimepicker({
+            format: 'LT'
+        });
+    });
 
     $('.form-check-input').on('click', function() {
         const menuId = $(this).data('menu');

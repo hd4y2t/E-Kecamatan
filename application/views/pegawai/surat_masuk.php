@@ -1,7 +1,7 @@
 <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-lg-7">
+            <div class="col-lg">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="card">
@@ -19,6 +19,7 @@
                                                 <tr>
                                                     <th scope="col"></th>
                                                     <th scope="col">Nomor Surat</th>
+                                                    <th scope="col">Jenis Surat</th>
                                                     <th scope="col">Nama Surat</th>
                                                     <th scope="col">Tanggal</th>
                                                     <th scope="col">Keterangan</th>
@@ -32,6 +33,7 @@
                                                     <tr>
                                                         <th scope="row"><?= $i ?></th>
                                                         <td><?= $s['no_surat']; ?></td>
+                                                        <td><?= $s['jenis']; ?></td>
                                                         <td><?= $s['nm_surat_masuk']; ?></td>
                                                         <td><?= $s['tgl']; ?></td>
                                                         <td><?= $s['keterangan']; ?></td>
@@ -73,32 +75,30 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('pegawai/'); ?>" method="post">
+            <form action="<?= base_url('pegawai/tambahsurat'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
+                        <label class="bmd-label-floating">Nomor Surat</label>
+                        <input type="text" class="form-control" id="no_surat" name="no_surat">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Jenis Surat</label>
+                        <input type="text" class="form-control" id="jenis" name="jenis">
+                    </div>
+                    <div class="form-group">
                         <label class="bmd-label-floating">Nama Surat</label>
-                        <input type="text" class="form-control" id="surat" name="surat">
+                        <input type="text" class="form-control" id="nm_surat_masuk" name="nm_surat_masuk">
                     </div>
                     <div class="form-group">
-                        <select name="kategori" id="kategori" class="form-control">
-                            <option value="">Pilih Kategori</option>
-                            <?php foreach ($kategori as $k) : ?>
-                                <option value="<?= $k['id_kategori']; ?>"><?= $k['nm_kategori']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <label class="bmd-label-floating">Tanggal</label>
+                        <input type="text" class="form-control" id="tgl" name="tgl">
                     </div>
                     <div class="form-group">
-                        <select name="bidang" id="bidang" class="form-control">
-                            <option value="">Pilih Bidang</option>
-                            <?php foreach ($bidang as $b) : ?>
-                                <option value="<?= $b['id']; ?>"><?= $b['nm_bidang']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                        <label class="bmd-label-floating">Keterangan</label>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan">
                     </div>
-                    <div class="form-group">
-                        <label class="bmd-label-floating">Persyaratan</label>
-                        <input type="text" class="form-control" id="syarat" name="syarat">
-                    </div>
+
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                         <button type="Submit" class="btn btn-primary">Tambah</button>
@@ -109,6 +109,8 @@
     </div>
 </div>
 
+
+//lihat surat
 <?php foreach ($surat_masuk as $s) : ?>
     <div class="modal fade" id="lihatSurat<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-notice">

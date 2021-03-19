@@ -106,8 +106,13 @@
                         <input type="text" class="form-control" id="alamat" name="alamat">
                     </div>
                     <div class="form-group">
-                        <label class="bmd-label-floating">Kelurahan</label>
-                        <input type="text" class="form-control" id="kelurahan" name="kelurahan">
+                        <select name="kelurahan" id="kelurahan" class="form-control">
+                            <option value="">Pilih Kelurahan</option>
+                            <option value="Karya Mulya">Karya Mulya</option>
+                            <option value="Lebung Gajah">Lebung Gajah</option>
+                            <option value="Srimulya">Srimulya</option>
+                            <option value="Suka Mulya">Suka Mulya</option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
