@@ -19,6 +19,7 @@
                                                 <tr>
                                                     <th scope="col"></th>
                                                     <th scope="col">Nomor Surat</th>
+                                                    <th scope="col">Jenis</th>
                                                     <th scope="col">Nama Surat</th>
                                                     <th scope="col">Tanggal</th>
                                                     <th scope="col">Keterangan</th>
@@ -32,6 +33,7 @@
                                                     <tr>
                                                         <th scope="row"><?= $i ?></th>
                                                         <td><?= $s['no_surat']; ?></td>
+                                                        <td><?= $s['jenis']; ?></td>
                                                         <td><?= $s['nm_surat_keluar']; ?></td>
                                                         <td><?= $s['tgl']; ?></td>
                                                         <td><?= $s['keterangan']; ?></td>
@@ -73,37 +75,53 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('pegawai/'); ?>" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="bmd-label-floating">Nama Surat</label>
-                        <input type="text" class="form-control" id="surat" name="surat">
-                    </div>
-                    <div class="form-group">
-                        <select name="kategori" id="kategori" class="form-control">
-                            <option value="">Pilih Kategori</option>
-                            <?php foreach ($kategori as $k) : ?>
-                                <option value="<?= $k['id_kategori']; ?>"><?= $k['nm_kategori']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select name="bidang" id="bidang" class="form-control">
-                            <option value="">Pilih Bidang</option>
-                            <?php foreach ($bidang as $b) : ?>
-                                <option value="<?= $b['id']; ?>"><?= $b['nm_bidang']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="bmd-label-floating">Persyaratan</label>
-                        <input type="text" class="form-control" id="syarat" name="syarat">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                        <button type="Submit" class="btn btn-primary">Tambah</button>
+            <?php echo form_open_multipart(); ?>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="bmd-label-floating">Nomor Surat</label>
+                    <input type="text" class="form-control" id="no_surat" name="no_surat">
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating">Jenis Surat</label>
+                    <input type="text" class="form-control" id="jenis" name="jenis">
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating">Nama Surat</label>
+                    <input type="text" class="form-control" id="nm_surat_keluar" name="nm_surat_keluar">
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating">Tanggal</label>
+                    <input type="text" class="form-control" id="tgl" name="tgl">
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating">Keterangan</label>
+                    <input type="text" class="form-control" id="keterangan" name="keterangan">
+                </div>
+
+                <div class="form-group">
+                    <label class="label-control">File Surat</label>
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                        <div class="fileinput-new thumbnail">
+                            <!-- <img src="<?= base_url() ?>assets/save.png" alt="..."> -->
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                        <div>
+                            <span class="btn btn-danger btn-file">
+                                <i class="material-icons">cloud_upload</i>
+                                <span class="fileinput-new">Select File</span>
+                                <span class="fileinput-exists">Change</span>
+                                <input type="file" name="file_surat" id="file_surat" />
+                            </span>
+                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                        </div>
                     </div>
                 </div>
+                <?= form_error('file_surat', '<div class="text-danger">', '</div>'); ?>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                    <button type="Submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </div>
             </form>
         </div>
     </div>
