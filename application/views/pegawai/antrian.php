@@ -14,7 +14,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <table class="table table-hover">
+                                            <table class="table table-hover table-sm" id="myTable">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col"></th>
@@ -40,10 +40,10 @@
                                                             <td><?= $m['no_hp']; ?></td>
                                                             <td><?= $status[$m['status']]; ?></td>
                                                             <td>
-                                                                <button class="btn btn-simple btn-info" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                                <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <button class="btn btn-simple btn-success btn-icon" data-toggle="modal" data-target="#statusPengajuan<?= $m['id']; ?>"><i class="material-icons">outbond</i>Update Status</button>
+                                                                <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $m['id']; ?>"><i class="material-icons">outbond</i>Status</button>
 
                                                             </td>
                                                             <?php $i++; ?>

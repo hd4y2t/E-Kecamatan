@@ -10,7 +10,7 @@
             Sematang Borang
         </a>
     </div>
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper" id="slider">
         <!-- Query menu -->
         <?php
         $role_id = $this->session->userdata('role_id');

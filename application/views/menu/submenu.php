@@ -19,7 +19,7 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newSubMenuModal"> Tambah Sub Menu</a>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table fs-6">
+                                        <table class="table fs-6" id="myTable">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>

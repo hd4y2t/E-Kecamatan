@@ -1,7 +1,7 @@
 <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-lg-4">
+            <div class="col-lg">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="card">
@@ -14,7 +14,7 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newkategoriModal">Tambah kategori</a>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="myTable">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>

@@ -14,7 +14,7 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newpendudukModal">Tambah penduduk</a>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="myTable">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
@@ -45,8 +45,8 @@
                                                         <td><?= $w['kelurahan']; ?></td>
                                                         <td><?= $w['pengajuan']; ?></td>
                                                         <td>
-                                                            <a href="<?= base_url('pegawai/edit_penduduk/') . $w['nik']; ?>" class="btn btn-warning">Edit </a>
-                                                            <a href="<?= base_url('pegawai/hapus_penduduk/') . $w['nik']; ?>" class=" btn btn-danger">Hapus </a>
+                                                            <a href="<?= base_url('pegawai/edit_penduduk/') . $w['nik']; ?>" class="btn btn-warning btn-sm">Edit </a>
+                                                            <a href="<?= base_url('pegawai/hapus_penduduk/') . $w['nik']; ?>" class=" btn btn-danger btn-sm">Hapus </a>
 
                                                         </td>
                                                         <?php $i++; ?>

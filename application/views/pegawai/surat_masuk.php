@@ -14,7 +14,7 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="myTable">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
@@ -38,11 +38,11 @@
                                                         <td><?= $s['tgl']; ?></td>
                                                         <td><?= $s['keterangan']; ?></td>
                                                         <td>
-                                                            <button class="btn btn-simple btn-info" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                            <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                         </td>
                                                         <td>
-                                                            <a href="<?= base_url('pegawai/edit_surat_masuk/') . $s['id']; ?>" class="btn btn-warning">edit </a>
-                                                            <a href="" class="btn btn-danger">hapus </a>
+                                                            <a href="<?= base_url('pegawai/edit_surat_masuk/') . $s['id']; ?>" class="btn btn-warning btn-sm">edit </a>
+                                                            <a href="" class="btn btn-danger btn-sm">hapus </a>
 
                                                         </td>
                                                         <?php $i++; ?>

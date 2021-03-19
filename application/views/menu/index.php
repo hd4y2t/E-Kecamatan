@@ -14,7 +14,7 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newMenuModal"> Tambah Menu</a>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="myTable">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
@@ -30,7 +30,7 @@
                                                         <td><?= $m['menu']; ?></td>
                                                         <td>
                                                             <a href="" class="btn btn-primary">
-                                                            edit 
+                                                                edit
                                                             </a>
                                                             <a href="<?= base_url(); ?>menu/delete/<?= $m['id']; ?>" onclick="return confirm('yakin?');" class="btn btn-danger">
                                                                 <i class="material-icons">delete</i>

@@ -105,7 +105,7 @@ class Admin extends CI_Controller
     public function activasi()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Activasion';
+        $data['title'] = 'Activasi';
         $data['active'] = $this->db->get('user')->result_array();
         $this->db->where('id !=', 13);
         $this->load->view('templates/header', $data);

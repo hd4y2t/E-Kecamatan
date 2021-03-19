@@ -1,7 +1,7 @@
 <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-lg-7">
+            <div class="col-lg">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="card">
@@ -14,11 +14,13 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a>
                                 <div class="row">
                                     <div class="col">
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="myTable">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
                                                     <th scope="col">Nama Surat</th>
+                                                    <th scope="col">Kategori</th>
+                                                    <th scope="col">Bidang</th>
                                                     <th scope="col">Persyaratan</th>
                                                     <th scope="col">Action</th>
                                                 </tr>
@@ -29,10 +31,12 @@
                                                     <tr>
                                                         <th scope="row"><?= $i ?></th>
                                                         <td><?= $s['nm_surat']; ?></td>
+                                                        <td><?= $s['nm_kategori']; ?></td>
+                                                        <td><?= $s['id_bidang']; ?></td>
                                                         <td><?= $s['syarat']; ?></td>
                                                         <td>
-                                                            <a href="" class="btn btn-primary">Akses </a>
-                                                            <a href="<?= base_url('pegawai/edit_surat/') . $s['id_surat']; ?>" class="btn btn-warning">Edit </a>
+                                                            <a href="" class="btn btn-primary btn-sm">Akses </a>
+                                                            <a href="<?= base_url('pegawai/edit_surat/') . $s['id_surat']; ?>" class="btn btn-warning btn-sm">Edit </a>
 
                                                         </td>
                                                         <?php $i++; ?>
