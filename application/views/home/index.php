@@ -7,7 +7,7 @@
         <div class="logo mr-auto">
           <h1 class="text-light"><a href="#"><span>
 
-                Sematang Borang
+                <?= $profile['kecamatan']; ?>
               </span></a></h1>
           <!-- Uncomment below if you prefer to use an image logo -->
           <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -68,12 +68,12 @@
 
         <div class="row content">
           <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-            <h2>Kecamatan Sematang Borang</h2>
-            <h3>Sematang Borang adalah sebuah kecamatan di Kota Palembang, Sumatra Selatan, Indonesia. Kecamatan ini terbentuk pada tahun Agustus 2007, merupakan pemekaran dari Kecamatan Sako.</h3>
+            <h2>Kecamatan <?= $profile['kecamatan']; ?></h2>
+            <h3><?= $profile['detail']; ?></h3>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
             <p>
-              Kecamatan Sematang Borang Memiliki 4 kelurahan
+              Kecamatan S<?= $profile['kecamatan']; ?> Memiliki 4 kelurahan
               <br>
               antaranya :
             </p>
@@ -259,10 +259,11 @@
             <div class="owl-carousel testimonials-carousel">
 
               <div class="testimonial-item">
+                <h3><?= $profile['camat']; ?></h3>
                 <h4>Kepala Kecamatan</h4>
-                <h3>Tris Septiawan, S.STP.,MH</h3>
-                <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/camat.jpg" class="img-fluid" alt=""></div>
-
+                <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_camat']; ?>" class="img-fluid" alt=""></div>
+                </div>
                 <!-- <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                   Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
@@ -271,10 +272,11 @@
               </div>
 
               <div class="testimonial-item">
-                <h4>Sekretaris Kecamatan</h4>
                 <h3>Zaid Rahmadian,S.STP</h3>
-                <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/sekcam.jpg" class="img-fluid" alt=""></div>
-
+                <h4><?= $profile['sekcam']; ?></h4>
+                <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="img-fluid" alt=""></div>
+                </div>
                 <!-- <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                   Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
@@ -304,9 +306,9 @@
 
               <div class="col-lg-6">
                 <div class="member" data-aos="zoom-in" data-aos-delay="100">
-                  <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_pemerintahan']; ?>" class="img-fluid" alt=""></div>
                   <div class="member-info">
-                    <h4>Walter White</h4>
+                    <h4><?= $profile['s_pemerintahan']; ?></h4>
                     <span>Seksi Pemerintahan</span>
                     <!-- <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p> -->
                     <!-- <div class="social">
@@ -321,9 +323,9 @@
 
               <div class="col-lg-6 mt-4 mt-lg-0">
                 <div class="member" data-aos="zoom-in" data-aos-delay="200">
-                  <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
+                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_trantib']; ?>" class="img-fluid" alt=""></div>
                   <div class="member-info">
-                    <h4>Sarah Jhonson</h4>
+                    <h4><?= $profile['s_trantib']; ?></h4>
                     <span>Seksi Trantib</span>
                     <!-- <p>Aut maiores voluptates amet et quis praesentium qui senda para</p> -->
                     <!-- <div class="social">
@@ -338,9 +340,9 @@
 
               <div class="col-lg-6 mt-4">
                 <div class="member" data-aos="zoom-in" data-aos-delay="300">
-                  <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
+                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_pelindung']; ?>" class="img-fluid" alt=""></div>
                   <div class="member-info">
-                    <h4>William Anderson</h4>
+                    <h4><?= $profile['s_pelindung']; ?></h4>
                     <span>Seksi Perlindungan Masyarakat</span>
                     <!-- <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p> -->
                     <!-- <div class="social">
@@ -355,9 +357,9 @@
 
               <div class="col-lg-6 mt-4">
                 <div class="member" data-aos="zoom-in" data-aos-delay="400">
-                  <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
+                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sosial']; ?>" class="img-fluid" alt=""></div>
                   <div class="member-info">
-                    <h4>Amanda Jepson</h4>
+                    <h4><?= $profile['s_sosial']; ?></h4>
                     <span>Seksi Kesejahteraan Sosial</span>
                     <!-- <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p> -->
                     <!-- <div class="social">
@@ -372,9 +374,9 @@
 
               <div class="col-lg-6 mt-4">
                 <div class="member" data-aos="zoom-in" data-aos-delay="400">
-                  <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
+                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_pembangunan']; ?>" class="img-fluid" alt=""></div>
                   <div class="member-info">
-                    <h4>Amanda Jepson</h4>
+                    <h4><?= $profile['s_pembangunan']; ?></h4>
                     <span>Seksi Pembangunan</span>
                     <!-- <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p> -->
                     <!-- <div class="social">
@@ -396,40 +398,41 @@
     </section><!-- End Team Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4" data-aos="fade-right">
-            <div class="section-title">
-              <h2>Kontak</h2>
-              <p>Kontak Kecamatan yang dapat dihubungi</p>
+    <section class="testimonials section-bg">
+      <div class="contact" id="contact">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4" data-aos="fade-right">
+              <div class="section-title">
+                <h2>Kontak</h2>
+                <p>Kontak Kecamatan yang dapat dihubungi</p>
+              </div>
             </div>
-          </div>
 
-          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
-            <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5477922222744!2d104.80676301538426!3d-2.945343540518121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b771ac0026635%3A0x10e2896ca36953df!2sKantor%20Camat%20Sematang%20Borang!5e0!3m2!1sid!2sbg!4v1616248775092!5m2!1sid!2sbg" frameborder="0" allowfullscreen></iframe>
-            <div class="info mt-4">
-              <i class="icofont-google-map"></i>
-              <h4>Lokasi:</h4>
-              <p>Srimulyo, Sematang Borang, Sri Mulyo, Palembang, Kota Palembang, Sumatera Selatan 30161, Indonesia</p>
-            </div>
-            <div class="row">
-              <div class="col-lg-6 mt-4">
-                <div class="info">
-                  <i class="icofont-envelope"></i>
-                  <h4>Email:</h4>
-                  <p>sematangborang.palembangemas@gmail.com</p>
+            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+              <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5477922222744!2d104.80676301538426!3d-2.945343540518121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b771ac0026635%3A0x10e2896ca36953df!2sKantor%20Camat%20Sematang%20Borang!5e0!3m2!1sid!2sbg!4v1616248775092!5m2!1sid!2sbg" frameborder="0" allowfullscreen></iframe>
+              <div class="info mt-4">
+                <i class="icofont-google-map"></i>
+                <h4>Lokasi:</h4>
+                <p><?= $profile['lokasi']; ?></p>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 mt-4">
+                  <div class="info">
+                    <i class="icofont-envelope"></i>
+                    <h4>Email:</h4>
+                    <p><?= $profile['email']; ?></p>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="info w-100 mt-4">
+                    <i class="icofont-phone"></i>
+                    <h4>Telpon/WhatsApp:</h4>
+                    <p><?= $profile['no']; ?></p>
+                  </div>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="info w-100 mt-4">
-                  <i class="icofont-phone"></i>
-                  <h4>Telpon/WhatsApp:</h4>
-                  <p>+6282379759396</p>
-                </div>
-              </div>
-            </div>
-            <!-- 
+              <!-- 
             <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
               <div class="form-row">
                 <div class="col-md-6 form-group">
@@ -456,9 +459,10 @@
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form> -->
+            </div>
+
           </div>
         </div>
-
       </div>
     </section><!-- End Contact Section -->
 

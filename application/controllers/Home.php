@@ -22,6 +22,7 @@ class Home extends CI_Controller
         $data['antrian'] = $this->db->get_where('pengajuan_surat', ['status !=' => 5])->num_rows();
         $data['surat'] = $this->db->get('surat')->num_rows();
         $data['user'] = $this->db->get('user')->num_rows();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
         $this->load->view('home/header', $data);
