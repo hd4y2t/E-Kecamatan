@@ -19,7 +19,7 @@ class Home extends CI_Controller
         // $data['profile'] = $this->galery->profil();
         $data['title'] = 'E-Kecamatan';
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
-        $data['antrian'] = $this->db->get_where('pengajuan_surat', ['status' < 5])->num_rows();
+        $data['antrian'] = $this->db->get_where('pengajuan_surat', ['status !=' => 5])->num_rows();
         $data['surat'] = $this->db->get('surat')->num_rows();
         $data['user'] = $this->db->get('user')->num_rows();
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
@@ -28,16 +28,15 @@ class Home extends CI_Controller
         $this->load->view('home/index', $data);
         $this->load->view('home/footer');
     }
-    public function contoh()
+    public function detail()
     {
         // $data = $this->dashboard->user();
-        $data['profile'] = $this->galery->profil();
         $data['title'] = 'E-Kecamatan';
 
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
         $this->load->view('frontend/header', $data);
-        $this->load->view('frontend/home', $data);
+        $this->load->view('frontend/detail', $data);
         $this->load->view('frontend/footer');
     }
 }

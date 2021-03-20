@@ -1,5 +1,5 @@
     <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
+    <!-- <section id="clients" class="clients">
         <div class="container">
 
             <div class="row">
@@ -28,7 +28,7 @@
             </div>
 
         </div>
-    </section><!-- End Clients Section -->
+    </section> End Clients Section -->
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
@@ -36,8 +36,8 @@
             <div class="container">
                 <div class="row">
 
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Bethany</h3>
+                    <!-- <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>Kecamatan Sematang Borang</h3>
                         <p>
                             A108 Adam Street <br>
                             New York, NY 535022<br>
@@ -45,9 +45,9 @@
                             <strong>Phone:</strong> +1 5589 55488 55<br>
                             <strong>Email:</strong> info@example.com<br>
                         </p>
-                    </div>
+                    </div> -->
 
-                    <div class="col-lg-2 col-md-6 footer-links">
+                    <!-- <div class="col-lg-2 col-md-6 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
@@ -75,7 +75,7 @@
                         <form action="" method="post">
                             <input type="email" name="email"><input type="submit" value="Subscribe">
                         </form>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -85,7 +85,7 @@
 
             <div class="mr-md-auto text-center text-md-left">
                 <div class="copyright">
-                    &copy; Copyright <strong><span>Bethany</span></strong>. All Rights Reserved
+                    &copy; Copyright <strong><span>Hd4y2t</span></strong>. All Rights Reserved
                 </div>
                 <div class="credits">
                     <!-- All the links in the footer should remain intact. -->
@@ -95,13 +95,13 @@
                     Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                 </div>
             </div>
-            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+            <!-- <div class="social-links text-center text-md-right pt-3 pt-md-0">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
                 <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
                 <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-            </div>
+            </div> -->
         </div>
     </footer><!-- End Footer -->
 
