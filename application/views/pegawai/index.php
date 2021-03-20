@@ -15,8 +15,8 @@
                                 <div class="row">
                                     <div class="col">
 
-                                        <table class="table table-hover" id="myTable">
-                                            <div class="table-responsive">
+                                        <div class="table-responsive">
+                                            <table class="table table-hover" id="myTable">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col"></th>
@@ -45,8 +45,8 @@
                                                         </tr>
                                                     <?php endforeach ?>
                                                 </tbody>
-                                            </div>
-                                        </table>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

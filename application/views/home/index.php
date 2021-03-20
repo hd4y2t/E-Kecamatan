@@ -16,10 +16,10 @@
         <nav class="nav-menu d-none d-lg-block">
           <ul>
             <li class="active"><a href="#header">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#team">Team</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#services">Galery</a></li>
+            <li><a href="#portfolio">Pengajuan Surat</a></li>
+            <li><a href="#team">Treak Surat</a></li>
             <!-- <li class="drop-down"><a href="">Drop Down</a>
               <ul>
                 <li><a href="#">Drop Down 1</a></li>
@@ -39,7 +39,7 @@
             </li> -->
             <li><a href="#contact">Contact</a></li>
 
-            <li class="get-started"><a href="#header">Get Started</a></li>
+            <li class="get-started"><a target="_blank" href="<?= base_url('auth'); ?>">Login</a></li>
           </ul>
         </nav><!-- .nav-menu -->
       </div><!-- End Header Container -->
@@ -54,7 +54,7 @@
 
       <h1>E-Kecamatan Sematang Borang</h1>
       <h2>Website Pengajuan Persyaratan Online</h2>
-      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+      <a href="#profile" class="btn-get-started scrollto">Get Started</a>
     </div>
   </section><!-- End Hero -->
 
@@ -62,35 +62,36 @@
 
 
 
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
+    <!-- ======= profile Section ======= -->
+    <section id="profile" class="profile">
       <div class="container">
 
         <div class="row content">
           <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
             <h2>Kecamatan Sematang Borang</h2>
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assum perenda sruen jonee trave</h3>
+            <h3>Sematang Borang adalah sebuah kecamatan di Kota Palembang, Sumatra Selatan, Indonesia. Kecamatan ini terbentuk pada tahun Agustus 2007, merupakan pemekaran dari Kecamatan Sako.</h3>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
+              Kecamatan Sematang Borang Memiliki 4 kelurahan
+              <br>
+              antaranya :
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequa</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in</li>
+              <li><i class="ri-check-double-line"></i> Karya Mulya</li>
+              <li><i class="ri-check-double-line"></i> Lebong/Lebung Gajah</li>
+              <li><i class="ri-check-double-line"></i> Srimulya</li>
+              <li><i class="ri-check-double-line"></i> Suka Mulya</li>
             </ul>
-            <p class="font-italic">
+            <!-- <p class="font-italic">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
-            </p>
+            </p> -->
           </div>
         </div>
 
       </div>
-    </section><!-- End About Section -->
+    </section><!-- End profile Section -->
 
     <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">
