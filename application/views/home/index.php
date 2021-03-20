@@ -131,14 +131,14 @@
         <div class="row">
           <div class="col-lg-4 d-flex align-items-stretch" data-aos="fade-right">
             <div class="content">
-              <h3>Why Choose Bethany for your company website?</h3>
+              <h3>Tata cara mengajukan persyayratan di sistem</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
                 Asperiores dolores sed et. Tenetur quia eos. Autem tempore quibusdam vel necessitatibus optio ad corporis.
               </p>
-              <div class="text-center">
+              <!-- <div class="text-center">
                 <a href="#" class="more-btn">Learn More <i class="bx bx-chevron-right"></i></a>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="col-lg-8 d-flex align-items-stretch">
@@ -243,7 +243,7 @@
       <div class="container">
 
         <div class="section-title" data-aos="fade-left">
-          <h2>Portfolio</h2>
+          <h2>API INSTAGRAM KECAMATAN</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
@@ -268,7 +268,7 @@
                 <p>App</p>
                 <div class="portfolio-links">
                   <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details.html" title="More Details">
                 </div>
               </div>
             </div>
@@ -282,7 +282,7 @@
                 <p>Web</p>
                 <div class="portfolio-links">
                   <a href="assets/img/portfolio/portfolio-2.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details.html" title="More Details">
                 </div>
               </div>
             </div>
@@ -296,7 +296,7 @@
                 <p>App</p>
                 <div class="portfolio-links">
                   <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox" title="App 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details.html" title="More Details">
                 </div>
               </div>
             </div>
@@ -310,7 +310,7 @@
                 <p>Card</p>
                 <div class="portfolio-links">
                   <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox" title="Card 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details.html" title="More Details">
                 </div>
               </div>
             </div>
@@ -324,7 +324,7 @@
                 <p>Web</p>
                 <div class="portfolio-links">
                   <a href="assets/img/portfolio/portfolio-5.jpg" data-gall="portfolioGallery" class="venobox" title="Web 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details.html" title="More Details">
                 </div>
               </div>
             </div>
@@ -338,7 +338,7 @@
                 <p>App</p>
                 <div class="portfolio-links">
                   <a href="assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox" title="App 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details.html" title="More Details">
                 </div>
               </div>
             </div>
@@ -352,7 +352,7 @@
                 <p>Card</p>
                 <div class="portfolio-links">
                   <a href="assets/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox" title="Card 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details.html" title="More Details">
                 </div>
               </div>
             </div>
@@ -366,7 +366,7 @@
                 <p>Card</p>
                 <div class="portfolio-links">
                   <a href="assets/img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox" title="Card 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details.html" title="More Details">
                 </div>
               </div>
             </div>
@@ -380,7 +380,7 @@
                 <p>Web</p>
                 <div class="portfolio-links">
                   <a href="assets/img/portfolio/portfolio-9.jpg" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="portfolio-details.html" title="More Details">
                 </div>
               </div>
             </div>
@@ -398,11 +398,11 @@
         <div class="row">
           <div class="col-lg-4">
             <div class="section-title" data-aos="fade-right">
-              <h2>Testimonials</h2>
-              <p>Magnam dolores commodi suscipit uisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+              <h2>Strukrut Kecamatan</h2>
+              <p></p>
             </div>
           </div>
-          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="1000">
             <div class="owl-carousel testimonials-carousel">
 
               <div class="testimonial-item">
@@ -411,7 +411,7 @@
                   Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img">
                 <h3>Saul Goodman</h3>
                 <h4>Ceo &amp; Founder</h4>
               </div>
@@ -422,44 +422,10 @@
                   Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img">
                 <h3>Sara Wilsson</h3>
                 <h4>Designer</h4>
               </div>
-
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-              </div>
-
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-              </div>
-
-              <div class="testimonial-item">
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-              </div>
-
             </div>
           </div>
         </div>

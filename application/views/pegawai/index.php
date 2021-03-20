@@ -34,7 +34,7 @@
                                                             <th scope="row"><?= $i ?></th>
                                                             <td><?= $s['nm_surat']; ?></td>
                                                             <td><?= $s['nm_kategori']; ?></td>
-                                                            <td><?= $s['id_bidang']; ?></td>
+                                                            <td><?= $s['nm_bidang']; ?></td>
                                                             <td><?= $s['syarat']; ?></td>
                                                             <td>
                                                                 <a href="" class="btn btn-primary btn-sm">Akses </a>

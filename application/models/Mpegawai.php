@@ -4,21 +4,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Mpegawai extends CI_Model
 {
 
-    public function getKategori()
-    {
-        $query = "SELECT `surat`.*, `kategori`.`nm_kategori`
-                   FROM `surat` JOIN `kategori`
-                   ON `surat`.`id_kategori` = `kategori`.`id_kategori`
-                   ";
-        return $this->db->query($query)->result_array();
-    }
+    // public function getKategori()
+    // {
+    //     $query = "SELECT `surat`.*, `kategori`.`nm_kategori`
+    //                FROM `surat` JOIN `kategori`
+    //                ON `surat`.`id_kategori` = `kategori`.`id_kategori`
+    //                ";
+    //     return $this->db->query($query)->result_array();
+    // }
 
-    public function getBagian()
+    public function joinDataSurat()
     {
-        $query = "SELECT `surat`.*, `bidang`.`nm_bidang`
-                   FROM `surat` JOIN `bidang`
-                   ON `surat`.`id_bidang` = `bidang`.`id`
-                   ";
+        $query = "SELECT `surat`.* ,`kategori`.`nm_kategori`,`bidang`.`nm_bidang`
+                    FROM `surat`
+                    JOIN `kategori` ON `surat`.`id_kategori` = `kategori`.`id_kategori` 
+                    JOIN `bidang` ON `surat`.`id_bidang`=`bidang`.`id`
+                                    ";
         return $this->db->query($query)->result_array();
     }
 

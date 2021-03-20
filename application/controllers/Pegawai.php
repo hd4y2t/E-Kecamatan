@@ -16,8 +16,7 @@ class Pegawai extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Data Surat';
         $this->load->model('Mpegawai', 'pegawai');
-        $data['surat'] = $this->pegawai->getKategori();
-        $data['getbidang'] = $this->pegawai->getBagian();
+        $data['surat'] = $this->pegawai->joinDataSurat();
         $data['kategori'] = $this->db->get('kategori')->result_array();
         $data['bidang'] = $this->db->get('bidang')->result_array();
 
