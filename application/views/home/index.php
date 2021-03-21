@@ -215,7 +215,7 @@
                 <h4>Kepala Kecamatan</h4>
 
                 <!-- <div class="member" data-aos="zoom-in" data-aos-delay="100"> -->
-                <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_camat']; ?>" class="image" alt="">
+                <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_camat']; ?>" class="testimonial-image" alt="">
                 <!-- </div> -->
                 <!-- <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -228,7 +228,7 @@
                 <h3><?= $profile['sekcam']; ?></h3>
                 <h4>Sekretaris Kecamatan</h4>
                 <!-- <div class="member" data-aos="zoom-in" data-aos-delay="100"> -->
-                <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="image" alt="">
+                <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="testimonial-image" alt="">
                 <!-- </div> -->
                 <!-- <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
