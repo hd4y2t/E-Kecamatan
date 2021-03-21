@@ -119,6 +119,7 @@
     <script src="<?= base_url(); ?>assets/vendor/owl.carousel/owl.carousel.min.js"></script>
     <script src="<?= base_url(); ?>assets/vendor/aos/aos.js"></script>
 
+
     <!-- Template Main JS File -->
     <script src="<?= base_url(); ?>assets/js/main.js"></script>
     <!-- 

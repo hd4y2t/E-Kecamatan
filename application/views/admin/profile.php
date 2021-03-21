@@ -1,7 +1,7 @@
 <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-lg-8">
+            <div class="col-lg-6">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="card">
@@ -11,7 +11,6 @@
                             <div class="card-body">
                                 <?= form_error('bidang', '<div class="text-danger" bidang="alert">', '</div>'); ?>
                                 <?= $this->session->flashdata('message'); ?>
-                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#newbidangModal">Tambah bidang</a>
                                 <div class="row">
                                     <div class="col">
 
@@ -119,7 +118,7 @@
                                                     <tr>
                                                         <th scope="row">11</th>
                                                         <td>Foto Sekretaris Kecamatan</td>
-                                                        <td><?= $profile['f_sekcam']; ?></td>
+                                                        <td><button class="btn btn-simple btn-info" data-toggle="modal" data-target="#lihatSurat<?= $profile['f_sekcam']; ?>"><i class="material-icons">remove_red_eye</i></button></td>
                                                         <td>
                                                             <a href="<?= base_url("pegawai/editbidang/" . $profile['id']); ?>" class="btn btn-warning">Edit</a>
 
@@ -128,7 +127,8 @@
                                                     <tr>
                                                         <th scope="row">12</th>
                                                         <td>Foto Seksi Pemerintahan</td>
-                                                        <td><?= $profile['f_pemerintahan']; ?></td>
+                                                        <td><button class="btn btn-simple btn-info" data-toggle="modal" data-target="#lihatSurat<?= $profile['f_pemerintahan']; ?>"><i class="material-icons">remove_red_eye</i></button></td>
+
                                                         <td>
                                                             <a href="<?= base_url("pegawai/editbidang/" . $profile['id']); ?>" class="btn btn-warning">Edit</a>
 
@@ -137,7 +137,8 @@
                                                     <tr>
                                                         <th scope="row">13</th>
                                                         <td>Foto Seksi Trantib</td>
-                                                        <td><?= $profile['f_trantib']; ?></td>
+                                                        <td><button class="btn btn-simple btn-info" data-toggle="modal" data-target="#lihatSurat<?= $profile['f_trantib']; ?>"><i class="material-icons">remove_red_eye</i></button></td>
+
                                                         <td>
                                                             <a href="<?= base_url("pegawai/editbidang/" . $profile['id']); ?>" class="btn btn-warning">Edit</a>
 
@@ -146,7 +147,7 @@
                                                     <tr>
                                                         <th scope="row">14</th>
                                                         <td>Foto Seksi Perlindungan Masyarakat</td>
-                                                        <td><?= $profile['f_pelindung']; ?></td>
+                                                        <td> <button class="btn btn-simple btn-info" data-toggle="modal" data-target="#lihatSurat<?= $profile['f_pelindung']; ?>"><i class="material-icons">remove_red_eye</i></button></td>
                                                         <td>
                                                             <a href="<?= base_url("pegawai/editbidang/" . $profile['id']); ?>" class="btn btn-warning">Edit</a>
 
@@ -155,7 +156,8 @@
                                                     <tr>
                                                         <th scope="row">15</th>
                                                         <td>Foto Seksi Pemberdayaan Sosial</td>
-                                                        <td><?= $profile['f_sosial']; ?></td>
+                                                        <td><button class="btn btn-simple btn-info" data-toggle="modal" data-target="#lihatSurat<?= $profile['f_sosial']; ?>"><i class="material-icons">remove_red_eye</i></button></td>
+
                                                         <td>
                                                             <a href="<?= base_url("pegawai/editbidang/" . $profile['id']); ?>" class="btn btn-warning">Edit</a>
 
@@ -164,7 +166,8 @@
                                                     <tr>
                                                         <th scope="row">16</th>
                                                         <td>Foto Seksi Pembangunan</td>
-                                                        <td><?= $profile['f_pembangunan']; ?></td>
+                                                        <td><button class="btn btn-simple btn-info" data-toggle="modal" data-target="#lihatSurat<?= $profile['f_pembangunan']; ?>"><i class="material-icons">remove_red_eye</i></button></td>
+
                                                         <td>
                                                             <a href="<?= base_url("pegawai/editbidang/" . $profile['id']); ?>" class="btn btn-warning">Edit</a>
 
@@ -253,6 +256,150 @@
                     <div class="row">
                         <div class="col-md-12">
                             <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('assets/img/testimonials') ?>/<?= $profile['f_camat'] ?>"></embed>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatSurat<?= $profile['f_sekcam']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notice">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                <h5 class="modal-title text-center" id="myModalLabel">Kepala Kecamatan</h5>
+            </div>
+            <div class="modal-body">
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('assets/img/testimonials') ?>/<?= $profile['f_sekcam'] ?>"></embed>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatSurat<?= $profile['f_pemerintahan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notice">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                <h5 class="modal-title text-center" id="myModalLabel">Kepala Kecamatan</h5>
+            </div>
+            <div class="modal-body">
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('assets/img/testimonials') ?>/<?= $profile['f_pemerintahan'] ?>"></embed>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatSurat<?= $profile['f_trantib']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notice">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                <h5 class="modal-title text-center" id="myModalLabel">Kepala Kecamatan</h5>
+            </div>
+            <div class="modal-body">
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('assets/img/testimonials') ?>/<?= $profile['f_trantib'] ?>"></embed>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatSurat<?= $profile['f_pelindung']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notice">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                <h5 class="modal-title text-center" id="myModalLabel">Kepala Kecamatan</h5>
+            </div>
+            <div class="modal-body">
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('assets/img/testimonials') ?>/<?= $profile['f_pelindung'] ?>"></embed>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatSurat<?= $profile['f_sosial']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notice">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                <h5 class="modal-title text-center" id="myModalLabel">Kepala Kecamatan</h5>
+            </div>
+            <div class="modal-body">
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('assets/img/testimonials') ?>/<?= $profile['f_sosial'] ?>"></embed>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatSurat<?= $profile['f_pembangunan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notice">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                <h5 class="modal-title text-center" id="myModalLabel">Kepala Kecamatan</h5>
+            </div>
+            <div class="modal-body">
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('assets/img/testimonials') ?>/<?= $profile['f_pembangunan'] ?>"></embed>
                         </div>
 
                     </div>
