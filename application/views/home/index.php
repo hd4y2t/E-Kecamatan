@@ -149,12 +149,12 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+              <img src="<?= base_url(''); ?>assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 1</h4>
                 <p>App</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-1.jpg" class="venobox"><i class="bx bx-plus"></i></a>
+                  <a href="<?= base_url(''); ?>assets/img/portfolio/portfolio-1.jpg" class="venobox"><i class="bx bx-plus"></i></a>
 
                 </div>
               </div>
@@ -163,12 +163,12 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-web">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
+              <img src="<?= base_url(''); ?>assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Web 3</h4>
                 <p>Web</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-2.jpg" class="venobox"><i class="bx bx-plus"></i></a>
+                  <a href="<?= base_url(''); ?>assets/img/portfolio/portfolio-2.jpg" class="venobox"><i class="bx bx-plus"></i></a>
 
                 </div>
               </div>
@@ -177,12 +177,12 @@
 
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
+              <img src="<?= base_url(''); ?>assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>App 2</h4>
                 <p>App</p>
                 <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-3.jpg" class="venobox"><i class="bx bx-plus"></i></a>
+                  <a href="<?= base_url(''); ?>assets/img/portfolio/portfolio-3.jpg" class="venobox"><i class="bx bx-plus"></i></a>
 
                 </div>
               </div>
