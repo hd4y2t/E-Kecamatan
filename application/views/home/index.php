@@ -349,8 +349,9 @@
       </div>
     </section><!-- End Team Section -->
 
+    <!-- End Why
     <!-- ======= Contact Section ======= -->
-    <section class="testimonials section-bg">
+    <section class="section-bg">
       <div class="contact" id="contact">
         <div class="container">
           <div class="row">
