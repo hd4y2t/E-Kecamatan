@@ -37,6 +37,15 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Your message has been sent. Thank you!</div>
                                 </div>
+                                <div class="portfolio-info">
+                                    <h3>Persyaratan</h3>
+                                    <ul>
+                                        <li><strong>Category</strong>: Web design</li>
+                                        <li><strong>Client</strong>: ASU Company</li>
+                                        <li><strong>Project date</strong>: 01 March, 2020</li>
+                                        <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+                                    </ul>
+                                </div>
                                 <div class="get-started text-center"><button type="submit">Send Message</button></div>
                                 </form>
                             </div>

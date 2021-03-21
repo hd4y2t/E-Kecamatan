@@ -199,22 +199,22 @@
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg">
+
       <div class="container">
 
         <div class="row">
           <div class="col-lg-4">
             <div class="section-title" data-aos="fade-right">
-              <h2>Strukrut Kecamatan</h2>
+              <h2>Pimpinan Kecamatan</h2>
             </div>
           </div>
-          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="1000">
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
             <div class="owl-carousel testimonials-carousel">
-
               <div class="testimonial-item">
                 <h3><?= $profile['camat']; ?></h3>
                 <h4>Kepala Kecamatan</h4>
                 <div class="member" data-aos="zoom-in" data-aos-delay="100">
-                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_camat']; ?>" class="img-fluid" alt=""></div>
+                  <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_camat']; ?>" class="testimonial-img" alt="">
                 </div>
                 <!-- <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -224,10 +224,10 @@
               </div>
 
               <div class="testimonial-item">
-                <h3>Zaid Rahmadian,S.STP</h3>
-                <h4><?= $profile['sekcam']; ?></h4>
+                <h3><?= $profile['sekcam']; ?></h3>
+                <h4>Sekretaris Kecamatan</h4>
                 <div class="member" data-aos="zoom-in" data-aos-delay="100">
-                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="img-fluid" alt=""></div>
+                  <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="testimonial-img" alt="">
                 </div>
                 <!-- <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
@@ -238,7 +238,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </section><!-- End Testimonials Section -->
 
