@@ -37,7 +37,7 @@ class Home extends CI_Controller
         $data['title'] = 'E-Kecamatan';
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $data['antrian'] = $this->db->get_where('pengajuan_surat', ['status !=' => 5])->num_rows();
-        $data['surat'] = $this->db->get('surat')->num_rows();
+        $data['surat'] = $this->db->get('surat')->result_array();
         $data['user'] = $this->db->get('user')->num_rows();
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
@@ -45,6 +45,23 @@ class Home extends CI_Controller
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar', $data);
         $this->load->view('home/s_online', $data);
+        $this->load->view('home/footer');
+    }
+    public function tracking()
+    {
+        // $data = $this->dashboard->user();
+        // $data['profile'] = $this->galery->profil();
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['antrian'] = $this->db->get_where('pengajuan_surat', ['status !=' => 5])->num_rows();
+        $data['surat'] = $this->db->get('surat')->result_array();
+        $data['user'] = $this->db->get('user')->num_rows();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
+        // var_dump($data);
+        $this->load->view('home/header', $data);
+        $this->load->view('home/navbar', $data);
+        $this->load->view('home/tracking', $data);
         $this->load->view('home/footer');
     }
     // public function detail()

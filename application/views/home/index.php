@@ -6,14 +6,11 @@
 
       <h1>E-Kecamatan Sematang Borang</h1>
       <h2>Website Pengajuan Persyaratan Online</h2>
-      <a href="#profile" class="btn-get-started scrollto">Get Started</a>
+      <a href="<?= base_url('home/s_online') ?>" class="btn-get-started scrollto">Ajukan Persyaratan Surat</a>
     </div>
   </section><!-- End Hero -->
 
   <main id="main">
-
-
-
     <!-- ======= profile Section ======= -->
     <section id="profile" class="profile">
       <div class="container">

@@ -1,44 +1,58 @@
-<section id="hero" class="page-section">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
-                <div class="card">
-                    <div class="card-body text-justify pl-5 pr-5">
+<div id="hero">
+    <section class="page-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="container text-center position-relative" data-aos="fade-in" data-aos-delay="200">
+                    <div class="card">
+                        <div class="card-body text-justify pl-5 pr-5">
+                            <?php if ($this->session->flashdata('success') == TRUE) : ?>
+                                <?= $this->session->flashdata('success'); ?>
+                            <?php endif; ?>
+                            <div class="text-center">
+                                <h3 class="section-subheading text-muted">Pengajuan Surat Online</h3>
+                                <p class="section-subheading text-muted">Isi Form Pengajuan Surat Dibawah:</p>
+                            </div>
+                            <div class="text-justify pl pr">
+                                <?= form_open_multipart('suratonline/ajukan', 'id="ajukanSurat"') ?>
+                                <div class="form-row">
+                                    <div class="col-md-6 form-group">
+                                        <input type="number" name="nik" class="form-control" id="nik" placeholder="Nomor Induk Kependudukan" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                        <div class="validate"></div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap" data-rule="minlen:4" data-msg="Please enter a valid email" />
+                                        <div class="validate"></div>
+                                    </div>
 
-                        <div class="text-center">
-                            <h3 class="section-subheading text-muted">Pengajuan Surat Online</h3>
-                            <h2 class="section-subheading text-muted">Isi Form Pengajuan Surat Dibawah:</h2>
-                        </div>
-                        <div class="text-justify pl pr">
-                            <?= form_open_multipart('suratonline/ajukan', 'id="ajukanSurat"') ?>
-                            <div class="form-row">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                                    <div class="validate"></div>
+                                    <div class="col-md-6 form-group">
+                                        <input type="number" class="form-control" name="no_hp" id="no_hp" placeholder="Nomor Hp/W.a" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                        <div class="validate"></div>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <select name="surat" id="surat" class="form-control">
+                                            <option value="">Pilih Surat</option>
+                                            <?php foreach ($surat as $s) : ?>
+                                                <option value="<?= $s['id_surat']; ?>"><?= $s['nm_surat']; ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                    <label for="file">File Berkas/Lampiran <sup class="text-danger">*PDF Recommended! | Max 5MB</sup></label>
+                                    <?= form_upload(['name' => 'file', 'id' => 'file', 'class' => 'form-control']) ?>
                                 </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                                    <div class="validate"></div>
+                                <div class="mb-3">
+                                    <div class="loading">Persyaratan :</div>
+                                    <div class="error-message"></div>
+                                    <div class="sent-message">Your message has been sent. Thank you!</div>
                                 </div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                                <div class="validate"></div>
-                            </div>
 
-                            <div class="mb-3">
-                                <div class="loading">Lo<br>ad<br>i<br>nf<br>dsf<br>sdg</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
+                                <div class="get-started text-center"><button class="btn btn-success" type="submit">Kirim Permohonan</button></div>
+                                </form>
                             </div>
-
-                            <div class="get-started text-center"><button class="get-started" type="submit">Send Message</button></div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section><!-- End Hero -->
-</main><!-- End #main -->
+    </section><!-- End Hero -->
+
+    </main><!-- End #main -->
