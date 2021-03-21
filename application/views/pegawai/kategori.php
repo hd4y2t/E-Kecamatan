@@ -1,7 +1,7 @@
 <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-lg">
+            <div class="col-lg-6">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="card">
@@ -31,7 +31,9 @@
                                                             <th scope="row"><?= $i ?></th>
                                                             <td><?= $k['nm_kategori']; ?></td>
                                                             <td>
-                                                                <a href="<?= base_url("pegawai/editkategori/" . $k['id_kategori']); ?>" class="btn btn-warning">Edit</a>
+                                                                <!-- <a href="<?= base_url("pegawai/editkategori/" . $k['id_kategori']); ?>" class="btn btn-warning">Edit</a> -->
+                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModelkategoriedit<?= $k['id_kategori']; ?>">Edit</a>
+                                                                <a href="" class="btn btn-danger btn-sm">>Hapus</a>
 
                                                             </td>
                                                             <?php $i++; ?>
@@ -80,5 +82,34 @@
     </div>
 </div>
 
-
+<!-- Modal -->
+<?php
+$no = 0;
+foreach ($kategori as $k) : $no++; ?>
+    <div class=" modal fade" id="newModelkategoriedit<?= $k['id_kategori']; ?>" tabindex="-1" aria-labelledby="newModelkategorieditLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newModelkategorieditLabel">Edit Nama kategori</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('pegawai/editkategori/') . $k['id_kategori']; ?>" method="post">
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control" id="id" name="id" value="<?= $k['id_kategori']; ?>">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nama kategori</label>
+                            <input type="text" class="form-control" id="nm_kategori" name="nm_kategori" value="<?= $k['nm_kategori']; ?>">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                            <button type="Submit" class="btn btn-primary">Edit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
 </body>

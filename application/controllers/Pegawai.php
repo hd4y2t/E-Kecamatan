@@ -187,13 +187,13 @@ class Pegawai extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Edit bidang';
         $this->form_validation->set_rules('nm_bidang', 'Nama bidang', 'required');
-        $data['edit_bidang'] = $this->db->get_where('bidang', ['id' => $id])->row_array();
+        // $data['edit_bidang'] = $this->db->get_where('bidang', ['id' => $id])->row_array();
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
-            $this->load->view('pegawai/editbidang', $data);
+            $this->load->view('pegawai/bidang', $data);
             $this->load->view('templates/footer');
         } else {
             $nm_bidang =  $this->input->post("nm_bidang", TRUE);
