@@ -393,7 +393,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 80vh;
-  background: url("../img/hero-bg.jpg") center center;
+  background: url("http://localhost:8080/project_skripsi/E-kecamatan/assets/img/hero-gb.jpg") center center;
   background-size: cover;
   position: relative;
 }
