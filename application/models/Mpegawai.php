@@ -25,9 +25,9 @@ class Mpegawai extends CI_Model
 
     public function getSurat()
     {
-        $query = "SELECT `persyaratan`.*, `surat`.`nm_surat`
-                   FROM `persyaratan` JOIN `surat`
-                   ON `persyaratan`.`id_surat` = `surat`.`id_surat`
+        $query = "SELECT `surat_keluar`.*, `surat`.`nm_surat`
+                   FROM `surat_keluar` JOIN `surat`
+                   ON `surat_keluar`.`surat_id` = `surat`.`id_surat`
                    ";
         return $this->db->query($query)->result_array();
     }

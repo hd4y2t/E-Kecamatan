@@ -7,7 +7,8 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('galery_model', 'galery');
+        $this->load->model('pengajuan_track_model', 'pengajuan_track');
+        $this->load->model('M_Penduduk', 'penduduk');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
@@ -25,6 +26,9 @@ class Home extends CI_Controller
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
+        // $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
+
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar', $data);
         $this->load->view('home/index', $data);
@@ -42,10 +46,103 @@ class Home extends CI_Controller
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
-        $this->load->view('home/header', $data);
-        $this->load->view('home/navbar', $data);
-        $this->load->view('home/s_online', $data);
-        $this->load->view('home/footer');
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('surat', 'surat', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+            $status = [
+                1 => 1,  // Pending
+                2 => 2,  // Diterima dan Dilanjutkan
+                3 => 3,  // Sudah Diketik dan Diparaf
+                4 => 4,  // Sudah Ditandatangani Lurah dan Selesai
+            ];
+
+            $nama = $this->input->post('nama', TRUE);
+            $nik = $this->input->post('nik', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $surat = $this->input->post('surat', TRUE);
+
+            $ceknik = $this->penduduk->cek_penduduk($nik)->num_rows();
+
+            if ($ceknik <= 0) {
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                ];
+
+                $this->db->insert('penduduk', $save);
+                // $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-cross"></i> Maaf!</h5> NIK Anda tidak Terdaftar!</div>');
+                // redirect(base_url("suratonline"));
+            }
+
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "-";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . $randomize . $count . $y;
+
+            // var_dump($id);
+            // die;
+
+            if ($_FILES['file']['size'] >= 5242880) {
+                $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-ban"></i> MAAF!</h5> File Lebih 2MB!</div>');
+                redirect(base_url("home/s_online"));
+            }
+
+            if ($_FILES['file']['name'] == null) {
+                $file = '-';
+            } else {
+                $namafile = substr($_FILES['file']['name'], -7);
+                $file = $surat . uniqid() . $namafile;
+                $config['upload_path']          = './upload/berkas';
+                $config['allowed_types']        = '*';
+                $config['max_size']             = 5120; // 5MB
+                $config['file_name']            = $file;
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload("file")) {
+                    $data = array('upload_data' => $this->upload->data());
+                    $berkas = $data['upload_data']['file_name'];
+                }
+            }
+
+            $data = [
+                'id' => $id,
+                // 'nama' => $nama,
+                'nik' => $nik,
+                // 'no_hp' => $no_hp,
+                'id_surat' => $surat,
+                'file' => $file,
+                'tgl' => date('Y-m-d'),
+                'status' => $status[1]
+            ];
+
+            // var_dump($data);
+            // die;
+
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-check"></i> Selamat!</h5> Berhasil Mengajukan Surat! Berikut <b>ID</b> anda: <b>' . $id . '</b></div>');
+            redirect(base_url("home/s_online"));
+        }
     }
     public function tracking()
     {

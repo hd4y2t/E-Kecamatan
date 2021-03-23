@@ -222,7 +222,8 @@ class Pegawai extends CI_Controller
             4 => 'Sudah Diketik dan Diparaf',
             5 => 'Ditandatangani Camat/<b>Selesai</b>',
         ];
-        // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
+
+
         $this->db->select('*');
         $this->db->from('pengajuan_surat');
         $this->db->join('penduduk', 'penduduk.nik=pengajuan_surat.nik');
@@ -234,6 +235,47 @@ class Pegawai extends CI_Controller
         $this->load->view('templates/navbar', $data);
         $this->load->view('pegawai/antrian', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function updateStatus($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Antrian Surat';
+        // $data['surat'] = $this->db->get('surat', => )->result_array();
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Syarat Tidak Terpenuhi',
+            3 => 'Diterima dan Dilanjutkan',
+            4 => 'Sudah Diketik dan Diparaf',
+            5 => 'Ditandatangani Camat/<b>Selesai</b>',
+        ];
+        $status = $this->input->post('status');
+        // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
+
+        if ($status == 5) {
+            $pSurat = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
+            $pndk = $this->db->get_where('penduduk', ['nik' => $pSurat['nik']])->row_array();
+            $surat = $this->db->get_where('surat', ['id_surat' => $pSurat['id_surat']])->row_array();
+            $dateNow = date('Y-m-d');
+
+            $save = [
+                'nm_surat_keluar' => '[' . $pndk['nama'] . '-' . $pndk['nik'] . ']-Surat ' . $surat['nm_surat'],
+                // 'surat_id' => $pSurat['id_surat'],
+                'tgl' => date('Y-m-d', strtotime($dateNow)),
+                'keterangan' => 'ID: ' . $pSurat['id']
+            ];
+
+            $this->db->insert('surat_keluar', $save);
+        }
+        $this->db->set('status', $status);
+
+        $this->db->where(['id' => $id]);
+        $this->db->update('pengajuan_surat');
+
+
+        $this->session->set_flashdata('success', 'Status Pengajuan ID: ' . $id . ' Telah Diupdate!');
+
+        redirect(base_url('pegawai/antrian'));
     }
 
 
@@ -295,7 +337,10 @@ class Pegawai extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Keluar';
-        $data['surat_keluar'] = $this->db->get('surat_keluar')->result_array();
+        // $data['surat_keluar'] = $this->db->get('surat_keluar')->result_array();
+        $this->load->model('Mpegawai', 'pegawai');
+        $data['surat_keluar'] = $this->pegawai->getSurat();
+        $data['surat'] = $this->db->get('surat')->result_array();
 
 
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');

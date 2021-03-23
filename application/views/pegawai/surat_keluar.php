@@ -20,8 +20,9 @@
                                                     <tr>
                                                         <th scope="col"></th>
                                                         <th scope="col">Nomor Surat</th>
+                                                        <th scope="col">Nama </th>
                                                         <th scope="col">Jenis</th>
-                                                        <th scope="col">Nama Surat</th>
+                                                        <th scope="col">Surat</th>
                                                         <th scope="col">Tanggal</th>
                                                         <th scope="col">Keterangan</th>
                                                         <th scope="col">File</th>
@@ -34,8 +35,9 @@
                                                         <tr>
                                                             <th scope="row"><?= $i ?></th>
                                                             <td><?= $s['no_surat']; ?></td>
-                                                            <td><?= $s['jenis']; ?></td>
                                                             <td><?= $s['nm_surat_keluar']; ?></td>
+                                                            <td><?= $s['jenis']; ?></td>
+                                                            <td><?= $s['nm_surat']; ?></td>
                                                             <td><?= $s['tgl']; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>
                                                             <td>
@@ -83,12 +85,12 @@
                     <input type="text" class="form-control" id="no_surat" name="no_surat">
                 </div>
                 <div class="form-group">
-                    <label class="bmd-label-floating">Jenis Surat</label>
-                    <input type="text" class="form-control" id="jenis" name="jenis">
-                </div>
-                <div class="form-group">
                     <label class="bmd-label-floating">Nama Surat</label>
                     <input type="text" class="form-control" id="nm_surat_keluar" name="nm_surat_keluar">
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating">Jenis Surat</label>
+                    <input type="text" class="form-control" id="jenis" name="jenis">
                 </div>
                 <div class="form-group">
                     <label class="bmd-label-floating">Tanggal</label>

@@ -38,7 +38,7 @@
                                                         <td><?= $m['nama'] . '(' . $m['nik'] . ')'; ?></td>
                                                         <td><?= $m['tgl']; ?></td>
                                                         <td><?= $m['no_hp']; ?></td>
-                                                        <td><?= $status[$m['status']]; ?></td>
+                                                        <td><?= $m['status']; ?></td>
                                                         <td>
                                                             <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                         </td>
@@ -97,7 +97,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
                 </div>
 
-                <form method="post" action="<?= base_url(); ?>surat/updateStatus/<?= $m['id']; ?>">
+                <form method="post" action="<?= base_url(); ?>pegawai/updateStatus/<?= $m['id']; ?>">
                     <div class="modal-body text-center">
                         <h5>Update Status Pengajuan ID: <?= $m['id'] ?>? </h5>
                         <label for="status">Pilih Status</label>

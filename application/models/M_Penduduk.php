@@ -2,8 +2,9 @@
 
 class M_Penduduk extends CI_Model
 {
-    function search_nik($nik){
-        $this->db->like('nik', $nik , 'both');
+    function search_nik($nik)
+    {
+        $this->db->like('nik', $nik, 'both');
         $this->db->order_by('nik', 'ASC');
         $this->db->limit(10);
         return $this->db->get('penduduk')->result();
@@ -13,5 +14,4 @@ class M_Penduduk extends CI_Model
     {
         return $this->db->get_where('penduduk', array('nik' => $nik));
     }
-
 }

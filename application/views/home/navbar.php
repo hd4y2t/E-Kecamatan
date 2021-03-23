@@ -19,7 +19,7 @@
             <li><a href="<?= base_url('home/'); ?>#profile">Profile</a></li>
             <li><a href="<?= base_url('home/'); ?>#portfolio">Galery</a></li>
             <li><a href="<?= base_url('home/s_online') ?>">Pengajuan Surat</a></li>
-            <li><a href="<?= base_url('home/tracking') ?>">Treak Surat</a></li>
+            <li><a href="<?= base_url('home/tracking') ?>">Cek Status Surat</a></li>
             <!-- <li class="drop-down"><a href="">Drop Down</a>
               <ul>
                 <li><a href="#">Drop Down 1</a></li>
