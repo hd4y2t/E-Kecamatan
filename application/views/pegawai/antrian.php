@@ -34,11 +34,11 @@
                                                     <tr>
                                                         <th scope="row"><?= $i ?></th>
                                                         <td><?= $m['id']; ?></td>
-                                                        <td><?= $m['id_surat']; ?></td>
+                                                        <td><?= $m['nm_surat']; ?></td>
                                                         <td><?= $m['nama'] . '(' . $m['nik'] . ')'; ?></td>
                                                         <td><?= $m['tgl']; ?></td>
                                                         <td><?= $m['no_hp']; ?></td>
-                                                        <td><?= $m['status']; ?></td>
+                                                        <td><?= $status[$m['status']]; ?></td>
                                                         <td>
                                                             <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                         </td>

@@ -215,6 +215,7 @@ class Pegawai extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Antrian Surat';
+
         $data['status'] = [
             1 => 'Pending',
             2 => 'Syarat Tidak Terpenuhi',
@@ -227,6 +228,7 @@ class Pegawai extends CI_Controller
         $this->db->select('*');
         $this->db->from('pengajuan_surat');
         $this->db->join('penduduk', 'penduduk.nik=pengajuan_surat.nik');
+        $this->db->join('surat', 'surat.id_surat=pengajuan_surat.id_surat');
         $this->db->order_by("tgl", "desc");
         $query = $this->db->get();
         $data['pengajuan'] = $query->result_array();
