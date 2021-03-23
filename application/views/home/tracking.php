@@ -16,7 +16,7 @@
                                 <p class="section-subheading text-muted">Masukkan ID Surat untuk Pengecekan</p>
 
                                 <div class="form-col">
-                                    <?= form_open('tracking/cari', 'id="tracking", class="card card-sm"') ?>
+                                    <?= form_open('home/cariSurat', 'id="tracking", class="card card-sm"') ?>
 
                                     <!--end of col-->
                                     <div class="col">

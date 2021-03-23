@@ -172,4 +172,45 @@ class Home extends CI_Controller
     //     $this->load->view('frontend/detail', $data);
     //     $this->load->view('frontend/footer');
     // }
+    public function cariSurat()
+    {
+
+        $id = $this->input->post('trackid', TRUE);
+        $row = $this->pengajuan_track->findById($id);
+
+        $data = [
+            'id' => $id,
+            'row' => $row
+        ];
+
+        // var_dump($row);
+        // die;
+
+        if ($row === null) {
+            $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-bank"></i> Maaf!</h5> ID yang anda masukkan Salah! <b>ID: </b><b>' . $id . '</b> <i>tidak ditemukan</i></div>');
+            redirect(base_url("tracking"));
+        } else {
+            redirect(base_url("home/tracked/") . $id);
+        }
+    }
+
+    public function tracked()
+    {
+        $id = $this->uri->segment(3);
+        $data['row'] = $this->pengajuan_track->showById($id);
+        // $data['pengajuan_surat'] = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+        // $this->load->model('M_penduduk', 'penduduk');
+        // $data['detail'] = $this->penduduk->getSurat();
+        $data['title'] = 'Tracking Surat';
+
+
+        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
+        // var_dump($data);  $this->load->view('home/header', $data);
+
+        $this->load->view('home/header', $data);
+        $this->load->view('home/navbar', $data);
+        $this->load->view('home/result', $data);
+        $this->load->view('home/footer');
+    }
 }

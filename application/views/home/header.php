@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/venobox/venobox.css">
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/owl.carousel/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>vendor/aos/aos.css">
+  <link href="<?= base_url() ?>assets/css/progress_bar.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->

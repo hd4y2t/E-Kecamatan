@@ -62,8 +62,8 @@
     </div>
 </div>
 </div>
-<?php foreach ($pengajuan as $s) : ?>
-    <div class="modal fade" id="lihatSurat<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<?php foreach ($pengajuan as $m) : ?>
+    <div class="modal fade" id="lihatSurat<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-notice">
             <div class="modal-content">
                 <div class="modal-header">
@@ -74,7 +74,7 @@
                     <div class="instruction">
                         <div class="row">
                             <div class="col-md-12">
-                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pengajuan') ?>/<?= $s['file'] ?>"></embed>
+                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/berkas') ?>/<?= $m['file'] ?>"></embed>
                             </div>
 
                         </div>

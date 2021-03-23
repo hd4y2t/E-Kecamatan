@@ -14,4 +14,13 @@ class M_Penduduk extends CI_Model
     {
         return $this->db->get_where('penduduk', array('nik' => $nik));
     }
+
+    public function getSurat()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `surat`.`nm_surat`
+                   FROM `pengajuan_surat` JOIN `surat`
+                   ON `pengajuan_surat`.`id_surat` = `surat`.`id_surat`
+                   ";
+        return $this->db->query($query)->result_array();
+    }
 }

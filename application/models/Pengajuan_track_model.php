@@ -18,12 +18,13 @@ class Pengajuan_track_model extends CI_Model
         $query = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
         return $query;
     }
-   
+
 
     public function showById($id)
     {
         $this->db->select('*');
         $this->db->join('penduduk', 'penduduk.nik=pengajuan_surat.NIK');
+        $this->db->join('surat', 'surat.id_surat=pengajuan_surat.id_surat');
         $query = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
         return $query;
     }
