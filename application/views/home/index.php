@@ -361,6 +361,7 @@
 
             <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
               <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.5477922222744!2d104.80676301538426!3d-2.945343540518121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b771ac0026635%3A0x10e2896ca36953df!2sKantor%20Camat%20Sematang%20Borang!5e0!3m2!1sid!2sbg!4v1616248775092!5m2!1sid!2sbg" frameborder="0" allowfullscreen></iframe>
+              <!-- <iframe src="https://docs.google.com/document/d/1rsJwH7sYnOm1XJ-J_Up1F3Kk0poSU_Zng3bxf_sUWZM/edit&embedded=true" width="600" height="780" style="border: none;"></iframe> -->
               <div class="info mt-4">
                 <i class="icofont-google-map"></i>
                 <h4>Lokasi:</h4>

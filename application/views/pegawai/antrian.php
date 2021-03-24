@@ -15,7 +15,7 @@
 
                                     <div class="table-responsive">
                                         <table class="table table-hover table-sm" id="myTable">
-                                            <thead>
+                                            <thead class="text-success">
                                                 <tr>
                                                     <th scope="col"></th>
                                                     <th scope="col">ID Pengajuan</th>

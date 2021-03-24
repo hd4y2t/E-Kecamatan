@@ -16,7 +16,8 @@
                                     <div class="col">
                                         <div class="table-responsive">
                                             <table class="table table-hover" id="myTable">
-                                                <thead>
+                                                <thead class="text-success">
+
                                                     <tr>
                                                         <th scope="col"></th>
                                                         <th scope="col">Nomor Surat</th>
