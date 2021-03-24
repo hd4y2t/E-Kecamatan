@@ -141,8 +141,8 @@
       <div class="container">
 
         <div class="section-title" data-aos="fade-left">
-          <h2>API INSTAGRAM KECAMATAN</h2>
-          <p>Galery pada instagram Kecamatan Sematang Borang</p>
+          <h2>Galery KECAMATAN</h2>
+          <p>Kegiatan yang ada di kecamatan</p>
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
