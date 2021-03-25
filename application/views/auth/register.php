@@ -32,7 +32,6 @@
                                                 <label class="bmd-label-floating">Ulangi Password</label>
                                                 <input type="password" id="pwd" name="pwd" class="form-control">
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>

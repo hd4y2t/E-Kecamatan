@@ -9,9 +9,9 @@
                                 <h3 class="card-title"><?= $title ?></h3>
                             </div>
                             <div class="card-body">
-                                <?= form_error('kategori', '<div class="text-danger" kategori="alert">', '</div>'); ?>
+                                <?= form_error('user', '<div class="text-danger" user="alert">', '</div>'); ?>
                                 <?= $this->session->flashdata('message'); ?>
-                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#newkategoriModal">Tambah kategori</a>
+                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#newuserModal">Tambah user</a>
                                 <div class="row">
                                     <div class="col">
 
@@ -20,19 +20,24 @@
                                                 <thead class="text-success">
                                                     <tr>
                                                         <th scope="col"></th>
-                                                        <th scope="col">Katergori</th>
+                                                        <th scope="col">Username</th>
+                                                        <th scope="col">Nama</th>
+                                                        <th scope="col">foto</th>
+                                                        <th scope="col">role</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php $i = 1; ?>
-                                                    <?php foreach ($kategori as $k) : ?>
+                                                    <?php foreach ($user as $u) : ?>
                                                         <tr>
                                                             <th scope="row"><?= $i ?></th>
-                                                            <td><?= $k['nm_kategori']; ?></td>
+                                                            <td><?= $k['username']; ?></td>
+                                                            <td><?= $k['nama']; ?></td>
+                                                            <td><?= $k['foto']; ?></td>
+                                                            <td><?= $k['role']; ?></td>
                                                             <td>
-                                                                <!-- <a href="<?= base_url("pegawai/editkategori/" . $k['id_kategori']); ?>" class="btn btn-warning">Edit</a> -->
-                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModelkategoriedit<?= $k['id_kategori']; ?>">Edit</a>
+                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModelkategoriedit<?= $k['id_user']; ?>">Edit</a>
                                                                 <a href="" class="btn btn-danger btn-sm">Hapus</a>
 
                                                             </td>
@@ -57,20 +62,52 @@
 
 
 <!-- Modal -->
-<div class=" modal fade" id="newkategoriModal" tabindex="-1" aria-labelledby="newkategoriModalLabel" aria-hidden="true">
+<div class=" modal fade" id="newuserModal" tabindex="-1" aria-labelledby="newuserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="newkategoriModalLabel">Tambahkan kategori Baru</h5>
+                <h5 class="modal-title" id="newuserModalLabel">Tambahkan User Baru</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="<?= base_url('pegawai/'); ?>" method="post">
+            <form action="<?= base_url('admin/user'); ?>" method="post">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label class="bmd-label-floating">Nama Kategori</label>
-                        <input type="text" class="form-control" id="kategori" name="kategori">
+                        <label class="bmd-label-floating">Usernmae</label>
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Nama</label>
+                        <input type="text" class="form-control" id="nama" name="nama">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Nomor induk pegawai</label>
+                        <input type="text" class="form-control" id="nip" name="nip">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Password</label>
+                        <input type="text" class="form-control" id="passsword" name="passsword">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Role</label>
+                        <input type="text" class="form-control" id="role" name="role">
+                    </div>
+                    <div class="form-group">
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" id="active" name="active" type="checkbox" value="1" checked>
+                                        <span class="form-check-sign">
+                                            <span class="check"></span>
+                                        </span>
+                            <td>
+                                Aktif ?
+                            </td>
+                            </label>
+                            </td>
+                        </tr>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>

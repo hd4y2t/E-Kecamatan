@@ -125,4 +125,80 @@ class Admin extends CI_Controller
         $this->load->view('admin/profile', $data);
         $this->load->view('templates/footer');
     }
+    public function user()
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'User';
+        $data['user'] = $this->db->get('user')->result_array();
+
+        $this->form_validation->set_rules('username', 'username', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('nip', 'nip', 'required');
+        $this->form_validation->set_rules('password', 'password', 'required');
+        $this->form_validation->set_rules('role', 'role', 'required');
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('admin/user', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $id = '';
+            $username = htmlspecialchars($this->input->post('username', true));
+            $nama = htmlspecialchars($this->input->post('nama', true));
+            $nip = htmlspecialchars($this->input->post('nip', true));
+            $foto = 'default.jpg';
+            $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+            $role_id = $this->input->post('role', true);
+            $active = $this->input->post('active', true);
+            $date_create = time();
+            $data = array(
+                'id_user' => $id,
+                'username' => $username,
+                'nama' => $nama,
+                'nip' => $nip,
+                'foto' => $foto,
+                'password' => $password,
+                'role_id' => $role_id,
+                'is_active' => $active,
+                'date_create' => $date_create
+
+            );
+            $this->db->insert('user', $data);
+            $this->session->set_flashdata(
+                'message',
+                '<div class="alert alert-success" role="alert"> User Baru ditambahkan </div>'
+            );
+            redirect('admin/user');
+        }
+        // $id = '';
+        //         $ni = htmlspecialchars($this->input->post('ni', true));
+        //         $nama = htmlspecialchars($this->input->post('nama', true));
+        //         $foto = 'default.jpg';
+        //         $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+        //         $role_id = 3;
+        //         $is_active = 0;
+        //         $date_create = time();
+        //         $data = array(
+        //             'id_user' => $id,
+        //             'ni' => $ni,
+        //             'nama' => $nama,
+        //             'foto' => $foto,
+        //             'password' => $password,
+        //             'role_id' => $role_id,
+        //             'is_active' => $is_active,
+        //             'date_create' => $date_create
+
+        //         );
+
+        //         $this->Mauth->register($data);
+
+        //         $this->session->set_flashdata(
+        //             'message',
+        //             '<div class="alert alert-success" role="alert"> Selamat! akun anda telah terdaftar, Silakan datang ke Kecamatan untuk aktifasi akun </div>'
+        //         );
+        //         redirect('auth');
+    }
 }

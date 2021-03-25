@@ -25,7 +25,7 @@
                        ORDER BY `user_access_menu`.`menu_id` ASC
                        ";
 
-        $this->db->where('menu !=', 'User');
+        // $this->db->where('menu !=', 'User');
         $menu = $this->db->query($queryMenu)->result_array();
 
         ?>
@@ -67,10 +67,7 @@
                         </li>
                     <?php endforeach; ?>
 
-
                 <?php endforeach; ?>
-
-
                 <li class="nav-item ">
                     <a class="nav-link" href="<?= base_url('auth/logout'); ?>">
                         <i class="material-icons">west</i>
