@@ -33,7 +33,7 @@
         <!-- LOOPING MENU -->
 
         <?php foreach ($menu as $m) :
-            $menu != 'User';
+            // $menu != 'User';
         ?>
 
             <ul class="nav">
