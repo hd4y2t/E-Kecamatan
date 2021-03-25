@@ -8,6 +8,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Madmin');
+        $this->load->library('form_validation');
         is_logged_in();
     }
 
@@ -166,6 +167,7 @@ class Admin extends CI_Controller
                 'date_create' => $date_create
 
             );
+
             $this->db->insert('user', $data);
             $this->session->set_flashdata(
                 'message',

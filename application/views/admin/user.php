@@ -87,7 +87,7 @@
                     </div>
                     <div class="form-group">
                         <label class="bmd-label-floating">Password</label>
-                        <input type="text" class="form-control" id="passsword" name="passsword">
+                        <input type="text" class="form-control" id="password" name="password">
                     </div>
                     <div class="form-group">
                         <label class="bmd-label-floating">Role</label>
