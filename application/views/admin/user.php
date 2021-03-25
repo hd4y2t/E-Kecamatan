@@ -122,7 +122,7 @@
 <!-- Modal -->
 <?php
 $no = 0;
-foreach ($user as $k) : $no++; ?>
+foreach ($akun as $k) : $no++; ?>
     <div class="modal fade" id="newModeluseredit<?= $k['id_user']; ?>" tabindex="-1" aria-labelledby="newModelusereditLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
