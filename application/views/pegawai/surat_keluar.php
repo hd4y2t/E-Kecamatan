@@ -46,7 +46,7 @@
                                                             </td>
                                                             <td>
                                                                 <a href="<?= base_url('pegawai/edit_surat_keluar/') . $s['id']; ?>" class="btn btn-warning btn-sm">Edit </a>
-                                                                <a href="" class="btn btn-danger btn-sm">hapus </a>
+                                                                <a href="" class="btn btn-danger btn-sm">Tolak </a>
 
                                                             </td>
                                                             <?php $i++; ?>

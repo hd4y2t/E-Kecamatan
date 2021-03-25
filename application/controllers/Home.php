@@ -77,6 +77,7 @@ class Home extends CI_Controller
                     'nik' => $nik,
                     'nama' => $nama,
                     'no_hp' => $no_hp,
+                    'pengajuan' => 'pengajuan' + 1
                 ];
 
                 $this->db->insert('penduduk', $save);

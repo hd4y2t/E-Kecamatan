@@ -4,11 +4,15 @@
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo">
-        <a href="" class="simple-text logo-normal">
-            E-Kecamatan
-            <br>
-            Sematang Borang
-        </a>
+        <div class="card">
+            <div class="card-header card-header-success">
+                <a href="" class="simple-text logo-normal text-light">
+                    E-Kecamatan
+                    <br>
+                    Sematang Borang
+                </a>
+            </div>
+        </div>
     </div>
     <div class="sidebar-wrapper" id="slider">
         <!-- Query menu -->
@@ -20,13 +24,17 @@
                        WHERE `user_access_menu`.`role_id`= $role_id
                        ORDER BY `user_access_menu`.`menu_id` ASC
                        ";
+
+        $this->db->where('menu !=', 'User');
         $menu = $this->db->query($queryMenu)->result_array();
 
         ?>
 
         <!-- LOOPING MENU -->
 
-        <?php foreach ($menu as $m) : ?>
+        <?php foreach ($menu as $m) :
+            $menu != 'User';
+        ?>
 
             <ul class="nav">
                 <li class="nav-item">
