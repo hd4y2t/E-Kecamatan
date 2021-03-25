@@ -129,7 +129,7 @@ class Admin extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'User';
-        $data['user'] = $this->db->get('user')->result_array();
+        $data['akun'] = $this->db->get('user')->result_array();
 
         $this->form_validation->set_rules('username', 'username', 'required');
         $this->form_validation->set_rules('nama', 'nama', 'required');

@@ -29,15 +29,15 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php $i = 1; ?>
-                                                    <?php foreach ($user as $u) : ?>
+                                                    <?php foreach ($akun as $k) : ?>
                                                         <tr>
                                                             <th scope="row"><?= $i ?></th>
                                                             <td><?= $k['username']; ?></td>
                                                             <td><?= $k['nama']; ?></td>
                                                             <td><?= $k['foto']; ?></td>
-                                                            <td><?= $k['role']; ?></td>
+                                                            <td><?= $k['role_id']; ?></td>
                                                             <td>
-                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModelkategoriedit<?= $k['id_user']; ?>">Edit</a>
+                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModeluseredit<?= $k['id_user']; ?>">Edit</a>
                                                                 <a href="" class="btn btn-danger btn-sm">Hapus</a>
 
                                                             </td>
@@ -122,26 +122,57 @@
 <!-- Modal -->
 <?php
 $no = 0;
-foreach ($kategori as $k) : $no++; ?>
-    <div class=" modal fade" id="newModelkategoriedit<?= $k['id_kategori']; ?>" tabindex="-1" aria-labelledby="newModelkategorieditLabel" aria-hidden="true">
+foreach ($user as $k) : $no++; ?>
+    <div class="modal fade" id="newModeluseredit<?= $k['id_user']; ?>" tabindex="-1" aria-labelledby="newModelusereditLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="newModelkategorieditLabel">Edit Nama kategori</h5>
+                    <h5 class="modal-title" id="newModelusereditLabel">Edit user</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('pegawai/editkategori/') . $k['id_kategori']; ?>" method="post">
+                <form action="<?= base_url('admin/edituser/') . $k['id_user']; ?>" method="post">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" id="id" name="id" value="<?= $k['id_kategori']; ?>">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nama kategori</label>
-                            <input type="text" class="form-control" id="nm_kategori" name="nm_kategori" value="<?= $k['nm_kategori']; ?>">
+                            <label class="bmd-label-floating">Usernmae</label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama">
+                        </div>
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nomor induk pegawai</label>
+                            <input type="text" class="form-control" id="nip" name="nip">
+                        </div>
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Password</label>
+                            <input type="text" class="form-control" id="passsword" name="passsword">
+                        </div>
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Role</label>
+                            <input type="text" class="form-control" id="role" name="role">
+                        </div>
+                        <div class="form-group">
+                            <tr>
+                                <td>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input class="form-check-input" id="active" name="active" type="checkbox" value="1" checked>
+                                            <span class="form-check-sign">
+                                                <span class="check"></span>
+                                            </span>
+                                <td>
+                                    Aktif ?
+                                </td>
+                                </label>
+                                </td>
+                            </tr>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                            <button type="Submit" class="btn btn-primary">Edit</button>
+                            <button type="Submit" class="btn btn-primary">Tambah</button>
                         </div>
                     </div>
                 </form>
