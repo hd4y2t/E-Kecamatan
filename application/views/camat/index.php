@@ -98,7 +98,7 @@
                                                                 <th scope="col">Surat</th>
                                                                 <th scope="col">Tanggal</th>
                                                                 <th scope="col">Keterangan</th>
-                                                                <th scope="col">File</th>
+                                                                <!-- <th scope="col">File</th> -->
                                                                 <th scope="col">Action</th>
                                                             </tr>
                                                         </thead>
@@ -113,12 +113,11 @@
                                                                     <td><?= $s['nm_surat']; ?></td>
                                                                     <td><?= $s['tgl']; ?></td>
                                                                     <td><?= $s['keterangan']; ?></td>
-                                                                    <td>
+                                                                    <!-- <td>
                                                                         <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                                    </td>
+                                                                    </td> -->
                                                                     <td>
-                                                                        <a href="<?= base_url('pegawai/edit_surat_keluar/') . $s['id']; ?>" class="btn btn-warning btn-sm">Edit </a>
-                                                                        <a href="" class="btn btn-danger btn-sm">Tolak </a>
+                                                                        <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $s['id']; ?>"><i class="material-icons">outbond</i>Status</button>
 
                                                                     </td>
                                                                     <?php $i++; ?>
@@ -135,38 +134,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-md-4">
-                        <div class="card card-chart">
-                            <div class="card-header card-header-warning">
-                                <div class="ct-chart" id="websiteViewsChart"></div>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Email Subscriptions</h4>
-                                <p class="card-category">Last Campaign Performance</p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card card-chart">
-                            <div class="card-header card-header-danger">
-                                <div class="ct-chart" id="completedTasksChart"></div>
-                            </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Completed Tasks</h4>
-                                <p class="card-category">Last Campaign Performance</p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+
                 </div>
 
             </div>
@@ -174,96 +142,43 @@
     </div>
 </div>
 
-<div class="row">
 
-</div>
-
-<!-- Modal -->
-<div class=" modal fade" id="newsuratModal" tabindex="-1" aria-labelledby="newsuratModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="newsuratModalLabel">Tambahkan Surat Baru</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <?php echo form_open_multipart(); ?>
-
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="bmd-label-floating">Nomor Surat</label>
-                    <input type="text" class="form-control" id="no_surat" name="no_surat">
-                </div>
-                <div class="form-group">
-                    <label class="bmd-label-floating">Nama Surat</label>
-                    <input type="text" class="form-control" id="nm_surat_keluar" name="nm_surat_keluar">
-                </div>
-                <div class="form-group">
-                    <label class="bmd-label-floating">Jenis Surat</label>
-                    <input type="text" class="form-control" id="jenis" name="jenis">
-                </div>
-                <div class="form-group">
-                    <label class="bmd-label-floating">Tanggal</label>
-                    <input type="text" class="form-control" id="tgl" name="tgl">
-                </div>
-                <div class="form-group">
-                    <label class="bmd-label-floating">Keterangan</label>
-                    <input type="text" class="form-control" id="keterangan" name="keterangan">
-                </div>
-
-                <div class="form-group">
-                    <label class="label-control">File Surat</label>
-                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                        <div class="fileinput-new thumbnail">
-                            <img src="<?= base_url() ?>assets/save.png" alt="...">
-                        </div>
-                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                        <div>
-                            <span class="btn btn-danger btn-file">
-                                <i class="material-icons">cloud_upload</i>
-                                <span class="fileinput-new">Select File</span>
-                                <span class="fileinput-exists">Change</span>
-                                <input type="file" name="file_surat" id="file_surat" />
-                            </span>
-                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <?= form_error('file_surat', '<div class="text-danger">', '</div>'); ?>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                    <button type="Submit" class="btn btn-primary">Tambah</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<?php foreach ($surat_keluar as $s) : ?>
-    <div class="modal fade" id="lihatSurat<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-notice">
+<?php foreach ($surat_keluar as $m) : ?>
+    <div class="modal fade" id="statusPengajuan<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg ">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
-                    <h5 class="modal-title text-center" id="myModalLabel">Surat Keluar</h5>
                 </div>
-                <div class="modal-body">
-                    <div class="instruction">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/surat_keluar') ?>/<?= $s['file'] ?>"></embed>
-                            </div>
 
+                <form method="post" action="<?= base_url(); ?>camat/paraf/<?= $m['id']; ?>">
+                    <div class="modal-body text-center">
+                        <h5>Update Status Pengajuan ID: <?= $m['id'] ?>? </h5>
+                        <label for="status">Pilih Status</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="status" value="1" <?= $m['status'] == '1' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['1'] ?>
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="2" <?= $m['status'] == '2' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['2'] ?>
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="3" <?= $m['status'] == '3' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['3'] ?>
+                            </label>
+                            <label>
+                                <input type="radio" name="status" value="4" <?= $m['status'] == '4' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['4'] ?>
+                            </label>
+
+                            <label>
+                                <input type="radio" name="status" value="5" <?= $m['status'] == '5' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['5'] ?>
+                            </label>
                         </div>
                     </div>
-
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
-                </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-info btn-simple">Update</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
