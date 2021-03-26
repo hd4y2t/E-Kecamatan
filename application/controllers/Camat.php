@@ -31,11 +31,11 @@ class Camat extends CI_Controller
         $data['surat'] = $this->db->get('surat')->result_array();
 
 
-        $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
-        $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
-        $this->form_validation->set_rules('nm_surat_keluar', 'Nama Surat', 'required');
-        $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        // $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
+        // $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
+        // $this->form_validation->set_rules('nm_surat_keluar', 'Nama Surat', 'required');
+        // $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
+        // $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
         // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
