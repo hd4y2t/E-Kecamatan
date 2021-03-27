@@ -41,7 +41,7 @@ class Camat extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
 
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/sidebar', $data); 
             $this->load->view('templates/navbar', $data);
             $this->load->view('camat/index', $data);
             $this->load->view('templates/footer');
