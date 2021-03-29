@@ -24,7 +24,14 @@ class Camat extends CI_Controller
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $data['user_non'] = $this->db->get('user')->num_rows();
         // $this->db->where('is_active =', 0);
-
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Syarat Tidak Terpenuhi',
+            3 => 'Diterima dan Dilanjutkan',
+            4 => 'Sudah Diketik dan Diparaf',
+            5 => 'Ditandatangani Camat/<b>Selesai</b>',
+        ];
+        $status = $this->input->post('status');
         $this->load->model('Mcamat', 'camat');
 
         $data['surat_keluar'] = $this->camat->getSurat();
@@ -41,7 +48,7 @@ class Camat extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
 
             $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data); 
+            $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('camat/index', $data);
             $this->load->view('templates/footer');
