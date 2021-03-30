@@ -26,10 +26,8 @@ class Sekcam extends CI_Controller
         // $this->db->where('is_active =', 0);
         $data['status'] = [
             1 => 'Pending',
-            2 => 'Syarat Tidak Terpenuhi',
+            2 => 'Tolak',
             3 => 'Diterima dan Dilanjutkan',
-            4 => 'Sudah Diketik dan Diparaf',
-            5 => 'Ditandatangani Camat/<b>Selesai</b>',
         ];
         $status = $this->input->post('status');
         $this->load->model('Msekcam', 'sekcam');

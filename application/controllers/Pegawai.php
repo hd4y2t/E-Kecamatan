@@ -229,6 +229,7 @@ class Pegawai extends CI_Controller
         $this->db->from('pengajuan_surat');
         $this->db->join('penduduk', 'penduduk.nik=pengajuan_surat.nik');
         $this->db->join('surat', 'surat.id_surat=pengajuan_surat.id_surat');
+        $this->db->where('status <=', 3);
         $this->db->order_by("tgl", "desc");
         $query = $this->db->get();
         $data['pengajuan'] = $query->result_array();
@@ -248,13 +249,11 @@ class Pegawai extends CI_Controller
             1 => 'Pending',
             2 => 'Syarat Tidak Terpenuhi',
             3 => 'Diterima dan Dilanjutkan',
-            4 => 'Sudah Diketik dan Diparaf',
-            5 => 'Ditandatangani Camat/<b>Selesai</b>',
         ];
         $status = $this->input->post('status');
         // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
 
-        if ($status == 5) {
+        if ($status == 3) {
             $pSurat = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
             $pndk = $this->db->get_where('penduduk', ['nik' => $pSurat['nik']])->row_array();
             $surat = $this->db->get_where('surat', ['id_surat' => $pSurat['id_surat']])->row_array();

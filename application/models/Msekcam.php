@@ -19,6 +19,7 @@ class Msekcam extends CI_Model
         $query = "SELECT `surat_keluar`.*, `surat`.`nm_surat`
                    FROM `surat_keluar` JOIN `surat`
                    ON `surat_keluar`.`surat_id` = `surat`.`id_surat`
+                   WHERE  `status`<= 4
                    ";
         return $this->db->query($query)->result_array();
     }

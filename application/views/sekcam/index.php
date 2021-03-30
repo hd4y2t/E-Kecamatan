@@ -165,13 +165,6 @@
                             <label>
                                 <input type="radio" name="status" value="3" <?= $m['status'] == '3' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['3'] ?>
                             </label>
-                            <label>
-                                <input type="radio" name="status" value="4" <?= $m['status'] == '4' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['4'] ?>
-                            </label>
-
-                            <label>
-                                <input type="radio" name="status" value="5" <?= $m['status'] == '5' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['5'] ?>
-                            </label>
                         </div>
                     </div>
                     <div class="modal-footer text-center">
