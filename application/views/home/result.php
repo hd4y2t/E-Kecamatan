@@ -61,7 +61,7 @@
                                                     <?php elseif ($row['status'] == '2') : ?>
                                                         <li class="active first">Pengajuan Surat<br>Pending</li>
                                                         <li class="">Dokumen<br>Ditolak</li>
-                                                        <h1>MAAF PENGAJUAN ANDA DITOLAK KARENA SYARAT TIDAK TERPENUHI</h1>
+                                                        <h1 class="text-danger">MAAF PENGAJUAN ANDA DITOLAK KARENA SYARAT TIDAK TERPENUHI</h1>
                                                     <?php elseif ($row['status'] == 3) : ?>
                                                         <li class="active first">Pengajuan Surat<br>Pending</li>
                                                         <li class="active">Dokumen<br>Diterima</li>

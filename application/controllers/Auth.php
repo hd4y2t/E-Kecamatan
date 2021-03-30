@@ -56,6 +56,8 @@ class Auth extends CI_Controller
                         redirect('camat');
                     } else if ($user['role_id'] == 5) {
                         redirect('sekcam');
+                    } else if ($user['role_id'] == 6) {
+                        redirect('loket');
                     }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Password salah! </div>');

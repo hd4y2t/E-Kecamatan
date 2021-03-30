@@ -263,7 +263,8 @@ class Pegawai extends CI_Controller
                 'nm_surat_keluar' => '[' . $pndk['nama'] . '-' . $pndk['nik'] . ']-Surat ' . $surat['nm_surat'],
                 // 'surat_id' => $pSurat['id_surat'],
                 'tgl' => date('Y-m-d', strtotime($dateNow)),
-                'keterangan' => 'ID: ' . $pSurat['id']
+                'keterangan' => 'ID: ' . $pSurat['id'],
+                'status' => 1
             ];
 
             $this->db->insert('surat_keluar', $save);
@@ -342,7 +343,11 @@ class Pegawai extends CI_Controller
         $this->load->model('Mpegawai', 'pegawai');
         $data['surat_keluar'] = $this->pegawai->getSurat();
         $data['surat'] = $this->db->get('surat')->result_array();
-
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Ditolak',
+            3 => 'Diterima dan Dilanjutkan',
+        ];
 
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
         $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
