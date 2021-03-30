@@ -9,7 +9,7 @@ class Loket extends CI_Controller
         // $this->load->model('Madmin');
 
         // $this->load->model('Mcamat');
-        $this->load->library('form_validation');
+        // $this->load->library('form_validation');
         is_logged_in();
     }
 
@@ -39,7 +39,7 @@ class Loket extends CI_Controller
         $this->db->from('pengajuan_surat');
         $this->db->join('penduduk', 'penduduk.nik=pengajuan_surat.nik');
         $this->db->join('surat', 'surat.id_surat=pengajuan_surat.id_surat');
-        $this->db->where('status <=', 3);
+        $this->db->where('status =', 1);
         $this->db->order_by("tgl", "desc");
         $query = $this->db->get();
         $data['pengajuan'] = $query->result_array();
@@ -114,12 +114,14 @@ class Loket extends CI_Controller
             $pndk = $this->db->get_where('penduduk', ['nik' => $pSurat['nik']])->row_array();
             $surat = $this->db->get_where('surat', ['id_surat' => $pSurat['id_surat']])->row_array();
             $dateNow = date('Y-m-d');
+            $status = 1;
 
             $save = [
                 'nm_surat_keluar' => '[' . $pndk['nama'] . '-' . $pndk['nik'] . ']-Surat ' . $surat['nm_surat'],
                 // 'surat_id' => $pSurat['id_surat'],
                 'tgl' => date('Y-m-d', strtotime($dateNow)),
-                'keterangan' => 'ID: ' . $pSurat['id']
+                'keterangan' => 'ID: ' . $pSurat['id'],
+                'status' => $status
             ];
 
             $this->db->insert('surat_keluar', $save);

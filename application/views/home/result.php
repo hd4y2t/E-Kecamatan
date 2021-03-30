@@ -10,7 +10,7 @@
                     <div class="row justify-content-center">
                         <div class="col-12 col-md-10 col-lg-10">
                             <div class="row">
-                                <div class="col-lg-7">
+                                <div class="col-lg">
                                     <h3>Keterangan:</h3>
                                     <table class="table">
                                         <tr>
@@ -46,51 +46,48 @@
                                             </td>
                                         </tr>
                                     </table>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="checkout-wrap">
-                                    <ul class="checkout-bar">
+                                    <div>
+                                        <div class="checkout-wrap">
+                                            <ul class="checkout-bar">
 
-                                        <div class="card-header card-header-secondary">
-                                            <?php if ($row['status'] == '1') : ?>
-                                                <li class="active first">Pengajuan Surat<br>Pending</li>
-                                                <li class="">Dokumen<br>Diterima</li>
-                                                <li class="">Verifikasi Berkas / Persyaratan<br>Dilanjutkan</li>
-                                                <li class="">Sudah Diketik dan<br>Diparaf</li>
-                                                <li class="">Sudah Ditandatangani<br>Lurah</li>
-                                                <li class="">Selesai / Dapat Diambil<br>&nbsp;</li>
-                                            <?php elseif ($row['status'] == '2') : ?>
-
-                                                <li class="active first">Pengajuan Surat<br>Pending</li>
-                                                <li class="">Dokumen<br>Ditolak</li>
-                                                <h1>MAAF PENGAJUAN ANDA DITOLAK KARENA SYARAT TIDAK TERPENUHI</h1>
-
-
-                                            <?php elseif ($row['status'] == 3) : ?>
-                                                <li class="active first">Pengajuan Surat<br>Pending</li>
-                                                <li class="active">Dokumen<br>Diterima</li>
-                                                <li class="active">Verifikasi Berkas / Persyaratan<br>Dilanjutkan</li>
-                                                <li class="">Sudah Diketik dan<br>Diparaf</li>
-                                                <li class="">Sudah Ditandatangani<br>Lurah</li>
-                                                <li class="">Selesai / Dapat Diambil<br>&nbsp;</li>
-                                            <?php elseif ($row['status'] == '4') : ?>
-                                                <li class="active first">Pengajuan Surat<br>Pending</li>
-                                                <li class="active">Dokumen<br>Diterima</li>
-                                                <li class="active">Verifikasi Berkas / Persyaratan<br>Dilanjutkan</li>
-                                                <li class="active">Sudah Diketik dan<br>Diparaf</li>
-                                                <li class="">Sudah Ditandatangani<br>Lurah</li>
-                                                <li class="">Selesai / Dapat Diambil<br>&nbsp;</li>
-                                            <?php elseif ($row['status'] == '5') : ?>
-                                                <li class="active first">Pengajuan Surat<br>Pending</li>
-                                                <li class="active">Dokumen<br>Diterima</li>
-                                                <li class="active">Verifikasi Berkas / Persyaratan<br>Dilanjutkan</li>
-                                                <li class="active">Sudah Diketik dan<br>Diparaf</li>
-                                                <li class="active">Sudah Ditandatangani<br>Lurah</li>
-                                                <li class="active">Selesai / Dapat Diambil<br>&nbsp;</li>
-                                            <?php endif; ?>
+                                                <div class="card-header card-header-secondary">
+                                                    <?php if ($row['status'] == '1') : ?>
+                                                        <li class="active first">Pengajuan Surat<br>Pending</li>
+                                                        <li class="">Dokumen<br>Diterima</li>
+                                                        <li class="">Verifikasi Berkas / Persyaratan<br>Dilanjutkan</li>
+                                                        <li class="">Sudah Diketik dan<br>Diparaf</li>
+                                                        <li class="">Sudah Ditandatangani<br>Camat</li>
+                                                        <li class="">Selesai / Dapat Diambil<br>&nbsp;</li>
+                                                    <?php elseif ($row['status'] == '2') : ?>
+                                                        <li class="active first">Pengajuan Surat<br>Pending</li>
+                                                        <li class="">Dokumen<br>Ditolak</li>
+                                                        <h1>MAAF PENGAJUAN ANDA DITOLAK KARENA SYARAT TIDAK TERPENUHI</h1>
+                                                    <?php elseif ($row['status'] == 3) : ?>
+                                                        <li class="active first">Pengajuan Surat<br>Pending</li>
+                                                        <li class="active">Dokumen<br>Diterima</li>
+                                                        <li class="active">Verifikasi Berkas / Persyaratan<br>Dilanjutkan</li>
+                                                        <li class="">Sudah Diketik dan<br>Diparaf</li>
+                                                        <li class="">Sudah Ditandatangani<br>Camat</li>
+                                                        <li class="">Selesai / Dapat Diambil<br>&nbsp;</li>
+                                                    <?php elseif ($row['status'] == '4') : ?>
+                                                        <li class="active first">Pengajuan Surat<br>Pending</li>
+                                                        <li class="active">Dokumen<br>Diterima</li>
+                                                        <li class="active">Verifikasi Berkas / Persyaratan<br>Dilanjutkan</li>
+                                                        <li class="active">Sudah Diketik dan<br>Diparaf</li>
+                                                        <li class="">Sudah Ditandatangani<br>Camat</li>
+                                                        <li class="">Selesai / Dapat Diambil<br>&nbsp;</li>
+                                                    <?php elseif ($row['status'] == '5') : ?>
+                                                        <li class="active first">Pengajuan Surat<br>Pending</li>
+                                                        <li class="active">Dokumen<br>Diterima</li>
+                                                        <li class="active">Verifikasi Berkas / Persyaratan<br>Dilanjutkan</li>
+                                                        <li class="active">Sudah Diketik dan<br>Diparaf</li>
+                                                        <li class="active">Sudah Ditandatangani<br>Camat</li>
+                                                        <li class="active">Selesai / Dapat Diambil<br>&nbsp;</li>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </ul>
                                         </div>
-                                    </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -98,9 +95,6 @@
                 </div>
             </div>
         </div>
-</div>
-</div>
-</div>
 </div>
 </section><!-- End Hero -->
 

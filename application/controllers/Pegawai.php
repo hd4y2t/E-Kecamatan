@@ -382,7 +382,8 @@ class Pegawai extends CI_Controller
                     'nm_surat_keluar' => $nm_surat_keluar,
                     'tgl' => date('Y-m-d', strtotime($tgl)),
                     'keterangan' => $keterangan,
-                    'file' => $file_surat
+                    'file' => $file_surat,
+                    'status' => 1
                 ];
 
                 $this->db->insert('surat_keluar', $save);
