@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Mcamat extends CI_Model
+class Msekcam extends CI_Model
 {
 
     // public function getKategori()
