@@ -64,6 +64,7 @@
                             <i class="material-icons"><?= $sm['icon']; ?></i>
                             <p><?= $sm['title']; ?></p>
                         </a>
+
                         </li>
                     <?php endforeach; ?>
 
