@@ -141,7 +141,7 @@ class Loket extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Masuk';
-        $data['surat_masuk'] = $this->db->get('surat_massuk')->result_array();
+        $data['surat_masuk'] = $this->db->get('surat_masuk')->result_array();
 
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
         $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
