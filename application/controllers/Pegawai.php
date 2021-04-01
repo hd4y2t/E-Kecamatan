@@ -290,7 +290,7 @@ class Pegawai extends CI_Controller
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
         $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
         $this->form_validation->set_rules('nm_surat_masuk', 'Nama Surat', 'required');
-        $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
+        // $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
         // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
@@ -323,7 +323,7 @@ class Pegawai extends CI_Controller
                     'no_surat' => $no_surat,
                     'jenis' => $jenis,
                     'nm_surat_masuk' => $nm_surat_masuk,
-                    'tgl' => date('Y-m-d'),
+                    'tgl' => date('d-m-Y'),
                     'keterangan' => $keterangan,
                     'file' => $file_surat
                 ];
