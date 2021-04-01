@@ -43,10 +43,9 @@
                                                             <td><?= $s['tgl']; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>
                                                             <td><?= $status[$s['status']]; ?></td>
-                                                            <!-- <td>
-                                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                                    </td> -->
                                                             <td>
+                                                                <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+
                                                                 <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $s['id']; ?>"><i class="material-icons">outbond</i>Status</button>
 
                                                             </td>

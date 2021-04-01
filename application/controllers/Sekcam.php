@@ -35,11 +35,11 @@ class Sekcam extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Masuk';
-        $data['surat_masuk'] = $this->db->get_where('surat_masuk', ['status <=' => 3])->result_array();
+        $data['surat_masuk'] = $this->db->get_where('surat_masuk', ['status =' => 1])->result_array();
         $data['status'] = [
             1 => 'Pending',
             2 => 'Diketahui Sekcam',
-            3 => 'Diketahui Sekcam dan Camat',
+            // 3 => 'Diketahui Sekcam dan Camat',
         ];
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
