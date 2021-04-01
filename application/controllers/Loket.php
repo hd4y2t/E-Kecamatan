@@ -154,7 +154,7 @@ class Loket extends CI_Controller
             1 => 'Pending',
             2 => 'Ditolak',
             3 => 'Diterima dan Dilanjutkan',
-            4 => 'TelahDiparaf',
+            4 => 'Telah Diparaf',
         ];
 
         // $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');

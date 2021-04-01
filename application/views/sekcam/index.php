@@ -78,7 +78,7 @@
                             <div class="container-fluid">
                                 <div class="card">
                                     <div class="card-header card-header-success">
-                                        <h3 class="card-title">Surat Keluar</h3>
+                                        <h3 class="card-title">Surat Masuk</h3>
                                     </div>
                                     <div class="card-body">
                                         <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
@@ -86,39 +86,38 @@
                                         <!-- <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a> -->
                                         <div class="row">
                                             <div class="col">
+
                                                 <div class="table-responsive">
                                                     <table class="table table-hover" id="myTable">
                                                         <thead class="text-success">
-
                                                             <tr>
                                                                 <th scope="col"></th>
                                                                 <th scope="col">Nomor Surat</th>
-                                                                <th scope="col">Nama </th>
-                                                                <th scope="col">Jenis</th>
-                                                                <th scope="col">Surat</th>
+                                                                <th scope="col">Jenis Surat</th>
+                                                                <th scope="col">Nama Surat</th>
                                                                 <th scope="col">Tanggal</th>
                                                                 <th scope="col">Keterangan</th>
-                                                                <!-- <th scope="col">File</th> -->
+                                                                <th scope="col">Status</th>
+                                                                <th scope="col">File</th>
                                                                 <th scope="col">Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php $i = 1; ?>
-                                                            <?php foreach ($surat_keluar as $s) : ?>
+                                                            <?php foreach ($surat_masuk as $s) : ?>
                                                                 <tr>
                                                                     <th scope="row"><?= $i ?></th>
                                                                     <td><?= $s['no_surat']; ?></td>
-                                                                    <td><?= $s['nm_surat_keluar']; ?></td>
                                                                     <td><?= $s['jenis']; ?></td>
-                                                                    <td><?= $s['nm_surat']; ?></td>
+                                                                    <td><?= $s['nm_surat_masuk']; ?></td>
                                                                     <td><?= $s['tgl']; ?></td>
                                                                     <td><?= $s['keterangan']; ?></td>
-                                                                    <!-- <td>
-                                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                                    </td> -->
+                                                                    <td><?= $s['status']; ?></td>
                                                                     <td>
-                                                                        <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $s['id']; ?>"><i class="material-icons">outbond</i>Status</button>
-
+                                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuanMasuk<?= $s['id']; ?>"><i class="material-icons">outbond</i>Status</button>
                                                                     </td>
                                                                     <?php $i++; ?>
                                                                 </tr>
@@ -135,6 +134,7 @@
                         </div>
                     </div>
 
+
                 </div>
 
             </div>
@@ -143,8 +143,9 @@
 </div>
 
 
-<?php foreach ($surat_keluar as $m) : ?>
-    <div class="modal fade" id="statusPengajuan<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<?php foreach ($surat_masuk as $m) : ?>
+    <div class="modal fade" id="statusPengajuanMasuk<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg ">
             <div class="modal-content">
                 <div class="modal-header">

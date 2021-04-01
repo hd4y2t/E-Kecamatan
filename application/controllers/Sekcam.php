@@ -34,6 +34,7 @@ class Sekcam extends CI_Controller
 
         $data['surat_keluar'] = $this->sekcam->getSurat();
         $data['surat'] = $this->db->get('surat')->result_array();
+        $data['surat_masuk'] = $this->db->get('surat_masuk')->result_array();
 
 
         // $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
