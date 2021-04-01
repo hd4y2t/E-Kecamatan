@@ -307,7 +307,7 @@ class Pegawai extends CI_Controller
             $nm_surat_masuk =  $this->input->post("nm_surat_masuk", TRUE);
             // $tgl =  $this->input->post("tgl", TRUE);
             $keterangan =  $this->input->post("keterangan", TRUE);
-            // $file_surat =  $this->input->post("file_surat", TRUE);
+            $file_surat =  $this->input->post("file_surat", TRUE);
 
             $config['upload_path']          = './upload/surat_masuk';
             $config['allowed_types']        = 'pdf|doc|docx';
