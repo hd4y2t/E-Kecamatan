@@ -31,7 +31,7 @@
                                   </p>
                               </a>
                           </li>
-                          <li class="nav-item dropdown">
+                          <!-- <li class="nav-item dropdown">
                               <a class="nav-link" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   <i class="material-icons">notifications</i>
                                   <span class="notification">5</span>
@@ -46,7 +46,7 @@
                                   <a class="dropdown-item" href="#">Another Notification</a>
                                   <a class="dropdown-item" href="#">Another One</a>
                               </div>
-                          </li>
+                          </li> -->
                           <li class="nav-item dropdown">
                               <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   <i class="material-icons">person</i>
