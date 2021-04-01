@@ -91,10 +91,10 @@
                     <label class="bmd-label-floating">Nama Surat</label>
                     <input type="text" class="form-control" id="nm_surat_masuk" name="nm_surat_masuk">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="bmd-label-floating">Tanggal</label>
                     <input type="text" class="form-control" id="tgl" name="tgl">
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label class="bmd-label-floating">Keterangan</label>
                     <input type="text" class="form-control" id="keterangan" name="keterangan">

@@ -305,7 +305,7 @@ class Pegawai extends CI_Controller
             $no_surat =  $this->input->post("no_surat", TRUE);
             $jenis =  $this->input->post("jenis", TRUE);
             $nm_surat_masuk =  $this->input->post("nm_surat_masuk", TRUE);
-            $tgl =  $this->input->post("tgl", TRUE);
+            // $tgl =  $this->input->post("tgl", TRUE);
             $keterangan =  $this->input->post("keterangan", TRUE);
             // $file_surat =  $this->input->post("file_surat", TRUE);
 
@@ -323,7 +323,7 @@ class Pegawai extends CI_Controller
                     'no_surat' => $no_surat,
                     'jenis' => $jenis,
                     'nm_surat_masuk' => $nm_surat_masuk,
-                    'tgl' => date('Y-m-d', strtotime($tgl)),
+                    'tgl' => date('Y-m-d'),
                     'keterangan' => $keterangan,
                     'file' => $file_surat
                 ];
