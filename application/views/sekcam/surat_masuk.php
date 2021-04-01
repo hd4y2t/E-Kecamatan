@@ -6,7 +6,7 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-header card-header-success">
-                                <h3 class="card-title">Surat Keluar</h3>
+                                <h3 class="card-title">Surat Masuk</h3>
                             </div>
                             <div class="card-body">
                                 <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
@@ -23,7 +23,6 @@
                                                         <th scope="col">Nomor Surat</th>
                                                         <th scope="col">Nama </th>
                                                         <th scope="col">Jenis</th>
-                                                        <th scope="col">Surat</th>
                                                         <th scope="col">Tanggal</th>
                                                         <th scope="col">Keterangan</th>
                                                         <th scope="col">Status</th>
@@ -33,13 +32,12 @@
                                                 </thead>
                                                 <tbody>
                                                     <?php $i = 1; ?>
-                                                    <?php foreach ($surat_keluar as $s) : ?>
+                                                    <?php foreach ($surat_masuk as $s) : ?>
                                                         <tr>
                                                             <th scope="row"><?= $i ?></th>
                                                             <td><?= $s['no_surat']; ?></td>
-                                                            <td><?= $s['nm_surat_keluar']; ?></td>
+                                                            <td><?= $s['nm_surat_masuk']; ?></td>
                                                             <td><?= $s['jenis']; ?></td>
-                                                            <td><?= $s['nm_surat']; ?></td>
                                                             <td><?= $s['tgl']; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>
                                                             <td><?= $status[$s['status']]; ?></td>
@@ -70,7 +68,7 @@
 </div>
 
 
-<?php foreach ($surat_keluar as $m) : ?>
+<?php foreach ($surat_masuk as $m) : ?>
     <div class="modal fade" id="statusPengajuan<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg ">
             <div class="modal-content">
@@ -104,7 +102,7 @@
     </div>
 <?php endforeach; ?>
 
-<?php foreach ($surat_keluar as $s) : ?>
+<?php foreach ($surat_masuk as $s) : ?>
     <div class="modal fade" id="lihatSurat<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-notice">
             <div class="modal-content">
