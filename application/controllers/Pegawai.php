@@ -385,7 +385,7 @@ class Pegawai extends CI_Controller
                     'no_surat' => $no_surat,
                     'jenis' => $jenis,
                     'nm_surat_keluar' => $nm_surat_keluar,
-                    'tgl' => date('Y-m-d', strtotime($tgl)),
+                    'tgl' => date('d-m-Y', strtotime($tgl)),
                     'keterangan' => $keterangan,
                     'file' => $file_surat,
                     'status' => 1

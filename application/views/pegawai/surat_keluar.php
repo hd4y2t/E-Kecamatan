@@ -21,7 +21,7 @@
                                                     <tr>
                                                         <th scope="col"></th>
                                                         <th scope="col">Nomor Surat</th>
-                                                        <th scope="col">Nama </th>
+                                                        <th scope="col">Nama Pengaju</th>
                                                         <th scope="col">Jenis</th>
                                                         <th scope="col">Surat</th>
                                                         <th scope="col">Tanggal</th>
@@ -47,7 +47,7 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td> -->
                                                             <td>
-                                                                <a href="<?= base_url('pegawai/edit_surat_keluar/') . $s['id']; ?>" class="btn btn-warning btn-sm">Tambah Isi surat </a>
+                                                                <a href="<?= base_url('pegawai/edit_surat_keluar/') . $s['id']; ?>" class="btn btn-success btn-sm">Lengkapi Isi surat </a>
                                                                 <!-- <a href="" class="btn btn-danger btn-sm">Tolak </a> -->
 
                                                             </td>

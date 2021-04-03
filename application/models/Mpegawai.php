@@ -28,7 +28,7 @@ class Mpegawai extends CI_Model
         $query = "SELECT `surat_keluar`.*, `surat`.`nm_surat`
                    FROM `surat_keluar` JOIN `surat`
                    ON `surat_keluar`.`surat_id` = `surat`.`id_surat`
-                   WHERE `surat_keluar`.`status` = 3
+                   WHERE `surat_keluar`.`status` <= 2
                    ";
         return $this->db->query($query)->result_array();
     }
