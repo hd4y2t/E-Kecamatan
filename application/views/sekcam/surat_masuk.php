@@ -45,7 +45,7 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a class="btn btn-simple btn-success btn-icon btn-sm" href="<?= base_url('sekcam/updateSuratMasuk/') . $s['no_surat'] . $status = 2; ?> "><i class="material-icons">done</i>Status</a>
+                                                                <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $s['id']; ?>"><i class="material-icons">done</i>Status</button>
 
                                                             </td>
                                                             <?php $i++; ?>
@@ -68,6 +68,31 @@
 </div>
 
 
+
+<?php foreach ($surat_masuk as $m) : ?>
+    <div class="modal fade" id="statusPengajuan<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                </div>
+
+                <form method="post" action="<?= base_url(); ?>sekcam/updateSuratMasuk/<?= $m['id']; ?>">
+                    <div class="modal-body text-center">
+                        <h5>Update Status Pengajuan ID: <?= $m['no_surat'] ?>? </h5>
+                        <label for="status">DiKetahui Oleh Sekretaris Camat</label>
+                        <input type="text" name="status" value="2" hidden>
+
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-info btn-simple">YA</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
 
 <?php foreach ($surat_masuk as $s) : ?>
     <div class="modal fade" id="lihatSurat<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

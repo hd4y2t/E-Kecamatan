@@ -48,7 +48,7 @@ class Sekcam extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function updateSuratMasuk($no_surat)
+    public function updateSuratMasuk($id)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Masuk';
@@ -65,11 +65,11 @@ class Sekcam extends CI_Controller
 
         $this->db->set('status', $status);
 
-        $this->db->where(['no_surat' => $no_surat]);
+        $this->db->where(['id' => $id]);
         $this->db->update('surat_masuk');
 
 
-        $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $no_surat . ' Telah Diupdate!');
+        $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $id . ' Telah Diupdate!');
         // var_dump($status);
         // die();
         redirect(base_url('sekcam/surat_masuk'));
