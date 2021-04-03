@@ -45,7 +45,7 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a class="btn btn-simple btn-success btn-icon btn-sm" href="<?= base_url('sekcam/updateSuratMasuk/') . $s['no_surat']; ?> "><i class="material-icons">done</i>Status</a>
+                                                                <a class="btn btn-simple btn-success btn-icon btn-sm" href="<?= base_url('sekcam/updateSuratMasuk/') . $s['no_surat'] . $status = 2; ?> "><i class="material-icons">done</i>Status</a>
 
                                                             </td>
                                                             <?php $i++; ?>

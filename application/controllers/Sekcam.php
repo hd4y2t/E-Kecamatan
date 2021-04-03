@@ -58,17 +58,20 @@ class Sekcam extends CI_Controller
             2 => 'Diketahui Sekcam',
             3 => 'Diketahui Camat & Sekcam',
         ];
+
+        $status = 2;
         // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
 
 
-        $this->db->set('status', 2);
+        $this->db->set('status', $status);
 
         $this->db->where(['no_surat' => $no_surat]);
         $this->db->update('surat_masuk');
 
 
         $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $no_surat . ' Telah Diupdate!');
-
+        // var_dump($status);
+        // die();
         redirect(base_url('sekcam/surat_masuk'));
     }
 
