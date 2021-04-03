@@ -26,7 +26,7 @@
                                                         <th scope="col">Tanggal</th>
                                                         <th scope="col">Keterangan</th>
                                                         <th scope="col">Status</th>
-                                                        <!-- <th scope="col">File</th> -->
+                                                        <th scope="col">File</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -43,8 +43,9 @@
                                                             <td><?= $status[$s['status']]; ?></td>
                                                             <td>
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
-
-                                                                <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $s['id']; ?>"><i class="material-icons">outbond</i>Status</button>
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $s['id']; ?>"><i class="material-icons">done</i>Status</button>
 
                                                             </td>
                                                             <?php $i++; ?>
