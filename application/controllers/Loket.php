@@ -49,11 +49,10 @@ class Loket extends CI_Controller
         $this->load->view('loket/index', $data);
         $this->load->view('templates/footer');
     }
-
     public function updateStatus($id)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Antrian Surat';
+        $data['title'] = 'Dashboard';
         // $data['surat'] = $this->db->get('surat', => )->result_array();
         $data['status'] = [
             1 => 'Pending',
@@ -68,14 +67,13 @@ class Loket extends CI_Controller
             $pndk = $this->db->get_where('penduduk', ['nik' => $pSurat['nik']])->row_array();
             $surat = $this->db->get_where('surat', ['id_surat' => $pSurat['id_surat']])->row_array();
             $dateNow = date('Y-m-d');
-            $status = 1;
 
             $save = [
                 'nm_surat_keluar' => '[' . $pndk['nama'] . '-' . $pndk['nik'] . ']-Surat ' . $surat['nm_surat'],
                 // 'surat_id' => $pSurat['id_surat'],
                 'tgl' => date('Y-m-d', strtotime($dateNow)),
                 'keterangan' => 'ID: ' . $pSurat['id'],
-                'status' => $status
+                'status' => 1
             ];
 
             $this->db->insert('surat_keluar', $save);
@@ -90,6 +88,7 @@ class Loket extends CI_Controller
 
         redirect(base_url('loket/index'));
     }
+
 
     public function surat_masuk()
     {

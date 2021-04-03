@@ -27,7 +27,7 @@
                                                         <th scope="col">Tanggal</th>
                                                         <th scope="col">Status</th>
                                                         <th scope="col">Keterangan</th>
-                                                        <th scope="col">File</th>
+                                                        <!-- <th scope="col">File</th> -->
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -43,12 +43,12 @@
                                                             <td><?= $s['tgl']; ?></td>
                                                             <td><?= $status[$s['status']]; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>
-                                                            <td>
+                                                            <!-- <td>
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                            </td>
+                                                            </td> -->
                                                             <td>
-                                                                <a href="<?= base_url('pegawai/edit_surat_keluar/') . $s['id']; ?>" class="btn btn-warning btn-sm">Edit </a>
-                                                                <a href="" class="btn btn-danger btn-sm">Tolak </a>
+                                                                <a href="<?= base_url('pegawai/edit_surat_keluar/') . $s['id']; ?>" class="btn btn-warning btn-sm">Tambah Isi surat </a>
+                                                                <!-- <a href="" class="btn btn-danger btn-sm">Tolak </a> -->
 
                                                             </td>
                                                             <?php $i++; ?>
