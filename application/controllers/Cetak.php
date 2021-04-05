@@ -10,7 +10,7 @@ class Cetak extends CI_Controller
 
     function index()
     {
-        $pdf = new FPDF('l', 'mm', 'A4');
+        $pdf = new FPDF('p', 'mm', 'A4');
         // membuat halaman baru
         $pdf->AddPage();
         // setting jenis font yang akan digunakan
@@ -29,7 +29,7 @@ class Cetak extends CI_Controller
         $pdf->SetFont('Arial', '', 10);
         $mahasiswa = $this->db->get('penduduk')->result();
         foreach ($mahasiswa as $row) {
-            $pdf->Cell(20, 6, $row->nip, 1, 0);
+            $pdf->Cell(20, 6, $row->nik, 1, 0);
             $pdf->Cell(85, 6, $row->nama, 1, 0);
         }
         $pdf->Output();
