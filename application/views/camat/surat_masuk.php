@@ -26,7 +26,7 @@
                                                         <th scope="col">Tanggal</th>
                                                         <th scope="col">Keterangan</th>
                                                         <th scope="col">Status</th>
-                                                        <!-- <th scope="col">File</th> -->
+                                                        <th scope="col">File</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -43,9 +43,9 @@
                                                             <td><?= $status[$s['status']]; ?></td>
                                                             <td>
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
-
-                                                                <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $s['id']; ?>"><i class="material-icons">outbond</i>Status</button>
-
+                                                            </td>
+                                                            <td>
+                                                                <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $s['id']; ?>"><i class="material-icons">done</i>Status</button>
                                                             </td>
                                                             <?php $i++; ?>
                                                         </tr>
@@ -67,6 +67,7 @@
 </div>
 
 
+
 <?php foreach ($surat_masuk as $m) : ?>
     <div class="modal fade" id="statusPengajuan<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg ">
@@ -75,25 +76,16 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
                 </div>
 
-                <form method="post" action="<?= base_url(); ?>camat/paraf/<?= $m['id']; ?>">
+                <form method="post" action="<?= base_url(); ?>sekcam/updateSuratMasuk/<?= $m['id']; ?>">
                     <div class="modal-body text-center">
-                        <h5>Update Status Pengajuan ID: <?= $m['id'] ?>? </h5>
-                        <label for="status">Pilih Status</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="status" value="1" <?= $m['status'] == '1' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['1'] ?>
-                            </label>
-                            <label>
-                                <input type="radio" name="status" value="2" <?= $m['status'] == '2' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['2'] ?>
-                            </label>
-                            <label>
-                                <input type="radio" name="status" value="3" <?= $m['status'] == '3' ? 'checked="true"' : '' ?>><span class="circle"></span><span class="check"></span> <?= $status['3'] ?>
-                            </label>
-                        </div>
+                        <h5>Update Status Pengajuan ID: <?= $m['no_surat'] ?>? </h5>
+                        <label for="status">DiKetahui Oleh Sekretaris Camat</label>
+                        <input type="text" name="status" value="2" hidden>
+
                     </div>
                     <div class="modal-footer text-center">
                         <button type="button" class="btn btn-simple" data-dismiss="modal">Tidak</button>
-                        <button type="submit" class="btn btn-info btn-simple">Update</button>
+                        <button type="submit" class="btn btn-info btn-simple">YA</button>
                     </div>
                 </form>
             </div>

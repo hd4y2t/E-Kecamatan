@@ -23,27 +23,6 @@ class Camat extends CI_Controller
         $data['antrian_done'] = $this->db->get_where('pengajuan_surat', ['status' => 5])->num_rows();
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $data['user_non'] = $this->db->get('user')->num_rows();
-        // $this->db->where('is_active =', 0);
-        // $data['status'] = [
-        //     1 => 'Pending',
-        //     2 => 'Syarat Tidak Terpenuhi',
-        //     3 => 'Diterima dan Dilanjutkan',
-        //     4 => 'Sudah Diketik dan Diparaf',
-        //     5 => 'Ditandatangani Camat/<b>Selesai</b>',
-        // ];
-        // $status = $this->input->post('status');
-        // $this->load->model('Mcamat', 'camat');
-
-        // $data['surat_keluar'] = $this->camat->getSurat();
-        // $data['surat'] = $this->db->get('surat')->result_array();
-
-
-        // $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
-        // $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
-        // $this->form_validation->set_rules('nm_surat_keluar', 'Nama Surat', 'required');
-        // $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
-        // $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
 
         $this->load->view('templates/header', $data);
@@ -67,6 +46,29 @@ class Camat extends CI_Controller
         $this->load->view('templates/navbar', $data);
         $this->load->view('camat/surat_masuk', $data);
         $this->load->view('templates/footer');
+    }
+    public function updateSuratMasuk($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Surat Masuk';
+        // $this->db->get('surat_masuk')->result_array();
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Diketahui Sekcam',
+            3 => 'Diketahui Camat & Sekcam',
+        ];
+
+        $status = $this->form_validation->set_rules('status', 'status', 'required');
+        // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
+
+
+        $this->db->set('status', $status);
+        $this->db->where(['id' => $id]);
+        $this->db->update('surat_masuk');
+        $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $id . ' Telah Diupdate!');
+        // var_dump($status);
+        // die();
+        redirect(base_url('camat/surat_masuk'));
     }
 
     public function surat_keluar()
