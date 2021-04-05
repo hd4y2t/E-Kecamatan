@@ -204,4 +204,9 @@ class Loket extends CI_Controller
         //     }
         // }
     }
+
+    public function cetak_surat()
+    {
+        
+    }
 }
