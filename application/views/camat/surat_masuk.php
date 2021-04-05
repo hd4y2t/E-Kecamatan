@@ -76,11 +76,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
                 </div>
 
-                <form method="post" action="<?= base_url(); ?>sekcam/updateSuratMasuk/<?= $m['id']; ?>">
+                <form method="post" action="<?= base_url(); ?>camat/updateSuratMasuk/<?= $m['id']; ?>">
                     <div class="modal-body text-center">
                         <h5>Update Status Pengajuan ID: <?= $m['no_surat'] ?>? </h5>
-                        <label for="status">DiKetahui Oleh Sekretaris Camat</label>
-                        <input type="text" name="status" value="2" hidden>
+                        <label for="status">DiKetahui Oleh Camat</label>
+                        <input type="text" name="status" value="3" hidden>
 
                     </div>
                     <div class="modal-footer text-center">

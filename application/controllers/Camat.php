@@ -58,7 +58,7 @@ class Camat extends CI_Controller
             3 => 'Diketahui Camat & Sekcam',
         ];
 
-        $status = $this->form_validation->set_rules('status', 'status', 'required');
+        $status = 3;
         // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
 
 
