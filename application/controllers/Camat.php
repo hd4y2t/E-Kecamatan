@@ -56,7 +56,7 @@ class Camat extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Masuk';
-        $data['surat_masuk'] = $this->db->get_where('surat_masuk', ['status >=' => 2])->result_array();
+        $data['surat_masuk'] = $this->db->get_where('surat_masuk', ['status =' => 2])->result_array();
         $data['status'] = [
             // 1 => 'Pending',
             2 => 'Diketahui Sekcam',
