@@ -6,7 +6,7 @@
 
       <h1>E-Kecamatan Sematang Borang</h1>
       <h2>Website Pengajuan Persyaratan Online</h2>
-      <a href="<?= base_url('home/s_online') ?>" class="btn-get-started scrollto">Ajukan Persyaratan Surat</a>
+      <a href="<?= base_url('cetak') ?>" class="btn-get-started scrollto">Ajukan Persyaratan Surat</a>
     </div>
   </section><!-- End Hero -->
 
