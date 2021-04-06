@@ -11,6 +11,11 @@
                             <div class="card-body">
                                 <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
                                 <?= $this->session->flashdata('message'); ?>
+                                <?php if ($this->session->flashdata('success') == TRUE) : ?>
+                                    <div class="alert alert-success">
+                                        <span><?= $this->session->flashdata('success'); ?></span>
+                                    </div>
+                                <?php endif; ?>
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a>
                                 <div class="row">
                                     <div class="col">
