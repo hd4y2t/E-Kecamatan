@@ -46,7 +46,7 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a class="btn btn-simple btn-success btn-icon btn-sm" href="<?= base_url('sekcam/terimasurat/') . $s['id']; ?>"><i class="material-icons">done</i></a>
+                                                               <a class="btn btn-simple btn-success btn-icon btn-sm" href="<?= base_url('sekcam/terimasurat/') . $s['id']; ?>"><i class="material-icons">done</i></a>
                                                                 <a class="btn btn-simple btn-danger btn-icon btn-sm" href="<?= base_url('sekcam/tolaksurat/') . $s['id']; ?>"><i class="material-icons">close</i></a>
 
                                                             </td>
