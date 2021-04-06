@@ -95,4 +95,56 @@ class Sekcam extends CI_Controller
         $this->load->view('sekcam/surat_keluar', $data);
         $this->load->view('templates/footer');
     }
+    public function terimasurat($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Surat Masuk';
+        // $this->db->get('surat_masuk')->result_array();
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Ditolak',
+            3 => 'Diterima dan Dilanjutkan',
+        ];
+
+        $status = 3;
+        // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
+
+
+        $this->db->set('status', $status);
+
+        $this->db->where(['id' => $id]);
+        $this->db->update('surat_keluar');
+
+
+        $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $id . ' Telah Diupdate!');
+        // var_dump($status);
+        // die();
+        redirect(base_url('sekcam/surat_keluar'));
+    }
+    public function tolaksurat($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Surat Masuk';
+        // $this->db->get('surat_masuk')->result_array();
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Ditolak',
+            3 => 'Diterima dan Dilanjutkan',
+        ];
+
+        $status = 2;
+        // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
+
+
+        $this->db->set('status', $status);
+
+        $this->db->where(['id' => $id]);
+        $this->db->update('surat_keluar');
+
+
+        $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $id . ' Telah Diupdate!');
+        // var_dump($status);
+        // die();
+        redirect(base_url('sekcam/surat_keluar'));
+    }
 }
