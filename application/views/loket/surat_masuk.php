@@ -25,8 +25,8 @@
                                                         <th scope="col">Nama Surat</th>
                                                         <th scope="col">Tanggal</th>
                                                         <th scope="col">Keterangan</th>
-                                                        <th scope="col">File</th>
                                                         <th scope="col">Status</th>
+                                                        <th scope="col">File</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>

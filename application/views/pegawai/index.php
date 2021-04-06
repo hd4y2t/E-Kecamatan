@@ -37,7 +37,7 @@
                                                             <td><?= $s['nm_bidang']; ?></td>
                                                             <td><?= $s['syarat']; ?></td>
                                                             <td>
-                                                                <a href="" class="btn btn-primary btn-sm">Akses </a>
+                                                                <!-- <a href="" class="btn btn-primary btn-sm">Akses </a> -->
                                                                 <a href="<?= base_url('pegawai/edit_surat/') . $s['id_surat']; ?>" class="btn btn-warning btn-sm">Edit </a>
 
                                                             </td>

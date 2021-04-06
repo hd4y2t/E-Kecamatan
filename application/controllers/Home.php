@@ -133,7 +133,7 @@ class Home extends CI_Controller
                 // 'no_hp' => $no_hp,
                 'id_surat' => $surat,
                 'file' => $file,
-                'tgl' => date('Y-m-d'),
+                'tgl' => date('d-m-Y'),
                 'status' => $status[1]
             ];
 

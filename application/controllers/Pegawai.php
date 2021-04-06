@@ -401,9 +401,20 @@ class Pegawai extends CI_Controller
 
                 $this->db->insert('surat_keluar', $save);
                 $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-                redirect(base_url("pegawai/surat_masuk"));
+                redirect(base_url("pegawai/surat_keluar"));
             }
         }
+    }
+
+    public function hapusSuratKeluar($id)
+    {
+
+        $data = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
+        unlink("./uploads/surat_keluar/" . $data['file_surat_keluar']);
+        $this->db->where(['id' => $id]);
+        $this->db->delete('surat_keluar');
+        $this->session->set_flashdata('success', 'Berhasil Dihapus!');
+        redirect(base_url('pegawai/surat_keluar'));
     }
 
 
