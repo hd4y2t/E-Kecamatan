@@ -95,7 +95,11 @@ class Loket extends CI_Controller
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Masuk';
         $data['surat_masuk'] = $this->db->get('surat_masuk')->result_array();
-
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Diketahui Sekcam',
+            3 => 'Diketahui Sekcam dan camat'
+        ];
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
         $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
         $this->form_validation->set_rules('nm_surat_masuk', 'Nama Surat', 'required');
@@ -132,7 +136,8 @@ class Loket extends CI_Controller
                     'nm_surat_masuk' => $nm_surat_masuk,
                     'tgl' => date('d-m-Y'),
                     'keterangan' => $keterangan,
-                    'file' => $file_surat
+                    'file' => $file_surat,
+                    'status' => 1
                 ];
 
                 $this->db->insert('surat_masuk', $save);
@@ -207,6 +212,5 @@ class Loket extends CI_Controller
 
     public function cetak_surat()
     {
-        
     }
 }

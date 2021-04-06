@@ -47,7 +47,7 @@ class Camat extends CI_Controller
         $this->load->view('camat/surat_masuk', $data);
         $this->load->view('templates/footer');
     }
-    public function updateSuratMasuk($id)
+    public function ketahuisurat($id)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Masuk';
