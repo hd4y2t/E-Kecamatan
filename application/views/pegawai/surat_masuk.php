@@ -50,8 +50,8 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a href="<?= base_url('pegawai/edit_surat_masuk/') . $s['id']; ?>" class="btn btn-warning btn-sm">edit </a>
-                                                                <a href="" class="btn btn-danger btn-sm">hapus </a>
+                                                                <a href="<?= base_url('pegawai/edit_surat_masuk/') . $s['id']; ?>" class="btn btn-warning btn-sm"><i class="material-icons">edit</i> </a>
+                                                                <a href="" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
 
                                                             </td>
                                                             <?php $i++; ?>

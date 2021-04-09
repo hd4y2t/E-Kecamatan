@@ -32,8 +32,8 @@
                                                             <td><?= $k['nm_kategori']; ?></td>
                                                             <td>
                                                                 <!-- <a href="<?= base_url("pegawai/editkategori/" . $k['id_kategori']); ?>" class="btn btn-warning">Edit</a> -->
-                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModelkategoriedit<?= $k['id_kategori']; ?>">Edit</a>
-                                                                <a href="" class="btn btn-danger btn-sm">Hapus</a>
+                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModelkategoriedit<?= $k['id_kategori']; ?>"><i class="material-icons">edit</i></a>
+                                                                <a href="" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></a>
 
                                                             </td>
                                                             <?php $i++; ?>

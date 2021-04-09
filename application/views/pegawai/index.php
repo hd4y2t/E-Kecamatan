@@ -37,8 +37,8 @@
                                                             <td><?= $s['nm_bidang']; ?></td>
                                                             <td><?= $s['syarat']; ?></td>
                                                             <td>
-                                                                <!-- <a href="" class="btn btn-primary btn-sm">Akses </a> -->
-                                                                <a href="<?= base_url('pegawai/edit_surat/') . $s['id_surat']; ?>" class="btn btn-warning btn-sm">Edit </a>
+                                                                <a href="<?= base_url('pegawai/edit_surat/') . $s['id_surat']; ?>" class="btn btn-warning btn-sm"><i class="material-icons">edit</i> </a>
+                                                                <a href="" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
 
                                                             </td>
                                                             <?php $i++; ?>

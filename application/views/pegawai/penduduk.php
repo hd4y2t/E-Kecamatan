@@ -47,8 +47,8 @@
                                                             <td><?= $w['kelurahan']; ?></td>
                                                             <td><?= $w['pengajuan']; ?></td>
                                                             <td>
-                                                                <a href="<?= base_url('pegawai/edit_penduduk/') . $w['nik']; ?>" class="btn btn-warning btn-sm">Edit </a>
-                                                                <a href="<?= base_url('pegawai/hapus_penduduk/') . $w['nik']; ?>" class=" btn btn-danger btn-sm">Hapus </a>
+                                                                <a href="<?= base_url('pegawai/edit_penduduk/') . $w['nik']; ?>" class="btn btn-warning btn-sm"><i class="material-icons">edit</i> </a>
+                                                                <a href="<?= base_url('pegawai/hapus_penduduk/') . $w['nik']; ?>" class=" btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
 
                                                             </td>
                                                             <?php $i++; ?>

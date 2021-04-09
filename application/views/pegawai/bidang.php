@@ -32,9 +32,9 @@
                                                             <td><?= $b['nm_bidang']; ?></td>
                                                             <!-- <a href="<?= base_url("pegawai/editbidang/" . $b['id']); ?>" class="btn btn-warning">Edit</a> -->
                                                             <td>
-                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModelbidangedit<?php echo $b['id']; ?>">Edit</a>
+                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModelbidangedit<?php echo $b['id']; ?>"><i class="material-icons">edit</i></a>
 
-                                                                <a href="" class="btn btn-danger btn-sm">hapus</a>
+                                                                <a href="" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></a>
                                                             </td>
                                                             <?php $i++; ?>
                                                         </tr>
