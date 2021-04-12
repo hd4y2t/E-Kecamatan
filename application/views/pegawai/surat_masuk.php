@@ -50,7 +50,7 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a href="<?= base_url('pegawai/edit_surat_masuk/') . $s['id']; ?>" class="btn btn-warning btn-sm"><i class="material-icons">edit</i> </a>
+                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editsuratModal<?= $s['id']; ?>"><i class="material-icons">edit</i> </a>
                                                                 <a href="" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
 
                                                             </td>
@@ -136,6 +136,75 @@
     </div>
 </div>
 
+
+<!-- Modal -->
+
+<!-- Modal -->
+<?php
+$no = 0;
+foreach ($surat_masuk as $s) : $no++; ?>
+    <div class=" modal fade" id="editsuratModal<?= $s['id']; ?>" tabindex="-1" aria-labelledby="editsuratModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editsuratModalLabel">Tambahkan Surat Baru</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <?php echo form_open_multipart(); ?>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Nomor Surat</label>
+                        <input type="text" class="form-control" id="no_surat" name="no_surat" value="<?= $s['no_surat']; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Jenis Surat</label>
+                        <input type="text" class="form-control" id="jenis" name="jenis" value="<?= $s['jenis']; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Nama Surat</label>
+                        <input type="text" class="form-control" id="nm_surat_masuk" name="nm_surat_masuk" value="<?= $s['nm_surat_masuk']; ?>">
+                    </div>
+                    <!-- <div class="form-group">
+                    <label class="bmd-label-floating">Tanggal</label>
+                    <input type="text" class="form-control" id="tgl" name="tgl">
+                </div> -->
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Keterangan</label>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $s['keterangan']; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="label-control">File Surat</label>
+                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail">
+                                <!-- <img src="<?= base_url() ?>assets/save.png" alt="..."> -->
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                            <div>
+                                <span class="btn btn-danger btn-file">
+                                    <i class="material-icons">cloud_upload</i>
+                                    <span class="fileinput-new">Select File</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input type="file" name="file_surat" id="file_surat" />
+                                </span>
+                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <?= form_error('file_surat', '<div class="text-danger">', '</div>'); ?>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                        <button type="Submit" class="btn btn-primary">Tambah</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<?php endforeach ?>
 <!-- 
 //lihat surat -->
 <?php foreach ($surat_masuk as $s) : ?>

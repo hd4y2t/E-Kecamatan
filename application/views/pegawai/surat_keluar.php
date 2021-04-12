@@ -140,6 +140,7 @@
 
 
 <!-- Modal -->
+<? foreach ($surat_keluar as $s)?>
 <div class=" modal fade" id="isisuratModal" tabindex="-1" aria-labelledby="isisuratModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
