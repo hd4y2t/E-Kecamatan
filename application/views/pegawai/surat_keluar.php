@@ -138,6 +138,51 @@
     </div>
 </div>
 
+
+<!-- Modal -->
+<div class=" modal fade" id="isisuratModal" tabindex="-1" aria-labelledby="isisuratModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="isisuratModalLabel">Tambahkan Surat Baru</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="<?= base_url("pegwai/isisurat/") . $s["id"]; ?>">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Nomor Surat</label>
+                        <input type="text" class="form-control" id="no_surat" name="no_surat">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Nama Surat</label>
+                        <input type="text" class="form-control" id="nm_surat_keluar" name="nm_surat_keluar">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Jenis Surat</label>
+                        <input type="text" class="form-control" id="jenis" name="jenis">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Tanggal</label>
+                        <input type="text" class="form-control" id="tgl" name="tgl">
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Keterangan</label>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan">
+                    </div>
+                    <?= form_error('file_surat', '<div class="text-danger">', '</div>'); ?>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                        <button type="Submit" class="btn btn-primary">Tambah</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <?php foreach ($surat_keluar as $s) : ?>
     <div class="modal fade" id="lihatSurat<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-notice">
