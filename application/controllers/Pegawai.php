@@ -356,6 +356,11 @@ class Pegawai extends CI_Controller
             2 => 'Ditolak',
             3 => 'Diterima dan Dilanjutkan',
         ];
+        $data['jenis'] = [
+            1 => 'Rahasia',
+            2 => 'Penting',
+            3 => 'Biasa',
+        ];
 
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
         $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');

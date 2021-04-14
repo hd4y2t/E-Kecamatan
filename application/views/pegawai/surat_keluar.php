@@ -157,8 +157,14 @@
                         <input type="text" class="form-control" id="no_surat" name="no_surat">
                     </div>
                     <div class="form-group">
-                        <label class="bmd-label-floating">Jenis Surat</label>
-                        <input type="text" class="form-control" id="jenis" name="jenis">
+                        <select name="jenis" id="jenis" class="form-control">
+                            <option value="">Pilih jenis surat</option>
+                            <?php
+                            $i = 0;
+                            foreach ($jenis as $b) : $i++ ?>
+                                <option value="<?= $b[$i]; ?>"><?= $b[$i]; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="bmd-label-floating">Pembuka Surat</label>
