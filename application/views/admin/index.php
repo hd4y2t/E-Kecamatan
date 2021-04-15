@@ -80,7 +80,7 @@
                     $kel = $item->kelurahan;
                     $nm_kelurahan .= "'$kel'" . ", ";
                     $jum = $item->pengajuan;
-                    $jumlah .= "$jum" . ", ";
+                    $pengajuan .= "$jum" . ", ";
                 }
                 ?>
                 <div class="row">

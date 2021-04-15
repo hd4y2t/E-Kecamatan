@@ -26,9 +26,16 @@ class Madmin extends CI_Model
 
     function getDataKelurahan()
     {
-        $this->db->group_by('kelurahan');
-        $this->db->select('kelurahan');
-        $this->db->select("count(*) as pengajuan_surat");
-        return $this->db->from('pengajuan_surat')->get()->result();
+        $query = "SELECT kelurahan,COUNT(*)
+        AS 'pengajuan'
+        FROM penduduk
+        GROUP BY kelurahan
+        ";
+
+        // $this->db->group_by('kelurahan');
+        // $this->db->select('kelurahan');
+        // $this->db->select("count(*) as pengajuan_surat");
+        // return $this->db->from('pengajuan_surat')->get()->result();
+        return $this->db->query($query)->result();
     }
 }
