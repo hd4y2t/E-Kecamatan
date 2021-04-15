@@ -35,10 +35,10 @@
                                                             <td><?= $k['username']; ?></td>
                                                             <td><?= $k['nama']; ?></td>
                                                             <td><?= $k['foto']; ?></td>
-                                                            <td><?= $k['role_id']; ?></td>
+                                                            <td><?= $k['role']; ?></td>
                                                             <td>
-                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModeluseredit<?= $k['id_user']; ?>">Edit</a>
-                                                                <a href="" class="btn btn-danger btn-sm">Hapus</a>
+                                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModeluseredit<?= $k['id_user']; ?>"><i class="material-icons">edit</i></a>
+                                                                <a href="" class="btn btn-danger btn-sm"><i class="material-icons">delete</i></a>
 
                                                             </td>
                                                             <?php $i++; ?>
@@ -90,8 +90,13 @@
                         <input type="text" class="form-control" id="password" name="password">
                     </div>
                     <div class="form-group">
-                        <label class="bmd-label-floating">Role</label>
-                        <input type="text" class="form-control" id="role" name="role">
+                        <label class="label-control">Hak Akses</label>
+                        <select class="selectpicker" name="role" id="role" data-style="btn btn-success btn-round" title="Single Select" data-size="7">
+                            <option disabled selected>Pilih Hak Akses</option>
+                            <?php foreach ($role as $b) : ?>
+                                <option value="<?= $b['id']; ?>"><?= $b['role']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="form-group">
                         <tr>
@@ -111,7 +116,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                        <button type="Submit" class="btn btn-primary">Tambah</button>
+                        <button type="Submit" class="btn btn-success">Tambah</button>
                     </div>
                 </div>
             </form>
@@ -136,23 +141,28 @@ foreach ($akun as $k) : $no++; ?>
                     <div class="modal-body">
                         <div class="form-group">
                             <label class="bmd-label-floating">Usernmae</label>
-                            <input type="text" class="form-control" id="username" name="username">
+                            <input type="text" class="form-control" id="username" name="username" value="<?= $k['username']; ?>">
                         </div>
                         <div class="form-group">
                             <label class="bmd-label-floating">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama">
+                            <input type="text" class="form-control" id="nama" name="nama" value="<?= $k['nama']; ?>">
                         </div>
-                        <div class="form-group">
+                        <div class=" form-group">
                             <label class="bmd-label-floating">Nomor induk pegawai</label>
-                            <input type="text" class="form-control" id="nip" name="nip">
+                            <input type="text" class="form-control" id="nip" name="nip" value="<?= $k['nip']; ?>">
                         </div>
-                        <div class="form-group">
+                        <div class=" form-group">
                             <label class="bmd-label-floating">Password</label>
-                            <input type="text" class="form-control" id="passsword" name="passsword">
+                            <input type="password" class="form-control" id="passsword" name="passsword" value="<?= $k['password']; ?>">
                         </div>
                         <div class="form-group">
-                            <label class="bmd-label-floating">Role</label>
-                            <input type="text" class="form-control" id="role" name="role">
+                            <label class="label-control">Hak Akses</label>
+                            <select class="selectpicker" name="role" id="role" data-style="btn btn-success btn-round" title="Single Select" data-size="7">
+                                <option disabled selected>Pilih Hak Akses</option>
+                                <?php foreach ($role as $b) : ?>
+                                    <option value="<?= $b['id']; ?>"><?= $b['role']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="form-group">
                             <tr>

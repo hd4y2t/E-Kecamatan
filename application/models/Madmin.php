@@ -14,4 +14,13 @@ class Madmin extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('user_role');
     }
+
+    public function getRole()
+    {
+        $query = "SELECT `user`.* ,`user_role`.`role`
+                    FROM `user`
+                    JOIN `user_role` ON `user`.`role_id` = `user_role`.`id` 
+                    ";
+        return $this->db->query($query)->result_array();
+    }
 }
