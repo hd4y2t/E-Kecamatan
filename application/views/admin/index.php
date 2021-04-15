@@ -72,6 +72,17 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                //Inisialisasi nilai variabel awal
+                $nm_kelurahan = "";
+                $pengajuan = null;
+                foreach ($hasil as $item) {
+                    $kel = $item->kelurahan;
+                    $nm_kelurahan .= "'$kel'" . ", ";
+                    $jum = $item->pengajuan;
+                    $jumlah .= "$jum" . ", ";
+                }
+                ?>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card card-chart">
@@ -79,7 +90,7 @@
                                 <div class="ct-chart" id="dailySalesChart"></div>
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title">Daily Sales</h4>
+                                <h4 class="card-title">Pengguna Sistem Berdasar Kelurahan</h4>
                                 <p class="card-category">
                                     <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.
                                 </p>

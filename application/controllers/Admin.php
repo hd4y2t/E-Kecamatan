@@ -23,6 +23,10 @@ class Admin extends CI_Controller
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $this->db->where('is_active =', 0);
         $data['user_non'] = $this->db->get('user')->num_rows();
+
+        $this->load->model('Madmin', 'admin');
+        $data['hasil'] = $this->admin->getDataKelurahan(); //untuk grafik
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);
