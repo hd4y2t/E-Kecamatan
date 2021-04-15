@@ -45,6 +45,9 @@ The above copyright notice and this permission notice shall be included in all c
     <link rel="stylesheet" href="<?= base_url(); ?>plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet"> -->
+    <!-- buat chart js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body class="">
