@@ -30,19 +30,19 @@ The above copyright notice and this permission notice shall be included in all c
     <link href="<?= base_url(); ?>assets/demo/demo.css" rel="stylesheet" />
 
     <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet" href="<?= base_url(); ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="<?= base_url(); ?>plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="<?= base_url(); ?>plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> -->
+
     <!-- JQVMap -->
-    <link rel="stylesheet" href="<?= base_url(); ?>plugins/jqvmap/jqvmap.min.css">
+    <!-- <link rel="stylesheet" href="<?= base_url(); ?>plugins/jqvmap/jqvmap.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
 
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="<?= base_url(); ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- <link rel="stylesheet" href="<?= base_url(); ?>plugins/overlayScrollbars/css/OverlayScrollbars.min.css"> -->
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="<?= base_url(); ?>plugins/daterangepicker/daterangepicker.css">
+    <!-- <link rel="stylesheet" href="<?= base_url(); ?>plugins/daterangepicker/daterangepicker.css"> -->
     <!-- summernote -->
-    <link rel="stylesheet" href="<?= base_url(); ?>plugins/summernote/summernote-bs4.css">
+    <!-- <link rel="stylesheet" href="<?= base_url(); ?>plugins/summernote/summernote-bs4.css"> -->
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
