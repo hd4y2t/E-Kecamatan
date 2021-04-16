@@ -26,7 +26,7 @@ class Admin extends CI_Controller
 
         $this->load->model('Madmin', 'admin');
         $data['hasil'] = $this->admin->getDataKelurahan(); //untuk grafik
-
+        $datra['kelurahan'] = $this->db->get('kelurahan')->result_array();
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);
