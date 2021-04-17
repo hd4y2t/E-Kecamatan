@@ -6,6 +6,9 @@
 <script src="<?= base_url(); ?>assets/js/plugins/moment.min.js"></script>
 <!--  Plugin for Sweet Alert -->
 <script src="<?= base_url(); ?>assets/js/plugins/sweetalert2.js"></script>
+
+<!-- Tables -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <!-- Forms Validations Plugin -->
 <script src="<?= base_url(); ?>assets/js/plugins/jquery.validate.min.js"></script>
 <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
@@ -27,7 +30,7 @@
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="<?= base_url(); ?>assets/js/plugins/nouislider.min.js"></script>
 <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> -->
 <!-- Library for adding dinamically elements -->
 <script src="<?= base_url(); ?>assets/js/plugins/arrive.min.js"></script>
 <!--  Google Maps Plugin    -->
@@ -227,7 +230,9 @@
     });
 
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('#myTable').DataTable(
+
+        );
     });
 
 
