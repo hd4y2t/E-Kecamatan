@@ -107,6 +107,7 @@ class Admin extends CI_Controller
             '<div class="alert alert-success" role="alert"> Akses telah diubah </div>'
         );
     }
+
     public function activasi()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
