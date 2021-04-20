@@ -260,6 +260,26 @@
     });
 
 
+    $(initDocumentationCharts).ready(function() {
+        /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
+
+        // datachartkelurahan = {
+        //     labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+        //     series: [
+        //         [12, 17, 7, 17, 23, 18, 38]
+        //     ]
+        // };
+        datachartkelurahan = {
+            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+            series: [
+                [12, 17, 7, 17, 23, 18, 38]
+            ]
+        };
+
+
+    });
+
+
     var slider = document.getElementById('slider');
 
     noUiSlider.create(slider, {
