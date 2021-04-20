@@ -212,8 +212,13 @@
                 <h4>Kepala Kecamatan</h4>
 
                 <!-- <div class="member" data-aos="zoom-in" data-aos-delay="100"> -->
-                <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_camat']; ?>" class="testimonial-image" alt="">
-                <!-- </div> -->
+                <div class="team">
+                  <div class="member">
+                    <div class="pic">
+                      <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_camat']; ?>" class="img-fluid" alt="">
+                    </div>
+                  </div>
+                </div>
                 <!-- <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                   Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
@@ -225,8 +230,12 @@
                 <h3><?= $profile['sekcam']; ?></h3>
                 <h4>Sekretaris Kecamatan</h4>
                 <!-- <div class="member" data-aos="zoom-in" data-aos-delay="100"> -->
-                <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="testimonial-image" alt="">
-                <!-- </div> -->
+                <div class="team">
+                  <div class="member">
+                    <div class="pic"> <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="img-fluid" alt="">
+                    </div>
+                  </div>
+                </div>
                 <!-- <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                   Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
