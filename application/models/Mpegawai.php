@@ -32,6 +32,14 @@ class Mpegawai extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+    public function getKelurahan()
+    {
+        $query = "SELECT `penduduk`.*, `kelurahan`.`nm_kelurahan`
+                   FROM `penduduk`
+                   JOIN `kelurahan` ON `penduduk`.`kelurahan` = `kelurahan`.`id_kelurahan`
+                   ";
+        return $this->db->query($query)->result_array();
+    }
 
 
     // public function inputsubmenu($array)

@@ -14,7 +14,7 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a>
                                 <div class="row">
                                     <div class="table-responsive">
-                                        <table class="table table-hover" id="myTable">
+                                        <table class="table table-striped" id="myTable">
                                             <thead class="text-success">
                                                 <tr>
                                                     <th scope="col"></th>

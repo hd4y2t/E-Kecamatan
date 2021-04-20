@@ -76,12 +76,12 @@
                     <div class="col-md-4">
                         <div class="card card-chart">
                             <div class="card-header card-header-success">
-                                <div class="ct-chart" id="dailySalesChart"></div>
+                                <div class="ct-chart" id="chartkelurahan"></div>
                             </div>
                             <div class="card-body">
-                                <h4 class="card-title">Daily Sales</h4>
+                                <h4 class="card-title">Data penduduk yang menggunakan sistem</h4>
                                 <p class="card-category">
-                                    <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.
+                                    <span class="text-success"> Order by Kelurahan.</span>
                                 </p>
                             </div>
                             <div class="card-footer">

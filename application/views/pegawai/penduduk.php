@@ -44,7 +44,7 @@
                                                             <td><?= $w['tgl_lhr']; ?></td>
                                                             <td><?= $w['pekerjaan']; ?></td>
                                                             <td><?= $w['alamat']; ?></td>
-                                                            <td><?= $w['kelurahan']; ?></td>
+                                                            <td><?= $w['nm_kelurahan']; ?></td>
                                                             <td><?= $w['pengajuan']; ?></td>
                                                             <td>
                                                                 <a href="<?= base_url('pegawai/edit_penduduk/') . $w['nik']; ?>" class="btn btn-warning btn-sm"><i class="material-icons">edit</i> </a>

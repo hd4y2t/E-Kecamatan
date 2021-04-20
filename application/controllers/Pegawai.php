@@ -427,7 +427,9 @@ class Pegawai extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Data Penduduk';
-        $data['warga'] = $this->db->get('penduduk')->result_array();
+        $this->load->model('Mpegawai', 'pegawai');
+        $data['warga'] = $this->pegawai->getKelurahan();
+        $data['surat'] = $this->db->get('surat')->result_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
