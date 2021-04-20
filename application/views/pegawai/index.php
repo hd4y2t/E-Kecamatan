@@ -13,40 +13,37 @@
                                 <?= $this->session->flashdata('message'); ?>
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a>
                                 <div class="row">
-                                    <div class="col">
-
-                                        <div class="table-responsive">
-                                            <table class="table table-hover" id="myTable">
-                                                <thead class="text-success">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover" id="myTable">
+                                            <thead class="text-success">
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Nama Surat</th>
+                                                    <th scope="col">Kategori</th>
+                                                    <th scope="col">Bidang</th>
+                                                    <th scope="col">Persyaratan</th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                <?php foreach ($surat as $s) : ?>
                                                     <tr>
-                                                        <th scope="col"></th>
-                                                        <th scope="col">Nama Surat</th>
-                                                        <th scope="col">Kategori</th>
-                                                        <th scope="col">Bidang</th>
-                                                        <th scope="col">Persyaratan</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php $i = 1; ?>
-                                                    <?php foreach ($surat as $s) : ?>
-                                                        <tr>
-                                                            <th scope="row"><?= $i ?></th>
-                                                            <td><?= $s['nm_surat']; ?></td>
-                                                            <td><?= $s['nm_kategori']; ?></td>
-                                                            <td><?= $s['nm_bidang']; ?></td>
-                                                            <td><?= $s['syarat']; ?></td>
-                                                            <td>
-                                                                <a href="<?= base_url('pegawai/edit_surat/') . $s['id_surat']; ?>" class="btn btn-warning btn-sm"><i class="material-icons">edit</i> </a>
-                                                                <a href="" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
+                                                        <th scope="row"><?= $i ?></th>
+                                                        <td><?= $s['nm_surat']; ?></td>
+                                                        <td><?= $s['nm_kategori']; ?></td>
+                                                        <td><?= $s['nm_bidang']; ?></td>
+                                                        <td><?= $s['syarat']; ?></td>
+                                                        <td>
+                                                            <a href="<?= base_url('pegawai/edit_surat/') . $s['id_surat']; ?>" class="btn btn-warning btn-sm"><i class="material-icons">edit</i> </a>
+                                                            <a href="" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
 
-                                                            </td>
-                                                            <?php $i++; ?>
-                                                        </tr>
-                                                    <?php endforeach ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                                        </td>
+                                                        <?php $i++; ?>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -106,5 +103,6 @@
         </div>
     </div>
 </div>
+
 
 </body>

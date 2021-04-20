@@ -1,4 +1,22 @@
-<script src="<?= base_url(); ?>assets/js/core/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.0.js" integrity="sha256-TFWSuDJt6kS+huV+vVlyV1jM3dwGdeNWqezhTxXB/X8=" crossorigin="anonymous""></script>
+
+
+
+    <!--Data Table-->
+    <script type=" text/javascript" src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+
+<!--Export table buttons-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+
+<!--Data Table-->
+
+<!--Export table button CSS-->
+
+<script src=" <?= base_url(); ?>assets/js/core/jquery.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/core/popper.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -230,9 +248,15 @@
     });
 
     $(document).ready(function() {
-        $('#myTable').DataTable(
-
-        );
+        $('#myTable').DataTable({
+            responsive: {
+                details: true
+            },
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
     });
 
 
@@ -247,33 +271,6 @@
         }
     });
 
-
-
-    // var ctx = document.getElementById('dailySalesChart').getContext('2d');
-    // var chart = new Chart(ctx, {
-    // // The type of chart we want to create
-    // type: 'bar',
-    // // The data for our dataset
-    // data: {
-    // labels: [],
-    // datasets: [{
-    // label: 'Data Penduduk Kecamatan Sematang Borang ',
-    // backgroundColor: ['rgb(255, 99, 132)', 'rgba(56, 86, 255, 0.87)', 'rgb(60, 179, 113)', 'rgb(175, 238, 239)'],
-    // borderColor: ['rgb(255, 99, 132)'],
-    // data: [<?php echo $pengajuan; ?>]
-    // }]
-    // },
-    // // Configuration options go here
-    // options: {
-    // scales: {
-    // yAxes: [{
-    // ticks: {
-    // beginAtZero: true
-    // }
-    // }]
-    // }
-    // }
-    // });
 
     $('.form-check-input').on('click', function() {
         const menuId = $(this).data('menu');
