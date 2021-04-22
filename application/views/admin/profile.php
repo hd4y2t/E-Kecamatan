@@ -15,7 +15,7 @@
 
                                         <div class="table-responsive">
 
-                                            <form action="<?= base_url('pegawai/bidang'); ?>" method="post">
+                                            <form action="<?= base_url('admin/editprofile/'); ?>" method="post">
                                                 <div class="modal-body">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Nama Seksi Pemerintahan</label>
@@ -26,12 +26,12 @@
                                                             <div class="col-sm-10">
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <img id="gambar" src="<?= base_url('assets/img/testimonials/') . $profile['f_pemerintahan']; ?>" class="img-thumbnail">
+                                                                        <img id="pemerintahan" src="<?= base_url('assets/img/testimonials/') . $profile['f_pemerintahan']; ?>" class="img-thumbnail">
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto" name="foto">
-                                                                            <label class="custom-file-label" id="pilih" for="foto">Choose file</label>
+                                                                            <input type="file" class="custom-file-input" id="foto1" name="foto">
+                                                                            <label class="custom-file-label" id="pilih1" for="foto1">Choose file</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -47,12 +47,12 @@
                                                             <div class="col-sm-10">
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <img id="gambar" src="<?= base_url('assets/img/testimonials/') . $profile['f_trantib']; ?>" class="img-thumbnail">
+                                                                        <img id="trantib" src="<?= base_url('assets/img/testimonials/') . $profile['f_trantib']; ?>" class="img-thumbnail">
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto" name="foto">
-                                                                            <label class="custom-file-label" id="pilih" for="foto">Choose file</label>
+                                                                            <input type="file" class="custom-file-input" id="foto2" name="foto">
+                                                                            <label class="custom-file-label" id="pilih2" for="foto2">Choose file</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -68,12 +68,12 @@
                                                             <div class="col-sm-10">
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <img id="gambar" src="<?= base_url('assets/img/testimonials/') . $profile['f_pelindung']; ?>" class="img-thumbnail">
+                                                                        <img id="pelindung" src="<?= base_url('assets/img/testimonials/') . $profile['f_pelindung']; ?>" class="img-thumbnail">
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto" name="foto">
-                                                                            <label class="custom-file-label" id="pilih" for="foto">Choose file</label>
+                                                                            <input type="file" class="custom-file-input" id="foto3" name="foto">
+                                                                            <label class="custom-file-label" id="pilih3" for="foto3">Choose file</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -88,12 +88,12 @@
                                                             <div class="col-sm-10">
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <img id="gambar" src="<?= base_url('assets/img/testimonials/') . $profile['f_sosial']; ?>" class="img-thumbnail">
+                                                                        <img id="sosial" src="<?= base_url('assets/img/testimonials/') . $profile['f_sosial']; ?>" class="img-thumbnail">
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto" name="foto">
-                                                                            <label class="custom-file-label" id="pilih" for="foto">Choose file</label>
+                                                                            <input type="file" class="custom-file-input" id="foto4" name="foto">
+                                                                            <label class="custom-file-label" id="pilih4" for="foto4">Choose file</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -109,12 +109,12 @@
                                                             <div class="col-sm-10">
                                                                 <div class="row">
                                                                     <div class="col-sm-3">
-                                                                        <img id="gambar" src="<?= base_url('assets/img/testimonials/') . $profile['f_pembangunan']; ?>" class="img-thumbnail">
+                                                                        <img id="pembangunan" src="<?= base_url('assets/img/testimonials/') . $profile['f_pembangunan']; ?>" class="img-thumbnail">
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto" name="foto">
-                                                                            <label class="custom-file-label" id="pilih" for="foto">Choose file</label>
+                                                                            <input type="file" class="custom-file-input" id="foto5" name="foto">
+                                                                            <label class="custom-file-label" id="pili5" for="foto5">Choose file</label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -149,7 +149,7 @@
 
                                         <div class="table-responsive">
 
-                                            <form action="<?= base_url('pegawai/bidang'); ?>" method="post">
+                                            <form action="<?= base_url('admin/editprofile'); ?>" method="post">
                                                 <div class="modal-body">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Nama Kecamatan</label>
@@ -187,4 +187,98 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    // $('foto').on('change', function() {
+    //     let fileName = $(this).val().split('\\').pop();
+    //     $(this).next('pilih').addClass("selected").html(fileName);
+    // });
+
+    for (let i = 1; i <= 5; i++) {
+        var tm_pilih = document.getElementById('pilih' + i);
+        var file = document.getElementById('foto' + i);
+        tm_pilih.addEventListener('click', function() {
+            file.click();
+        })
+        file.addEventListener('change', function() {
+            gambar(this);
+        })
+    }
+
+    function gambar(a) {
+        if (a.files && a.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('pemerintahan').src = e.target.result;
+            }
+            reader.readAsDataURL(a.files[0]);
+        }
+
+    }
+
+    function gambar(y) {
+        if (y.files && y.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function(b) {
+                document.getElementById('pembangunan').src = b.target.result;
+            }
+            reader.readAsDataURL(y.files[0]);
+        }
+
+    }
+
+    function gambar(r) {
+        if (r.files && r.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(s) {
+                document.getElementById('sosial').src = s.target.result;
+            }
+            reader.readAsDataURL(r.files[0]);
+        }
+
+    }
+
+    function gambar(w) {
+        if (w.files && w.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(l) {
+                document.getElementById('pelindung').src = l.target.result;
+            }
+            reader.readAsDataURL(w.files[0]);
+        }
+
+    }
+
+    function gambar(q) {
+        if (q.files && q.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(t) {
+                document.getElementById('trantib').src = t.target.result;
+            }
+            reader.readAsDataURL(q.files[0]);
+        }
+
+    }
+
+
+
+
+
+    // $("#foto").change(function() {
+    //     bacaGambar(this);
+    // });
+
+    // function bacaGambar(input) {
+    //     if (input.files && input.files[0]) {
+    //         var reader = new FileReader();
+
+    //         reader.onload = function(e) {
+    //             $('#gambar').attr('src', e.target.result);
+    //         }
+
+    //         reader.readAsDataURL(input.files[0]);
+    //     }
+    // }
+</script>
 </body>
