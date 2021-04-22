@@ -31,7 +31,7 @@
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
                                                                             <input type="file" class="custom-file-input" id="foto1" name="foto">
-                                                                            <label class="custom-file-label" id="pilih1" for="foto1">Choose file</label>
+                                                                            <label class="btn btn-outline-success btn-sm" id="pilih1" for="foto1"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -52,7 +52,7 @@
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
                                                                             <input type="file" class="custom-file-input" id="foto2" name="foto">
-                                                                            <label class="custom-file-label" id="pilih2" for="foto2">Choose file</label>
+                                                                            <label class="btn btn-outline-success btn-sm" id="pilih2" for="foto2"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -73,7 +73,7 @@
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
                                                                             <input type="file" class="custom-file-input" id="foto3" name="foto">
-                                                                            <label class="custom-file-label" id="pilih3" for="foto3">Choose file</label>
+                                                                            <label class="btn btn-outline-success btn-sm" id="pilih3" for="foto3"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -93,7 +93,7 @@
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
                                                                             <input type="file" class="custom-file-input" id="foto4" name="foto">
-                                                                            <label class="custom-file-label" id="pilih4" for="foto4">Choose file</label>
+                                                                            <label class="btn btn-outline-success btn-sm" id="pilih4" for="foto4"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -114,8 +114,7 @@
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
                                                                             <input type="file" class="custom-file-input" id="foto5" name="foto">
-                                                                            <!-- <label class="custom-file-label" id="pili5" for="foto5"></label> -->
-                                                                            <button class="btn btn-outline-success" type="button">Browser</button>
+                                                                            <label class="btn btn-outline-success btn-sm" id="pili5" for="foto5"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
