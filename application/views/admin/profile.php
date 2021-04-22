@@ -114,7 +114,8 @@
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
                                                                             <input type="file" class="custom-file-input" id="foto5" name="foto">
-                                                                            <label class="custom-file-label" id="pili5" for="foto5">Choose file</label>
+                                                                            <!-- <label class="custom-file-label" id="pili5" for="foto5"></label> -->
+                                                                            <button class="btn btn-outline-success" type="button">Browser</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
