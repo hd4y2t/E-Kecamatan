@@ -76,7 +76,10 @@
                     <div class="col-md-4">
                         <div class="card card-chart">
                             <div class="card-header card-header-success">
-                                <div class="ct-chart" id="chartkelurahan"></div>
+                                <?php foreach ($kelurahan as $r) : ?>
+
+                                    <div class="ct-chart" id="chartkelurahan"><?= $r['nm_kelurahan']; ?></div>
+                                <?php endforeach ?>
                             </div>
                             <div class="card-body">
                                 <h4 class="card-title">Data penduduk yang menggunakan sistem</h4>

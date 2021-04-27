@@ -27,7 +27,7 @@ class Madmin extends CI_Model
     function getDataKelurahan()
     {
         $query = "SELECT kelurahan,COUNT(*)
-        AS 'pengajuan'
+        AS 'kelurahan'
         FROM penduduk
         GROUP BY kelurahan
         ";

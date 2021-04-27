@@ -51,6 +51,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> -->
 <!-- Library for adding dinamically elements -->
 <script src="<?= base_url(); ?>assets/js/plugins/arrive.min.js"></script>
+
 <!--  Google Maps Plugin    -->
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
 <!-- Chartist JS -->
@@ -259,8 +260,25 @@
         });
     });
 
+    // chartkelurahan
+    var chart1;
+    $(document).ready(function() {
+        chart1 = new Hightchart.Chart({
 
-    $(initDocumentationCharts).ready(function() {
+            chart: {
+                renderTo: 'chartkelurahan',
+                type: 'column'
+            },
+            xAxis: {
+                categories: ['Kelurahan']
+            },
+            yAxis: {
+                title: {
+                    text: 'jumlah nilai'
+                }
+            }
+
+        });
         /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
         // datachartkelurahan = {
@@ -269,12 +287,12 @@
         //         [12, 17, 7, 17, 23, 18, 38]
         //     ]
         // };
-        datachartkelurahan = {
-            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-            series: [
-                [12, 17, 7, 17, 23, 18, 38]
-            ]
-        };
+        // datachartkelurahan = {
+        //     labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+        //     series: [
+        //         [12, 17, 7, 17, 23, 18, 38]
+        //     ]
+        // };
 
 
     });
