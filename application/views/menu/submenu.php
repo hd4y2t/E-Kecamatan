@@ -19,7 +19,7 @@
                                 <a href="" class="btn btn-success" data-toggle="modal" data-target="#newSubMenuModal"> Tambah Sub Menu</a>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table fs-6" id="myTable">
+                                        <table class="table" id="myTable">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
@@ -42,8 +42,8 @@
                                                         <td><?= $sm['icon']; ?></td>
                                                         <td><?= $sm['is_active']; ?></td>
                                                         <td>
-                                                            <a href="<?= base_url(); ?>menu/editSubMenu/<?= $sm['id']; ?>" class="badge bg-success text-dark">Edit </a>
-                                                            <a href="<?= base_url(); ?>menu/deleteSubmenu/<?= $sm['id']; ?>" onclick="return confirm('yakin?');" class="badge bg-danger text-white"> Delete</a>
+                                                            <a href="<?= base_url(); ?>menu/editSubMenu/<?= $sm['id']; ?>" class="badge bg-success text-dark"><i class="material-icons"> edit</i> </a>
+                                                            <a href="<?= base_url(); ?>menu/deleteSubmenu/<?= $sm['id']; ?>" onclick="return confirm('yakin?');" class="badge bg-danger text-white"> <i class="material-icons"> delete</i></a>
                                                         </td>
                                                         <?php $i++; ?>
                                                     </tr>

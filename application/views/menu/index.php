@@ -29,10 +29,10 @@
                                                         <th scope="row"><?= $i ?></th>
                                                         <td><?= $m['menu']; ?></td>
                                                         <td>
-                                                            <a href="" class="btn btn-primary">
-                                                                edit
+                                                            <a href="" class="btn btn-success btn-sm">
+                                                                <i class="material-icons">edit</i>
                                                             </a>
-                                                            <a href="<?= base_url(); ?>menu/delete/<?= $m['id']; ?>" onclick="return confirm('yakin?');" class="btn btn-danger">
+                                                            <a href="<?= base_url(); ?>menu/delete/<?= $m['id']; ?>" onclick="return confirm('yakin?');" class="btn btn-danger btn-sm">
                                                                 <i class="material-icons">delete</i>
                                                             </a>
 
