@@ -34,7 +34,7 @@
                                                                         <div class="table-responsive">
                                                                             <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
 
-                                                                            <form action="<?= base_url('admin/editprofile/'); ?>" method="post">
+                                                                            <form action="<?= base_url('pegawai/isi_surat/'); ?>" method="post">
 
                                                                             </form>
                                                                         </div>

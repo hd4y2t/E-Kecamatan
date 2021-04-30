@@ -423,14 +423,16 @@ class Pegawai extends CI_Controller
     }
 
 
-    public function isiSurat()
+    public function isiSurat($id)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Data Penduduk';
+        $data['title'] = 'Isi Surat';
         $this->load->model('Mpegawai', 'pegawai');
         $data['warga'] = $this->pegawai->getKelurahan();
         $data['surat'] = $this->db->get('surat')->result_array();
-        $data['surat_keluar'] = $this->pegawai->getSurat();
+        $data['isi_surat'] = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
+
+        // $data['surat_keluar'] = $this->pegawai->getSurat();
 
 
         $this->load->view('templates/header', $data);
