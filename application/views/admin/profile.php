@@ -14,6 +14,7 @@
                                     <div class="col">
 
                                         <div class="table-responsive">
+                                            <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
 
                                             <form action="<?= base_url('admin/editprofile/'); ?>" method="post">
                                                 <div class="modal-body">
@@ -121,9 +122,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
+                                                    <!-- <div class="modal-footer">
                                                         <button type="Submit" class="btn btn-success">Simpan</button>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </form>
                                         </div>
@@ -171,17 +172,21 @@
                                                         <label class="bmd-label-floating">No Telp</label>
                                                         <input type="text" class="form-control" id="no" name="no" value="<?= $profile['no']; ?>">
                                                     </div>
-                                                    <div class="modal-footer">
+                                                    <!-- <div class="modal-footer">
                                                         <button type="Submit" class="btn btn-success">Simpan</button>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <br>
                         </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="Submit" class="btn btn-success">Simpan</button>
                 </div>
             </div>
         </div>

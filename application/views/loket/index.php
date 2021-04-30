@@ -138,11 +138,11 @@
             </div>
             <?php foreach ($pengajuan as $m) : ?>
                 <div class="modal fade" id="lihatSurat<?= $m['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-notice">
-                        <div class="modal-content">
+                    <div class="modal-dialog modal-lg ">
+                        <div class=" modal-content" style="width:75%;">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
-                                <h5 class="modal-title text-center" id="myModalLabel">Surat masuk</h5>
+                                <h5 class="modal-title text-center" id="myModalLabel"> ID : <?= $m['id']; ?></h5>
                             </div>
                             <div class="modal-body">
                                 <div class="instruction">
