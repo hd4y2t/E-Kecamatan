@@ -40,6 +40,14 @@ class Mpegawai extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+    public function getDataAntrian()
+    {
+        $query = "SELECT `surat_keluar`.*, `pengajuan_surat`.`file`
+                   FROM `surat_keluar`
+                   JOIN `pengajuan_surat` ON `surat_keluar`.`pengaju_id` = `pengajuan_surat`.`id`
+                   ";
+        return $this->db->query($query)->result_array();
+    }
 
 
     // public function inputsubmenu($array)

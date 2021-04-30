@@ -35,7 +35,23 @@
                                                                             <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
 
                                                                             <form action="<?= base_url('pegawai/isi_surat/'); ?>" method="post">
+                                                                                <div class="modal-body">
+                                                                                    <label class="bmd-label-floating">ID Pengaju : <?= $isi_surat['pengaju_id']; ?></label>
+                                                                                    <div class="form-group">
 
+                                                                                        <label class="bmd-label-floating">Nomor Surat</label>
+                                                                                        <input type="text" class="form-control" id="no_surat" name="no_surat">
+                                                                                        <div class="form-group">
+                                                                                            <label class="bmd-label-floating">Jenis Surat</label>
+                                                                                            <input type="text" class="form-control" id="s_pemerintahan" name="s_pemerintahan">
+                                                                                        </div>
+                                                                                        <div class="form-group">
+                                                                                            <label>Isi Surat</label>
+                                                                                            <textarea name="editor" type="text" class="form-control" id="isi_surat" name="isi_surat"></textarea>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -56,13 +72,11 @@
                                                                 <div class="row">
                                                                     <div class="col">
 
-                                                                        <div class="table-responsive">
-                                                                            <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
+                                                                        <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/berkas') ?>/<?= $isi_surat['file'] ?>"></embed>
 
-                                                                            <form action="<?= base_url('admin/editprofile/'); ?>" method="post">
+                                                                        <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
 
-                                                                            </form>
-                                                                        </div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -70,47 +84,21 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 </div>
 
-
-<?php foreach ($surat_keluar as $s) : ?>
-    <div class="modal fade" id="lihatSurat<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-notice">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
-                    <h5 class="modal-title text-center" id="myModalLabel">Surat Keluar</h5>
-                </div>
-                <div class="modal-body">
-                    <div class="instruction">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/surat_keluar') ?>/<?= $s['file'] ?>"></embed>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>
 </body>

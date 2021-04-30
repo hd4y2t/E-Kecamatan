@@ -12,6 +12,11 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
 
+<!-- CKeditor -->
+<script type="text/javascript" src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor');
+</script>
 <!--Data Table-->
 
 <!--Export table button CSS-->
