@@ -52,7 +52,7 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#isisuratModal<?= $s['id']; ?>">Lengkapi Isi surat </a>
+                                                                <a href="<?= base_url('pegawai/isiSurat/') . $s['id']; ?>" class="btn btn-success btn-sm">Lengkapi Isi surat </a>
                                                                 <a href="<?= base_url('pegawai/hapusSuratKeluar/') . $s['id']; ?>" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
 
                                                             </td>
@@ -140,7 +140,7 @@
 
 
 <!-- Modal -->
-<? foreach ($surat_keluar as $s)?>
+<? foreach ($surat_keluar as $s) ?>
 <div class=" modal fade" id="isisuratModal<?= $s['id']; ?>" tabindex="-1" aria-labelledby="isisuratModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
