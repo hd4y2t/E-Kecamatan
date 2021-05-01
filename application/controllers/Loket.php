@@ -74,7 +74,7 @@ class Loket extends CI_Controller
                 'tgl' => date('d-m-Y', strtotime($dateNow)),
                 'keterangan' => 'Pembuatan Surat: ' . $surat['nm_surat'],
                 'pengaju_id' => $pSurat['id'],
-                'status' => 1
+                'status' => 0
             ];
 
             $this->db->insert('surat_keluar', $save);

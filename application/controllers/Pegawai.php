@@ -423,23 +423,66 @@ class Pegawai extends CI_Controller
     }
 
 
-    public function isiSurat($id)
+    public function isi_surat($id)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Isi Surat';
-        // $data['surat_keluar'] = $this->db->get('surat_keluar', ['id' => $id])->row_array();
         $this->load->model('Mpegawai', 'pegawai');
         $data['isi_surat'] = $this->pegawai->getDataAntrian($id);
+        // $data['jenis'] = [
+        //     1 => 'Rahasia',
+        //     2 => 'Penting',
+        //     3 => 'Biasa',
+        // ];
 
-        // $data['surat_keluar'] = $this->pegawai->getSurat();
+        $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
+        $this->form_validation->set_rules('tujuan', 'tujuan', 'required');
+        $this->form_validation->set_rules('jenis', 'Jenis ', 'required');
+        $this->form_validation->set_rules('isi_surat', 'isi_surat', 'required');
 
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('pegawai/isi_surat', $data);
+            $this->load->view('templates/footer');
+        } else {
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('pegawai/isi_surat', $data);
-        $this->load->view('templates/footer');
+            $no_surat =  $this->input->post("no_surat", TRUE);
+            $tujuan =  $this->input->post("tujuan", TRUE);
+            $jenis =  $this->input->post("jenis", TRUE);
+            $isi_surat =  $this->input->post("isi_surat", TRUE);
+            // $status = 1;
+            $save = [
+                'no_surat' => $no_surat,
+                'tujuan' => $tujuan,
+                'jenis' => $jenis,
+                'isi_surat' => $isi_surat,
+                // 'status' => 1
+            ];
+            // if ($status == 1) {
+            //     // $pSurat = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
+            //     $dateNow = date('Y-m-d');
+
+            //     $update = [
+            //         'tgl' => date('Y-m-d', strtotime($dateNow)),
+            //         'status' => 4
+            //     ];
+            //     $this->db->where('id', $id);
+            //     $this->db->update('pengajuan_surat', $update);
+            // }
+
+            // $this->db->where('id', $id);
+            // $this->db->update('surat_keluar', $save);
+            // $this->db->where('id', $id);
+            // $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+            // redirect(base_url("pegawai/surat_keluar"));
+            var_dump($save);
+            die();
+        }
     }
+
+
     public function penduduk()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();

@@ -52,9 +52,8 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a href="<?= base_url('pegawai/isiSurat/') . $s['id']; ?>" class="btn btn-success btn-sm">Lengkapi Isi surat </a>
+                                                                <a href="<?= base_url('pegawai/isi_surat/') . $s['id']; ?>" class="btn btn-success btn-sm">Lengkapi Isi surat </a>
                                                                 <a href="<?= base_url('pegawai/hapusSuratKeluar/') . $s['id']; ?>" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
-
                                                             </td>
                                                             <?php $i++; ?>
                                                         </tr>
