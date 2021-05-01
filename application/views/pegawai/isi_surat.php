@@ -63,7 +63,7 @@
                                                         <div class="card">
                                                             <div class="card-body">
                                                                 <label class="bmd-label-floating">Berkas Pengaju : <?= $isi_surat['pengaju_id']; ?></label>
-                                                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/berkas/') . $isi_surat['file'] ?>"></embed>
+                                                                <embed type="application/pdf" width="100%" height="580px;" src="<?= base_url('upload/berkas/') . $isi_surat['file'] ?>"></embed>
                                                                 <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
                                                             </div>
                                                         </div>
