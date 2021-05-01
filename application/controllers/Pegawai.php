@@ -415,7 +415,7 @@ class Pegawai extends CI_Controller
     {
 
         $data = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-        unlink("./uploads/surat_keluar/" . $data['file_surat_keluar']);
+        // unlink("./uploads/surat_keluar/" . $data['file_surat_keluar']);
         $this->db->where(['id' => $id]);
         $this->db->delete('surat_keluar');
         $this->session->set_flashdata('success', 'Berhasil Dihapus!');
@@ -427,9 +427,9 @@ class Pegawai extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Isi Surat';
+        // $data['surat_keluar'] = $this->db->get('surat_keluar', ['id' => $id])->row_array();
         $this->load->model('Mpegawai', 'pegawai');
-        $data['isi_surat'] = $this->pegawai->getDataAntrian();
-        $data['surat_keluar'] = $this->db->get('surat_keluar', ['id' => $id])->row_array();
+        $data['isi_surat'] = $this->pegawai->getDataAntrian($id);
 
         // $data['surat_keluar'] = $this->pegawai->getSurat();
 
