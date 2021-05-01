@@ -478,7 +478,7 @@ class Pegawai extends CI_Controller
             // $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
             // redirect(base_url("pegawai/surat_keluar"));
             var_dump($save);
-            die();
+            die;
         }
     }
 
