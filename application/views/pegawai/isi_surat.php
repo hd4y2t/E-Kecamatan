@@ -12,7 +12,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm">
                                                 <div class="content">
                                                     <div class="container-fluid">
                                                         <div class="card">
@@ -22,13 +22,12 @@
                                                             <div class="card-body">
                                                                 <div class="row">
                                                                     <div class="col">
-
                                                                         <div class="table-responsive">
                                                                             <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
-
                                                                             <form action="" method="post">
                                                                                 <div class="modal-body">
                                                                                     <label class="bmd-label-floating">ID Pengaju : <?= $isi_surat['pengaju_id']; ?></label>
+                                                                                    <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat"><i class="material-icons">remove_red_eye</i></button>
                                                                                     <div class="form-group">
                                                                                         <label class="bmd-label-floating">Nomor Surat</label>
                                                                                         <input type="text" class="form-control" id="no_surat" name="no_surat">
@@ -57,19 +56,19 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6">
+                                            <!-- <div class="col-sm-6">
                                                 <div class="content">
                                                     <div class="container-fluid">
                                                         <div class="card">
                                                             <div class="card-body">
                                                                 <label class="bmd-label-floating">Berkas Pengaju : <?= $isi_surat['pengaju_id']; ?></label>
                                                                 <embed type="application/pdf" width="100%" height="580px;" src="<?= base_url('upload/berkas/') . $isi_surat['file'] ?>"></embed>
-                                                                <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
+                                                                <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -77,6 +76,29 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatSurat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notice">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
+                <h5 class="modal-title text-center" id="myModalLabel">Berkas Pengaju</h5>
+            </div>
+            <div class="modal-body">
+                <div class="instruction">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <embed type="application/pdf" width="100%" height="580px;" src="<?= base_url('upload/berkas/') . $isi_surat['file'] ?>"></embed>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
             </div>
         </div>
     </div>
