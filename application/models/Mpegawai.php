@@ -42,7 +42,7 @@ class Mpegawai extends CI_Model
     }
     public function getDataAntrian($id)
     {
-        $query = "SELECT `surat_keluar`.*, `pengajuan_surat`.`file`
+        $query = "SELECT `surat_keluar`.*, `pengajuan_surat`.*
                    FROM `surat_keluar`
                    JOIN `pengajuan_surat` ON `surat_keluar`.`pengaju_id` = `pengajuan_surat`.`id`
                    WHERE `surat_keluar`.`id` = $id

@@ -429,6 +429,7 @@ class Pegawai extends CI_Controller
         $data['title'] = 'Isi Surat';
         $this->load->model('Mpegawai', 'pegawai');
         $data['isi_surat'] = $this->pegawai->getDataAntrian($id);
+        // $data['antri'] = $this->db->get_where('pengajuan_surat', ['id' => $data['usi_surat'] . ['pengaju_id']]);
         // $data['jenis'] = [
         //     1 => 'Rahasia',
         //     2 => 'Penting',
@@ -436,8 +437,6 @@ class Pegawai extends CI_Controller
         // ];
 
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
-        $this->form_validation->set_rules('tujuan', 'tujuan', 'required');
-        $this->form_validation->set_rules('jenis', 'Jenis ', 'required');
         $this->form_validation->set_rules('isi_surat', 'isi_surat', 'required');
 
         if ($this->form_validation->run() == FALSE) {
@@ -449,36 +448,34 @@ class Pegawai extends CI_Controller
         } else {
 
             $no_surat =  $this->input->post("no_surat", TRUE);
-            $tujuan =  $this->input->post("tujuan", TRUE);
-            $jenis =  $this->input->post("jenis", TRUE);
             $isi_surat =  $this->input->post("isi_surat", TRUE);
-            // $status = 1;
+            $status = 1;
+
             $save = [
                 'no_surat' => $no_surat,
-                'tujuan' => $tujuan,
-                'jenis' => $jenis,
                 'isi_surat' => $isi_surat,
-                // 'status' => 1
+                'status' => $status
             ];
-            // if ($status == 1) {
-            //     // $pSurat = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
-            //     $dateNow = date('Y-m-d');
+            if ($status == 1) {
+                $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
+                $aju = $this->db->get_where('pengajuan_surat', ['idi' => $surat['pengaju_id']])->row_array();
+                $dateNow = date('Y-m-d');
 
-            //     $update = [
-            //         'tgl' => date('Y-m-d', strtotime($dateNow)),
-            //         'status' => 4
-            //     ];
-            //     $this->db->where('id', $id);
-            //     $this->db->update('pengajuan_surat', $update);
-            // }
+                $update = [
+                    'tgl' => date('Y-m-d', strtotime($dateNow)),
+                    'status' => 4
+                ];
+                $this->db->where('id', $aju);
+                $this->db->update('pengajuan_surat', $update);
+            }
 
-            // $this->db->where('id', $id);
-            // $this->db->update('surat_keluar', $save);
-            // $this->db->where('id', $id);
-            // $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-            // redirect(base_url("pegawai/surat_keluar"));
-            var_dump($save);
-            die;
+            $this->db->where('id', $id);
+            $this->db->update('surat_keluar', $save);
+            $this->db->where('id', $id);
+            $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+            redirect(base_url("pegawai/surat_keluar"));
+            // var_dump($save);
+            // die;
         }
     }
 
