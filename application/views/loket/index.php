@@ -147,7 +147,7 @@
                             <div class="modal-body">
                                 <div class="instruction">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-8">
                                             <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/berkas') ?>/<?= $m['file'] ?>"></embed>
                                         </div>
 
