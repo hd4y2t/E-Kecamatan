@@ -429,6 +429,7 @@ class Pegawai extends CI_Controller
         $data['title'] = 'Isi Surat';
         $this->load->model('Mpegawai', 'pegawai');
         $data['isi_surat'] = $this->pegawai->getDataAntrian($id);
+        $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id]);
         // $data['antri'] = $this->db->get_where('pengajuan_surat', ['id' => $data['usi_surat'] . ['pengaju_id']]);
         // $data['jenis'] = [
         //     1 => 'Rahasia',
@@ -467,15 +468,17 @@ class Pegawai extends CI_Controller
                 ];
                 $this->db->where('id', $aju);
                 $this->db->update('pengajuan_surat', $update);
+                var_dump($update);
+                die;
             }
 
-            $this->db->where('id', $id);
-            $this->db->update('surat_keluar', $save);
-            $this->db->where('id', $id);
-            $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-            redirect(base_url("pegawai/surat_keluar"));
-            // var_dump($save);
-            // die;
+            // $this->db->where('id', $id);
+            // $this->db->update('surat_keluar', $save);
+            // $this->db->where('id', $id);
+            // $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+            // redirect(base_url("pegawai/surat_keluar"));
+            var_dump($save);
+            die;
         }
     }
 
