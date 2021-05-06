@@ -32,7 +32,7 @@
                                                                                     <input type="text" class="form-control" id="no_surat" name="no_surat">
                                                                                 </div>
                                                                                 <div class="form-group">
-                                                                                    <label>Isi Surat</label>
+                                                                                    <a>Isi Surat</a>
                                                                                     <textarea name="editor" type="text" class="form-control" id="isi_surat" name="isi_surat"></textarea>
                                                                                 </div>
                                                                                 <button class="btn btn-success" type="Submit"> Simpan </button>

@@ -436,11 +436,37 @@ class Pegawai extends CI_Controller
         //     2 => 'Penting',
         //     3 => 'Biasa',
         // ];
+        // if ($this->form_validation->run() == false) {
+        //     $this->load->view('templates/header', $data);
+        //     $this->load->view('templates/sidebar', $data);
+        //     $this->load->view('templates/navbar', $data);
+        //     $this->load->view('pegawai/edit_surat', $data);
+        //     $this->load->view('templates/footer');
+        // } else {
+        //     $nm_surat =  $this->input->post("nm_surat", TRUE);
+        //     $id_kategori =  $this->input->post("kategori", TRUE);
+        //     $id_bidang =  $this->input->post("bidang", TRUE);
+        //     $syarat =  $this->input->post("syarat", TRUE);
+        //     $array = [
+        //         'id_kategori' => $id_kategori,
+        //         'id_bidang' => $id_bidang,
+        //         'nm_surat' => $nm_surat,
+        //         'syarat' => $syarat
+        //     ];
+        //     // $this->db->set('nm_surat', $nm_surat);
+        //     $this->db->where('id_surat', $id_surat);
+        //     $this->db->update('surat', $array);
+        //     $this->session->set_flashdata(
+        //         'message',
+        //         '<div class="alert alert-success" role="alert"> surat berhasil di edit </div>'
+        //     );
+        //     redirect('pegawai');
+        // }
 
-        $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
+        $this->form_validation->set_rules('no_surat', 'no_surat', 'required');
         $this->form_validation->set_rules('isi_surat', 'isi_surat', 'required');
 
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
@@ -472,13 +498,13 @@ class Pegawai extends CI_Controller
                 die;
             }
 
-            // $this->db->where('id', $id);
-            // $this->db->update('surat_keluar', $save);
-            // $this->db->where('id', $id);
-            // $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-            // redirect(base_url("pegawai/surat_keluar"));
-            var_dump($save);
-            die;
+            $this->db->where('id', $id);
+            $this->db->update('surat_keluar', $save);
+            $this->db->where('id', $id);
+            $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+            redirect(base_url("pegawai/surat_keluar"));
+            // var_dump($save);
+            // die;
         }
     }
 
