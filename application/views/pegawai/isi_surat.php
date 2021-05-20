@@ -67,30 +67,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="lihatSurat<?= $isi_surat['pengaju_id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg ">
-        <div class=" modal-content" style="width:75%;">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
-                <h5 class="modal-title text-center" id="myModalLabel"> ID Pengaju: <?= $isi_surat['pengaju_id']; ?></h5>
-            </div>
-            <div class="modal-body">
-                <div class="instruction">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/berkas/') . $isi_surat['file'] ?>"></embed>
-                        </div>
 
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer text-center">
-                <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 </body>

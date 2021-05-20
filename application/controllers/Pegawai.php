@@ -430,43 +430,11 @@ class Pegawai extends CI_Controller
         $this->load->model('Mpegawai', 'pegawai');
         $data['isi_surat'] = $this->pegawai->getDataAntrian($id);
         $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id]);
-        // $data['antri'] = $this->db->get_where('pengajuan_surat', ['id' => $data['usi_surat'] . ['pengaju_id']]);
-        // $data['jenis'] = [
-        //     1 => 'Rahasia',
-        //     2 => 'Penting',
-        //     3 => 'Biasa',
-        // ];
-        // if ($this->form_validation->run() == false) {
-        //     $this->load->view('templates/header', $data);
-        //     $this->load->view('templates/sidebar', $data);
-        //     $this->load->view('templates/navbar', $data);
-        //     $this->load->view('pegawai/edit_surat', $data);
-        //     $this->load->view('templates/footer');
-        // } else {
-        //     $nm_surat =  $this->input->post("nm_surat", TRUE);
-        //     $id_kategori =  $this->input->post("kategori", TRUE);
-        //     $id_bidang =  $this->input->post("bidang", TRUE);
-        //     $syarat =  $this->input->post("syarat", TRUE);
-        //     $array = [
-        //         'id_kategori' => $id_kategori,
-        //         'id_bidang' => $id_bidang,
-        //         'nm_surat' => $nm_surat,
-        //         'syarat' => $syarat
-        //     ];
-        //     // $this->db->set('nm_surat', $nm_surat);
-        //     $this->db->where('id_surat', $id_surat);
-        //     $this->db->update('surat', $array);
-        //     $this->session->set_flashdata(
-        //         'message',
-        //         '<div class="alert alert-success" role="alert"> surat berhasil di edit </div>'
-        //     );
-        //     redirect('pegawai');
-        // }
 
         $this->form_validation->set_rules('no_surat', 'no_surat', 'required');
         $this->form_validation->set_rules('isi_surat', 'isi_surat', 'required');
 
-        if ($this->form_validation->run() == true) {
+        if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
@@ -483,8 +451,8 @@ class Pegawai extends CI_Controller
                 'isi_surat' => $isi_surat
             ];
             if ($status == 1) {
-                $surat = $this->db->get_where('surat_keluar', ['id' => $id]);
-                $aju = $this->db->get_where('pengajuan_surat', ['id' => $surat['pengaju_id']]);
+                $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
+                $aju = $surat['pengaju_id'];
                 $dateNow = date('Y-m-d');
 
                 $update = [
@@ -497,8 +465,8 @@ class Pegawai extends CI_Controller
                 die;
             }
 
-            $this->db->set('no_surat', $no_surat);
-            $this->db->set('isi_surat', $isi_surat);
+            // $this->db->set('no_surat', $no_surat);
+            // $this->db->set('isi_surat', $isi_surat);
             $this->db->where('id', $id);
             $this->db->update('surat_keluar', $array);
             $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
