@@ -450,20 +450,18 @@ class Pegawai extends CI_Controller
                 'no_surat' => $no_surat,
                 'isi_surat' => $isi_surat
             ];
-            if ($status == 1) {
-                $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-                $aju = $surat['pengaju_id'];
-                $dateNow = date('Y-m-d');
+            $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
+            $aju = $surat['pengaju_id'];
+            $dateNow = date('Y-m-d');
 
-                $update = [
-                    'tgl' => date('Y-m-d', strtotime($dateNow)),
-                    'status' => 4
-                ];
-                $this->db->where('id', $aju);
-                $this->db->update('pengajuan_surat', $update);
-                // var_dump($update);
-                // die;
-            }
+            $update = [
+                'tgl' => date('Y-m-d', strtotime($dateNow)),
+                'status' => 4
+            ];
+            $this->db->where('id', $aju);
+            $this->db->update('pengajuan_surat', $update);
+            // var_dump($update);
+            // die;
 
             // $this->db->set('no_surat', $no_surat);
             // $this->db->set('isi_surat', $isi_surat);

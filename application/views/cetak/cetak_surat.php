@@ -28,11 +28,13 @@ $pdf->SetLineWidth(0);
 $pdf->SetFont('Times', 'BU', 13);
 $pdf->Cell(17, 0.7, $surat_keluar['keterangan'], 0, 10, 'C');
 $pdf->SetFont('Times', 'B', 12);
-$pdf->Cell(17, 0.7, 'Nomor : ' . $surat_keluar['pengaju_id'], 0, 10, 'C');
+$pdf->Cell(17, 0.7, 'Nomor : ' . $surat_keluar['no_surat'], 0, 10, 'C');
 // $pdf->Cell($pdf->GetStringWidth("Observations"), 0, "Observations", 0, "L");
 $pdf->ln(1);
-$pdf->SetFont('Times', '', 10);
-$pdf->Cell(5, 0.7, "Palembang : " . date("d/m/Y"), 0, 0, 'C');
+$pdf->SetFont('Times', '', 12);
+// $pdf->Cell(5, 0.7, "Palembang : " . date("d/m/Y"), 0, 0, 'C');
+
+$pdf->Cell(17, 0.7, $surat_keluar['isi_surat'], 0, 10, 'C');
 $pdf->ln(1);
 $pdf->SetFont('Times', '', 10);
 
