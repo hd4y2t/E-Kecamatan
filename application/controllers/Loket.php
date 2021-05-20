@@ -72,7 +72,7 @@ class Loket extends CI_Controller
                 'nm_surat_keluar' => '[' . $pndk['nama'] . '-' . $pndk['nik'] . ']',
                 'surat_id' => $pSurat['id_surat'],
                 'tgl' => date('d-m-Y', strtotime($dateNow)),
-                'keterangan' => 'Pembuatan Surat: ' . $surat['nm_surat'],
+                'keterangan' => 'Surat ' . $surat['nm_surat'],
                 'pengaju_id' => $pSurat['id'],
                 'status' => 0
             ];

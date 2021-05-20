@@ -466,7 +466,7 @@ class Pegawai extends CI_Controller
         $this->form_validation->set_rules('no_surat', 'no_surat', 'required');
         $this->form_validation->set_rules('isi_surat', 'isi_surat', 'required');
 
-        if ($this->form_validation->run() == false) {
+        if ($this->form_validation->run() == true) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
@@ -478,14 +478,13 @@ class Pegawai extends CI_Controller
             $isi_surat =  $this->input->post("isi_surat", TRUE);
             $status = 1;
 
-            $save = [
+            $array = [
                 'no_surat' => $no_surat,
-                'isi_surat' => $isi_surat,
-                'status' => $status
+                'isi_surat' => $isi_surat
             ];
             if ($status == 1) {
-                $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-                $aju = $this->db->get_where('pengajuan_surat', ['id' => $surat['pengaju_id']])->row_array();
+                $surat = $this->db->get_where('surat_keluar', ['id' => $id]);
+                $aju = $this->db->get_where('pengajuan_surat', ['id' => $surat['pengaju_id']]);
                 $dateNow = date('Y-m-d');
 
                 $update = [
@@ -498,15 +497,18 @@ class Pegawai extends CI_Controller
                 die;
             }
 
+            $this->db->set('no_surat', $no_surat);
+            $this->db->set('isi_surat', $isi_surat);
             $this->db->where('id', $id);
-            $this->db->update('surat_keluar', $save);
-            $this->db->where('id', $id);
+            $this->db->update('surat_keluar', $array);
             $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
             redirect(base_url("pegawai/surat_keluar"));
-            var_dump($save);
+            var_dump($array);
             die;
         }
     }
+
+
 
 
     public function penduduk()
