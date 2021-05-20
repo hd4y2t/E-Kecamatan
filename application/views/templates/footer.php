@@ -15,7 +15,7 @@
 <!-- CKeditor -->
 <script type="text/javascript" src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace('editor');
+    CKEDITOR.replace('isi_surat');
     CKEDITOR.config.allowedContent = true;
     CKEDITOR.config.extraPlugins = 'tab';
     CKEDITOR.config.pasteFromWordRemoveFontStyles = true;

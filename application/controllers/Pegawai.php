@@ -461,8 +461,8 @@ class Pegawai extends CI_Controller
                 ];
                 $this->db->where('id', $aju);
                 $this->db->update('pengajuan_surat', $update);
-                var_dump($update);
-                die;
+                // var_dump($update);
+                // die;
             }
 
             // $this->db->set('no_surat', $no_surat);
@@ -471,8 +471,8 @@ class Pegawai extends CI_Controller
             $this->db->update('surat_keluar', $array);
             $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
             redirect(base_url("pegawai/surat_keluar"));
-            var_dump($array);
-            die;
+            // var_dump($array);
+            // die;
         }
     }
 

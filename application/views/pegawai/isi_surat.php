@@ -33,7 +33,7 @@
                                                                                 </div>
                                                                                 <div class="form-group">
                                                                                     <a>Isi Surat</a>
-                                                                                    <textarea name="editor" type="text" class="form-control" id="isi_surat" name="isi_surat"></textarea>
+                                                                                    <textarea type="text" class="form-control" id="isi_surat" name="isi_surat"></textarea>
                                                                                 </div>
                                                                                 <button class="btn btn-success" type="Submit"> Simpan </button>
                                                                             </div>
