@@ -485,7 +485,7 @@ class Pegawai extends CI_Controller
             ];
             if ($status == 1) {
                 $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-                $aju = $this->db->get_where('pengajuan_surat', ['idi' => $surat['pengaju_id']])->row_array();
+                $aju = $this->db->get_where('pengajuan_surat', ['id' => $surat['pengaju_id']])->row_array();
                 $dateNow = date('Y-m-d');
 
                 $update = [
