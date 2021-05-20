@@ -33,8 +33,14 @@ $pdf->Cell(17, 0.7, 'Nomor : ' . $surat_keluar['no_surat'], 0, 10, 'C');
 $pdf->ln(1);
 $pdf->SetFont('Times', '', 12);
 // $pdf->Cell(5, 0.7, "Palembang : " . date("d/m/Y"), 0, 0, 'C');
-
-$pdf->Cell(17, 0.7, $surat_keluar['isi_surat'], 0, 10, 'C');
+// Begin with regular font
+$pdf->SetFont('Arial', '', 14);
+// $pdf->Write(5, 'Visit ');
+// Then put a blue underlined link
+// $pdf->SetTextColor(0, 0, 255);
+// $pdf->SetFont('', 'U');
+// $pdf->Write(5,  $surat_keluar['isi_surat'], 'http://www.fpdf.org');
+$pdf->Cell(17, $surat_keluar['isi_surat'], 0, 10, 'C');
 $pdf->ln(1);
 $pdf->SetFont('Times', '', 10);
 
