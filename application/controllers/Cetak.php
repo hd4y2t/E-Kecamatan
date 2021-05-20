@@ -8,30 +8,71 @@ class Cetak extends CI_Controller
         $this->load->library('pdf');
     }
 
-    function index()
+    function index($id)
     {
-        $pdf = new FPDF('p', 'mm', 'A4');
-        // membuat halaman baru
+        $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id]);
+
+
+        $pdf = new FPDF("L", "cm", "A4");
+
+
+        $pdf->SetMargins(2, 1, 1);
+        $pdf->AliasNbPages();
         $pdf->AddPage();
-        // setting jenis font yang akan digunakan
-        $pdf->SetFont('Arial', 'B', 16);
-        // mencetak string 
-        $pdf->Cell(190, 7, 'SEKOLAH MENENGAH KEJURUSAN NEEGRI 2 LANGSA', 0, 1, 'C');
-        $pdf->SetFont('Arial', 'B', 12);
-        $pdf->Cell(190, 7, 'DAFTAR SISWA KELAS IX JURUSAN REKAYASA PERANGKAT LUNAK', 0, 1, 'C');
-        // Memberikan space kebawah agar tidak terlalu rapat
-        $pdf->Cell(10, 7, '', 0, 1);
+        $pdf->SetFont('Arial', 'B', 11);
+        $pdf->Image(base_url('assets/') . 'img/favicon.gif', 1, 1, 2, 2);
+        $pdf->SetX(4);
+        $pdf->MultiCell(19.5, 0.5, 'PEMERINTAH KOTA PALEMBANG', 0, 'L');
+        $pdf->SetX(4);
+        $pdf->MultiCell(19.5, 0.5, 'KECAMATAN SEMATANG BORANG', 0, 'L');
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(20, 6, 'NIM', 1, 0);
-        $pdf->Cell(85, 6, 'NAMA MAHASISWA', 1, 0);
-        $pdf->Cell(27, 6, 'NO HP', 1, 0);
-        $pdf->Cell(25, 6, 'TANGGAL LHR', 1, 1);
+        $pdf->SetX(4);
+        $pdf->MultiCell(19.5, 0.5, 'Jl.DARMA BAKTI NO.01 RT.14, KELURAHAN SRIMULYA TELPON : 8361005', 0, 'L');
+        $pdf->SetX(4);
+        $pdf->MultiCell(19.5, 0.5, 'PALEMBANG', 0, 'L');
+        $pdf->SetX(4);
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->Line(1, 3.1, 28.5, 3.1);
+        $pdf->SetLineWidth(0.1);
+        $pdf->Line(1, 3.2, 28.5, 3.2);
+        $pdf->SetLineWidth(0);
+        $pdf->ln(1);
+        $pdf->SetFont('Arial', 'B', 14);
+        $pdf->Cell(25.5, 0.7, "Laporan Berita", 0, 10, 'C');
+        $pdf->ln(1);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(5, 0.7, "Palembang : " . date("d/m/Y"), 0, 0, 'C');
+        $pdf->ln(1);
+        $pdf->SetFont('Arial', 'B', 10);
+
+        // $pdf->Output($surat_keluar['no_surat']);
         $pdf->SetFont('Arial', '', 10);
-        $mahasiswa = $this->db->get('penduduk')->result();
-        foreach ($mahasiswa as $row) {
-            $pdf->Cell(20, 6, $row->nik, 1, 0);
-            $pdf->Cell(85, 6, $row->nama, 1, 0);
-        }
+
+
+
+        $pdf->SetX(4);
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->SetFont('Arial', 'B', 11);
+        $pdf->Cell(40, 0.7, "Palembang," . date("d-m-Y"), 0, 10, 'C');
+        $pdf->ln(1);
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->MultiCell(19.5, 0.5, '', 0, 'L');
+        $pdf->SetFont('Arial', 'B', 11);
+        $pdf->Cell(40, 0.7, "Produser", 0, 10, 'C');
+        $pdf->ln(1);
+
+
+        // $pdf->Output("berita-" . $lihat['tanggal'] . ".pdf", "I");
         $pdf->Output();
     }
 }
