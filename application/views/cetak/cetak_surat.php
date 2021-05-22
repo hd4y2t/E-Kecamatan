@@ -15,7 +15,8 @@ $pdf->SetFont('Times', '', 12);
 $pdf->MultiCell(19.6, 0.5, 'KECAMATAN SEMATANG BORANG', 0, 'L');
 $pdf->SetFont('Times', '', 10);
 $pdf->SetX(5);
-$pdf->MultiCell(19.5, 0.5, 'Jl.DARMA BAKTI NO.01 RT.14, KELURAHAN SRIMULYA TELPON : 8361005', 0, 'L');
+$pdf->MultiCell(19.5, 0.5, 'Jl.DARMA BAKTI NO.01 RT.14, KELURAHAN SRIMULYA TELPON : 8361005', 0, 'L'); 
+
 $pdf->SetX(9.9);
 $pdf->MultiCell(19.5, 0.5, 'PALEMBANG', 0, 'L');
 $pdf->SetX(4);
