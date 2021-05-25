@@ -129,7 +129,7 @@
                 <?= form_error('file_surat', '<div class="text-danger">', '</div>'); ?>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                    <button type="Submit" class="btn btn-primary">Tambah</button>
+                    <button type="Submit" class="btn btn-success">Tambah</button>
                 </div>
             </div>
             </form>
@@ -237,7 +237,7 @@
 
 <?php foreach ($surat_keluar as $s) : ?>
     <div class="modal fade" id="lihatSurat<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-notice">
+        <div class="modal-dialog modal-lg ">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="material-icons">clear</i></button>
@@ -246,7 +246,7 @@
                 <div class="modal-body">
                     <div class="instruction">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md">
                                 <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/surat_keluar') ?>/<?= $s['file'] ?>"></embed>
                             </div>
 

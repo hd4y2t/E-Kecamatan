@@ -364,11 +364,10 @@ class Pegawai extends CI_Controller
         // ];
 
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
-        $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
-        $this->form_validation->set_rules('nm_surat_keluar', 'Nama Surat', 'required');
-        $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
+        $this->form_validation->set_rules('pengaju', 'Pengaju', 'required');
+        $this->form_validation->set_rules('surat', 'Surat', 'required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-        $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
+        // $this->form_validation->set_rules('file_surat', 'file', 'required');
 
         if ($this->form_validation->run() == FALSE) {
 
@@ -379,13 +378,12 @@ class Pegawai extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $no_surat =  $this->input->post("no_surat", TRUE);
-            // $jenis =  $this->input->post("jenis", TRUE);
-            // $nm_surat_keluar =  $this->input->post("nm_surat_keluar", TRUE);
-            // $tgl =  $this->input->post("tgl", TRUE);
+            $pengaju = $this->input->post("pengaju", true);
+            $surat = $this->input->post("surat", true);
             $keterangan =  $this->input->post("keterangan", TRUE);
             $file_surat =  $this->input->post("file_surat", TRUE);
 
-            $config['upload_path']          = './upload/surat_masuk';
+            $config['upload_path']          = './upload/surat_keluar';
             $config['allowed_types']        = 'pdf|doc|docx';
             $this->load->library('upload', $config);
 
@@ -397,6 +395,8 @@ class Pegawai extends CI_Controller
                 $save = [
                     'id' => '',
                     'no_surat' => $no_surat,
+                    'nm_surat_keluar' => $pengaju,
+                    'surat_id' => $surat,
                     'tgl' => date('d-m-Y'),
                     'keterangan' => $keterangan,
                     'file' => $file_surat,
