@@ -299,7 +299,7 @@ class Pegawai extends CI_Controller
         $this->form_validation->set_rules('nm_surat_masuk', 'Nama Surat', 'required');
         // $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
+        $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
 
@@ -352,22 +352,23 @@ class Pegawai extends CI_Controller
         $data['surat_keluar'] = $this->pegawai->getSurat();
         $data['surat'] = $this->db->get('surat')->result_array();
         $data['status'] = [
-            1 => 'Pending',
-            2 => 'Ditolak',
-            3 => 'Diterima dan Dilanjutkan',
+            1 => 'Belum ada file',
+            2 => 'Pending',
+            3 => 'Ditolak',
+            4 => 'Diterima dan Dilanjutkan',
         ];
-        $data['jenis'] = [
-            1 => 'Rahasia',
-            2 => 'Penting',
-            3 => 'Biasa',
-        ];
+        // $data['jenis'] = [
+        //     1 => 'Rahasia',
+        //     2 => 'Penting',
+        //     3 => 'Biasa',
+        // ];
 
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
         $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
         $this->form_validation->set_rules('nm_surat_keluar', 'Nama Surat', 'required');
         $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
+        $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
 
@@ -378,11 +379,11 @@ class Pegawai extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $no_surat =  $this->input->post("no_surat", TRUE);
-            $jenis =  $this->input->post("jenis", TRUE);
-            $nm_surat_keluar =  $this->input->post("nm_surat_keluar", TRUE);
-            $tgl =  $this->input->post("tgl", TRUE);
+            // $jenis =  $this->input->post("jenis", TRUE);
+            // $nm_surat_keluar =  $this->input->post("nm_surat_keluar", TRUE);
+            // $tgl =  $this->input->post("tgl", TRUE);
             $keterangan =  $this->input->post("keterangan", TRUE);
-            // $file_surat =  $this->input->post("file_surat", TRUE);
+            $file_surat =  $this->input->post("file_surat", TRUE);
 
             $config['upload_path']          = './upload/surat_masuk';
             $config['allowed_types']        = 'pdf|doc|docx';
@@ -396,9 +397,7 @@ class Pegawai extends CI_Controller
                 $save = [
                     'id' => '',
                     'no_surat' => $no_surat,
-                    'jenis' => $jenis,
-                    'nm_surat_keluar' => $nm_surat_keluar,
-                    'tgl' => date('d-m-Y', strtotime($tgl)),
+                    'tgl' => date('d-m-Y'),
                     'keterangan' => $keterangan,
                     'file' => $file_surat,
                     'status' => 1
@@ -432,7 +431,7 @@ class Pegawai extends CI_Controller
         $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id]);
 
         $this->form_validation->set_rules('no_surat', 'no_surat', 'required');
-        $this->form_validation->set_rules('isi_surat', 'isi_surat', 'required');
+        $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -443,32 +442,49 @@ class Pegawai extends CI_Controller
         } else {
 
             $no_surat =  $this->input->post("no_surat", TRUE);
-            $isi_surat =  $this->input->post("isi_surat", TRUE);
-            $status = 1;
+            $file_surat =  $this->input->post("file_surat", TRUE);
 
-            $array = [
-                'no_surat' => $no_surat,
-                'isi_surat' => $isi_surat
-            ];
-            $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-            $aju = $surat['pengaju_id'];
-            $dateNow = date('Y-m-d');
+            $config['upload_path']          = './upload/surat_masuk';
+            $config['allowed_types']        = 'pdf|doc|docx';
+            $this->load->library('upload', $config);
 
-            $update = [
-                'tgl' => date('Y-m-d', strtotime($dateNow)),
-                'status' => 4
-            ];
-            $this->db->where('id', $aju);
-            $this->db->update('pengajuan_surat', $update);
+            if ($this->upload->do_upload('file_surat')) {
+
+                $data = array('upload_data' => $this->upload->data());
+                $file_surat = $data['upload_data']['file_name'];
+
+                $save = [
+                    'id' => '',
+                    'no_surat' => $no_surat,
+                    'tgl' => date('d-m-Y'),
+                    'file' => $file_surat,
+                    'status' => 2
+                ];
+                $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
+                $aju = $surat['pengaju_id'];
+                $dateNow = date('Y-m-d');
+
+                $update = [
+                    'tgl' => date('Y-m-d', strtotime($dateNow)),
+                    'status' => 4
+                ];
+                $this->db->where('id', $aju);
+                $this->db->update('pengajuan_surat', $update);
+                $this->db->insert('surat_masuk', $save);
+                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+                redirect(base_url("pegawai/surat_keluar"));
+            }
+
+
             // var_dump($update);
             // die;
 
             // $this->db->set('no_surat', $no_surat);
             // $this->db->set('isi_surat', $isi_surat);
-            $this->db->where('id', $id);
-            $this->db->update('surat_keluar', $array);
-            $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-            redirect(base_url("pegawai/surat_keluar"));
+            // $this->db->where('id', $id);
+            // $this->db->update('surat_keluar', $array);
+            // $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+            // redirect(base_url("pegawai/surat_keluar"));
             // var_dump($array);
             // die;
         }
