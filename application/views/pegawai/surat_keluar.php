@@ -91,22 +91,23 @@
                     <input type="text" class="form-control" id="no_surat" name="no_surat">
                 </div>
                 <div class="form-group">
-                    <label class="bmd-label-floating">Nama Surat</label>
-                    <input type="text" class="form-control" id="nm_surat_keluar" name="nm_surat_keluar">
+                    <label class="bmd-label-floating">Nama Pengaju</label>
+                    <input type="text" class="form-control" id="pengaju" name="pengaju">
                 </div>
                 <div class="form-group">
-                    <label class="bmd-label-floating">Jenis Surat</label>
-                    <input type="text" class="form-control" id="jenis" name="jenis">
-                </div>
-                <div class="form-group">
-                    <label class="bmd-label-floating">Tanggal</label>
-                    <input type="text" class="form-control" id="tgl" name="tgl">
+                    <div class="form-group">
+                        <select name="surat" id="surat" class="form-control">
+                            <option value="">Pilih surat</option>
+                            <?php foreach ($surat as $k) : ?>
+                                <option value="<?= $k['id_surat']; ?>"><?= $k['nm_surat']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="bmd-label-floating">Keterangan</label>
                     <input type="text" class="form-control" id="keterangan" name="keterangan">
                 </div>
-
                 <div class="form-group">
                     <label class="label-control">File Surat</label>
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
@@ -151,18 +152,6 @@
                 <div class="form-group">
                     <label class="bmd-label-floating">Nomor Surat</label>
                     <input type="text" class="form-control" id="no_surat" name="no_surat">
-                </div>
-                <div class="form-group">
-                    <label class="bmd-label-floating">Nama Surat</label>
-                    <input type="text" class="form-control" id="nm_surat_keluar" name="nm_surat_keluar">
-                </div>
-                <div class="form-group">
-                    <label class="bmd-label-floating">Jenis Surat</label>
-                    <input type="text" class="form-control" id="jenis" name="jenis">
-                </div>
-                <div class="form-group">
-                    <label class="bmd-label-floating">Tanggal</label>
-                    <input type="text" class="form-control" id="tgl" name="tgl">
                 </div>
                 <div class="form-group">
                     <label class="bmd-label-floating">Keterangan</label>

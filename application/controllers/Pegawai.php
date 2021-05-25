@@ -400,7 +400,7 @@ class Pegawai extends CI_Controller
                     'tgl' => date('d-m-Y'),
                     'keterangan' => $keterangan,
                     'file' => $file_surat,
-                    'status' => 1
+                    'status' => 2
                 ];
 
                 $this->db->insert('surat_keluar', $save);
@@ -470,7 +470,7 @@ class Pegawai extends CI_Controller
                 ];
                 $this->db->where('id', $aju);
                 $this->db->update('pengajuan_surat', $update);
-                $this->db->insert('surat_masuk', $save);
+                $this->db->update('surat_keluar', $save);
                 $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
                 redirect(base_url("pegawai/surat_keluar"));
             }
