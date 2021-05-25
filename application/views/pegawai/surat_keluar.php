@@ -50,7 +50,7 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a data-toggle="modal" data-target="#file<?= $s['id']; ?>" class="btn btn-success btn-sm">Tambah File </a>
+                                                                <a href="<?= base_url('pegawai/isi_surat/') . $s['id']; ?>" class="btn btn-success btn-sm">Lengkapi Surat </a>
                                                                 <a href="<?= base_url('pegawai/hapusSuratKeluar/') . $s['id']; ?>" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
                                                                 <!-- <a href="<?= base_url('cetak/index/') . $s['id']; ?>" class="btn btn-primary btn-sm"><i class="material-icons">description</i> </a> -->
                                                             </td>
@@ -94,14 +94,14 @@
                     <label class="bmd-label-floating">Nama Surat</label>
                     <input type="text" class="form-control" id="nm_surat_keluar" name="nm_surat_keluar">
                 </div>
-                <!-- <div class="form-group">
+                <div class="form-group">
                     <label class="bmd-label-floating">Jenis Surat</label>
                     <input type="text" class="form-control" id="jenis" name="jenis">
                 </div>
                 <div class="form-group">
                     <label class="bmd-label-floating">Tanggal</label>
                     <input type="text" class="form-control" id="tgl" name="tgl">
-                </div> -->
+                </div>
                 <div class="form-group">
                     <label class="bmd-label-floating">Keterangan</label>
                     <input type="text" class="form-control" id="keterangan" name="keterangan">
@@ -141,7 +141,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="fileModalLabel">Lengkapi Surat </h5>
+                <h5 class="modal-title" id="fileModalLabel">Tambahkan Surat Baru</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -152,6 +152,23 @@
                     <label class="bmd-label-floating">Nomor Surat</label>
                     <input type="text" class="form-control" id="no_surat" name="no_surat">
                 </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating">Nama Surat</label>
+                    <input type="text" class="form-control" id="nm_surat_keluar" name="nm_surat_keluar">
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating">Jenis Surat</label>
+                    <input type="text" class="form-control" id="jenis" name="jenis">
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating">Tanggal</label>
+                    <input type="text" class="form-control" id="tgl" name="tgl">
+                </div>
+                <div class="form-group">
+                    <label class="bmd-label-floating">Keterangan</label>
+                    <input type="text" class="form-control" id="keterangan" name="keterangan">
+                </div>
+
                 <div class="form-group">
                     <label class="label-control">File Surat</label>
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
