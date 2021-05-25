@@ -50,9 +50,9 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a href="<?= base_url('pegawai/isi_surat/') . $s['id']; ?>" class="btn btn-success btn-sm">Lengkapi Isi surat </a>
+                                                                <a data-toggle="modal" data-target="#file<?= $s['id']; ?>" class="btn btn-success btn-sm">Tambah File </a>
                                                                 <a href="<?= base_url('pegawai/hapusSuratKeluar/') . $s['id']; ?>" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
-                                                                <a href="<?= base_url('cetak/index/') . $s['id']; ?>" class="btn btn-primary btn-sm"><i class="material-icons">description</i> </a>
+                                                                <!-- <a href="<?= base_url('cetak/index/') . $s['id']; ?>" class="btn btn-primary btn-sm"><i class="material-icons">description</i> </a> -->
                                                             </td>
                                                             <?php $i++; ?>
                                                         </tr>
@@ -94,19 +94,64 @@
                     <label class="bmd-label-floating">Nama Surat</label>
                     <input type="text" class="form-control" id="nm_surat_keluar" name="nm_surat_keluar">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label class="bmd-label-floating">Jenis Surat</label>
                     <input type="text" class="form-control" id="jenis" name="jenis">
                 </div>
                 <div class="form-group">
                     <label class="bmd-label-floating">Tanggal</label>
                     <input type="text" class="form-control" id="tgl" name="tgl">
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label class="bmd-label-floating">Keterangan</label>
                     <input type="text" class="form-control" id="keterangan" name="keterangan">
                 </div>
 
+                <div class="form-group">
+                    <label class="label-control">File Surat</label>
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                        <div class="fileinput-new thumbnail">
+                            <!-- <img src="<?= base_url() ?>assets/save.png" alt="..."> -->
+                        </div>
+                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                        <div>
+                            <span class="btn btn-danger btn-file">
+                                <i class="material-icons">cloud_upload</i>
+                                <span class="fileinput-new">Select File</span>
+                                <span class="fileinput-exists">Change</span>
+                                <input type="file" name="file_surat" id="file_surat" />
+                            </span>
+                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <?= form_error('file_surat', '<div class="text-danger">', '</div>'); ?>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                    <button type="Submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class=" modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fileModalLabel">Lengkapi Surat </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <?php echo form_open_multipart(); ?>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="bmd-label-floating">Nomor Surat</label>
+                    <input type="text" class="form-control" id="no_surat" name="no_surat">
+                </div>
                 <div class="form-group">
                     <label class="label-control">File Surat</label>
                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
