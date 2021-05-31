@@ -111,7 +111,7 @@
                     <div class="instruction">
                         <div class="row">
                             <div class="col-md-12">
-                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/surat_keluar') ?>/<?= $s['file'] ?>"></embed>
+                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/surat_masuk') ?>/<?= $s['file'] ?>"></embed>
                             </div>
 
                         </div>

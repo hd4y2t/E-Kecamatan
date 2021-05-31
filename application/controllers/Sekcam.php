@@ -35,12 +35,13 @@ class Sekcam extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Masuk';
-        $data['surat_masuk'] = $this->db->get_where('surat_masuk', ['status =' => 1])->result_array();
         $data['status'] = [
             1 => 'Pending',
             2 => 'Diketahui Sekcam',
             // 3 => 'Diketahui Sekcam dan Camat',
         ];
+        $data['surat_masuk'] = $this->db->get_where('surat_masuk', ['status =' => 1])->result_array();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);
@@ -51,6 +52,8 @@ class Sekcam extends CI_Controller
     public function ketahuisurat($id)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['surat_masuk'] = $this->db->get_where('surat_masuk', ['id' => $id])->row_array();
+
         // $data['title'] = 'Surat Masuk';
         // $this->db->get('surat_masuk')->result_array();
         $data['status'] = [
@@ -84,9 +87,11 @@ class Sekcam extends CI_Controller
         $data['surat'] = $this->db->get('surat')->result_array();
 
         $data['status'] = [
-            1 => 'Pending',
-            2 => 'Tolak',
-            3 => 'Diterima dan Dilanjutkan',
+            1 => 'Belum ada file',
+            2 => 'Pending',
+            3 => 'Ditolak',
+            4 => 'Diketahui Sekcam',
+            5 => 'Diketahui Sekcam dan Camat'
         ];
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -98,14 +103,18 @@ class Sekcam extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Masuk';
+        $surat = $this->db->get_where('surat_masuk', ['id' => $id])->row_array();
+        $no = $surat['no_surat'];
         // $this->db->get('surat_masuk')->result_array();
         $data['status'] = [
-            1 => 'Pending',
-            2 => 'Ditolak',
-            3 => 'Diterima dan Dilanjutkan',
+            1 => 'Belum ada file',
+            2 => 'Pending',
+            3 => 'Ditolak',
+            4 => 'Diketahui Sekcam',
+            5 => 'Diketahui Sekcam dan Camat'
         ];
 
-        $status = 3;
+        $status = 4;
         // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
 
 
@@ -115,7 +124,7 @@ class Sekcam extends CI_Controller
         $this->db->update('surat_keluar');
 
 
-        $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $id . ' Telah Diupdate!');
+        $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $no . ' Telah Diupdate!');
         // var_dump($status);
         // die();
         redirect(base_url('sekcam/surat_keluar'));
@@ -124,14 +133,18 @@ class Sekcam extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Keluar';
+        $surat = $this->db->get_where('surat_masuk', ['id' => $id])->row_array();
+        $no = $surat['no_surat'];
         // $this->db->get('surat_masuk')->result_array();
         $data['status'] = [
-            1 => 'Pending',
-            2 => 'Ditolak',
-            3 => 'Diterima dan Dilanjutkan',
+            1 => 'Belum ada file',
+            2 => 'Pending',
+            3 => 'Ditolak',
+            4 => 'Diketahui Sekcam',
+            5 => 'Diketahui Sekcam dan Camat'
         ];
 
-        $status = 2;
+        $status = 3;
         // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
 
 

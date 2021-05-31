@@ -355,7 +355,8 @@ class Pegawai extends CI_Controller
             1 => 'Belum ada file',
             2 => 'Pending',
             3 => 'Ditolak',
-            4 => 'Diterima dan Dilanjutkan',
+            4 => 'Diketahui Sekcam',
+            5 => 'Diketahui Sekcam dan Camat'
         ];
         // $data['jenis'] = [
         //     1 => 'Rahasia',
