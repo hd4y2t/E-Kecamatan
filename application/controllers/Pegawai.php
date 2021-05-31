@@ -431,7 +431,7 @@ class Pegawai extends CI_Controller
         $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id]);
 
         $this->form_validation->set_rules('no_surat', 'no_surat', 'required');
-        $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
+        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -444,7 +444,7 @@ class Pegawai extends CI_Controller
             $no_surat =  $this->input->post("no_surat", TRUE);
             $file_surat =  $this->input->post("file_surat", TRUE);
 
-            $config['upload_path']          = './upload/surat_masuk';
+            $config['upload_path']          = './upload/surat_keluar';
             $config['allowed_types']        = 'pdf|doc|docx';
             $this->load->library('upload', $config);
 
@@ -452,24 +452,28 @@ class Pegawai extends CI_Controller
 
                 $data = array('upload_data' => $this->upload->data());
                 $file_surat = $data['upload_data']['file_name'];
-
+                $status = 2;
                 $save = [
                     'id' => '',
                     'no_surat' => $no_surat,
                     'tgl' => date('d-m-Y'),
                     'file' => $file_surat,
-                    'status' => 2
+                    'status' => $status
                 ];
-                $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-                $aju = $surat['pengaju_id'];
-                $dateNow = date('Y-m-d');
+                if ($status = 2) {
+                    $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
+                    $aju = $surat['pengaju_id'];
+                    $dateNow = date('Y-m-d');
 
-                $update = [
-                    'tgl' => date('Y-m-d', strtotime($dateNow)),
-                    'status' => 4
-                ];
-                $this->db->where('id', $aju);
-                $this->db->update('pengajuan_surat', $update);
+                    $update = [
+                        'tgl' => date('Y-m-d', strtotime($dateNow)),
+                        'status' => 4
+                    ];
+                    $this->db->where('id', $aju);
+                    $this->db->update('pengajuan_surat', $update);
+                }
+
+                $this->db->where('id', $id);
                 $this->db->update('surat_keluar', $save);
                 $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
                 redirect(base_url("pegawai/surat_keluar"));

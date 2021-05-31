@@ -50,7 +50,17 @@
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a href="<?= base_url('pegawai/isi_surat/') . $s['id']; ?>" class="btn btn-success btn-sm">Lengkapi Surat </a>
+                                                                <?php
+                                                                if ($s['status'] == 1) {
+                                                                ?>
+                                                                    <a href="<?= base_url('pegawai/isi_surat/') . $s['id']; ?>" class="btn btn-success btn-sm">Lengkapi Surat </a>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <a> </a>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                                 <a href="<?= base_url('pegawai/hapusSuratKeluar/') . $s['id']; ?>" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
                                                                 <!-- <a href="<?= base_url('cetak/index/') . $s['id']; ?>" class="btn btn-primary btn-sm"><i class="material-icons">description</i> </a> -->
                                                             </td>
@@ -191,6 +201,7 @@
 <!-- Modal -->
 <? foreach ($surat_keluar as $s) ?>
 <div class=" modal fade" id="isisuratModal<?= $s['id']; ?>" tabindex="-1" aria-labelledby="isisuratModalLabel" aria-hidden="true">
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -247,16 +258,16 @@
                     <div class="instruction">
                         <div class="row">
                             <div class="col-md">
-                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/surat_keluar') ?>/<?= $s['file'] ?>"></embed>
+                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/surat_keluar') ?>/<?= $s['file'] ?>" width="100%" height="600px"></embed>
                             </div>
 
                         </div>
                     </div>
 
                 </div>
-                <div class="modal-footer text-center">
+                <!-- <div class="modal-footer text-center">
                     <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
