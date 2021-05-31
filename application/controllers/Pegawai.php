@@ -454,7 +454,6 @@ class Pegawai extends CI_Controller
                 $file_surat = $data['upload_data']['file_name'];
                 $status = 2;
                 $save = [
-                    'id' => '',
                     'no_surat' => $no_surat,
                     'tgl' => date('d-m-Y'),
                     'file' => $file_surat,
