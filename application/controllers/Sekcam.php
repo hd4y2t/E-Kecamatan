@@ -154,7 +154,7 @@ class Sekcam extends CI_Controller
         $this->db->update('surat_keluar');
 
 
-        $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $id . ' Telah Diupdate!');
+        $this->session->set_flashdata('success', 'Status Nomor Surat: ' . $no . ' Telah Diupdate!');
         // var_dump($status);
         // die();
         redirect(base_url('sekcam/surat_keluar'));

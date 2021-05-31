@@ -494,6 +494,63 @@ class Pegawai extends CI_Controller
         }
     }
 
+    public function perbaikan($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'File Surat';
+        $this->load->model('Mpegawai', 'pegawai');
+        $data['isi_surat'] = $this->pegawai->getDataAntrian($id);
+        $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id]);
+
+        // $this->form_validation->set_rules('no_surat', 'no_surat', 'required');
+        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('pegawai/perbaikan', $data);
+            $this->load->view('templates/footer');
+        } else {
+
+            // $no_surat =  $this->input->post("no_surat", TRUE);
+            $file_surat =  $this->input->post("file_surat", TRUE);
+
+            $config['upload_path']          = './upload/surat_keluar';
+            $config['allowed_types']        = 'pdf|doc|docx';
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('file_surat')) {
+
+                $data = array('upload_data' => $this->upload->data());
+                $file_surat = $data['upload_data']['file_name'];
+
+                $save = [
+                    'file' => $file_surat,
+                ];
+
+
+                $this->db->where('id', $id);
+                $this->db->update('surat_keluar', $save);
+                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+                redirect(base_url("pegawai/surat_keluar"));
+            }
+
+
+            // var_dump($update);
+            // die;
+
+            // $this->db->set('no_surat', $no_surat);
+            // $this->db->set('isi_surat', $isi_surat);
+            // $this->db->where('id', $id);
+            // $this->db->update('surat_keluar', $array);
+            // $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+            // redirect(base_url("pegawai/surat_keluar"));
+            // var_dump($array);
+            // die;
+        }
+    }
+
 
 
 
