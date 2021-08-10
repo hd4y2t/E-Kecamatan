@@ -259,12 +259,12 @@
     $(document).ready(function() {
         $('#myTable').DataTable({
             responsive: {
-                details: true
+                // details: true
             },
-            dom: 'Bfrtip',
-            buttons: [
-                'excel', 'pdf', 'print'
-            ]
+            // dom: 'Bfrtip',
+            // buttons: [
+            //     'excel', 'pdf', 'print'
+            // ]
         });
     });
 

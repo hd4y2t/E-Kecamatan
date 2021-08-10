@@ -77,8 +77,26 @@
 
     <!-- Template Main JS File -->
     <script src="<?= base_url(); ?>assets/js/main.js"></script>
-    <!-- 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
+        function functionCopy() {
+            var copyText = document.getElementById("id_antri");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            // alert("Copied the text: " + copyText.value);
+        }
+    </script> -->
+    <!-- <script>
+        function functionCopy(element) {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($(element).text()).select();
+            document.execCommand("copy");
+            $temp.remove();
+        }
+    </script> -->
+    <!--
+    <script type=" text/javascript">
         setTimeout(function() {
             $('.loader_bg').fadeToggle();
         }, 1500);

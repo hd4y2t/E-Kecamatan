@@ -141,7 +141,18 @@ class Home extends CI_Controller
             // die;
 
             $this->pengajuan_track->insert_p_surat($data);
-            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-check"></i> Selamat!</h5> Berhasil Mengajukan Surat! Berikut <b>ID</b> anda: <b>' . $id . '</b></div>');
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h5>
+            <i class="icon fas fa-check"></i> Selamat!
+            </h5>
+            Berhasil Mengajukan Surat! Berikut
+            <b>ID</b>
+            anda:
+            <b>
+         ' . $id . '
+            </b>
+            </div>');
             redirect(base_url("home/s_online"));
         }
     }
