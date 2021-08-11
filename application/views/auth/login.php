@@ -25,7 +25,7 @@
                                                 <div>
                                                     <label class="bmd-label-floating">Password </label>
                                                     <input type="password" id="password" name="password" class="form-control">
-                                                    <i id=" pass" class="fa fa-eye" aria-hidden="true" onClick="viewPassword2()"> Lihat Password</i>
+                                                    <i id=" pass" class="fa fa-eye" aria-hidden="true" onClick="viewPassword2()"> </i>
                                                     <?= form_error('password', '<small class="text-danger-pl-3">', '</small'); ?>
                                                 </div>
                                             </div>
