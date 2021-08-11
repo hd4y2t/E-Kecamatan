@@ -366,20 +366,20 @@
     //     }
     // }
 
-    // function viewPassword2() {
+    function viewPassword2() {
 
-    //     var passwordInput = document.getElementById('new_password2');
-    //     var passStatus = document.getElementById('pass-status2');
+        var passwordInput = document.getElementById('password');
+        var passStatus = document.getElementById('pass');
 
-    //     if (passwordInput.type == 'password') {
-    //         passwordInput.type = 'text';
-    //         passStatus.className = 'fa fa-eye-slash';
+        if (passwordInput.type == 'password') {
+            passwordInput.type = 'text';
+            passStatus.className = 'fa fa-eye-slash';
 
-    //     } else {
-    //         passwordInput.type = 'password';
-    //         passStatus.className = 'fa fa-eye';
-    //     }
-    // }
+        } else {
+            passwordInput.type = 'password';
+            passStatus.className = 'fa fa-eye';
+        }
+    }
 
     function viewPassword() {
         var x = document.getElementById("current_password");
