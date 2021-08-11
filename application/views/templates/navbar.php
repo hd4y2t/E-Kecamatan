@@ -55,8 +55,8 @@
                                   </p>
                               </a>
                               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                  <a class="dropdown-item" href="<?= base_url('user/profile'); ?>">Profile</a>
-                                  <div class="dropdown-divider"></div>
+                                  <!-- <a class="dropdown-item" href="<?= base_url('user/profile'); ?>">Profile</a> -->
+                                  <!-- <div class="dropdown-divider"></div> -->
                                   <a class="dropdown-item" href="<?= base_url('user/edit_profile'); ?>">Edit Profile</a>
                                   <div class="dropdown-divider"></div>
                                   <a class="dropdown-item" href="<?= base_url('user/changepassword'); ?>">Ganti Password</a>

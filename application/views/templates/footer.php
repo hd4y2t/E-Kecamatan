@@ -335,6 +335,76 @@
             }
         });
     })
+
+    //untuk melihat password
+    // function viewPassword() {
+    //     var passwordInput = document.getElementById('current_password');
+    //     var passStatus = document.getElementById('pass-status');
+
+    //     if (passwordInput.type == 'password') {
+    //         passwordInput.type = 'text';
+    //         passStatus.className = 'fa fa-eye-slash';
+
+    //     } else {
+    //         passwordInput.type = 'password';
+    //         passStatus.className = 'fa fa-eye';
+    //     }
+    // }
+
+    // function viewPassword1() {
+
+    //     var passwordInput = document.getElementById('new_password1');
+    //     var passStatus = document.getElementById('pass-status1');
+
+    //     if (passwordInput.type == 'password') {
+    //         passwordInput.type = 'text';
+    //         passStatus.className = 'fa fa-eye-slash';
+
+    //     } else {
+    //         passwordInput.type = 'password';
+    //         passStatus.className = 'fa fa-eye';
+    //     }
+    // }
+
+    // function viewPassword2() {
+
+    //     var passwordInput = document.getElementById('new_password2');
+    //     var passStatus = document.getElementById('pass-status2');
+
+    //     if (passwordInput.type == 'password') {
+    //         passwordInput.type = 'text';
+    //         passStatus.className = 'fa fa-eye-slash';
+
+    //     } else {
+    //         passwordInput.type = 'password';
+    //         passStatus.className = 'fa fa-eye';
+    //     }
+    // }
+
+    function viewPassword() {
+        var x = document.getElementById("current_password");
+        var y = document.getElementById("new_password1");
+        var z = document.getElementById("new_password2");
+        if (x.type === "password" && y.type === "password" && z.type === "password") {
+            x.type = "text";
+            y.type = "text";
+            z.type = "text";
+        } else {
+            x.type = "password";
+            y.type = "password";
+            z.type = "password";
+        }
+    }
+    // $(".toggle-password").click(function() {
+
+    //     $(this).toggleClass("fa-eye fa-eye-slash");
+    //     var input = $($(this).attr("toggle"));
+    //     if (input.attr("type") == "password") {
+    //         input.attr("type", "text");
+    //     } else {
+    //         input.attr("type", "password");
+    //     }
+    // });
 </script>
 </body>
 

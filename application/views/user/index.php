@@ -13,8 +13,8 @@
                                 <div class="row">
                                     <div class="row-md-2">
                                         <div class="card">
-                                            <img height="30%" width="30%" src="<?= base_url('assets/img/profile/' . $user['foto']); ?>" class="img-thumbnail">
-                                            <h1>perbaiki tata letak</h1>
+                                            <!-- <img height="30%" width="30%" src="<?= base_url('assets/img/profile/' . $user['foto']); ?>" class="img-thumbnail">
+                                            <h1>perbaiki tata letak</h1> -->
                                             <h3 class="card-title"> Nama : <?= $user['nama']; ?></h3>
                                             <h4 class="card-title"> Username : <?= $user['username']; ?></h4>
                                         </div>

@@ -16,11 +16,16 @@
                                     <?= form_error('username', '<small class="text-danger-pl-3">', '</small'); ?>
                                 </div>
                                 <div class="form-group">
+                                    <label class="bmd-label-floating">NIP</label>
+                                    <input type="number" class="form-control" id="nip" name="nip" value="<?= $user['nip']; ?>" readonly>
+                                    <?= form_error('nip', '<small class="text-danger-pl-3">', '</small'); ?>
+                                </div>
+                                <div class="form-group">
                                     <label class="bmd-label-floating">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['nama']; ?>">
                                     <?= form_error('nama', '<small class="text-danger-pl-3">', '</small'); ?>
                                 </div>
-                                <div class=" form-group row">
+                                <!-- <div class=" form-group row">
                                     <div class="col-sm-2">Foto</div>
                                     <div class="col-sm-10">
                                         <div class="row">
@@ -35,7 +40,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class=" form-group row">
                                     <div class="col-sm 10">
                                         <button type="submit" class="btn btn-success">Edit</button>
