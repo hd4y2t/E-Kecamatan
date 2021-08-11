@@ -121,8 +121,13 @@ class User extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Ganti Password';
-        $this->form_validation->set_rules('currentpassword', 'Current Password', 'required|trim');
-        $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|matches[new_password2]');
+        $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
+        // $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|matches[new_password2]');
+        $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[5]|matches[new_password2]', [
+            'matches' => 'Password tidak sama',
+            'min_length' => 'Password terlalu pendek',
+            'required' => 'Password tidak boleh kosong'
+        ]);
         $this->form_validation->set_rules('new_password2', 'Confirm Password', 'required|trim|matches[new_password1]');
 
         if ($this->form_validation->run() == false) {
@@ -137,14 +142,20 @@ class User extends CI_Controller
             if (!password_verify($current_password, $data['user']['password'])) {
                 $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Password saat ini salah! </div>');
                 redirect('user/changepassword');
+                // var_dump($current_password, $data['user']['password']);
+                // die;
             } else {
                 if ($current_password == $new_password) {
                     $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Password saat ini tidak boleh sama! </div>');
+                    // var_dump($current_password, $new_password);
+                    // die;
                     redirect('user/changepassword');
                 } else {
                     $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
                     $this->db->set('password', $password_hash);
-                    $this->db->where('ni', $this->session->userdata('email'));
+                    // var_dump($password_hash);
+                    // die;
+                    $this->db->where('username', $this->session->userdata('username'));
                     $this->db->update('user');
                     $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password Berhasil diganti! </div>');
                     redirect('user/changepassword');

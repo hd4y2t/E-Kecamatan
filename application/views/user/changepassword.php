@@ -20,13 +20,17 @@
                                     </div>
                                     <div class=" form-group">
                                         <label class="bmd-label-floating">Password Baru</label>
-                                        <input type="text" class="form-control" id="new_passsword1" name="new_passsword1" ">
+                                        <input type="text" class="form-control" id="new_password1" name="new_password1" ">
                                         <?= form_error('new_password1', '<small class="text-danger-pl-3">', '</small'); ?>
                                     </div>
+                                    <!-- <div class=" form-group">
+                                        <label class="bmd-label-floating">Password Baru</label>
+                                        <input type="text" class="form-control" id="new_password1" name="" ">
+                                        <?= form_error('new_password1', '<small class="text-danger-pl-3">', '</small'); ?>
+                                    </div> -->
                                     <div class=" form-group">
-                                        <label class="bmd-label-floating">Password Saat ini</label>
+                                        <label class="bmd-label-floating">Ulangi Password</label>
                                         <input type="text" class="form-control" id="new_password2" name="new_password2" ">
-                                        <?= form_error('new_password2', '<small class="text-danger-pl-3">', '</small'); ?>
                                     </div>
                                     <br>
                                     <div class=" col-sm 10">
