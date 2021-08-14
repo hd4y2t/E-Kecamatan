@@ -22,7 +22,7 @@
                                                         <th scope="col"></th>
                                                         <th scope="col">Nomor Surat</th>
                                                         <th scope="col">Nama </th>
-                                                        <th scope="col">Jenis</th>
+                                                        <!-- <th scope="col">Jenis</th> -->
                                                         <th scope="col">Surat</th>
                                                         <th scope="col">Tanggal</th>
                                                         <th scope="col">Keterangan</th>
@@ -38,7 +38,7 @@
                                                             <th scope="row"><?= $i ?></th>
                                                             <td><?= $s['no_surat']; ?></td>
                                                             <td><?= $s['nm_surat_keluar']; ?></td>
-                                                            <td><?= $s['jenis']; ?></td>
+                                                            <!-- <td><?= $s['jenis']; ?></td> -->
                                                             <td><?= $s['nm_surat']; ?></td>
                                                             <td><?= $s['tgl']; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>

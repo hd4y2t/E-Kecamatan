@@ -9,12 +9,7 @@
                                 <h3 class="card-title">Parah Dokumen</h3>
                             </div>
                             <div class="card-body">
-                                <iframe src="https://www.digisigner.com/free-electronic-signature/" style="
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-   "></iframe>
+                                <iframe width=" 100%" height="600px" src="https://www.digisigner.com/free-electronic-signature/" style="min-height: 600;"></iframe>
                             </div>
                         </div>
                     </div>
