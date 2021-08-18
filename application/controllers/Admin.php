@@ -27,7 +27,7 @@ class Admin extends CI_Controller
         $this->load->model('Madmin', 'admin');
         $data['hasil'] = $this->admin->getDataKelurahan(); //untuk grafik
         $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);
@@ -211,5 +211,30 @@ class Admin extends CI_Controller
         //             '<div class="alert alert-success" role="alert"> Selamat! akun anda telah terdaftar, Silakan datang ke Kecamatan untuk aktifasi akun </div>'
         //         );
         //         redirect('auth');
+    }
+    public function paraf($id = 1)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Paraf';
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+        $this->form_validation->set_rules('paraf', 'paraf', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('admin/paraf', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $link = $this->input->post('paraf', true);
+            $data = array(
+                'paraf' => $link
+            );
+
+            $this->db->where('id', $id);
+            $this->db->update('profile', $data);
+            $this->session->set_flashdata('message', 'Berhasil Diperbarui!');
+            redirect(base_url("admin/paraf"));
+        }
     }
 }
