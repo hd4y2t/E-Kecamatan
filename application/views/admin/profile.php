@@ -16,7 +16,7 @@
                                         <div class="table-responsive">
                                             <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
 
-                                            <form action="<?= base_url('admin/editprofile/'); ?>" method="post">
+                                            <form action="" method="post">
                                                 <div class="modal-body">
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Nama Seksi Pemerintahan</label>
@@ -31,7 +31,7 @@
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto1" name="foto">
+                                                                            <input type="file" class="custom-file-input" id="foto1" name="foto" value="<?= $profile['f_pemerintahan']; ?>">
                                                                             <label class="btn btn-outline-success btn-sm" id="pilih1" for="foto1"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
@@ -42,7 +42,6 @@
                                                     <div class="form-group">
                                                         <label class="bmd-label-floating">Nama Seksi Trantib</label>
                                                         <input type="text" class="form-control" id="s_trantib" name="s_trantib" value="<?= $profile['s_trantib']; ?>">
-
                                                         <div class=" form-group row">
                                                             <div class="col-sm-2">Foto</div>
                                                             <div class="col-sm-10">
@@ -52,7 +51,7 @@
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto2" name="foto">
+                                                                            <input type="file" class="custom-file-input" id="foto2" name="foto" value="<?= $profile['f_trantib']; ?>">
                                                                             <label class="btn btn-outline-success btn-sm" id="pilih2" for="foto2"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
@@ -73,7 +72,7 @@
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto3" name="foto">
+                                                                            <input type="file" class="custom-file-input" id="foto3" name="foto" value="<?= $profile['s_pelindung']; ?>">
                                                                             <label class="btn btn-outline-success btn-sm" id="pilih3" for="foto3"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
@@ -93,7 +92,7 @@
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto4" name="foto">
+                                                                            <input type="file" class="custom-file-input" id="foto4" name="foto" value="<?= $profile['s_sosial']; ?>">
                                                                             <label class="btn btn-outline-success btn-sm" id="pilih4" for="foto4"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
@@ -114,7 +113,7 @@
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="foto5" name="foto">
+                                                                            <input type="file" class="custom-file-input" id="foto5" name="foto" value="<?= $profile['s_pembangunan']; ?>">
                                                                             <label class="btn btn-outline-success btn-sm" id="pili5" for="foto5"><i class="material-icons">search</i></label>
                                                                         </div>
                                                                     </div>
@@ -126,7 +125,6 @@
                                                         <button type="Submit" class="btn btn-success">Simpan</button>
                                                     </div> -->
                                                 </div>
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -143,40 +141,36 @@
                                 <h3 class="card-title"><?= $title ?></h3>
                             </div>
                             <div class="card-body">
-                                <?= form_error('bidang', '<div class="text-danger" bidang="alert">', '</div>'); ?>
-                                <?= $this->session->flashdata('message'); ?>
                                 <div class="row">
                                     <div class="col">
 
                                         <div class="table-responsive">
 
-                                            <form action="<?= base_url('admin/editprofile'); ?>" method="post">
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label class="bmd-label-floating">Nama Kecamatan</label>
-                                                        <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="<?= $profile['kecamatan']; ?>">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="bmd-label-floating">Detail Kecamatan</label>
-                                                        <textarea class="form-control" id="detail" name="detail" rows="3"><?= $profile['detail']; ?></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="bmd-label-floating">Lokasi</label>
-                                                        <textarea class="form-control" id="lokasi" name="lokasi" rows="2"><?= $profile['lokasi']; ?></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="bmd-label-floating">Email Kecamatan</label>
-                                                        <input type="text" class="form-control" id="email" name="email" value="<?= $profile['email']; ?>">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label class="bmd-label-floating">No Telp</label>
-                                                        <input type="text" class="form-control" id="no" name="no" value="<?= $profile['no']; ?>">
-                                                    </div>
-                                                    <!-- <div class="modal-footer">
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Nama Kecamatan</label>
+                                                    <input type="text" class="form-control" id="kecamatan" name="kecamatan" value="<?= $profile['kecamatan']; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Detail Kecamatan</label>
+                                                    <textarea class="form-control" id="detail" name="detail" rows="3"><?= $profile['detail']; ?></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Lokasi</label>
+                                                    <textarea class="form-control" id="lokasi" name="lokasi" rows="2"><?= $profile['lokasi']; ?></textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Email Kecamatan</label>
+                                                    <input type="text" class="form-control" id="email" name="email" value="<?= $profile['email']; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">No Telp</label>
+                                                    <input type="text" class="form-control" id="no" name="no" value="<?= $profile['no']; ?>">
+                                                </div>
+                                                <!-- <div class="modal-footer">
                                                         <button type="Submit" class="btn btn-success">Simpan</button>
                                                     </div> -->
-                                                </div>
-                                            </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -188,6 +182,7 @@
                 <div class="modal-footer">
                     <button type="Submit" class="btn btn-success">Simpan</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

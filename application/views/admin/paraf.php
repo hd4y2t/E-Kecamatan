@@ -6,7 +6,7 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-header card-header-success">
-                                <h3 class="card-title">Lokasi Paraf</h3>
+                                <h3 class="card-title">Lokasi <?= $title ?></h3>
                             </div>
                             <div class="card-body">
                                 <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="card">
                             <div class="card-header card-header-success">
-                                <h3 class="card-title">Paraf Dokumen</h3>
+                                <h3 class="card-title"><?= $title   ?> Dokumen</h3>
                             </div>
                             <div class="card-body">
                                 <iframe width=" 100%" height="800px" src="<?= $profile['paraf']; ?>" style="min-height: 600;"></iframe>
