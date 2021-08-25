@@ -22,15 +22,14 @@
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left" data-aos-delay="200">
             <p>
-              Kecamatan S<?= $profile['kecamatan']; ?> Memiliki 4 kelurahan
+              Kecamatan <?= $profile['kecamatan']; ?> Memiliki <?= $n_kelurahan; ?> kelurahan
               <br>
               antaranya :
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> Karya Mulya</li>
-              <li><i class="ri-check-double-line"></i> Lebong/Lebung Gajah</li>
-              <li><i class="ri-check-double-line"></i> Srimulya</li>
-              <li><i class="ri-check-double-line"></i> Suka Mulya</li>
+              <?php foreach ($kelurahan as $m) : ?>
+                <li><i class="ri-check-double-line"></i> <?= $m['nm_kelurahan']; ?></li>
+              <?php endforeach ?>
             </ul>
             <!-- <p class="font-italic">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
@@ -123,21 +122,11 @@
     </section><!-- End Why Us Section -->
 
     <!-- ======= Cta Section ======= -->
-    <section id="cta" class="cta">
-      <div class="container">
 
-        <div class="text-center" data-aos="zoom-in">
-          <h3>Pengajuan Surat</h3>
-          <p> Sistem ini dibuat agar mempermudah warga kecamatan dalam mengajukan persyaratan dan menghindari human error</p>
-          <a class="cta-btn" href="#">Ajukan</a>
-        </div>
-
-      </div>
-    </section><!-- End Cta Section -->
 
 
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
+    <!-- <section id="portfolio" class="portfolio">
       <div class="container">
 
         <div class="section-title" data-aos="fade-left">
@@ -192,10 +181,65 @@
         </div>
 
       </div>
-    </section><!-- End Portfolio Section -->
+    </section>End Portfolio Section -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="section-title" data-aos="fade-right">
+              <h2>Pimpinan Kecamatan</h2>
+
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+
+              <div class="col-lg-6">
+                <div class="member" data-aos="zoom-in" data-aos-delay="100">
+                  <div class="pic">
+                    <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_camat']; ?>" class="img-fluid" alt="">
+                  </div>
+                  <div class="member-info">
+                    <h4><?= $profile['camat']; ?></h4>
+                    <span>Pimpinan Kecamatan</span>
+                    <!-- <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p> -->
+                    <!-- <div class="social">
+                      <a href=""><i class="ri-twitter-fill"></i></a>
+                      <a href=""><i class="ri-facebook-fill"></i></a>
+                      <a href=""><i class="ri-instagram-fill"></i></a>
+                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="member" data-aos="zoom-in" data-aos-delay="200">
+                  <div class="pic">
+                    <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="img-fluid" alt="">
+                  </div>
+                  <div class="member-info">
+                    <h4><?= $profile['sekcam']; ?></h4>
+                    <span>Sekretaris Kecamatan</span>
+                    <!-- <p>Aut maiores voluptates amet et quis praesentium qui senda para</p> -->
+                    <!-- <div class="social">
+                      <a href=""><i class="ri-twitter-fill"></i></a>
+                      <a href=""><i class="ri-facebook-fill"></i></a>
+                      <a href=""><i class="ri-instagram-fill"></i></a>
+                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Team Section -->
 
     <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials section-bg">
+    <!-- <section id="testimonials" class="testimonials section-bg">
 
       <div class="container">
 
@@ -211,7 +255,6 @@
                 <h3><?= $profile['camat']; ?></h3>
                 <h4>Kepala Kecamatan</h4>
 
-                <!-- <div class="member" data-aos="zoom-in" data-aos-delay="100"> -->
                 <div class="team">
                   <div class="member">
                     <div class="pic">
@@ -219,35 +262,37 @@
                     </div>
                   </div>
                 </div>
-                <!-- <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p> -->
               </div>
 
               <div class="testimonial-item">
                 <h3><?= $profile['sekcam']; ?></h3>
                 <h4>Sekretaris Kecamatan</h4>
-                <!-- <div class="member" data-aos="zoom-in" data-aos-delay="100"> -->
                 <div class="team">
                   <div class="member">
-                    <div class="pic"> <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="img-fluid" alt="">
+                    <div class="pic">
+                      <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="img-fluid" alt="">
                     </div>
                   </div>
                 </div>
-                <!-- <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p> -->
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section><!-- End Testimonials Section -->
+    </section> -->
+    <!-- End Testimonials Section -->
 
+    <section id="cta" class="cta">
+      <div class="container">
+
+        <div class="text-center" data-aos="zoom-in">
+          <h3>Pengajuan Surat</h3>
+          <p> Sistem ini dibuat agar mempermudah warga kecamatan dalam mengajukan persyaratan dan menghindari human error</p>
+          <a class="cta-btn" href="#">Ajukan</a>
+        </div>
+
+      </div>
+    </section><!-- End Cta Section -->
     <!-- ======= Team Section ======= -->
     <section id="team" class="team">
       <div class="container">
@@ -264,7 +309,9 @@
 
               <div class="col-lg-6">
                 <div class="member" data-aos="zoom-in" data-aos-delay="100">
-                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_pemerintahan']; ?>" class="img-fluid" alt=""></div>
+                  <div class="pic">
+                    <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_pemerintahan']; ?>" class="img-fluid" alt="">
+                  </div>
                   <div class="member-info">
                     <h4><?= $profile['s_pemerintahan']; ?></h4>
                     <span>Seksi Pemerintahan</span>
@@ -281,7 +328,9 @@
 
               <div class="col-lg-6 mt-4 mt-lg-0">
                 <div class="member" data-aos="zoom-in" data-aos-delay="200">
-                  <div class="pic"><img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_trantib']; ?>" class="img-fluid" alt=""></div>
+                  <div class="pic">
+                    <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_trantib']; ?>" class="img-fluid" alt="">
+                  </div>
                   <div class="member-info">
                     <h4><?= $profile['s_trantib']; ?></h4>
                     <span>Seksi Trantib</span>
@@ -388,7 +437,7 @@
                   <div class="info w-100 mt-4">
                     <i class="icofont-phone"></i>
                     <h4>Telpon/WhatsApp:</h4>
-                    <p><?= $profile['no']; ?></p>
+                    <a target="blank" href="https://wa.me/<?= $profile['no']; ?>"> <?= $profile['no']; ?></a>
                   </div>
                 </div>
               </div>

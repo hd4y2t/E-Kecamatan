@@ -24,6 +24,8 @@ class Home extends CI_Controller
         $data['surat'] = $this->db->get('surat')->num_rows();
         $data['user'] = $this->db->get('user')->num_rows();
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['n_kelurahan'] = $this->db->get('kelurahan')->num_rows();
         // $data['sm'] = $this->db->get('surat_masuk')->row_array();
         // var_dump($data);
         // $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
@@ -62,7 +64,7 @@ class Home extends CI_Controller
                 1 => 1,  // Pending
                 2 => 2,  // Diterima dan Dilanjutkan
                 3 => 3,  // Sudah Diketik dan Diparaf
-                4 => 4,  // Sudah Ditandatangani Lurah dan Selesai
+                4 => 4,  // Sudah Ditandatangani Camat dan Selesai
             ];
 
             $nama = $this->input->post('nama', TRUE);
