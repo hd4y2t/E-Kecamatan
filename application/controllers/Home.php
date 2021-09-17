@@ -53,6 +53,7 @@ class Home extends CI_Controller
         $this->form_validation->set_rules('nama', 'nama', 'required');
         $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
         $this->form_validation->set_rules('surat', 'surat', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('home/header', $data);
@@ -71,6 +72,7 @@ class Home extends CI_Controller
             $nik = $this->input->post('nik', TRUE);
             $no_hp = $this->input->post('no_hp', TRUE);
             $surat = $this->input->post('surat', TRUE);
+            $email = $this->input->post('email', TRUE);
 
             $ceknik = $this->penduduk->cek_penduduk($nik)->num_rows();
 
@@ -79,6 +81,7 @@ class Home extends CI_Controller
                     'nik' => $nik,
                     'nama' => $nama,
                     'no_hp' => $no_hp,
+                    'email' => $email,
                     'pengajuan' => 'pengajuan' + 1
                 ];
 

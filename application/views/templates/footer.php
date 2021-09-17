@@ -258,9 +258,9 @@
 
     $(document).ready(function() {
         $('#myTable').DataTable({
-            responsive: {
-                // details: true
-            },
+            // responsive: {
+            // details: true
+            // },
             // dom: 'Bfrtip',
             // buttons: [
             //     'excel', 'pdf', 'print'

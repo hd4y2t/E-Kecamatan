@@ -37,8 +37,15 @@
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
-                                        <label for="file">File Berkas/Lampiran <sup class="text-danger">*PDF Recommended! | Max 5MB</sup></label>
-                                        <?= form_upload(['name' => 'file', 'id' => 'file', 'class' => 'form-control']) ?>
+                                        <div class="col-md-6 form-group">
+                                            <label for="file">File Berkas/Lampiran <sup class="text-danger">*PDF Recommended! | Max 5MB</sup></label>
+                                            <?= form_upload(['name' => 'file', 'id' => 'file', 'class' => 'form-control']) ?>
+                                        </div>
+                                        <div class="col-md-6 form-group">
+                                            <input type="email" class="form-control" name="email" id="email" placeholder="Email" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                                            <div class="validate"></div>
+                                        </div>
+
                                     </div>
                                     <div class="mb-3">
                                         <div class="loading">Persyaratan :</div>

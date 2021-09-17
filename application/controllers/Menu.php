@@ -50,6 +50,7 @@ class Menu extends CI_Controller
             redirect('menu');
         }
     }
+
     public function delete($id)
     {
         $this->Mmenu->delete($id);
