@@ -263,33 +263,6 @@ class Admin extends CI_Controller
             );
             redirect('admin/user');
         }
-        // $id = '';
-        //         $ni = htmlspecialchars($this->input->post('ni', true));
-        //         $nama = htmlspecialchars($this->input->post('nama', true));
-        //         $foto = 'default.jpg';
-        //         $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-        //         $role_id = 3;
-        //         $is_active = 0;
-        //         $date_create = time();
-        //         $data = array(
-        //             'id_user' => $id,
-        //             'ni' => $ni,
-        //             'nama' => $nama,
-        //             'foto' => $foto,
-        //             'password' => $password,
-        //             'role_id' => $role_id,
-        //             'is_active' => $is_active,
-        //             'date_create' => $date_create
-
-        //         );
-
-        //         $this->Mauth->register($data);
-
-        //         $this->session->set_flashdata(
-        //             'message',
-        //             '<div class="alert alert-success" role="alert"> Selamat! akun anda telah terdaftar, Silakan datang ke Kecamatan untuk aktifasi akun </div>'
-        //         );
-        //         redirect('auth');
     }
     public function paraf($id = 1)
     {
