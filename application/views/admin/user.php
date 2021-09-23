@@ -1,7 +1,7 @@
 <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-lg-6">
+            <div class="col">
                 <div class="content">
                     <div class="container-fluid">
                         <div class="card">
@@ -22,7 +22,7 @@
                                                         <th scope="col"></th>
                                                         <th scope="col">Username</th>
                                                         <th scope="col">Nama</th>
-                                                        <th scope="col">foto</th>
+                                                        <!-- <th scope="col">foto</th> -->
                                                         <th scope="col">role</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
@@ -34,7 +34,7 @@
                                                             <th scope="row"><?= $i ?></th>
                                                             <td><?= $k['username']; ?></td>
                                                             <td><?= $k['nama']; ?></td>
-                                                            <td><?= $k['foto']; ?></td>
+                                                            <!-- <td><?= $k['foto']; ?></td> -->
                                                             <td><?= $k['role']; ?></td>
                                                             <td>
                                                                 <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#newModeluseredit<?= $k['id_user']; ?>"><i class="material-icons">edit</i></a>

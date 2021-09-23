@@ -13,34 +13,50 @@ class User extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'My Profile';
-        $data['surat'] = $this->db->get('surat')->result_array();
-        $data['kategori'] = $this->db->get('kategori')->result_array();
-
-        $this->form_validation->set_rules('id_kategori', 'Kategori', 'required');
-        $this->form_validation->set_rules('nm_surat', 'Nama Surat', 'required');
+        $data['title'] = 'Ganti Password';
+        $this->form_validation->set_rules('current_password', 'Current Password', 'required|trim');
+        // $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|matches[new_password2]');
+        $this->form_validation->set_rules('new_password1', 'New Password', 'required|trim|min_length[5]|matches[new_password2]', [
+            'matches' => 'Password tidak sama',
+            'min_length' => 'Password terlalu pendek',
+            'required' => 'Password tidak boleh kosong'
+        ]);
+        $this->form_validation->set_rules('new_password2', 'Confirm Password', 'required|trim|matches[new_password1]');
 
         if ($this->form_validation->run() == false) {
-
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
-            $this->load->view('user/profile', $data);
+            $this->load->view('user/changepassword', $data);
             $this->load->view('templates/footer');
         } else {
-            $array = [
-
-                'id_kategori' => $this->input->post('id_kategori', true),
-                'nm_surat' => $this->input->post('nm_surat', true),
-
-            ];
-            $this->db->insert('surat', $array);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert">Surat Baru ditambahkan </div>'
-            );
+            $current_password = $this->input->post('current_password');
+            $new_password = $this->input->post('new_password1');
+            if (!password_verify($current_password, $data['user']['password'])) {
+                $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Password saat ini salah! </div>');
+                redirect('user/changepassword');
+                // var_dump($current_password, $data['user']['password']);
+                // die;
+            } else {
+                if ($current_password == $new_password) {
+                    $this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Password saat ini tidak boleh sama! </div>');
+                    // var_dump($current_password, $new_password);
+                    // die;
+                    redirect('user/changepassword');
+                } else {
+                    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+                    $this->db->set('password', $password_hash);
+                    // var_dump($password_hash);
+                    // die;
+                    $this->db->where('username', $this->session->userdata('username'));
+                    $this->db->update('user');
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Password Berhasil diganti! </div>');
+                    redirect('user/changepassword');
+                }
+            }
         }
     }
+
     public function profile()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
