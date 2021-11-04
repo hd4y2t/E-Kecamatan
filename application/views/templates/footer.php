@@ -1,26 +1,28 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.0.js" integrity="sha256-TFWSuDJt6kS+huV+vVlyV1jM3dwGdeNWqezhTxXB/X8=" crossorigin="anonymous""></script>
 
-
-
     <!--Data Table-->
-    <script type=" text/javascript" src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+    <!-- <script type=" text/javascript" src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script> -->
 
 <!--Export table buttons-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.2.1/js/buttons.print.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+https://code.jquery.com/jquery-3.5.1.js -->
+<!-- https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js
+https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js -->
 
 <!-- CKeditor -->
-<script type="text/javascript" src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace('isi_surat');
     CKEDITOR.config.allowedContent = true;
     CKEDITOR.config.extraPlugins = 'tab';
     CKEDITOR.config.pasteFromWordRemoveFontStyles = true;
 </script>
-<!--Data Table-->
+Data Table -->
 
 <!--Export table button CSS-->
 
@@ -34,7 +36,7 @@
 <script src="<?= base_url(); ?>assets/js/plugins/sweetalert2.js"></script>
 
 <!-- Tables -->
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script> -->
 <!-- Forms Validations Plugin -->
 <script src="<?= base_url(); ?>assets/js/plugins/jquery.validate.min.js"></script>
 <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
@@ -45,6 +47,9 @@
 <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
 <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
 <script src="<?= base_url(); ?>assets/js/plugins/jquery.dataTables.min.js"></script>
+
+<script src="<?= base_url() ?> assets/plugins/datatables-responsive/js/responsive.bootstrap4.js"></script>
+<script src="<?= base_url() ?> assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
 <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-tagsinput.js"></script>
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -64,6 +69,8 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
 <!-- Chartist JS -->
 <script src="<?= base_url(); ?>assets/js/plugins/chartist.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
 <!--  Notifications Plugin    -->
 <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
@@ -252,7 +259,7 @@
 
     $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js
-        md.initDashboardPageCharts();
+        md.initDashboardPgeCharts();
 
     });
 
@@ -267,43 +274,48 @@
             // ]
         });
     });
-
-    // chartkelurahan
-    var chart1;
-    $(document).ready(function() {
-        chart1 = new Hightchart.Chart({
-
-            chart: {
-                renderTo: 'chartkelurahan',
-                type: 'column'
-            },
-            xAxis: {
-                categories: ['Kelurahan']
-            },
-            yAxis: {
-                title: {
-                    text: 'jumlah nilai'
-                }
+    <?php
+    foreach ($grafik as $data) {
+        $kelurahan[] = $data->kelnm_kelurarahan;
+        $jumlah[] = (float) $data->pengajuan;
+    }
+    ?>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?= $kelurahan; ?>,
+            datasets: [{
+                label: [],
+                data: [
+                    <?= $jumlah; ?>
+                ],
+                backgroundColor: [
+                    'rgba(232, 63, 60, 1)',
+                    'rgba(252, 146, 8, 1)',
+                    'rgba(8, 172, 128, 1)',
+                    'rgba(24, 188, 209, 1)'
+                ],
+                borderColor: [
+                    'rgba(242, 7, 7, 1)',
+                    'rgba(242, 176, 7, 1)',
+                    'rgba(64, 242, 7, 1)',
+                    'rgba(0, 111, 236, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
             }
-
-        });
-        /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
-
-        // datachartkelurahan = {
-        //     labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        //     series: [
-        //         [12, 17, 7, 17, 23, 18, 38]
-        //     ]
-        // };
-        // datachartkelurahan = {
-        //     labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
-        //     series: [
-        //         [12, 17, 7, 17, 23, 18, 38]
-        //     ]
-        // };
-
-
+        }
     });
+
 
 
     var slider = document.getElementById('slider');
@@ -335,36 +347,6 @@
             }
         });
     })
-
-    //untuk melihat password
-    // function viewPassword() {
-    //     var passwordInput = document.getElementById('current_password');
-    //     var passStatus = document.getElementById('pass-status');
-
-    //     if (passwordInput.type == 'password') {
-    //         passwordInput.type = 'text';
-    //         passStatus.className = 'fa fa-eye-slash';
-
-    //     } else {
-    //         passwordInput.type = 'password';
-    //         passStatus.className = 'fa fa-eye';
-    //     }
-    // }
-
-    // function viewPassword1() {
-
-    //     var passwordInput = document.getElementById('new_password1');
-    //     var passStatus = document.getElementById('pass-status1');
-
-    //     if (passwordInput.type == 'password') {
-    //         passwordInput.type = 'text';
-    //         passStatus.className = 'fa fa-eye-slash';
-
-    //     } else {
-    //         passwordInput.type = 'password';
-    //         passStatus.className = 'fa fa-eye';
-    //     }
-    // }
 
     function viewPassword2() {
 

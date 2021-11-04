@@ -24,6 +24,9 @@ class Admin extends CI_Controller
         $this->db->where('is_active =', 0);
         $data['user_non'] = $this->db->get('user')->num_rows();
 
+        $this->load->model('Mgrafik', 'grafik');
+        $data['grafik'] = $this->grafik->getDataGrafik();
+        // echo json_encode($dt);
         $this->load->model('Madmin', 'admin');
         $data['hasil'] = $this->admin->getDataKelurahan(); //untuk grafik
         $data['kelurahan'] = $this->db->get('kelurahan')->result_array();

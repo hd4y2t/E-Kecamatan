@@ -15,22 +15,17 @@
                                             <div class="col-sm-7">
                                                 <div class="content">
                                                     <div class="card">
-                                                        <!-- <div class="card-header card-header-success">
-                                                                        <h3 class="card-title">Seksi Kecamatan</h3>
-                                                                    </div> -->
                                                         <div class="card-body">
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="table-responsive">
-                                                                        <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
-                                                                        <!-- <form action="" method="post"> -->
                                                                         <?php echo form_open_multipart(); ?>
                                                                         <div class="modal-body">
                                                                             <label class="bmd-label-floating">ID Pengaju : <?= $isi_surat['pengaju_id']; ?></label>
                                                                             <!-- <a class="btn btn-simple btn-info btn-sm text-white" data-toggle="modal" data-target="#lihatSurat<?= $isi_surat['pengaju_id']; ?>"><i class="material-icons">remove_red_eye</i></a> -->
                                                                             <div class="form-group">
                                                                                 <label class="bmd-label-floating">Nomor Surat</label>
-                                                                                <input type="text" class="form-control" id="no_surat" name="no_surat">
+                                                                                <input type="text" class="form-control" id="no_surat" name="no_surat" value="<?= $isi_surat['no_surat']; ?>">
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label class="label-control">File Surat</label>

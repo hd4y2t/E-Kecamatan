@@ -54,8 +54,4 @@ class Galery extends CI_Controller
             redirect('galery/profil_kelurahan');
         }
     }
-
-   
-
-   
 }

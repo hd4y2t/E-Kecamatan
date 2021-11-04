@@ -54,7 +54,11 @@
 <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
 <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
 <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-<script src="<?= base_url(); ?>assets/js/plugins/jquery.dataTables.min.js"></script>
+<!-- <script src="<?= base_url(); ?>assets/js/plugins/jquery.dataTables.min.js"></script> -->
+<!-- Datatables baru -->
+<script src="<?= base_url('') ?>/assets/js/datatables/dataTables.bootstrap4.js"></script>
+<script src="<?= base_url('') ?>/assets/jd/datatables/jquery.dataTables.js"></script>
+
 <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
 <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-tagsinput.js"></script>
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -70,7 +74,7 @@
 <!-- Library for adding dinamically elements -->
 <script src="<?= base_url(); ?>assets/js/plugins/arrive.min.js"></script>
 <!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
 <!-- Chartist JS -->
 <script src="<?= base_url(); ?>assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->

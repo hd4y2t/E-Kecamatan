@@ -244,14 +244,13 @@ class Pegawai extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Antrian Surat';
-        // $data['surat'] = $this->db->get('surat', => )->result_array();
+
         $data['status'] = [
             1 => 'Pending',
             2 => 'Syarat Tidak Terpenuhi',
             3 => 'Diterima dan Dilanjutkan',
         ];
         $status = $this->input->post('status');
-        // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
 
         if ($status == 3) {
             $pSurat = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
@@ -261,7 +260,6 @@ class Pegawai extends CI_Controller
 
             $save = [
                 'nm_surat_keluar' => '[' . $pndk['nama'] . '-' . $pndk['nik'] . ']-Surat ' . $surat['nm_surat'],
-                // 'surat_id' => $pSurat['id_surat'],
                 'tgl' => date('Y-m-d', strtotime($dateNow)),
                 'keterangan' => 'ID: ' . $pSurat['id'],
                 'status' => 1
@@ -270,13 +268,9 @@ class Pegawai extends CI_Controller
             $this->db->insert('surat_keluar', $save);
         }
         $this->db->set('status', $status);
-
         $this->db->where(['id' => $id]);
         $this->db->update('pengajuan_surat');
-
-
         $this->session->set_flashdata('success', 'Status Pengajuan ID: ' . $id . ' Telah Diupdate!');
-
         redirect(base_url('pegawai/antrian'));
     }
 
@@ -293,11 +287,9 @@ class Pegawai extends CI_Controller
             3 => 'Diketahui Sekcam dan Camat ',
         ];
         $status = $this->input->post('status');
-        // $data['pengajuan'] = $this->db->get('pengajuan_surat')->result_array();
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
         $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
         $this->form_validation->set_rules('nm_surat_masuk', 'Nama Surat', 'required');
-        // $this->form_validation->set_rules('tgl', 'Tanggal', 'required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
         $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
@@ -312,7 +304,6 @@ class Pegawai extends CI_Controller
             $no_surat =  $this->input->post("no_surat", TRUE);
             $jenis =  $this->input->post("jenis", TRUE);
             $nm_surat_masuk =  $this->input->post("nm_surat_masuk", TRUE);
-            // $tgl =  $this->input->post("tgl", TRUE);
             $keterangan =  $this->input->post("keterangan", TRUE);
             $file_surat =  $this->input->post("file_surat", TRUE);
 
@@ -347,7 +338,6 @@ class Pegawai extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Keluar';
-        // $data['surat_keluar'] = $this->db->get('surat_keluar')->result_array();
         $this->load->model('Mpegawai', 'pegawai');
         $data['surat_keluar'] = $this->pegawai->getSurat();
         $data['surat'] = $this->db->get('surat')->result_array();
@@ -355,20 +345,14 @@ class Pegawai extends CI_Controller
             1 => 'Belum ada file',
             2 => 'Pending',
             3 => 'Ditolak',
-            4 => 'Diketahui Sekcam',
-            5 => 'Diketahui Sekcam dan Camat'
+            4 => 'Belum Diparaf Camat',
+            5 => 'Telah Diparaf '
         ];
-        // $data['jenis'] = [
-        //     1 => 'Rahasia',
-        //     2 => 'Penting',
-        //     3 => 'Biasa',
-        // ];
 
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
         $this->form_validation->set_rules('pengaju', 'Pengaju', 'required');
         $this->form_validation->set_rules('surat', 'Surat', 'required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'file', 'required');
 
         if ($this->form_validation->run() == FALSE) {
 
@@ -413,7 +397,6 @@ class Pegawai extends CI_Controller
 
     public function hapusSuratKeluar($id)
     {
-
         $data = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
         unlink("./uploads/surat_keluar/" . $data['file_surat_keluar']);
         $this->db->where(['id' => $id]);
@@ -430,7 +413,6 @@ class Pegawai extends CI_Controller
         $this->load->model('Mpegawai', 'pegawai');
         $data['isi_surat'] = $this->pegawai->getDataAntrian($id);
         $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id]);
-
         $this->form_validation->set_rules('no_surat', 'no_surat', 'required');
         // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
@@ -463,10 +445,10 @@ class Pegawai extends CI_Controller
                 if ($status = 2) {
                     $surat = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
                     $aju = $surat['pengaju_id'];
-                    $dateNow = date('Y-m-d');
+                    $dateNow = date('d-m-Y');
 
                     $update = [
-                        'tgl' => date('Y-m-d', strtotime($dateNow)),
+                        'tgl' => date('d-m-Y', strtotime($dateNow)),
                         'status' => 4
                     ];
                     $this->db->where('id', $aju);
@@ -475,22 +457,9 @@ class Pegawai extends CI_Controller
 
                 $this->db->where('id', $id);
                 $this->db->update('surat_keluar', $save);
-                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+                $this->session->set_flashdata('success', 'Berhasil Tambah file!');
                 redirect(base_url("pegawai/surat_keluar"));
             }
-
-
-            // var_dump($update);
-            // die;
-
-            // $this->db->set('no_surat', $no_surat);
-            // $this->db->set('isi_surat', $isi_surat);
-            // $this->db->where('id', $id);
-            // $this->db->update('surat_keluar', $array);
-            // $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-            // redirect(base_url("pegawai/surat_keluar"));
-            // var_dump($array);
-            // die;
         }
     }
 
@@ -500,10 +469,8 @@ class Pegawai extends CI_Controller
         $data['title'] = 'File Surat';
         $this->load->model('Mpegawai', 'pegawai');
         $data['isi_surat'] = $this->pegawai->getDataAntrian($id);
+        $this->form_validation->set_rules('no_surat', 'no_surat', 'required');
         $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id]);
-
-        // $this->form_validation->set_rules('no_surat', 'no_surat', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -512,42 +479,24 @@ class Pegawai extends CI_Controller
             $this->load->view('pegawai/perbaikan', $data);
             $this->load->view('templates/footer');
         } else {
-
-            // $no_surat =  $this->input->post("no_surat", TRUE);
+            $no_surat =  $this->input->post("no_surat", TRUE);
             $file_surat =  $this->input->post("file_surat", TRUE);
-
             $config['upload_path']          = './upload/surat_keluar';
             $config['allowed_types']        = 'pdf|doc|docx';
             $this->load->library('upload', $config);
-
             if ($this->upload->do_upload('file_surat')) {
-
                 $data = array('upload_data' => $this->upload->data());
                 $file_surat = $data['upload_data']['file_name'];
-
                 $save = [
+                    'no_surat' => $no_surat,
                     'file' => $file_surat,
+                    'status' => 2
                 ];
-
-
                 $this->db->where('id', $id);
                 $this->db->update('surat_keluar', $save);
-                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+                $this->session->set_flashdata('success', 'Berhasil Diperbaiki!');
                 redirect(base_url("pegawai/surat_keluar"));
             }
-
-
-            // var_dump($update);
-            // die;
-
-            // $this->db->set('no_surat', $no_surat);
-            // $this->db->set('isi_surat', $isi_surat);
-            // $this->db->where('id', $id);
-            // $this->db->update('surat_keluar', $array);
-            // $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-            // redirect(base_url("pegawai/surat_keluar"));
-            // var_dump($array);
-            // die;
         }
     }
 

@@ -72,7 +72,24 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-secondary">
+                                <canvas class="ct-chart" id="myChart"> </canvas>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Grafik pengajuan surat</h4>
+                                <p class="card-category">Berdasarkan kelurahan</p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">access_time</i> campaign sent 2 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

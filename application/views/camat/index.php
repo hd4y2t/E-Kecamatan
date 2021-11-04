@@ -33,7 +33,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">local_offer</i> Tracked from Github
+                                    <i class="material-icons">local_offer</i> Antrian yang sedang diproses
                                 </div>
                             </div>
                         </div>
@@ -49,12 +49,11 @@
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">date_range</i> Last 24 Hours
+                                    <i class="material-icons">date_range</i> Antrian yang telah selesai
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="card card-stats">
                             <div class="card-header card-header-info card-header-icon">

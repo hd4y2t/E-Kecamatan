@@ -10,7 +10,11 @@
                             </div>
                             <div class="card-body">
                                 <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
-                                <?= $this->session->flashdata('message'); ?>
+                                <?php if ($this->session->flashdata('message') == TRUE) : ?>
+                                    <div class="alert alert-success">
+                                        <span><?= $this->session->flashdata('message'); ?></span>
+                                    </div>
+                                <?php endif; ?>
                                 <!-- <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a> -->
                                 <div class="row">
                                     <div class="col">
@@ -40,7 +44,7 @@
                                                             <td><?= $s['jenis']; ?></td>
                                                             <td><?= $s['tgl']; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>
-                                                            <td><?= $status[$s['status']]; ?></td>
+                                                            <td class="font-weight-bold"><?= $status[$s['status']]; ?></td>
                                                             <td>
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>

@@ -12,24 +12,18 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="row">
-                                            <div class="col-sm-7">
+                                            <div class="col-sm-4">
                                                 <div class="content">
                                                     <div class="card">
-                                                        <!-- <div class="card-header card-header-success">
-                                                                        <h3 class="card-title">Seksi Kecamatan</h3>
-                                                                    </div> -->
                                                         <div class="card-body">
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="table-responsive">
-                                                                        <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
-                                                                        <!-- <form action="" method="post"> -->
                                                                         <?php echo form_open_multipart(); ?>
                                                                         <div class="modal-body">
-                                                                            <label class="bmd-label-floating">ID Pengaju : <?= $isi_surat['pengaju_id']; ?></label>
+                                                                            <label class="bmd-label-floating">Unduh file :<a class="btn btn-success btn-sm" href="<?= base_url('camat/download/' . $surat_keluar['id']); ?>"><i class="material-icons">download</i></a></label>
                                                                             <div class="form-group">
-                                                                                <label class="bmd-label-floating">Nomor Surat</label>
-                                                                                <input type="text" class="form-control" id="no_surat" name="no_surat">
+                                                                                <label class="bmd-label-floating">Nomor Surat : <?= $surat_keluar['no_surat'] ?></label>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label class="label-control">File Surat</label>
@@ -58,12 +52,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-5">
+                                            <div class="col-sm-8">
                                                 <div class="content">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <label class="bmd-label-floating">Berkas Pengaju : <?= $isi_surat['pengaju_id']; ?></label>
-                                                            <embed type="application/pdf" width="100%" height="580px;" src="<?= base_url('upload/berkas/') . $isi_surat['file'] ?>"></embed>
+                                                            <label class="bmd-label-floating">Nomor surat : <?= $surat_keluar['no_surat']; ?></label>
+                                                            <iframe width=" 100%" height="600px" src="<?= $profile['paraf'] ?>" style="min-height: 600;"></iframe>
                                                         </div>
                                                     </div>
                                                 </div>

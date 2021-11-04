@@ -15,21 +15,27 @@
                                             <div class="col-sm-7">
                                                 <div class="content">
                                                     <div class="card">
-                                                        <!-- <div class="card-header card-header-success">
-                                                                        <h3 class="card-title">Seksi Kecamatan</h3>
-                                                                    </div> -->
                                                         <div class="card-body">
                                                             <div class="row">
                                                                 <div class="col">
                                                                     <div class="table-responsive">
-                                                                        <!-- <iframe width="100%" height="800" src="https://www.ilovepdf.com/id/tanda-tangani-pdf"></iframe> -->
-                                                                        <!-- <form action="" method="post"> -->
                                                                         <?php echo form_open_multipart(); ?>
                                                                         <div class="modal-body">
-                                                                            <label class="bmd-label-floating">ID Pengaju : <?= $isi_surat['pengaju_id']; ?></label>
                                                                             <div class="form-group">
                                                                                 <label class="bmd-label-floating">Nomor Surat</label>
-                                                                                <input type="text" class="form-control" id="no_surat" name="no_surat">
+                                                                                <input type="text" class="form-control" id="no_surat" name="no_surat" value="<?= $masuk['no_surat'] ?>">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="bmd-label-floating">Jenis Surat</label>
+                                                                                <input type="text" class="form-control" id="jenis" name="jenis" value="<?= $masuk['jenis'] ?>">
+                                                                            </div>
+                                                                            <div class=" form-group">
+                                                                                <label class="bmd-label-floating">Nama Surat</label>
+                                                                                <input type="text" class="form-control" id="nm_surat_masuk" name="nm_surat_masuk" value="<?= $masuk['nm_surat_masuk'] ?>">
+                                                                            </div>
+                                                                            <div class=" form-group">
+                                                                                <label class="bmd-label-floating">Keterangan</label>
+                                                                                <input type="text" class="form-control" id="keterangan" name="keterangan" value="<?= $masuk['keterangan'] ?>">
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label class="label-control">File Surat</label>
@@ -42,13 +48,17 @@
                                                                                             <i class="material-icons">cloud_upload</i>
                                                                                             <span class="fileinput-new">Select File</span>
                                                                                             <span class="fileinput-exists">Change</span>
-                                                                                            <input type="file" name="file_surat" id="file_surat" />
+                                                                                            <input type="file" name="file_surat" id="file_surat">
                                                                                         </span>
+                                                                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                             <?= form_error('file_surat', '<div class="text-danger">', '</div>'); ?>
-                                                                            <button class="btn btn-success" type="Submit"> Simpan </button>
+                                                                            <div class="modal-footer">
+                                                                                <a href="<?= base_url('loket/surat_masuk') ?>" class="btn btn-secondary" data-dismiss="modal">Keluar</a>
+                                                                                <button type="Submit" class="btn btn-primary">Edit</button>
+                                                                            </div>
                                                                         </div>
                                                                         </form>
                                                                     </div>
@@ -62,8 +72,8 @@
                                                 <div class="content">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <label class="bmd-label-floating">Berkas Pengaju : <?= $isi_surat['pengaju_id']; ?></label>
-                                                            <embed type="application/pdf" width="100%" height="580px;" src="<?= base_url('upload/berkas/') . $isi_surat['file'] ?>"></embed>
+                                                            <label class="bmd-label-floating">Berkas Surat : <?= $masuk['no_surat']; ?></label>
+                                                            <embed type="application/pdf" width="100%" height="580px;" src="<?= base_url('upload/surat_masuk/') . $masuk['file'] ?>"></embed>
                                                         </div>
                                                     </div>
                                                 </div>

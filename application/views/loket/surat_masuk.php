@@ -6,11 +6,10 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-header card-header-success">
-                                <h3 class="card-title"><?= $title ?></h3>
+                                <h3 class="card-title"><?= $title ?> | yang belum dicek</h3>
                             </div>
                             <div class="card-body">
                                 <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
-                                <?= $this->session->flashdata('message'); ?>
                                 <?php if ($this->session->flashdata('success') == TRUE) : ?>
                                     <div class="alert alert-success">
                                         <span><?= $this->session->flashdata('success'); ?></span>
@@ -45,14 +44,22 @@
                                                             <td><?= $s['nm_surat_masuk']; ?></td>
                                                             <td><?= $s['tgl']; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>
-                                                            <td><?= $status[$s['status']]; ?></td>
+                                                            <td class="font-weight-bold"><?= $status[$s['status']]; ?></td>
                                                             <td>
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <a href="<?= base_url('pegawai/edit_surat_masuk/') . $s['id']; ?>" class="btn btn-warning btn-sm">edit </a>
-                                                                <!-- <a href="" class="btn btn-danger btn-sm">hapus </a> -->
-
+                                                                <?php
+                                                                if ($s['status'] == 1) {
+                                                                ?>
+                                                                    <a href="<?= base_url('loket/edit_surat_masuk/') . $s['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <a class="btn btn-success btn-sm text-light"><i class="material-icons">verified</i> </a>
+                                                                <?php
+                                                                }
+                                                                ?>
                                                             </td>
                                                             <?php $i++; ?>
                                                         </tr>

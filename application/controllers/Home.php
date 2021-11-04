@@ -26,10 +26,6 @@ class Home extends CI_Controller
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
         $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
         $data['n_kelurahan'] = $this->db->get('kelurahan')->num_rows();
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
-        // $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-        // $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
 
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar', $data);

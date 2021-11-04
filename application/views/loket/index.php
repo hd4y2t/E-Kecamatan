@@ -33,7 +33,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">local_offer</i> Tracked from Github
+                                    <i class="material-icons">local_offer</i> Antrian yang sedang diproses
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">date_range</i> Last 24 Hours
+                                    <i class="material-icons">date_range</i> Antrian yang telah selesai
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,11 @@
                                                     <h3 class="card-title">Antrian Surat</h3>
                                                 </div>
                                                 <div class="card-body">
-
+                                                    <?php if ($this->session->flashdata('success') == TRUE) : ?>
+                                                        <div class="alert alert-success">
+                                                            <span><?= $this->session->flashdata('success'); ?></span>
+                                                        </div>
+                                                    <?php endif; ?>
                                                     <div class="table-responsive">
                                                         <table class="table table-hover table-sm" id="myTable">
                                                             <thead class="text-success">
@@ -112,7 +116,7 @@
                                                                         <td><?= $m['nama'] . '(' . $m['nik'] . ')'; ?></td>
                                                                         <td><?= $m['no_hp']; ?></td>
                                                                         <td><?= $m['tgl']; ?></td>
-                                                                        <td><?= $status[$m['status']]; ?></td>
+                                                                        <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
                                                                         <td>
                                                                             <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                                         </td>
@@ -147,7 +151,7 @@
                             <div class="modal-body">
                                 <div class="instruction">
                                     <div class="row">
-                                        <div class="col-md-8">
+                                        <div class="col-md">
                                             <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/berkas') ?>/<?= $m['file'] ?>"></embed>
                                         </div>
 

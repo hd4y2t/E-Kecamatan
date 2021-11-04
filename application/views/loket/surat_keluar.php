@@ -44,15 +44,13 @@
                                                             <td><?= $s['nm_surat_keluar']; ?></td>
                                                             <td><?= $s['nm_surat']; ?></td>
                                                             <td><?= $s['tgl']; ?></td>
-                                                            <td><?= $status[$s['status']]; ?></td>
+                                                            <td class="font-weight-bold"><?= $status[$s['status']]; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>
                                                             <td>
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
                                                             <td>
-                                                                <!-- <a href="<?= base_url('pegawai/edit_surat_keluar/') . $s['id']; ?>" class="btn btn-warning btn-sm">Edit </a> -->
-                                                                <a href="" class="btn btn-success btn-sm">Cetak </a>
-
+                                                                <a href="<?= base_url('upload/surat_keluar/') . $s['file'] ?>" class="btn btn-success btn-sm" target="blank">Cetak </a>
                                                             </td>
                                                             <?php $i++; ?>
                                                         </tr>

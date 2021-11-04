@@ -9,14 +9,14 @@
                                 <h3 class="card-title"><?= $title ?></h3>
                             </div>
                             <div class="card-body">
+                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a>
                                 <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
                                 <?= $this->session->flashdata('message'); ?>
                                 <?php if ($this->session->flashdata('success') == TRUE) : ?>
                                     <div class="alert alert-success">
-                                        <span><?= $this->session->flashdata('success'); ?></span>
+                                        <span><?= $this->session->flashdata('update'); ?></span>
                                     </div>
                                 <?php endif; ?>
-                                <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a>
                                 <div class="row">
                                     <div class="col">
                                         <div class="table-responsive">
@@ -44,7 +44,7 @@
                                                             <td><?= $s['nm_surat_keluar']; ?></td>
                                                             <td><?= $s['nm_surat']; ?></td>
                                                             <td><?= $s['tgl']; ?></td>
-                                                            <td><?= $status[$s['status']]; ?></td>
+                                                            <td class="font-weight-bold"><?= $status[$s['status']]; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>
                                                             <td>
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
@@ -53,20 +53,23 @@
                                                                 <?php
                                                                 if ($s['status'] == 1) {
                                                                 ?>
-                                                                    <a href="<?= base_url('pegawai/isi_surat/') . $s['id']; ?>" class="btn btn-success btn-sm">Lengkapi Surat </a>
+                                                                    <a href="<?= base_url('pegawai/isi_surat/') . $s['id']; ?>" class="btn btn-warning btn-sm">Tambah File Surat </a>
                                                                 <?php
                                                                 } else if ($s['status'] == 3) {
                                                                 ?>
-                                                                    <a href="<?= base_url('pegawai/perbaikan/') . $s['id']; ?>" class="btn btn-success btn-sm">Perbaiki Surat </a>
+                                                                    <a href="<?= base_url('pegawai/perbaikan/') . $s['id']; ?>" class="btn btn-warning btn-sm">Perbaiki File Surat </a>
+
+                                                                <?php
+                                                                } else if ($s['status'] == 5) {
+                                                                ?>
+                                                                    <a class="btn btn-outline-success btn-sm "><i class="material-icons text-success">done</i> </a>
                                                                 <?php
                                                                 } else {
                                                                 ?>
-                                                                    <a </a>
-                                                                    <?php
+                                                                    <a class="btn btn-outline-warning btn-sm "><i class="material-icons text-warning">schedule</i> </a>
+                                                                <?php
                                                                 }
-                                                                    ?>
-                                                                    <a href="<?= base_url('pegawai/hapusSuratKeluar/') . $s['id']; ?>" class="btn btn-danger btn-sm"><i class="material-icons">delete</i> </a>
-                                                                    <!-- <a href="<?= base_url('cetak/index/') . $s['id']; ?>" class="btn btn-primary btn-sm"><i class="material-icons">description</i> </a> -->
+                                                                ?>
                                                             </td>
                                                             <?php $i++; ?>
                                                         </tr>
@@ -269,9 +272,6 @@
                     </div>
 
                 </div>
-                <!-- <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>
-                </div> -->
             </div>
         </div>
     </div>

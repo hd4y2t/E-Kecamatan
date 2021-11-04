@@ -45,7 +45,7 @@
                                                             <td><?= $s['nm_surat_masuk']; ?></td>
                                                             <td><?= $s['tgl']; ?></td>
                                                             <td><?= $s['keterangan']; ?></td>
-                                                            <td><?= $status[$s['status']]; ?></td>
+                                                            <td class="font-weight-bold"><?= $status[$s['status']]; ?></td>
                                                             <td>
                                                                 <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
                                                             </td>
