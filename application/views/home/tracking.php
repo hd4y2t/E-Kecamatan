@@ -11,7 +11,7 @@
 
                             <div class="text-center pl pr">
                                 <div class="text-center">
-                                    <h3 class="section-subheading text-muted">Cek Status Surat Online</h3>
+                                    <h1 class="section-subheading text-muted">Cek Status Surat Online</h1>
                                 </div>
                                 <p class="section-subheading text-muted">Masukkan ID Surat untuk Pengecekan</p>
 

@@ -517,4 +517,17 @@ class Pegawai extends CI_Controller
         $this->load->view('pegawai/penduduk', $data);
         $this->load->view('templates/footer');
     }
+    public function berita()
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Berita';
+        $this->load->model('Mpegawai', 'pegawai');
+        $data['berita'] = $this->pegawai->getBerita();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('pegawai/berita', $data);
+        $this->load->view('templates/footer');
+    }
 }

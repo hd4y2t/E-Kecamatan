@@ -10,7 +10,7 @@
                                     <?= $this->session->flashdata('success'); ?>
                                 <?php endif; ?>
                                 <div class="text-center">
-                                    <h3 class="section-subheading text-muted">Pengajuan Surat Online</h3>
+                                    <h1 class="section-subheading text-muted">Pengajuan Surat Online</h1>
                                     <p class="section-subheading text-muted">Isi Form Pengajuan Surat Dibawah:</p>
                                 </div>
                                 <div class="text-justify pl pr">

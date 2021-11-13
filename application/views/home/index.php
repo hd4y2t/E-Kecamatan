@@ -5,8 +5,8 @@
       <img src="<?= base_url('assets/'); ?>img/favicon.gif" class="img-fluid" alt="">
 
       <h1>E-Kecamatan Sematang Borang</h1>
-      <h2>Website Pengajuan Persyaratan Online</h2>
-      <a href="<?= base_url('home/s_online') ?>" class="btn-get-started scrollto">Ajukan Persyaratan Surat</a>
+      <h2>Web Portal Kecamatan Sematang Borang</h2>
+      <a href="<?= base_url('home/berita') ?>" class="btn-get-started scrollto">Lihat Berita</a>
     </div>
   </section><!-- End Hero -->
 
@@ -121,67 +121,20 @@
       </div>
     </section><!-- End Why Us Section -->
 
-    <!-- ======= Cta Section ======= -->
 
-
-
-    <!-- ======= Portfolio Section ======= -->
-    <!-- <section id="portfolio" class="portfolio">
+    <section id="cta" class="cta">
       <div class="container">
 
-        <div class="section-title" data-aos="fade-left">
-          <h2>Galery KECAMATAN</h2>
-          <p>Kegiatan yang ada di kecamatan</p>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="<?= base_url(''); ?>assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 1</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="<?= base_url(''); ?>assets/img/portfolio/portfolio-1.jpg" class="venobox"><i class="bx bx-plus"></i></a>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="<?= base_url(''); ?>assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="<?= base_url(''); ?>assets/img/portfolio/portfolio-2.jpg" class="venobox"><i class="bx bx-plus"></i></a>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="<?= base_url(''); ?>assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>App 2</h4>
-                <p>App</p>
-                <div class="portfolio-links">
-                  <a href="<?= base_url(''); ?>assets/img/portfolio/portfolio-3.jpg" class="venobox"><i class="bx bx-plus"></i></a>
-
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <div class="text-center" data-aos="zoom-in">
+          <h3>Pengajuan Surat</h3>
+          <p> Sistem ini dibuat agar mempermudah warga kecamatan dalam mengajukan persyaratan dan menghindari human error</p>
+          <a class="cta-btn" href="#">Ajukan</a>
         </div>
 
       </div>
-    </section>End Portfolio Section -->
+    </section><!-- End Cta Section -->
+    <!-- ======= Cta Section ======= -->
+
     <section id="team" class="team">
       <div class="container">
 
@@ -203,13 +156,6 @@
                   <div class="member-info">
                     <h4><?= $profile['camat']; ?></h4>
                     <span>Pimpinan Kecamatan</span>
-                    <!-- <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p> -->
-                    <!-- <div class="social">
-                      <a href=""><i class="ri-twitter-fill"></i></a>
-                      <a href=""><i class="ri-facebook-fill"></i></a>
-                      <a href=""><i class="ri-instagram-fill"></i></a>
-                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                    </div> -->
                   </div>
                 </div>
               </div>
@@ -222,13 +168,6 @@
                   <div class="member-info">
                     <h4><?= $profile['sekcam']; ?></h4>
                     <span>Sekretaris Kecamatan</span>
-                    <!-- <p>Aut maiores voluptates amet et quis praesentium qui senda para</p> -->
-                    <!-- <div class="social">
-                      <a href=""><i class="ri-twitter-fill"></i></a>
-                      <a href=""><i class="ri-facebook-fill"></i></a>
-                      <a href=""><i class="ri-instagram-fill"></i></a>
-                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                    </div> -->
                   </div>
                 </div>
               </div>
@@ -237,62 +176,6 @@
         </div>
       </div>
     </section><!-- End Team Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <!-- <section id="testimonials" class="testimonials section-bg">
-
-      <div class="container">
-
-        <div class="row">
-          <div class="col-lg-4">
-            <div class="section-title" data-aos="fade-right">
-              <h2>Pimpinan Kecamatan</h2>
-            </div>
-          </div>
-          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
-            <div class="owl-carousel testimonials-carousel">
-              <div class="testimonial-item">
-                <h3><?= $profile['camat']; ?></h3>
-                <h4>Kepala Kecamatan</h4>
-
-                <div class="team">
-                  <div class="member">
-                    <div class="pic">
-                      <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_camat']; ?>" class="img-fluid" alt="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="testimonial-item">
-                <h3><?= $profile['sekcam']; ?></h3>
-                <h4>Sekretaris Kecamatan</h4>
-                <div class="team">
-                  <div class="member">
-                    <div class="pic">
-                      <img src="<?= base_url('assets/') ?>img/testimonials/<?= $profile['f_sekcam']; ?>" class="img-fluid" alt="">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!-- End Testimonials Section -->
-
-    <section id="cta" class="cta">
-      <div class="container">
-
-        <div class="text-center" data-aos="zoom-in">
-          <h3>Pengajuan Surat</h3>
-          <p> Sistem ini dibuat agar mempermudah warga kecamatan dalam mengajukan persyaratan dan menghindari human error</p>
-          <a class="cta-btn" href="#">Ajukan</a>
-        </div>
-
-      </div>
-    </section><!-- End Cta Section -->
     <!-- ======= Team Section ======= -->
     <section id="team" class="team">
       <div class="container">
@@ -315,13 +198,6 @@
                   <div class="member-info">
                     <h4><?= $profile['s_pemerintahan']; ?></h4>
                     <span>Seksi Pemerintahan</span>
-                    <!-- <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p> -->
-                    <!-- <div class="social">
-                      <a href=""><i class="ri-twitter-fill"></i></a>
-                      <a href=""><i class="ri-facebook-fill"></i></a>
-                      <a href=""><i class="ri-instagram-fill"></i></a>
-                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                    </div> -->
                   </div>
                 </div>
               </div>
@@ -334,13 +210,7 @@
                   <div class="member-info">
                     <h4><?= $profile['s_trantib']; ?></h4>
                     <span>Seksi Trantib</span>
-                    <!-- <p>Aut maiores voluptates amet et quis praesentium qui senda para</p> -->
-                    <!-- <div class="social">
-                      <a href=""><i class="ri-twitter-fill"></i></a>
-                      <a href=""><i class="ri-facebook-fill"></i></a>
-                      <a href=""><i class="ri-instagram-fill"></i></a>
-                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                    </div> -->
+
                   </div>
                 </div>
               </div>
@@ -351,13 +221,7 @@
                   <div class="member-info">
                     <h4><?= $profile['s_pelindung']; ?></h4>
                     <span>Seksi Perlindungan Masyarakat</span>
-                    <!-- <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p> -->
-                    <!-- <div class="social">
-                      <a href=""><i class="ri-twitter-fill"></i></a>
-                      <a href=""><i class="ri-facebook-fill"></i></a>
-                      <a href=""><i class="ri-instagram-fill"></i></a>
-                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                    </div> -->
+
                   </div>
                 </div>
               </div>
@@ -368,13 +232,7 @@
                   <div class="member-info">
                     <h4><?= $profile['s_sosial']; ?></h4>
                     <span>Seksi Kesejahteraan Sosial</span>
-                    <!-- <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p> -->
-                    <!-- <div class="social">
-                      <a href=""><i class="ri-twitter-fill"></i></a>
-                      <a href=""><i class="ri-facebook-fill"></i></a>
-                      <a href=""><i class="ri-instagram-fill"></i></a>
-                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                    </div> -->
+
                   </div>
                 </div>
               </div>
@@ -385,13 +243,7 @@
                   <div class="member-info">
                     <h4><?= $profile['s_pembangunan']; ?></h4>
                     <span>Seksi Pembangunan</span>
-                    <!-- <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p> -->
-                    <!-- <div class="social">
-                      <a href=""><i class="ri-twitter-fill"></i></a>
-                      <a href=""><i class="ri-facebook-fill"></i></a>
-                      <a href=""><i class="ri-instagram-fill"></i></a>
-                      <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                    </div> -->
+
                   </div>
                 </div>
               </div>
@@ -442,32 +294,6 @@
                 </div>
               </div>
 
-              <!-- <form action="forms/contact.php" method="post" role="form" class="php-email-form mt-4">
-                <div class="form-row">
-                  <div class="col-md-6 form-group">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                    <div class="validate"></div>
-                  </div>
-                  <div class="col-md-6 form-group">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                    <div class="validate"></div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                  <div class="validate"></div>
-                </div>
-                <div class="form-group">
-                  <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                  <div class="validate"></div>
-                </div>
-                <div class="mb-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-                </div>
-                <div class="text-center"><button type="submit">Send Message</button></div>
-              </form> -->
             </div>
 
           </div>

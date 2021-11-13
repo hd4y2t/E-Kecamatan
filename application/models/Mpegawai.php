@@ -49,16 +49,11 @@ class Mpegawai extends CI_Model
                    ";
         return $this->db->query($query)->row_array();
     }
-
-
-    // public function inputsubmenu($array)
-    // {
-    //     $this->db->insert('user_sub_menu', $array);
-    // }
-
-    // public function deleteSubmenu($id)
-    // {
-    //     $this->db->where('id', $id);
-    //     $this->db->delete('user_sub_menu');
-    // }
+    public function getBerita()
+    {
+        $query = "SELECT *
+                   FROM `berita` ORDER BY id_berita DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
 }

@@ -16,8 +16,6 @@ class Home extends CI_Controller
 
     public function index()
     {
-        // $data = $this->dashboard->user();
-        // $data['profile'] = $this->galery->profil();
         $data['title'] = 'E-Kecamatan';
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $data['antrian'] = $this->db->get_where('pengajuan_surat', ['status !=' => 5])->num_rows();
@@ -30,6 +28,33 @@ class Home extends CI_Controller
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar', $data);
         $this->load->view('home/index', $data);
+        $this->load->view('home/footer');
+    }
+    public function berita()
+    {
+        // $data = $this->dashboard->user();
+        // $data['profile'] = $this->galery->profil();
+        $data['title'] = 'E-Kecamatan';
+        $data['berita'] = $this->db->get('penduduk')->num_rows();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+        $data['berita'] = $this->db->get_where('berita')->result_array();
+
+        $this->load->view('home/header', $data);
+        $this->load->view('home/navbar', $data);
+        $this->load->view('home/berita', $data);
+        $this->load->view('home/footer');
+    }
+    public function detail_berita()
+    {
+        // $data = $this->dashboard->user();
+        // $data['profile'] = $this->galery->profil();
+        $data['title'] = 'E-Kecamatan';
+        $data['berita'] = $this->db->get('penduduk')->num_rows();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->load->view('home/header', $data);
+        $this->load->view('home/navbar', $data);
+        $this->load->view('home/detail_berita', $data);
         $this->load->view('home/footer');
     }
     public function s_online()
