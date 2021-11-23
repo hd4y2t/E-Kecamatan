@@ -124,33 +124,25 @@ class Pegawai extends CI_Controller
         $this->form_validation->set_rules('nm_kategori', 'Nama Kategori', 'required');
         $data['edit_kategori'] = $this->db->get_where('kategori', ['id_kategori' => $id_kategori])->row_array();
 
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('pegawai/editkategori', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $nm_kategori =  $this->input->post("nm_kategori", TRUE);
-            $array = [
-                'nm_kategori' => $nm_kategori
-            ];
-            $this->db->set('nm_kategori', $nm_kategori);
-            $this->db->where('id_kategori', $id_kategori);
-            $this->db->update('kategori', $array);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert"> kategori berhasil di edit </div>'
-            );
-            redirect('pegawai/kategori');
-        }
+        $nm_kategori =  $this->input->post("nm_kategori", TRUE);
+        $array = [
+            'nm_kategori' => $nm_kategori
+        ];
+        $this->db->set('nm_kategori', $nm_kategori);
+        $this->db->where('id_kategori', $id_kategori);
+        $this->db->update('kategori', $array);
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success" role="alert"> kategori berhasil di edit </div>'
+        );
+        redirect('pegawai/kategori');
     }
-    // public function hapusKategori($id)
-    // {
-    //     $this->Madmin->delete_role($id);
-    //     $this->session->set_flashdata('flash', 'Dihapus');
-    //     redirect('admin/role');
-    // }
+    public function hapusKategori($id)
+    {
+        $this->Madmin->delete_role($id);
+        $this->session->set_flashdata('flash', 'Kategori Berhasil Dihapus');
+        redirect('pegawai/kategori');
+    }
 
     public function bidang()
     {
@@ -398,7 +390,7 @@ class Pegawai extends CI_Controller
     public function hapusSuratKeluar($id)
     {
         $data = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-        unlink("./uploads/surat_keluar/" . $data['file_surat_keluar']);
+        unlink("./upload/surat_keluar/" . $data['file_surat_keluar']);
         $this->db->where(['id' => $id]);
         $this->db->delete('surat_keluar');
         $this->session->set_flashdata('success', 'Berhasil Dihapus!');
@@ -529,5 +521,130 @@ class Pegawai extends CI_Controller
         $this->load->view('templates/navbar', $data);
         $this->load->view('pegawai/berita', $data);
         $this->load->view('templates/footer');
+    }
+    public function tambah_berita()
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $user = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Berita';
+        $data['berita'] = $this->db->get('berita')->result_array();
+        $data['kategori_berita'] = $this->db->get('kategori_berita')->result_array();
+
+        $this->form_validation->set_rules('judul', 'Judul', 'required');
+        $this->form_validation->set_rules('body', 'body', 'required');
+        $this->form_validation->set_rules('kategori', 'kategori', 'required');
+        // $this->form_validation->set_rules('foto', 'foto', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('pegawai/tambah_berita', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $judul = $this->input->post('judul', true);
+            $author = $user['username'];
+            $judulSlug = trim(strtolower($this->input->post('judul')));
+            $body =  $this->input->post("body", TRUE);
+            $kategori =  $this->input->post("kategori", TRUE);
+            $out = explode(" ", $judulSlug);
+            $slug = implode("-", $out);
+            $pecah = explode(".", $body);
+
+            $excerpt = $pecah[0];
+
+            // var_dump($excerpt);
+
+            $config['upload_path']          = './upload/berita';
+            $config['allowed_types']        = 'jpg|jpeg|png|JPG';
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('foto')) {
+
+                $data = array('upload_data' => $this->upload->data());
+                $foto = $data['upload_data']['file_name'];
+
+                $save = [
+                    'id_berita' => '',
+                    'author' => $author,
+                    'judul' => $judul,
+                    'kategori_id' => $kategori,
+                    'slug' => $slug,
+                    'excerpt' => $excerpt,
+                    'body' => $body,
+                    'foto' => $foto,
+                    'created_at' => date('d-m-Y')
+                ];
+
+                $this->db->insert('berita', $save);
+                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+                redirect(base_url("pegawai/berita"));
+            }
+        }
+    }
+    public function edit_berita($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $user = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Berita';
+        $this->load->model('Mpegawai', 'pegawai');
+        $data['kategori_berita'] = $this->db->get('kategori_berita')->result_array();
+        $data['berita'] = $this->pegawai->getEditBerita($id);
+
+        if ($this->form_validation->run() == FALSE) {
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('pegawai/edit_berita', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $judul = $this->input->post('judul', true);
+            $author = $user['username'];
+            $judulSlug = trim(strtolower($this->input->post('judul')));
+            $body =  $this->input->post("body", TRUE);
+            $out = explode(" ", $judulSlug);
+            $slug = implode("-", $out);
+            $pecah = explode(".", $body);
+
+            $excerpt = $pecah[0];
+
+
+            $config['upload_path']          = './upload/berita';
+            $config['allowed_types']        = 'jpg|jpeg|png|JPG';
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('foto')) {
+
+                $data = array('upload_data' => $this->upload->data());
+                $foto = $data['upload_data']['file_name'];
+
+                $save = [
+                    'id_berita' => '',
+                    'author' => $author,
+                    'judul' => $judul,
+                    'slug' => $slug,
+                    'excerpt' => $excerpt,
+                    'body' => $body,
+                    'foto' => $foto,
+                    'created_at' => date('d-m-Y')
+                ];
+
+                $this->db->update('berita', $save);
+                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+                redirect(base_url("pegawai/berita"));
+            }
+        }
+    }
+
+    public function hapus_berita($id)
+    {
+        $data = $this->db->get_where('berita', ['id_berita' => $id])->row_array();
+        unlink("./upload/berita/" . $data['foto']);
+        $this->db->where(['id_berita' => $id]);
+        $this->db->delete('berita');
+        $this->session->set_flashdata('message', 'Berhasil Dihapus!');
+        redirect(base_url('pegawai/berita'));
     }
 }

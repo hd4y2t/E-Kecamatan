@@ -67,7 +67,7 @@ class Loket extends CI_Controller
             $dateNow = date('Y-m-d');
 
             $save = [
-                'nm_surat_keluar' => '[' . $pndk['nama'] . '-' . $pndk['nik'] . ']',
+                'nm_surat_keluar' => $pndk['nik'],
                 'surat_id' => $pSurat['id_surat'],
                 'tgl' => date('d-m-Y', strtotime($dateNow)),
                 'keterangan' => 'Surat ' . $surat['nm_surat'],

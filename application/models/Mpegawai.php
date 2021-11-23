@@ -49,10 +49,47 @@ class Mpegawai extends CI_Model
                    ";
         return $this->db->query($query)->row_array();
     }
-    public function getBerita()
+    public function profile()
     {
         $query = "SELECT *
-                   FROM `berita` ORDER BY id_berita DESC
+                   FROM `profile`
+                   where id = 1
+                   ";
+        return $this->db->query($query)->row_array();
+    }
+    public function getBerita()
+    {
+        $query = "SELECT `berita`.*,`user`.`nama`,`kategori_berita`.`nm_kategori`
+                   FROM berita
+                   JOIN `user` ON `berita`.`author` = `user`.`username`
+                   JOIN `kategori_berita` ON `berita`.`kategori_id` = `kategori_berita`.`id_kategori`
+                   ORDER BY id_berita DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function detailBerita($slug)
+    {
+        $query = "SELECT `berita`.*,`user`.`nama`
+                   FROM berita
+                   JOIN `user` ON `berita`.`author` = `user`.`username`
+                   WHERE slug = '$slug'
+                   ";
+        return $this->db->query($query)->row_array();
+    }
+    public function getEditBerita($id)
+    {
+        $query = "SELECT *
+                   FROM berita
+                  WHERE id_berita = $id
+                   ";
+        return $this->db->query($query)->row_array();
+    }
+    public function getBeritaLimit()
+    {
+        $query = "SELECT `berita`.*,`user`.`nama`
+                   FROM berita
+                   JOIN `user` ON `berita`.`author` = `user`.`username`
+                   ORDER BY id_berita DESC LIMIT 4
                    ";
         return $this->db->query($query)->result_array();
     }

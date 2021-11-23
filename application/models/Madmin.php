@@ -23,6 +23,12 @@ class Madmin extends CI_Model
                     ";
         return $this->db->query($query)->result_array();
     }
+    public function getIdRole($id)
+    {
+        $query = "SELECT * FROM user_role Where id = $id
+                    ";
+        return $this->db->query($query)->row_array();
+    }
 
     function getDataKelurahan()
     {

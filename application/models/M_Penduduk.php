@@ -21,6 +21,15 @@ class M_Penduduk extends CI_Model
         return $this->db->get_where('penduduk', array('nik' => $nik));
     }
 
+    public function getJoinPengajuan()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat`
+                   JOIN `penduduk` ON `pengajuan_surat`.`nik` = `penduduk`.`nik`
+                   ";
+        return $this->db->query($query)->row_array();
+    }
+
     public function getSurat()
     {
         $query = "SELECT `pengajuan_surat`.*, `surat`.`nm_surat`
@@ -28,5 +37,22 @@ class M_Penduduk extends CI_Model
                    ON `pengajuan_surat`.`id_surat` = `surat`.`id_surat`
                    ";
         return $this->db->query($query)->result_array();
+    }
+    public function joinPenduduk()
+    {
+        $query = "SELECT `surat_keluar`.*, `penduduk`.*
+                   FROM `surat_keluar`
+                   JOIN `penduduk` ON `surat_keluar`.`nm_surat_keluar` = `penduduk`.`nik`
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function getJoinPenduduk($id)
+    {
+        $query = "SELECT `surat_keluar`.*, `penduduk`.*
+                   FROM `surat_keluar`
+                   JOIN `penduduk` ON `surat_keluar`.`nm_surat_keluar` = `penduduk`.`nik`
+                   WHERE `surat_keluar`.`nm_surat_keluar` = $id
+                   ";
+        return $this->db->query($query)->row_array();
     }
 }

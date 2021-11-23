@@ -56,8 +56,6 @@
             </div>
         </div>
     </div>
-
-</div>
 </div>
 
 
@@ -99,20 +97,12 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <tr>
-                            <td>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" id="active" name="active" type="checkbox" value="1" checked>
-                                        <span class="form-check-sign">
-                                            <span class="check"></span>
-                                        </span>
-                            <td>
-                                Aktif ?
-                            </td>
-                            </label>
-                            </td>
-                        </tr>
+                        <label class="label-control mr-4">Status</label>
+                        <select class="selectpicker" name="active" id="active" data-style="btn btn-success btn-round" title="Single Select" data-size="7">
+                            <option disabled selected>Status</option>
+                            <option value='0'>Aktif</option>
+                            <option value='1'>Non Aktif</option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
@@ -127,7 +117,7 @@
 <!-- Modal -->
 <?php
 $no = 0;
-foreach ($akun as $k) : $no++; ?>
+foreach ($akun as $k) : $no++ ?>
     <div class="modal fade" id="newModeluseredit<?= $k['id_user']; ?>" tabindex="-1" aria-labelledby="newModelusereditLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -137,7 +127,7 @@ foreach ($akun as $k) : $no++; ?>
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="<?= base_url('admin/edituser/') . $k['id_user']; ?>" method="post">
+                <form action="<?= base_url('admin/editUser/') . $k['id_user']; ?>" method="post">
                     <div class="modal-body">
                         <div class="form-group">
                             <label class="bmd-label-floating">Usernmae</label>
@@ -151,34 +141,31 @@ foreach ($akun as $k) : $no++; ?>
                             <label class="bmd-label-floating">Nomor induk pegawai</label>
                             <input type="text" class="form-control" id="nip" name="nip" value="<?= $k['nip']; ?>">
                         </div>
-                        <div class=" form-group">
-                            <label class="bmd-label-floating">Password</label>
-                            <input type="password" class="form-control" id="passsword" name="passsword" value="<?= $k['password']; ?>">
-                        </div>
                         <div class="form-group">
                             <label class="label-control">Hak Akses</label>
                             <select class="selectpicker" name="role" id="role" data-style="btn btn-success btn-round" title="Single Select" data-size="7">
                                 <option disabled selected>Pilih Hak Akses</option>
-                                <?php foreach ($role as $b) : ?>
-                                    <option value="<?= $b['id']; ?>"><?= $b['role']; ?></option>
+                                <?php foreach ($role as $b) :
+                                    if ($k['role_id'] == $b['id']) {
+                                ?>
+                                        <option value="<?= $b['id']; ?>"><?= $b['role']; ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?= $b['id']; ?>"><?= $b['role']; ?></option>
+                                    <?php  } ?>
+
                                 <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <tr>
-                                <td>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                            <input class="form-check-input" id="active" name="active" type="checkbox" value="1" checked>
-                                            <span class="form-check-sign">
-                                                <span class="check"></span>
-                                            </span>
-                                <td>
-                                    Aktif ?
-                                </td>
-                                </label>
-                                </td>
-                            </tr>
+                            <label class="label-control mr-3">Status</label>
+                            <select class="selectpicker" name="active" id="active" data-style="btn btn-success btn-round" title="Single Select" data-size="7">
+                                <?php if ($k['is_active'] == 0) { ?>
+                                    <option value='0' selected>Non Aktif</option>
+                                    <option value='1'> Aktif</option>
+                                <?php } else { ?>
+                                    <option value='0'>Non Aktif</option>
+                                    <option value='1' selected>Aktif</option>
+                                <?php } ?>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>

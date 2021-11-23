@@ -9,9 +9,11 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->model('pengajuan_track_model', 'pengajuan_track');
         $this->load->model('M_Penduduk', 'penduduk');
+        $this->load->model('Mpegawai', 'pegawai');
 
         $this->load->helper(array('form', 'url', 'Cookie', 'String'));
         $this->load->library('form_validation');
+        $this->load->library('Pdf');
     }
 
     public function index()
@@ -30,45 +32,47 @@ class Home extends CI_Controller
         $this->load->view('home/index', $data);
         $this->load->view('home/footer');
     }
-    public function berita()
+    public function layanan()
     {
-        // $data = $this->dashboard->user();
-        // $data['profile'] = $this->galery->profil();
         $data['title'] = 'E-Kecamatan';
-        $data['berita'] = $this->db->get('penduduk')->num_rows();
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
-        $data['berita'] = $this->db->get_where('berita')->result_array();
+        $data['suratIzin'] = $this->db->get_where('surat', ['id_kategori' => 1])->result_array();
+        $data['suratNonIzin'] = $this->db->get_where('surat', ['id_kategori' => 2])->result_array();
 
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar', $data);
-        $this->load->view('home/berita', $data);
+        $this->load->view('home/layanan', $data);
         $this->load->view('home/footer');
     }
-    public function detail_berita()
+    public function alur()
     {
-        // $data = $this->dashboard->user();
-        // $data['profile'] = $this->galery->profil();
         $data['title'] = 'E-Kecamatan';
-        $data['berita'] = $this->db->get('penduduk')->num_rows();
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
 
         $this->load->view('home/header', $data);
         $this->load->view('home/navbar', $data);
-        $this->load->view('home/detail_berita', $data);
+        $this->load->view('home/alur', $data);
         $this->load->view('home/footer');
     }
+    public function struktur()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->load->view('home/header', $data);
+        $this->load->view('home/navbar', $data);
+        $this->load->view('home/struktur', $data);
+        $this->load->view('home/footer');
+    }
+
     public function s_online()
     {
-        // $data = $this->dashboard->user();
-        // $data['profile'] = $this->galery->profil();
         $data['title'] = 'E-Kecamatan';
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $data['antrian'] = $this->db->get_where('pengajuan_surat', ['status !=' => 5])->num_rows();
         $data['surat'] = $this->db->get('surat')->result_array();
         $data['user'] = $this->db->get('user')->num_rows();
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);
 
         $this->form_validation->set_rules('nik', 'nik', 'required');
         $this->form_validation->set_rules('nama', 'nama', 'required');
@@ -234,7 +238,7 @@ class Home extends CI_Controller
 
     public function tracked()
     {
-        $id = $this->uri->segment(3);
+        $id = $this->uri->segment(3);   
         $data['row'] = $this->pengajuan_track->showById($id);
         // $data['pengajuan_surat'] = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
@@ -250,5 +254,20 @@ class Home extends CI_Controller
         $this->load->view('home/navbar', $data);
         $this->load->view('home/result', $data);
         $this->load->view('home/footer');
+    }
+
+    public function cetak()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $id = 2222;
+        $query = "SELECT `surat_keluar`.*, `penduduk`.*
+                   FROM `penduduk`
+                   JOIN `surat_keluar` ON `penduduk`.`nik` = `surat_keluar`.`nm_surat_keluar`
+                   WHERE `penduduk`.`nik` = $id
+                   ";
+        $data['surat_keluar'] = $this->db->query($query)->row_array();
+        // $data['surat_keluar'] = $this->penduduk->getJoinPenduduk($id);
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+        $this->load->view('cetak/cetak_surat', $data);
     }
 }

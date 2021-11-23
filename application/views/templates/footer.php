@@ -5,6 +5,7 @@
 
 <!--Export table buttons-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
@@ -13,19 +14,10 @@ https://code.jquery.com/jquery-3.5.1.js -->
 <!-- https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js
 https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js -->
 
-<!-- CKeditor -->
-<!-- <script type="text/javascript" src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('isi_surat');
-    CKEDITOR.config.allowedContent = true;
-    CKEDITOR.config.extraPlugins = 'tab';
-    CKEDITOR.config.pasteFromWordRemoveFontStyles = true;
-</script>
-Data Table -->
-
 <!--Export table button CSS-->
 
 <script src=" <?= base_url(); ?>assets/js/core/jquery.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/core/popper.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!-- Plugin for the momentJs  -->
@@ -76,6 +68,11 @@ Data Table -->
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src="<?= base_url(); ?>assets/demo/demo.js"></script>
 
+<!-- jQuery -->
+<!-- <script src="<?= base_url(); ?>plugins/jquery/jquery.min.js"></script> -->
+<!-- jQuery UI 1.11.4 -->
+<!-- <script src="<?= base_url(); ?>plugins/jquery-ui/jquery-ui.min.js"></script> -->
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
@@ -258,9 +255,9 @@ Data Table -->
 
     $(document).ready(function() {
         $('#myTable').DataTable({
-            responsive: {
-                details: true
-            },
+            // responsive: {
+            // details: true
+            // },
             // dom: 'Bfrtip',
             // buttons: [
             //     'excel', 'pdf', 'print'
@@ -269,7 +266,7 @@ Data Table -->
     });
     <?php
     foreach ($grafik as $data) {
-        $kelurahan[] = $data->kelnm_kelurarahan;
+        $kelurahan[] = $data->nm_kelurarahan;
         $jumlah[] = (float) $data->pengajuan;
     }
     ?>

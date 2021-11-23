@@ -30,9 +30,8 @@
                                                         <td><?= $r['role']; ?></td>
                                                         <td>
                                                             <a href="<?= base_url('admin/role_akses/') . $r['id']; ?>" class="btn btn-warning btn-sm">akses </a>
-                                                            <a href="" class="btn btn-primary btn-sm">edit </a>
+                                                            <a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#newModelkategoriedit<?= $r['id']; ?>"><i class="material-icons">edit</i></a>
                                                             <a href="<?= base_url(); ?>admin/delete_role/<?= $r['id']; ?>" onclick="return confirm('yakin?');" class="btn btn-danger btn-sm"> <i class="material-icons">delete</i> </a>
-
                                                         </td>
                                                         <?php $i++; ?>
                                                     </tr>
@@ -79,4 +78,34 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<?php
+$no = 0;
+foreach ($role as $k) : $no++; ?>
+    <div class=" modal fade" id="newModelkategoriedit<?= $k['id']; ?>" tabindex="-1" aria-labelledby="newModelkategorieditLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newModelkategorieditLabel">Edit Role</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?= base_url('admin/editRole/') . $k['id']; ?>" method="post">
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control" id="id" name="id" value="<?= $k['id']; ?>">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Nama Role</label>
+                            <input type="text" class="form-control" id="role" name="role" value="<?= $k['role']; ?>">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                            <button type="Submit" class="btn btn-primary">Edit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
 </body>
