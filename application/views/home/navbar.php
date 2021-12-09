@@ -18,7 +18,7 @@
             <li class="active"><a href="<?= base_url('home'); ?>">Home</a></li>
             <li class="drop-down"><a href="">Layanan</a>
               <ul>
-                <li><a href="<?= base_url('home/layanan'); ?>">Info Layanan</a></li>
+                <!-- <li><a href="<?= base_url('home/layanan'); ?>">Info Layanan</a></li> -->
                 <li><a href="<?= base_url('home/alur') ?>">Alur Pengajuan Surat</a></li>
                 <li><a href="<?= base_url('home/s_online') ?>">Pengajuan Surat</a></li>
                 <li><a href="<?= base_url('home/tracking') ?>">Cek Status Surat</a></li>

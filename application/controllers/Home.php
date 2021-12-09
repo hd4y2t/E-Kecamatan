@@ -71,6 +71,7 @@ class Home extends CI_Controller
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $data['antrian'] = $this->db->get_where('pengajuan_surat', ['status !=' => 5])->num_rows();
         $data['surat'] = $this->db->get('surat')->result_array();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
         $data['user'] = $this->db->get('user')->num_rows();
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
 
@@ -238,7 +239,7 @@ class Home extends CI_Controller
 
     public function tracked()
     {
-        $id = $this->uri->segment(3);   
+        $id = $this->uri->segment(3);
         $data['row'] = $this->pengajuan_track->showById($id);
         // $data['pengajuan_surat'] = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
