@@ -16,13 +16,26 @@ class Mpegawai extends CI_Model
 
     public function getSurat()
     {
-        $query = "SELECT `surat_keluar`.*, `surat`.`nm_surat`
-                   FROM `surat_keluar` JOIN `surat`
-                   ON `surat_keluar`.`surat_id` = `surat`.`id_surat`
-                   ORDER BY `surat_keluar`.`status` ASC
-                   ";
+        $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.*
+                    FROM `pembuatan_surat`
+                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju` 
+                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju`=`pembuatan_surat`.`pengaju_id`
+                    ORDER BY `pembuatan_surat`.`status_surat` ASC
+                    ";
         return $this->db->query($query)->result_array();
     }
+    public function getSuratSKM($id)
+    {
+        $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                    FROM `pembuatan_surat`
+                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju` 
+                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju`=`pembuatan_surat`.`pengaju_id`
+                    JOIN `kelurahan` ON `kelurahan`.`id_kelurahan`=`penduduk`.`kelurahan`
+                    WHERE `pembuatan_surat`.`no_surat` = $id
+                    ";
+        return $this->db->query($query)->row_array();
+    }
+
     public function getSuratBaru()
     {
         $query = "SELECT `surat_keluar`.*, `surat`.`nm_surat`

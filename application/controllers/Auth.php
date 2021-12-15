@@ -31,7 +31,7 @@ class Auth extends CI_Controller
         } else {
             $seksion = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
             $username = $seksion['username'];
-            $query = "SELECT `user`.* ,`user_role`.`role`
+            $query = "SELECT `user`.* ,`user_role`.*
                         FROM `user`
                         JOIN `user_role` ON `user`.`role_id` = `user_role`.`id`
                         WHERE `user`.`username` = $username
@@ -92,6 +92,31 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('role_id');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil logout </div>');
         redirect('auth');
+    }
+
+    public function dashboard()
+    {
+        $this->load->view('auth/dashboard');
+    }
+
+    public function icons()
+    {
+        $this->load->view('auth/icons');
+    }
+
+    public function tables()
+    {
+        $this->load->view('auth/tables');
+    }
+
+    public function user()
+    {
+        $this->load->view('auth/user');
+    }
+
+    public function notification()
+    {
+        $this->load->view('auth/notification');
     }
 
     public function block()

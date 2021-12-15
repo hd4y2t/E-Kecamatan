@@ -76,10 +76,8 @@
                             <div class="col-md-12">
                                 <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/berkas') ?>/<?= $m['file'] ?>"></embed>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer text-center">
                     <button type="button" class="btn btn-info btn-round" data-dismiss="modal">Tutup</button>

@@ -6,47 +6,136 @@ class Pegawai extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Mpegawai');
-        $this->load->library('form_validation');
+        $this->load->model('Mpegawai', 'pegawai');
+        $this->load->library('form_validation', 'Pdf');
+        $this->load->library('Pdf');
+
         is_logged_in();
     }
 
     public function index()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Data Surat';
+        $data['title'] = 'Pembuatan Surat';
         $this->load->model('Mpegawai', 'pegawai');
-        $data['surat'] = $this->pegawai->joinDataSurat();
-        $data['kategori'] = $this->db->get('kategori')->result_array();
-        $data['bidang'] = $this->db->get('bidang')->result_array();
+        $data['ps'] = $this->pegawai->getSurat();
+        $data['status'] = [
+            1 => 'Surat Belum dibuat',
+            2 => 'Pending',
+            3 => 'Ditolak',
+            4 => 'Dilanjutkan',
+            5 => 'Telah Diparaf',
+        ];
+        $data['surat'] = [
+            'SKM' => 'Surat Keterangan Miskin',
+            'SKBPR' => 'Surat Keterangan Belum Punya Rumah',
+            'SKU' => 'Surat Keterangan Usaha',
+            'SKDP' => 'Surat Keterangan Domisili Perusahaan',
+            'SKN' => 'Surat Keterangan Nikah',
+            'SKD' => 'Surat Keterangan Domisili',
+            'SKP' => 'Surat Keterangan Penghasilan',
+            'SKOS' => 'Surat Keterangan Orang Yang Sama',
+            'SPC' => 'Surat Pengantar Cerai',
+            'SPSKCK' => 'Surat Pengantar SKCK',
+            'SPIK' => 'Surat Pengantar Izin Keramaian'
+        ];
 
-        $this->form_validation->set_rules('surat', 'surat', 'required');
-        $this->form_validation->set_rules('kategori', 'kategori', 'required');
-        $this->form_validation->set_rules('bidang', 'bidang', 'required');
-        $this->form_validation->set_rules('syarat', 'syarat', 'required');
+        $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
-        if ($this->form_validation->run() == false) {
+        if ($this->form_validation->run() == FALSE) {
+
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
             $this->load->view('pegawai/index', $data);
             $this->load->view('templates/footer');
         } else {
-            $array = [
+            $no_surat =  $this->input->post("no_surat", TRUE);
+            $tgl =  $this->input->post("tgl", TRUE);
+            $keterangan =  $this->input->post("keterangan", TRUE);
+            // $file_surat =  $this->input->post("file_surat", TRUE);
 
-                'id_kategori' => $this->input->post('kategori', true),
-                'id_bidang' => $this->input->post('bidang', true),
-                'nm_surat' => $this->input->post('surat', true),
-                'syarat' => $this->input->post('syarat', true),
 
+            $save = [
+                'id' => '',
+                'no_surat' => $no_surat,
+                'tgl' => date('d-m-Y', strtotime($tgl)),
+                'keterangan' => $keterangan,
+                'status' => 1
             ];
-            $this->db->insert('surat', $array);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert"> Surat Baru ditambahkan </div>'
-            );
-            redirect('pegawai');
+
+            $this->db->update('pembuatan_surat', $save);
+            $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+            redirect(base_url("pegawai/index"));
         }
+    }
+
+    public function buatSurat($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Edit Kategori';
+        $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
+        $this->form_validation->set_rules('no_pengantar', 'Nomor Pengantar', 'required');
+        $this->form_validation->set_rules('tgl_pengantar', 'Tanggal Pengantar', 'required');
+        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        $data['buat_surat'] = $this->db->get_where('pembuatan_surat', ['id' => $id])->row_array();
+
+        $buat = $this->db->get_where('pembuatan_surat', ['id' => $id])->row_array();
+        $id_pengaju = $buat['pengaju_id'];
+
+        $no_surat =  $this->input->post("no_surat", TRUE);
+        $no_pengantar =  $this->input->post("no_pengantar", TRUE);
+        $tgl_pengantar =  $this->input->post("tgl_pengantar", TRUE);
+        $keterangan =  $this->input->post("keterangan", TRUE);
+        $data = [
+            'no_pengantar' => $no_pengantar,
+            'tgl_pengantar' => $tgl_pengantar,
+            'status' => 3
+        ];
+        // $this->db->set('no_pengantar', $no_surat);
+        // $this->db->set('tgl_pengantar', $tgl_pengantar);
+        // $this->db->set('status', 3);
+        $this->db->where('id_pengaju', $id_pengaju);
+        $this->db->update('pengajuan_surat', $data);
+
+        $array = [
+            'no_surat' => $no_surat,
+            'keterangan' => $keterangan,
+            'status_surat' => 2
+        ];
+        $this->db->set('no_surat', $no_surat);
+        $this->db->set('keterangan', $keterangan);
+        $this->db->where('id', $id);
+        $this->db->update('pembuatan_surat', $array);
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success" role="alert"> Surat ' . $id . ' Telah Dibuat </div>'
+        );
+        redirect('pegawai/index');
+    }
+
+    public function cetak_skm($id)
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['kode'] = [
+            'SKM' => 'SURAT KETERANGAN MISKIN',
+            'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+            'SKU' => 'SURAT KETERANGAN USAHA',
+            'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+            'SKN' => 'SURAT KETERANGAN NIKAH',
+            'SKD' => 'SURAT KETERANGAN DOMISILI',
+            'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+            'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+            'SPC' => 'SURAT PENGANTAR CERAI',
+            'SPSKCK' => 'SURAT PENGANTAR SKCK',
+            'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+        ];
+
+        $data['surat'] = $this->pegawai->getSuratSKM($id);
+        // $data['surat'] = $this->db->get_where('pembuatan_surat', ['id' => $id])->row_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+        $this->load->view('cetak/cetak_skm', $data);
     }
 
     public function edit_surat($id_surat)

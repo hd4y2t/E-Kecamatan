@@ -25,7 +25,7 @@ class Mcamat extends CI_Model
 
     public function getSurat()
     {
-        $query = "SELECT `surat_keluar`.*, `surat`.`nm_surat`
+        $query = "SELECT `pengajuan_surat`.*
                    FROM `surat_keluar` JOIN `surat`
                    ON `surat_keluar`.`surat_id` = `surat`.`id_surat`
                    WHERE  `status`= 4

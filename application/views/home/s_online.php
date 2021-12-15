@@ -14,6 +14,9 @@
   <section class="section-bg">
       <div class="contact" id="contact">
           <div class="container">
+              <?php if ($this->session->flashdata('success') == TRUE) : ?>
+                  <?= $this->session->flashdata('success'); ?>
+              <?php endif; ?>
               <div class="row">
                   <div class="col-lg-4" data-aos="fade-right">
                       <div class="section-title">
@@ -186,7 +189,10 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
+              <!-- <form action="<?php base_url('home/skm') ?>" method="post" enctype="multipart/form-data"> -->
+
+              <?php echo form_open_multipart('home/skm'); ?>
+
               <div class="modal-body">
                   <div class="form-group">
                       <label class="bmd-label-floating">Nik</label>
@@ -199,12 +205,12 @@
                   <div class="form-group">
 
                       <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
+                      <input type="text" class="form-control" id="no_hp" name="no_hp">
                   </div>
                   <div class="form-group">
 
                       <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
+                      <input type="email" class="form-control" id="email" name="email">
                   </div>
                   <div class="form-group">
                       <label class="bmd-label-floating">Alamat</label>
@@ -234,11 +240,10 @@
                   <div class="form-group">
                       <label class="label-control">Scan KTP</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="ktp" id="ktp" />
                               </span>
                           </div>
@@ -247,11 +252,10 @@
                   <div class="form-group">
                       <label class="label-control">Scan KK</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="kk" id="kk" />
                               </span>
                           </div>
@@ -260,11 +264,10 @@
                   <div class="form-group">
                       <label class="label-control">Surat Pengantar Lurah</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="pengantar" id="pengantar" />
                               </span>
                           </div>
@@ -273,20 +276,19 @@
                   <div class="form-group">
                       <label class="label-control">Surat Pernyataan</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="pernyataan" id="pernyataan" />
                               </span>
                           </div>
                       </div>
                   </div>
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('pernyataan', '<div class="text-danger">', '</div>'); ?>
+                  <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                  <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                  <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                  <?= form_error('pernyataan', '<div clasbtn btn-outline-success">', '</div>'); ?>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                       <button type="Submit" class="btn btn-success">Ajukan</button>
@@ -307,7 +309,8 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
+              <?php echo form_open_multipart('home/sktm'); ?>
+
               <div class="modal-body">
                   <div class="form-group">
                       <label class="bmd-label-floating">Nik</label>
@@ -320,7 +323,7 @@
                   <div class="form-group">
 
                       <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
+                      <input type="text" class="form-control" id="no_hp" name="no_hp">
                   </div>
                   <div class="form-group">
 
@@ -355,11 +358,10 @@
                   <div class="form-group">
                       <label class="label-control">Scan KTP</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="ktp" id="ktp" />
                               </span>
                           </div>
@@ -368,11 +370,10 @@
                   <div class="form-group">
                       <label class="label-control">Scan KK</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="kk" id="kk" />
                               </span>
                           </div>
@@ -381,11 +382,10 @@
                   <div class="form-group">
                       <label class="label-control">Surat Pengantar Lurah</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="pengantar" id="pengantar" />
                               </span>
                           </div>
@@ -394,20 +394,19 @@
                   <div class="form-group">
                       <label class="label-control">Surat Pernyataan</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="pernyataan" id="pernyataan" />
                               </span>
                           </div>
                       </div>
                   </div>
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('pernyataan', '<div class="text-danger">', '</div>'); ?>
+                  <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                  <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                  <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                  <?= form_error('pernyataan', '<div clasbtn btn-outline-success">', '</div>'); ?>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                       <button type="Submit" class="btn btn-success">Ajukan</button>
@@ -419,16 +418,17 @@
   </div>
 
   <!-- surat belum punya rumah-->
-  <div class=" modal fade" id="blmPunyaRumah" tabindex="-1" aria-labelledby="blmPunyaRumahLabel" aria-hidden="true">
+  <div class=" modal fade" id="skBelumPunyaRumah" tabindex="-1" aria-labelledby="skBelumPunyaRumahLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="blmPunyaRumahLabel">Surat Izin Keramaian</h5>
+                  <h5 class="modal-title" id="skBelumPunyaRumahLabel">Surat Keterangan Belum Punya Rumah</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
+              <?php echo form_open_multipart('home/skbpr'); ?>
+
               <div class="modal-body">
                   <div class="form-group">
                       <label class="bmd-label-floating">Nik</label>
@@ -439,9 +439,8 @@
                       <input type="text" class="form-control" id="nama" name="nama">
                   </div>
                   <div class="form-group">
-
                       <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
+                      <input type="text" class="form-control" id="no_hp" name="no_hp">
                   </div>
                   <div class="form-group">
 
@@ -476,11 +475,10 @@
                   <div class="form-group">
                       <label class="label-control">Scan KTP</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="ktp" id="ktp" />
                               </span>
                           </div>
@@ -489,11 +487,10 @@
                   <div class="form-group">
                       <label class="label-control">Scan KK</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="kk" id="kk" />
                               </span>
                           </div>
@@ -502,20 +499,19 @@
                   <div class="form-group">
                       <label class="label-control">Surat Pengantar Lurah</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
+
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
-                              <span class="btn btn-danger btn-file">
+                              <span class="btn btn-outline-success btn-file">
                                   <input type="file" name="pengantar" id="pengantar" />
                               </span>
                           </div>
                       </div>
                   </div>
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('pernyataan', '<div class="text-danger">', '</div>'); ?>
+                  <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                  <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                  <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                  <?= form_error('pernyataan', '<div clasbtn btn-outline-success">', '</div>'); ?>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                       <button type="Submit" class="btn btn-success">Ajukan</button>
@@ -536,120 +532,116 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nik</label>
-                      <input type="text" class="form-control" id="nik" name="nik">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Pengaju</label>
-                      <input type="text" class="form-control" id="nama" name="nama">
-                  </div>
-                  <div class="form-group">
+              <form action="<?php base_url('home/sku') ?>" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nik</label>
+                          <input type="text" class="form-control" id="nik" name="nik">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Pengaju</label>
+                          <input type="text" class="form-control" id="nama" name="nama">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
-                  </div>
-                  <div class="form-group">
+                          <label class="bmd-label-floating">Nomor Hp </label>
+                          <input type="text" class="form-control" id="no_hp" name="no_hp">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Kelurahan</label>
-                      <select name="kelurahan" id="kelurahan" class="form-control">
-                          <option value="">Pilih Kelurahan</option>
-                          <?php foreach ($kelurahan as $k) : ?>
-                              <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
-                          <?php endforeach; ?>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RT</label>
-                      <input type="number" class="form-control" id="rt" name="rt">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RW</label>
-                      <input type="number" class="form-control" id="rw" name="rw">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Keperluan</label>
-                      <input type="text" class="form-control" id="keperluan" name="keperluan">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Usaha</label>
-                      <input type="text" class="form-control" id="nm_usaha" name="nm_usaha">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat Usaha</label>
-                      <input type="text" class="form-control" id="alamat_usaha" name="alamat_usaha">
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KTP</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
-                              </span>
+                          <label class="bmd-label-floating">Email </label>
+                          <input type="text" class="form-control" id="email" name="email">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat</label>
+                          <input type="text" class="form-control" id="alamat" name="alamat">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Kelurahan</label>
+                          <select name="kelurahan" id="kelurahan" class="form-control">
+                              <option value="">Pilih Kelurahan</option>
+                              <?php foreach ($kelurahan as $k) : ?>
+                                  <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RT</label>
+                          <input type="number" class="form-control" id="rt" name="rt">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RW</label>
+                          <input type="number" class="form-control" id="rw" name="rw">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Keperluan</label>
+                          <input type="text" class="form-control" id="keperluan" name="keperluan">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Usaha</label>
+                          <input type="text" class="form-control" id="nm_usaha" name="nm_usaha">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat Usaha</label>
+                          <input type="text" class="form-control" id="alamat_usaha" name="alamat_usaha">
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KTP</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="ktp" id="ktp" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KK</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="kk" id="kk" />
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Lurah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pengantar" id="pengantar" />
-                              </span>
+                      <div class="form-group">
+                          <label class="label-control">Scan KK</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="kk" id="kk" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Permohonan</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="permohonan" id="permohonan" />
-                              </span>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Permohonan</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="permohonan" id="permohonan" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('permohonan', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                          <button type="Submit" class="btn btn-success">Ajukan</button>
+                      </div>
                   </div>
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('permohonan', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                      <button type="Submit" class="btn btn-success">Ajukan</button>
-                  </div>
-              </div>
               </form>
           </div>
       </div>
@@ -665,173 +657,165 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nik</label>
-                      <input type="text" class="form-control" id="nik" name="nik">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Pengaju</label>
-                      <input type="text" class="form-control" id="nama" name="nama">
-                  </div>
-                  <div class="form-group">
+              <form action="<?php base_url('home/skdp') ?>" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nik</label>
+                          <input type="text" class="form-control" id="nik" name="nik">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Pengaju</label>
+                          <input type="text" class="form-control" id="nama" name="nama">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
-                  </div>
-                  <div class="form-group">
+                          <label class="bmd-label-floating">Nomor Hp </label>
+                          <input type="text" class="form-control" id="no_hp" name="no_hp">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Kelurahan</label>
-                      <select name="kelurahan" id="kelurahan" class="form-control">
-                          <option value="">Pilih Kelurahan</option>
-                          <?php foreach ($kelurahan as $k) : ?>
-                              <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
-                          <?php endforeach; ?>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RT</label>
-                      <input type="number" class="form-control" id="rt" name="rt">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RW</label>
-                      <input type="number" class="form-control" id="rw" name="rw">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Keperluan</label>
-                      <input type="text" class="form-control" id="keperluan" name="keperluan">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Usaha</label>
-                      <input type="text" class="form-control" id="nmUsaha" name="nmUsaha">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat Lengkap Usaha</label>
-                      <input type="text" class="form-control" id="alamatUsaha" name="alamatUsaha">
-                  </div>
+                          <label class="bmd-label-floating">Email </label>
+                          <input type="text" class="form-control" id="email" name="email">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat</label>
+                          <input type="text" class="form-control" id="alamat" name="alamat">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Kelurahan</label>
+                          <select name="kelurahan" id="kelurahan" class="form-control">
+                              <option value="">Pilih Kelurahan</option>
+                              <?php foreach ($kelurahan as $k) : ?>
+                                  <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RT</label>
+                          <input type="number" class="form-control" id="rt" name="rt">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RW</label>
+                          <input type="number" class="form-control" id="rw" name="rw">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Keperluan</label>
+                          <input type="text" class="form-control" id="keperluan" name="keperluan">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Perusahaan</label>
+                          <input type="text" class="form-control" id="nmPerushaaan" name="nmUsaha">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat Lengkap Perusahaan</label>
+                          <input type="text" class="form-control" id="alamatPerusahaan" name="alamatPerusahaan">
+                      </div>
 
-                  <div class="form-group">
-                      <label class="label-control">Surat Kepemilikan Tanah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="skt" id="skt" />
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Rekomendasi Lembaga</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="srl" id="srl" />
-                              </span>
+                      <div class="form-group">
+                          <label class="label-control">Surat Kepemilikan Tanah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="skt" id="skt" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Domisili</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="domisili" id="domisili" />
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Lurah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pengantar" id="pengantar" />
-                              </span>
+                      <div class="form-group">
+                          <label class="label-control">Surat Rekomendasi Lembaga</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="srl" id="srl" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">PBB Lunas</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pbb" id="pbb" />
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Akte Notaris</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="notaris" id="notaris" />
-                              </span>
+                      <div class="form-group">
+                          <label class="label-control">Surat Domisili</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="domisili" id="domisili" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KTP</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KK</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="kk" id="kk" />
-                              </span>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
+                      <div class="form-group">
+                          <label class="label-control">PBB Lunas</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pbb" id="pbb" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Akte Notaris</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="notaris" id="notaris" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KTP</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="ktp" id="ktp" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KK</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="kk" id="kk" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('permohonan', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                          <button type="Submit" class="btn btn-success">Ajukan</button>
+                      </div>
                   </div>
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('permohonan', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                      <button type="Submit" class="btn btn-success">Ajukan</button>
-                  </div>
-              </div>
               </form>
           </div>
       </div>
@@ -847,115 +831,110 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nik</label>
-                      <input type="text" class="form-control" id="nik" name="nik">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Pengaju</label>
-                      <input type="text" class="form-control" id="nama" name="nama">
-                  </div>
-                  <div class="form-group">
+              <form action="<?php base_url('home/skn') ?>" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nik</label>
+                          <input type="text" class="form-control" id="nik" name="nik">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Pengaju</label>
+                          <input type="text" class="form-control" id="nama" name="nama">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
-                  </div>
-                  <div class="form-group">
+                          <label class="bmd-label-floating">Nomor Hp </label>
+                          <input type="text" class="form-control" id="no_hp" name="no_hp">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Mempelai Pria</label>
-                      <input type="text" class="form-control" id="Mpria" name="Mpria">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Mempelai Wanita</label>
-                      <input type="text" class="form-control" id="Mwanita" name="Mwanita">
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Lurah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pengantar" id="pengantar" />
-                              </span>
-                              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
-                          </div>
+                          <label class="bmd-label-floating">Email </label>
+                          <input type="text" class="form-control" id="email" name="email">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Nikah (N1 - N4)</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pnikah" id="pnikah" />
-                              </span>
-                              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat</label>
+                          <input type="text" class="form-control" id="alamat" name="alamat">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KTP</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="KTP" id="KTP" />
-                              </span>
-                              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Mempelai Pria</label>
+                          <input type="text" class="form-control" id="Mpria" name="Mpria">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KK</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="kk" id="kk" />
-                              </span>
-                              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Mempelai Wanita</label>
+                          <input type="text" class="form-control" id="Mwanita" name="Mwanita">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Keterangan Belum Menikah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="skbmenikah" id="skbmenikah" />
-                              </span>
-                              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
-                          </div>
-                      </div>
-                  </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 
-                  <?= form_error('file_surat', '<div class="text-danger">', '</div>'); ?>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                      <button type="Submit" class="btn btn-success">Ajukan</button>
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                                  <a href="#pablo" class="btn btn-outline-success btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Nikah (N1 - N4)</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pnikah" id="pnikah" />
+                                  </span>
+                                  <a href="#pablo" class="btn btn-outline-success btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KTP</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="KTP" id="KTP" />
+                                  </span>
+                                  <a href="#pablo" class="btn btn-outline-success btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KK</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="kk" id="kk" />
+                                  </span>
+                                  <a href="#pablo" class="btn btn-outline-success btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Keterangan Belum Menikah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="skbmenikah" id="skbmenikah" />
+                                  </span>
+                                  <a href="#pablo" class="btn btn-outline-success btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                              </div>
+                          </div>
+                      </div>
+
+                      <?= form_error('file_surat', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                          <button type="Submit" class="btn btn-success">Ajukan</button>
+                      </div>
                   </div>
-              </div>
               </form>
           </div>
       </div>
@@ -972,99 +951,96 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nik</label>
-                      <input type="text" class="form-control" id="nik" name="nik">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Pengaju</label>
-                      <input type="text" class="form-control" id="nama" name="nama">
-                  </div>
-                  <div class="form-group">
+              <form action="<?php base_url('home/skd') ?>" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nik</label>
+                          <input type="text" class="form-control" id="nik" name="nik">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Pengaju</label>
+                          <input type="text" class="form-control" id="nama" name="nama">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
-                  </div>
-                  <div class="form-group">
+                          <label class="bmd-label-floating">Nomor Hp </label>
+                          <input type="text" class="form-control" id="no_hp" name="no_hp">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Kelurahan</label>
-                      <select name="kelurahan" id="kelurahan" class="form-control">
-                          <option value="">Pilih Kelurahan</option>
-                          <?php foreach ($kelurahan as $k) : ?>
-                              <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
-                          <?php endforeach; ?>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RT</label>
-                      <input type="number" class="form-control" id="rt" name="rt">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RW</label>
-                      <input type="number" class="form-control" id="rw" name="rw">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Keperluan</label>
-                      <input type="text" class="form-control" id="keperluan" name="keperluan">
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KTP</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
-                              </span>
+                          <label class="bmd-label-floating">Email </label>
+                          <input type="text" class="form-control" id="email" name="email">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat</label>
+                          <input type="text" class="form-control" id="alamat" name="alamat">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Kelurahan</label>
+                          <select name="kelurahan" id="kelurahan" class="form-control">
+                              <option value="">Pilih Kelurahan</option>
+                              <?php foreach ($kelurahan as $k) : ?>
+                                  <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RT</label>
+                          <input type="number" class="form-control" id="rt" name="rt">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RW</label>
+                          <input type="number" class="form-control" id="rw" name="rw">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Keperluan</label>
+                          <input type="text" class="form-control" id="keperluan" name="keperluan">
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KTP</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="ktp" id="ktp" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KK</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="kk" id="kk" />
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Lurah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pengantar" id="pengantar" />
-                              </span>
-                          </div>
-                      </div>
-                  </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KK</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                      <button type="Submit" class="btn btn-success">Ajukan</button>
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="kk" id="kk" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                          <button type="Submit" class="btn btn-success">Ajukan</button>
+                      </div>
                   </div>
-              </div>
               </form>
           </div>
       </div>
@@ -1080,113 +1056,109 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nik</label>
-                      <input type="text" class="form-control" id="nik" name="nik">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Pengaju</label>
-                      <input type="text" class="form-control" id="nama" name="nama">
-                  </div>
-                  <div class="form-group">
+              <form action="<?php base_url('home/skp') ?>" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nik</label>
+                          <input type="text" class="form-control" id="nik" name="nik">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Pengaju</label>
+                          <input type="text" class="form-control" id="nama" name="nama">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
-                  </div>
-                  <div class="form-group">
+                          <label class="bmd-label-floating">Nomor Hp </label>
+                          <input type="text" class="form-control" id="no_hp" name="no_hp">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Kelurahan</label>
-                      <select name="kelurahan" id="kelurahan" class="form-control">
-                          <option value="">Pilih Kelurahan</option>
-                          <?php foreach ($kelurahan as $k) : ?>
-                              <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
-                          <?php endforeach; ?>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RT</label>
-                      <input type="number" class="form-control" id="rt" name="rt">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RW</label>
-                      <input type="number" class="form-control" id="rw" name="rw">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Keperluan</label>
-                      <input type="text" class="form-control" id="keperluan" name="keperluan">
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KTP</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
-                              </span>
-                          </div>
+                          <label class="bmd-label-floating">Email </label>
+                          <input type="text" class="form-control" id="email" name="email">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KK</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="kk" id="kk" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat</label>
+                          <input type="text" class="form-control" id="alamat" name="alamat">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Lurah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pengantar" id="pengantar" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Kelurahan</label>
+                          <select name="kelurahan" id="kelurahan" class="form-control">
+                              <option value="">Pilih Kelurahan</option>
+                              <?php foreach ($kelurahan as $k) : ?>
+                                  <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pernyataan</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pernyataan" id="pernyataan" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RT</label>
+                          <input type="number" class="form-control" id="rt" name="rt">
                       </div>
-                  </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RW</label>
+                          <input type="number" class="form-control" id="rw" name="rw">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Keperluan</label>
+                          <input type="text" class="form-control" id="keperluan" name="keperluan">
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KTP</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('pernyataan', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                      <button type="Submit" class="btn btn-success">Ajukan</button>
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="ktp" id="ktp" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KK</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="kk" id="kk" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pernyataan</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pernyataan" id="pernyataan" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('pernyataan', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                          <button type="Submit" class="btn btn-success">Ajukan</button>
+                      </div>
                   </div>
-              </div>
               </form>
           </div>
       </div>
@@ -1201,234 +1173,226 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nik</label>
-                      <input type="text" class="form-control" id="nik" name="nik">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Pengaju</label>
-                      <input type="text" class="form-control" id="nama" name="nama">
-                  </div>
-                  <div class="form-group">
+              <form action="<?php base_url('home/skos') ?>" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nik</label>
+                          <input type="text" class="form-control" id="nik" name="nik">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Pengaju</label>
+                          <input type="text" class="form-control" id="nama" name="nama">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
-                  </div>
-                  <div class="form-group">
+                          <label class="bmd-label-floating">Nomor Hp </label>
+                          <input type="text" class="form-control" id="no_hp" name="no_hp">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Kelurahan</label>
-                      <select name="kelurahan" id="kelurahan" class="form-control">
-                          <option value="">Pilih Kelurahan</option>
-                          <?php foreach ($kelurahan as $k) : ?>
-                              <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
-                          <?php endforeach; ?>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RT</label>
-                      <input type="number" class="form-control" id="rt" name="rt">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RW</label>
-                      <input type="number" class="form-control" id="rw" name="rw">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Keperluan</label>
-                      <input type="text" class="form-control" id="keperluan" name="keperluan">
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KTP</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
-                              </span>
-                          </div>
+                          <label class="bmd-label-floating">Email </label>
+                          <input type="text" class="form-control" id="email" name="email">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KK</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="kk" id="kk" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat</label>
+                          <input type="text" class="form-control" id="alamat" name="alamat">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Lurah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pengantar" id="pengantar" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Kelurahan</label>
+                          <select name="kelurahan" id="kelurahan" class="form-control">
+                              <option value="">Pilih Kelurahan</option>
+                              <?php foreach ($kelurahan as $k) : ?>
+                                  <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pernyataan</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pernyataan" id="pernyataan" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RT</label>
+                          <input type="number" class="form-control" id="rt" name="rt">
                       </div>
-                  </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RW</label>
+                          <input type="number" class="form-control" id="rw" name="rw">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Keperluan</label>
+                          <input type="text" class="form-control" id="keperluan" name="keperluan">
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KTP</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('pernyataan', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                      <button type="Submit" class="btn btn-success">Ajukan</button>
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="ktp" id="ktp" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KK</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="kk" id="kk" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pernyataan</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pernyataan" id="pernyataan" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('pernyataan', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                          <button type="Submit" class="btn btn-success">Ajukan</button>
+                      </div>
                   </div>
-              </div>
               </form>
           </div>
       </div>
   </div>
-  <!-- surat keterangan Orang yang sama -->
-  <div class=" modal fade" id="skOrgSama" tabindex="-1" aria-labelledby="skOrgSamaLabel" aria-hidden="true">
+  <!-- surat Pengantar Cerai -->
+  <div class=" modal fade" id="spCerai" tabindex="-1" aria-labelledby="spCeraiLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="skOrgSamaLabel">Surat Keterangan Orang yang Sama</h5>
+                  <h5 class="modal-title" id="spCeraiLabel">Surat Pengantar Cerai</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nik</label>
-                      <input type="text" class="form-control" id="nik" name="nik">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Pengaju</label>
-                      <input type="text" class="form-control" id="nama" name="nama">
-                  </div>
-                  <div class="form-group">
+              <form action="<?php base_url('home/spc') ?>" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nik</label>
+                          <input type="text" class="form-control" id="nik" name="nik">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Pengaju</label>
+                          <input type="text" class="form-control" id="nama" name="nama">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
-                  </div>
-                  <div class="form-group">
+                          <label class="bmd-label-floating">Nomor Hp </label>
+                          <input type="text" class="form-control" id="no_hp" name="no_hp">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Kelurahan</label>
-                      <select name="kelurahan" id="kelurahan" class="form-control">
-                          <option value="">Pilih Kelurahan</option>
-                          <?php foreach ($kelurahan as $k) : ?>
-                              <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
-                          <?php endforeach; ?>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RT</label>
-                      <input type="number" class="form-control" id="rt" name="rt">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RW</label>
-                      <input type="number" class="form-control" id="rw" name="rw">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Keperluan</label>
-                      <input type="text" class="form-control" id="keperluan" name="keperluan">
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KTP</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
-                              </span>
-                          </div>
+                          <label class="bmd-label-floating">Email </label>
+                          <input type="text" class="form-control" id="email" name="email">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KK</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="kk" id="kk" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat</label>
+                          <input type="text" class="form-control" id="alamat" name="alamat">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Lurah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pengantar" id="pengantar" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Kelurahan</label>
+                          <select name="kelurahan" id="kelurahan" class="form-control">
+                              <option value="">Pilih Kelurahan</option>
+                              <?php foreach ($kelurahan as $k) : ?>
+                                  <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pernyataan</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pernyataan" id="pernyataan" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RT</label>
+                          <input type="number" class="form-control" id="rt" name="rt">
                       </div>
-                  </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RW</label>
+                          <input type="number" class="form-control" id="rw" name="rw">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Keperluan</label>
+                          <input type="text" class="form-control" id="keperluan" name="keperluan">
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KTP</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('pernyataan', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                      <button type="Submit" class="btn btn-success">Ajukan</button>
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="ktp" id="ktp" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KK</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="kk" id="kk" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pernyataan</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pernyataan" id="pernyataan" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('pernyataan', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                          <button type="Submit" class="btn btn-success">Ajukan</button>
+                      </div>
                   </div>
-              </div>
               </form>
           </div>
       </div>
@@ -1444,182 +1408,226 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nik</label>
-                      <input type="text" class="form-control" id="nik" name="nik">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Pengaju</label>
-                      <input type="text" class="form-control" id="nama" name="nama">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
-                  </div>
-                  <div class="form-group">
+              <form action="<?php base_url('home/spskck') ?>" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nik</label>
+                          <input type="text" class="form-control" id="nik" name="nik">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Pengaju</label>
+                          <input type="text" class="form-control" id="nama" name="nama">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nomor Hp </label>
+                          <input type="text" class="form-control" id="no_hp" name="no_hp">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Alamat</label>
-                      <input type="text" class="form-control" id="alamat" name="alamat">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Kelurahan</label>
-                      <select name="kelurahan" id="kelurahan" class="form-control">
-                          <option value="">Pilih Kelurahan</option>
-                          <?php foreach ($kelurahan as $k) : ?>
-                              <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
-                          <?php endforeach; ?>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RT</label>
-                      <input type="number" class="form-control" id="rt" name="rt">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">RW</label>
-                      <input type="number" class="form-control" id="rw" name="rw">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Keperluan</label>
-                      <input type="text" class="form-control" id="keperluan" name="keperluan">
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KTP</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
-                              </span>
-                          </div>
+                          <label class="bmd-label-floating">Email </label>
+                          <input type="text" class="form-control" id="email" name="email">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Scan KK</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="kk" id="kk" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat</label>
+                          <input type="text" class="form-control" id="alamat" name="alamat">
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Lurah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pengantar" id="pengantar" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Kelurahan</label>
+                          <select name="kelurahan" id="kelurahan" class="form-control">
+                              <option value="">Pilih Kelurahan</option>
+                              <?php foreach ($kelurahan as $k) : ?>
+                                  <option value="<?= $k['id_kelurahan']; ?>"><?= $k['nm_kelurahan']; ?></option>
+                              <?php endforeach; ?>
+                          </select>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pernyataan</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pernyataan" id="pernyataan" />
-                              </span>
-                          </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RT</label>
+                          <input type="number" class="form-control" id="rt" name="rt">
                       </div>
-                  </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">RW</label>
+                          <input type="number" class="form-control" id="rw" name="rw">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Keperluan</label>
+                          <input type="text" class="form-control" id="keperluan" name="keperluan">
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KTP</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 
-                  <?= form_error('pengantar', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('pernyataan', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('ktp', '<div class="text-danger">', '</div>'); ?>
-                  <?= form_error('kk', '<div class="text-danger">', '</div>'); ?>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                      <button type="Submit" class="btn btn-success">Ajukan</button>
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="ktp" id="ktp" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KK</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="kk" id="kk" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pernyataan</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pernyataan" id="pernyataan" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('pernyataan', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                          <button type="Submit" class="btn btn-success">Ajukan</button>
+                      </div>
                   </div>
-              </div>
               </form>
           </div>
       </div>
   </div>
 
-  <!-- Surat Non Perizinan -->
-  <div class=" modal fade" id="ketBelumMenikah" tabindex="-1" aria-labelledby="ketBelumMenikahLabel" aria-hidden="true">
+  <!-- Surat pengantar izin keramaian -->
+  <div class=" modal fade" id="spIzinKeramaian" tabindex="-1" aria-labelledby="spIzinKeramaianLabel" aria-hidden="true">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="ketBelumMenikahLabel">Keterangan Belum Menikah</h5>
+                  <h5 class="modal-title" id="spIzinKeramaianLabel">Surat Pengantar Izin Keramaian</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
-              <?php echo form_open_multipart(); ?>
-              <div class="modal-body">
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nik</label>
-                      <input type="text" class="form-control" id="nik" name="nik">
-                  </div>
-                  <div class="form-group">
-                      <label class="bmd-label-floating">Nama Pengaju</label>
-                      <input type="text" class="form-control" id="nama" name="nama">
-                  </div>
-                  <div class="form-group">
+              <form action="<?php base_url('home/spik') ?>" method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nik</label>
+                          <input type="text" class="form-control" id="nik" name="nik">
+                      </div>
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Nama Pengaju</label>
+                          <input type="text" class="form-control" id="nama" name="nama">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Nomor Hp </label>
-                      <input type="text" class="form-control" id="nohp" name="nohp">
-                  </div>
-                  <div class="form-group">
+                          <label class="bmd-label-floating">Nomor Hp </label>
+                          <input type="text" class="form-control" id="no_hp" name="no_hp">
+                      </div>
+                      <div class="form-group">
 
-                      <label class="bmd-label-floating">Email </label>
-                      <input type="text" class="form-control" id="email" name="email">
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pengantar Lurah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="pengantar" id="pengantar" />
-                              </span>
-                              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                          <label class="bmd-label-floating">Email </label>
+                          <input type="text" class="form-control" id="email" name="email">
+                      </div>
+
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Alamat Lengkap Keramaian </label>
+                          <input type="text" class="form-control" id="alamatKeramaian" name="alamatKeramaian">
+                      </div>
+
+                      <div class="form-group">
+                          <label class="bmd-label-floating">Keperluan</label>
+                          <input type="text" class="form-control" id="keperluan" name="keperluan">
+                      </div>
+
+
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Surat Pernyataan Belum Menikah</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                          <div class="fileinput-new thumbnail">
-                          </div>
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-danger btn-file">
-                                  <input type="file" name="s_BNikah" id="s_BNikah" />
-                              </span>
-                              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i></a>
+                      <div class="form-group">
+                          <label class="label-control">Scan KTP</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="ktp" id="ktp" />
+                                  </span>
+                              </div>
                           </div>
                       </div>
-                  </div>
+                      <div class="form-group">
+                          <label class="label-control">Scan KK</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 
-                  <?= form_error('file_surat', '<div class="text-danger">', '</div>'); ?>
-                  <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                      <button type="Submit" class="btn btn-success">Ajukan</button>
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="kk" id="kk" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pengantar Lurah</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pengantar" id="pengantar" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="label-control">Surat Pernyataan</label>
+                          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                              <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                              <div>
+                                  <span class="btn btn-outline-success btn-file">
+                                      <input type="file" name="pernyataan" id="pernyataan" />
+                                  </span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <?= form_error('pengantar', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('pernyataan', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('ktp', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('kk', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <?= form_error('file_surat', '<div clasbtn btn-outline-success">', '</div>'); ?>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                          <button type="Submit" class="btn btn-success">Ajukan</button>
+                      </div>
                   </div>
-              </div>
               </form>
           </div>
       </div>

@@ -23,7 +23,7 @@
                                                         <th scope="col">NIK</th>
                                                         <th scope="col">Nama</th>
                                                         <th scope="col">No.HP</th>
-                                                        <th scope="col">Tempat Lahir</th>
+                                                        <!-- <th scope="col">Tempat Lahir</th> -->
                                                         <th scope="col">Tanggal Lahir</th>
                                                         <th scope="col">Pekerjaan</th>
                                                         <th scope="col">Alamat</th>
@@ -40,7 +40,7 @@
                                                             <td><?= $w['nik']; ?></td>
                                                             <td><?= $w['nama']; ?></td>
                                                             <td><?= $w['no_hp']; ?></td>
-                                                            <td><?= $w['tmpt_lhr']; ?></td>
+                                                            <!-- <td><?= $w['tmpt_lhr']; ?></td> -->
                                                             <td><?= $w['tgl_lhr']; ?></td>
                                                             <td><?= $w['pekerjaan']; ?></td>
                                                             <td><?= $w['alamat']; ?></td>

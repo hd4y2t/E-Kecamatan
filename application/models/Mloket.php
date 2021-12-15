@@ -17,6 +17,7 @@ class Mloket extends CI_Model
         $query = "SELECT * FROM `surat_masuk` ORDER BY `id` DESC";
         return $this->db->query($query)->result_array();
     }
+
     public function joinDataSurat()
     {
         $query = "SELECT `surat`.* ,`kategori`.`nm_kategori`,`bidang`.`nm_bidang`
@@ -27,26 +28,170 @@ class Mloket extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function getSurat()
+    public function getAllSurat()
     {
-        $query = "SELECT `surat_keluar`.*, `surat`.`nm_surat`
-                   FROM `surat_keluar` JOIN `surat`
-                   ON `surat_keluar`.`surat_id` = `surat`.`id_surat`
-                   WHERE `surat_keluar`.`status` = 4
-                   ";
+        $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.*
+                    FROM `pembuatan_surat`
+                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju` 
+                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id`=`pembuatan_surat`.`pengaju_id`
+                    ";
         return $this->db->query($query)->result_array();
     }
-    public function getAntri()
+
+    public function getSurat()
     {
-        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*,`surat`.*
+        $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.*
+                    FROM `pembuatan_surat`
+                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju` 
+                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju`=`pembuatan_surat`.`pengaju_id`
+                    WHERE `pembuatan_surat`.`status_surat` = 1
+                    ";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function skm()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.* , `kelurahan`.`nm_kelurahan`
                    FROM `pengajuan_surat` 
                    JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
-                   JOIN `surat` ON `surat`.`id_surat` = `pengajuan_surat`.`id_surat`
-                   WHERE `pengajuan_surat`.`status` = 1
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skm'
                    ORDER BY `tgl` DESC
                    ";
         return $this->db->query($query)->result_array();
     }
+
+    public function sktm()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'sktm'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function skbpr()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skbpr'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function sku()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'sku'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function skdp()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skdp'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function skn()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skn'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function skd()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skd'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function skp()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skp'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function skos()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skos'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function spc()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'spc'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function spskck()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'spskck'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function spik()
+    {
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'spik'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+
+
+
+
+
+
+
+
     public function getAntrian()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*,`surat`.*

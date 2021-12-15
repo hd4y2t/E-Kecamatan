@@ -12,13 +12,24 @@ class M_Penduduk extends CI_Model
 
     public function cek_penduduk($nik)
     {
+        // $data = $this->db->get_where('penduduk', ['nik' => $nik])->row_array();
+        // $aju =  $data['pengajuan'] + 1;
+        // $this->db->set('pengajuan', $aju);
+        // $this->db->where('nik', $nik);
+        // $this->db->update('penduduk');
+
+        return $this->db->get_where('penduduk', array('nik' => $nik));
+    }
+
+    public function pengajuan($nik)
+    {
         $data = $this->db->get_where('penduduk', ['nik' => $nik])->row_array();
         $aju =  $data['pengajuan'] + 1;
         $this->db->set('pengajuan', $aju);
         $this->db->where('nik', $nik);
         $this->db->update('penduduk');
 
-        return $this->db->get_where('penduduk', array('nik' => $nik));
+        return $this->db->query($data)->row_array();
     }
 
     public function getJoinPengajuan()
