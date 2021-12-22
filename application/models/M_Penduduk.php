@@ -31,6 +31,15 @@ class M_Penduduk extends CI_Model
 
         return $this->db->query($data)->row_array();
     }
+    public function cek_pengajuan($nik)
+    {
+        $query = "SELECT *
+                   FROM `pengajuan_surat`
+                   WHERE `pengajuan_surat`.`nik` ='$nik'
+                   AND `pengajuan_surat`.`status` != 5
+                    ";
+        return $this->db->query($query);
+    }
 
     public function getJoinPengajuan()
     {

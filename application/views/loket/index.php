@@ -1,355 +1,615 @@
 <div class="content" data-color="#d6fad6" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
     <div class="container-fluid">
-
         <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header card-header-danger card-header-icon">
-                                <div class="card-icon">
-                                    <i class="material-icons">info_outline</i>
-                                </div>
-                                <p class="card-category">Antrian Surat yang belum dicek</p>
-                                <h3 class="card-title"><?= $antrian_non; ?></h3>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-danger card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">info_outline</i>
                             </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons text-danger">warning</i>
-                                    Antrian yang belum di tangani
-                                </div>
-                            </div>
+                            <p class="card-category">Antrian Surat yang belum dicek</p>
+                            <h3 class="card-title"><?= $antrian_non; ?></h3>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header card-header-warning card-header-icon">
-                                <div class="card-icon">
-                                    <i class="material-icons">content_copy</i>
-                                </div>
-                                <p class="card-category">Antrian Surat yang ada</p>
-                                <h3 class="card-title"><?= $antrian; ?>
-                                </h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">local_offer</i> Antrian yang sedang diproses
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header card-header-success card-header-icon">
-                                <div class="card-icon">
-                                    <i class="fa fa-check-square"></i>
-                                </div>
-                                <p class="card-category">Antrian Surat yang selesai</p>
-                                <h3 class="card-title"><?= $antrian_done; ?></h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">date_range</i> Antrian yang telah selesai
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header card-header-info card-header-icon">
-                                <div class="card-icon">
-                                    <i class="fa fa-users"></i>
-                                </div>
-                                <p class="card-category">Penduduk yang memakai sistem</p>
-                                <h3 class="card-title"><?= $warga; ?></h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">update</i> Just Updated
-                                </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons text-danger">warning</i>
+                                Antrian yang belum di tangani
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
-                    <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
-                    <?= $this->session->flashdata('message'); ?>
-                    <?php if ($this->session->flashdata('success') == TRUE) : ?>
-                        <div class="alert alert-success">
-                            <span><?= $this->session->flashdata('success'); ?></span>
-                        </div>
-                    <?php endif; ?>
-                    <?php if ($this->session->flashdata('warning') == TRUE) : ?>
-                        <div class="alert alert-warning">
-                            <span><?= $this->session->flashdata('warning'); ?></span>
-                        </div>
-                    <?php endif; ?>
-                    <div class="card">
-                        <div class="card-header card-header-tabs card-header-success">
-                            <h3>Antrian Surat Pelayanan Umum</h3>
-                            <div class="nav-tabs-navigation">
-
-                                <div class="nav-tabs-wrapper">
-                                    <ul class="nav nav-tabs" data-tabs="tabs">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#skm" data-toggle="tab">
-                                                <i class="material-icons">description</i> Keterangan Miskin
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#sktm" data-toggle="tab">
-                                                <i class="material-icons">description</i> Keterangan Tidak Mampu
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#skbpr" data-toggle="tab">
-                                                <i class="material-icons">description</i> Keterangan Belum Punya Rumah
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#skbpr" data-toggle="tab">
-                                                <i class="material-icons">description</i> Keterangan Usaha
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">content_copy</i>
                             </div>
+                            <p class="card-category">Antrian Surat yang ada</p>
+                            <h3 class="card-title"><?= $antrian; ?>
+                            </h3>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="skm">
-                                        <table class="table" id="myTables">
-                                            <thead class="text-success">
-                                                <tr>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">ID Pengajuan</th>
-                                                    <th scope="col">NIK</th>
-                                                    <th scope="col">Nama Pengaju</th>
-                                                    <th scope="col">No.HP</th>
-                                                    <th scope="col">Tanggal</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Detail Pengajuan</th>
-                                                    <!-- <th scope="col">Action</th> -->
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($skm as $m) : ?>
-                                                    <tr>
-                                                        <th scope="row"><?= $i ?></th>
-                                                        <td><?= $m['id_pengaju']; ?></td>
-                                                        <td><?= $m['nik']; ?></td>
-                                                        <td><?= $m['nama']; ?></td>
-                                                        <td><?= $m['no_hp']; ?></td>
-                                                        <td><?= $m['tgl']; ?></td>
-                                                        <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
-                                                        <td>
-                                                            <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id_pengaju']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                        </td>
-                                                        <!-- <td>
-                                                        <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $m['id']; ?>"><i class="material-icons">outbond</i>Status</button>
-
-                                                    </td> -->
-                                                        <?php $i++; ?>
-                                                    </tr>
-                                                <?php endforeach ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane" id="sktm">
-                                        <table class="table" id="myTables">
-                                            <thead class="text-success">
-                                                <tr>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">ID Pengajuan</th>
-                                                    <th scope="col">NIK</th>
-                                                    <th scope="col">Nama Pengaju</th>
-                                                    <th scope="col">No.HP</th>
-                                                    <th scope="col">Tanggal</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Detail Pengajuan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($sktm as $m) : ?>
-                                                    <tr>
-                                                        <th scope="row"><?= $i ?></th>
-                                                        <td><?= $m['id_pengaju']; ?></td>
-                                                        <td><?= $m['nik']; ?></td>
-                                                        <td><?= $m['nama']; ?></td>
-                                                        <td><?= $m['no_hp']; ?></td>
-                                                        <td><?= $m['tgl']; ?></td>
-                                                        <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
-                                                        <td>
-                                                            <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id_pengaju']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                        </td>
-                                                        <td>
-                                                            <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $m['id_pengaju']; ?>"><i class="material-icons">outbond</i>Status</button>
-                                                        </td>
-                                                        <?php $i++; ?>
-                                                    </tr>
-                                                <?php endforeach ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane" id="skbpr">
-                                        <table class="table" id="myTables">
-                                            <thead class="text-success">
-                                                <tr>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">ID Pengajuan</th>
-                                                    <th scope="col">NIK</th>
-                                                    <th scope="col">Nama Pengaju</th>
-                                                    <th scope="col">No.HP</th>
-                                                    <th scope="col">Tanggal</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Detail Pengajuan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($skbpr as $m) : ?>
-                                                    <tr>
-                                                        <th scope="row"><?= $i ?></th>
-                                                        <td><?= $m['id']; ?></td>
-                                                        <td><?= $m['nik']; ?></td>
-                                                        <td><?= $m['nama']; ?></td>
-                                                        <td><?= $m['no_hp']; ?></td>
-                                                        <td><?= $m['tgl']; ?></td>
-                                                        <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
-                                                        <td>
-                                                            <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id_pengaju']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                        </td>
-                                                        <td>
-                                                            <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $m['id_pengaju']; ?>"><i class="material-icons">outbond</i>Status</button>
-
-                                                        </td>
-                                                        <?php $i++; ?>
-                                                    </tr>
-                                                <?php endforeach ?>
-                                            </tbody>
-
-                                        </table>
-                                    </div>
-                                </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">local_offer</i> Antrian yang sedang diproses
                             </div>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header card-header-tabs card-header-info">
-                            <h3>Antrian Surat Pemerintahan</h3>
-                            <div class="nav-tabs-navigation">
-                                <div class="nav-tabs-wrapper">
-                                    <ul class="nav nav-tabs" data-tabs="tabs">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#skm" data-toggle="tab">
-                                                <i class="material-icons">assignment</i> Pengantar Cerai
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link " href="#skd" data-toggle="tab">
-                                                <i class="material-icons">assignment</i> Keterangan Domisili
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link " href="#skos" data-toggle="tab">
-                                                <i class="material-icons">assignment</i> Keterangan Orang yang sama
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link " href="#spik" data-toggle="tab">
-                                                <i class="material-icons">assignment</i> Pengantar Izin Keramaian
-                                                <div class="ripple-container"></div>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="fa fa-check-square"></i>
+                            </div>
+                            <p class="card-category">Antrian Surat yang selesai</p>
+                            <h3 class="card-title"><?= $antrian_done; ?></h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">date_range</i> Antrian yang telah selesai
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="skm">
-                                        <table class="table" id="myTables">
-                                            <thead class="text-success">
-                                                <tr>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">ID Pengajuan</th>
-                                                    <th scope="col">NIK</th>
-                                                    <th scope="col">Nama Pengaju</th>
-                                                    <th scope="col">No.HP</th>
-                                                    <th scope="col">Tanggal</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Detail Pengajuan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($skm as $m) : ?>
-                                                    <tr>
-                                                        <th scope="row"><?= $i ?></th>
-                                                        <td><?= $m['id_pengaju']; ?></td>
-                                                        <td><?= $m['nama'] . '(' . $m['nik'] . ')'; ?></td>
-                                                        <td><?= $m['no_hp']; ?></td>
-                                                        <td><?= $m['tgl']; ?></td>
-                                                        <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
-                                                        <td>
-                                                            <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id_pengaju']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                        </td>
-                                                        <td>
-                                                            <button class="btn btn-simple btn-success btn-icon btn-sm" data-toggle="modal" data-target="#statusPengajuan<?= $m['id_pengaju']; ?>"><i class="material-icons">outbond</i>Status</button>
-                                                        </td>
-                                                        <?php $i++; ?>
-                                                    </tr>
-                                                <?php endforeach ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="tab-pane" id="sktm">
-                                        <table class="table" id="myTables">
-                                            <thead class="text-success">
-                                                <tr>
-                                                    <th scope="col"></th>
-                                                    <th scope="col">ID Pengajuan</th>
-                                                    <th scope="col">NIK</th>
-                                                    <th scope="col">Nama Pengaju</th>
-                                                    <th scope="col">No.HP</th>
-                                                    <th scope="col">Tanggal</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Detail Pengajuan</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                <?php foreach ($skbpr as $m) : ?>
-                                                    <tr>
-                                                        <th scope="row"><?= $i ?></th>
-                                                        <td><?= $m['id_pengaju']; ?></td>
-                                                        <td><?= $m['nama'] . '(' . $m['nik'] . ')'; ?></td>
-                                                        <td><?= $m['no_hp']; ?></td>
-                                                        <td><?= $m['tgl']; ?></td>
-                                                        <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
-                                                        <td>
-                                                            <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id_pengaju']; ?>"><i class="material-icons">remove_red_eye</i></button>
-                                                        </td>
-                                                        <?php $i++; ?>
-                                                    </tr>
-                                                <?php endforeach ?>
-                                            </tbody>
+                    </div>
+                </div>
 
-                                        </table>
-                                    </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <p class="card-category">Penduduk yang memakai sistem</p>
+                            <h3 class="card-title"><?= $warga; ?></h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Just Updated
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
+                <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
+                <?= $this->session->flashdata('message'); ?>
+                <?php if ($this->session->flashdata('success') == TRUE) : ?>
+                    <div class="alert alert-success">
+                        <span><?= $this->session->flashdata('success'); ?></span>
+                    </div>
+                <?php endif; ?>
+                <?php if ($this->session->flashdata('danger') == TRUE) : ?>
+                    <div class="alert alert-danger">
+                        <span><?= $this->session->flashdata('danger'); ?></span>
+                    </div>
+                <?php endif; ?>
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-success">
+                        <h3>Antrian Surat Pelayanan Umum</h3>
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <ul class="nav nav-tabs" data-tabs="tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#skm" data-toggle="tab">
+                                            <i class="material-icons">description</i> Keterangan Miskin : <?= $countskm; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#sktm" data-toggle="tab">
+                                            <i class="material-icons">description</i> Keterangan Tidak Mampu : <?= $countsktm; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#skbpr" data-toggle="tab">
+                                            <i class="material-icons">description</i> Keterangan Belum Punya Rumah : <?= $countskbpr; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#skp" data-toggle="tab">
+                                            <i class="material-icons">description</i> Keterangan Penghasilan : <?= $countskp; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#spskck" data-toggle="tab">
+                                            <i class="material-icons">description</i> Pengantar SKCK : <?= $countspskck; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#spik" data-toggle="tab">
+                                            <i class="material-icons">description</i> Pengantar Izin Keramaian : <?= $countspik; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="skm">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                                <!-- <th scope="col">Action</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($skm as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="sktm">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($sktm as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="skbpr">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                                <!-- <th scope="col">Action</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($skbpr as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="spik">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Alamat Keramaian</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                                <!-- <th scope="col">Action</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($spik as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td><?= $m['almt_keramaian']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="skp">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($skp as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="spskck">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($spskck as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Button trigger modal -->
+
+                <!-- Kasih Pemerintahan -->
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-info">
+                        <h3>Antrian Surat Pemerintahan</h3>
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <ul class="nav nav-tabs" data-tabs="tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#skd" data-toggle="tab">
+                                            <i class="material-icons">assignment</i> Keterangan Domisili : <?= $countskd; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#skdp" data-toggle="tab">
+                                            <i class="material-icons">assignment</i> Keterangan Domisili Perushaan : <?= $countskdp; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#sku" data-toggle="tab">
+                                            <i class="material-icons">assignment</i> Keterangan Usaha : <?= $countsku; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#skn" data-toggle="tab">
+                                            <i class="material-icons">description</i> Rekomendasi Nikah : <?= $countskn; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#skos" data-toggle="tab">
+                                            <i class="material-icons">assignment</i> Keterangan Orang yang sama : <?= $countskos; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#spc" data-toggle="tab">
+                                            <i class="material-icons">assignment</i> Pengantar Cerai : <?= $countspc; ?>
+                                            <div class="ripple-container"></div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="skd">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Alamat</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($skd as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td><?= $m['alamat']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="skdp">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Nama Perusahaan</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($skdp as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td><?= $m['nm_perusahaan']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="sku">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Nama Usaha</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($sku as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td><?= $m['nm_usaha']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="skn">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($skn as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="skos">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">Nama yang Dipakai</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($skos as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['nm_yg_dipakai']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane" id="spc">
+                                    <table class="table" id="myTables">
+                                        <thead class="text-success">
+                                            <tr>
+                                                <th scope="row"></th>
+                                                <th scope="col">ID Pengajuan</th>
+                                                <th scope="col">NIK</th>
+                                                <th scope="col">Nama Pengaju</th>
+                                                <th scope="col">No.HP</th>
+                                                <th scope="col">Tanggal</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col">Detail Pengajuan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($spc as $m) : ?>
+                                                <tr>
+                                                    <th scope="row"><?= $i ?></th>
+                                                    <td><?= $m['id_pengaju']; ?></td>
+                                                    <td><?= $m['nik']; ?></td>
+                                                    <td><?= $m['nama']; ?></td>
+                                                    <td><?= $m['no_hp']; ?></td>
+                                                    <td><?= $m['tgl']; ?></td>
+                                                    <td class="font-weight-bold"><?= $status[$m['status']]; ?></td>
+                                                    <td>
+                                                        <button class="btn btn-simple btn-info btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>"><i class="material-icons">remove_red_eye</i></button>
+                                                    </td>
+                                                    <?php $i++; ?>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -357,109 +617,278 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- modal Surat keterangan Miskin -->
-        <?php foreach ($skm as $m) : ?>
-            <div class="modal fade" id="lihatSurat<?= $m['id_pengaju']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class=" modal-content">
-                        <div class="card">
-                            <div class="card-header card-header-tabs card-header-success">
-                                <h3>Surat Keterangan Miskin</h3>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
+<!-- Kasih Pemerintahan -->
+<?php foreach ($antri as $m) : ?>
+    <div class="modal fade" id="lihatSurat<?= $m['id']; ?>" tabindex="-1" aria-labelledby="lihatSurat<?= $m['id']; ?>Label" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
 
-                                    <div class="tab-pane active" id="profile">
-                                        <table class="table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>ID Pengajuan</td>
-                                                    <td><?= $m['id_pengaju'] ?></td>
-                                                </tr>
-                                                <tr>
+            <div class=" modal-content">
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-warning">
+                        <h3><?= $kode[$m['id_surat']]; ?></h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="tab-pane active" id="profile">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <h3>
+                                                    ID Pengajuan
+                                                </h3>
+                                            </td>
+                                            <td>
+                                                <h3>
+                                                    <?= $m['id_pengaju'] ?>
+                                                </h3>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Nama Pengaju
+                                            </td>
+                                            <td><?= $m['nama'] ?> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Tanggal
+                                            </td>
+                                            <td><?= $m['tgl'] ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Alamat
+                                            </td>
+                                            <td><?= $m['alamat'] ?></td>
+                                        </tr>
+                                        <?php if ($m['id_surat'] == 'SKN') { ?>
+                                            <tr>
+                                                <td>
+                                                    Nama Mempelai Pria
+                                                </td>
+                                                <td><?= $m['nm_mempelai_pria'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Nama Mempelai Wanita
+                                                </td>
+                                                <td><?= $m['nm_mempelai_wanita'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Surat Pengantar Nikah
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pengantar_nikah') ?>/<?= $m['spn'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Surat Keterangan Belum Nikah
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/keterangan_nikah') ?>/<?= $m['skbn'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                        <?php } else { ?>
+                                            <tr>
+                                                <td>
+                                                    Keperluan
+                                                </td>
+                                                <td><?= $m['keperluan'] ?></td>
+                                            </tr>
+                                        <?php } ?>
+
+                                        <?php if ($m['id_surat'] == 'SKDP') { ?>
+                                            <tr>
+                                                <td>
+                                                    Nama Perushaan
+                                                </td>
+                                                <td><?= $m['nm_perusahaan'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Alamat Perusahaan
+                                                </td>
+                                                <td><?= $m['almt_perusahaan'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Surat Kepemilikan Tanah
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pemilikan_tanah') ?>/<?= $m['spt'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Surat Rekomendasi Lembaga
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/rekomendasi_lembaga') ?>/<?= $m['srl'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Surat Domisili
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/domisili') ?>/<?= $m['sd'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    PBB Lunas
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pbb') ?>/<?= $m['pbb'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Akte Notaris
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/akte_notaris') ?>/<?= $m['akte_notaris'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                        <?php } else if ($m['id_surat'] == "SKU") {
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    Nama Usaha
+                                                </td>
+                                                <td><?= $m['nm_usaha'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Alamat Usaha
+                                                </td>
+                                                <td><?= $m['almt_usaha'] ?></td>
+                                            </tr>
+                                        <?php } else if ($m['id_surat'] == "SPC") { ?>
+                                            <tr>
+                                                <td>
+                                                    Nama Mempelai Pria
+                                                </td>
+                                                <td><?= $m['nm_mempelai_pria'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Nama Mempelai Wanita
+                                                </td>
+                                                <td><?= $m['nm_mempelai_wanita'] ?></td>
+                                            </tr>
+                                        <?php } else if ($m['id_surat'] == "SKOS") {
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    Nama Yang Dipakai
+                                                </td>
+                                                <td><?= $m['nm_yg_dipakai'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Akte Kelahiran
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="500px" height="350px;" src="<?= base_url('upload/akte_kelahiran') ?>/<?= $m['akte_kelahiran'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        } else if ($m['id_surat'] == "SPIK") {
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    Alamat Keramaian
+                                                </td>
+                                                <td><?= $m['almt_keramaian'] ?></td>
+                                            </tr>
+                                        <?php
+                                        } ?>
+                                        <tr>
+                                            <td>
+                                                Scan KTP
+                                            </td>
+                                            <td>
+                                                <img type="application/pdf" width="500px" height="350px;" src="<?= base_url('upload/ktp') ?>/<?= $m['ktp'] ?>" width="200" height="600"></img>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Scan KK
+                                            </td>
+                                            <td>
+                                                <img type="application/pdf" width="500px" height="350px;" src="<?= base_url('upload/kk') ?>/<?= $m['kk'] ?>" width="200" height="600"></img>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Surat Pengantar Kelurahan
+                                            </td>
+                                            <td>
+                                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pengantar') ?>/<?= $m['f_pengantar'] ?>" width="200" height="600"></embed>
+                                            </td>
+                                        </tr>
+                                        <?php if ($m['id_surat'] == "SKM" || $m['id_surat'] == "SKTM" || $m['id_surat'] == "SPSKCK") { ?>
+                                            <tr>
+                                                <td>
+                                                    Surat Pernyataan
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pernyataan') ?>/<?= $m['f_pernyataan'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                        <?php } else if ($m['id_surat'] == "SKU") {
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    Surat Permohonan
+                                                </td>
+                                                <td>
+                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/permohonan') ?>/<?= $m['f_permohonan'] ?>" width="200" height="600"></embed>
+                                                </td>
+                                            </tr>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <tr>
+                                            </tr>
+                                        <?php } ?>
+                                        <form action="<?= base_url("loket/tolak/") . $m['id'] ?>" method="post">
+                                            <tr>
+                                                <td>Catatan </td>
+                                                <td> <input type="text" class="form-control" name="catatan" id="catatan" placeholder="Jika ditolak">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status</td>
+                                                <div class="content">
                                                     <td>
-                                                        Nama Pengaju
+                                                        <a class="btn btn-success" href="<?= base_url("loket/terima/") . $m['id'] ?>">Terima</a>
+                                                        <button type="submit" class="btn btn-danger">Tolak</button>
                                                     </td>
-                                                    <td><?= $m['nama'] ?> </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Tanggal
-                                                    </td>
-                                                    <td><?= $m['tgl'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Alamat
-                                                    </td>
-                                                    <td><?= $m['alamat'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Keperluan
-                                                    </td>
-                                                    <td><?= $m['keperluan'] ?></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Scan KTP
-                                                    </td>
-                                                    <td>
-                                                        <img type="application/pdf" width="500px" height="350px;" src="<?= base_url('upload/ktp') ?>/<?= $m['ktp'] ?>" width="200" height="600"></img>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Scan KK
-                                                    </td>
-                                                    <td>
-                                                        <img type="application/pdf" width="500px" height="350px;" src="<?= base_url('upload/kk') ?>/<?= $m['kk'] ?>" width="200" height="600"></img>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Surat Pengantar Kelurahan
-                                                    </td>
-                                                    <td>
-                                                        <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pengantar') ?>/<?= $m['f_pengantar'] ?>" width="200" height="600"></embed>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Surat Pernyataan
-                                                    </td>
-                                                    <td>
-                                                        <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pernyataan') ?>/<?= $m['f_pernyataan'] ?>" width="200" height="600"></embed>
-                                                    </td>
-                                                </tr>
-                                                <form action="<?= base_url("loket/skm_tolak/") . $m['id_pengaju'] ?>" method="post">
-                                                    <tr>
-                                                        <td>Catatan <b>(jika ditolak)</b></td>
-                                                        <td> <input type="text" name="catatan" id="catatan">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Status</td>
-                                                        <div class="content">
-                                                            <td>
-                                                                <a class="btn btn-success" href="<?= base_url("loket/skm_terima/") . $m['id_pengaju'] ?>">Terima</a>
-                                                                <button type="submit" class="btn btn-danger" href="<?= base_url("loket/skm_tolak/") . $m['id_pengaju'] ?>">Tolak</button>
-                                                            </td>
-                                                        </div>
-                                                        </td>
-                                                    </tr>
-                                                </form>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                                </div>
+                                                </td>
+                                            </tr>
+                                        </form>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                <?php endforeach; ?>
-
                 </div>
             </div>
+        </div>
     </div>
-    </body>
+<?php endforeach; ?>
+
+
+
+</div>
+</div>
+</body>

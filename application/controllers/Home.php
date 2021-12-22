@@ -88,13 +88,21 @@ class Home extends CI_Controller
             $this->load->view('home/s_online', $data);
             $this->load->view('home/footer');
         } else {
-            $status = [
-                1 => 1,  // Pending
-                2 => 2,  // Diterima dan Dilanjutkan
-                3 => 3,  // Sudah Diketik dan Diparaf
-                4 => 4,  // Sudah Ditandatangani Camat dan Selesai
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
             ];
-
+            $this->load->model('M_Penduduk', 'penduduk');
             $nama = $this->input->post('nama', TRUE);
             $nik = $this->input->post('nik', TRUE);
             $no_hp = $this->input->post('no_hp', TRUE);
@@ -107,16 +115,38 @@ class Home extends CI_Controller
             $keperluan = $this->input->post('keperluan', TRUE);
             $surat = "SKM";
 
-            // $ceknik = $this->penduduk->cek_penduduk($nik)->num_rows();
-
-            // var_dump($ceknik);
-            // die;
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
             if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
-                $this->penduduk->pengajuan($nik);
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
             } else {
 
                 if (isset($_FILES['ktp'])) {
-                    if ($_FILES['ktp']['size'] >= 5242880) { //5MB
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
                         $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
                         redirect(base_url("home/s_online"));
                     } else {
@@ -128,23 +158,17 @@ class Home extends CI_Controller
                         $config['max_size']             = 2048; // 2MB
                         $config['file_name']            = $ktp;
 
-                        // $this->load->library('upload', $config);
-
-
                         $this->load->library('upload', $config);
                         $this->upload->initialize($config);
                         // $this->upload->do_upload("ktp");
                         if ($this->upload->do_upload('ktp')) {
                             $f1 = $this->upload->data();
                         }
-                        // $data = array('upload_data' => $this->upload->data());
-                        // $berkas_ktp = $data['upload_data']['file_name'];
-
                     }
                 }
                 if (isset($_FILES['kk'])) {
 
-                    if ($_FILES['kk']['size'] >= 5242880) { //2MB
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
                         $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
                         redirect(base_url("home/s_online"));
                     } else {
@@ -158,15 +182,9 @@ class Home extends CI_Controller
 
                         $this->load->library('upload', $config);
                         $this->upload->initialize($config);
-                        // $this->upload->do_upload("kk");
                         if ($this->upload->do_upload('kk')) {
                             $f2 = $this->upload->data();
                         }
-                        // $this->load->library('upload', $config);
-                        // // $this->upload->do_upload("kk");
-
-                        // $this->upload->do_upload("kk");
-                        // $data = array('upload_data' => $this->upload->data());
                     }
                 }
 
@@ -204,7 +222,7 @@ class Home extends CI_Controller
             // die;
             if (isset($_FILES['pengantar'])) {
 
-                if ($_FILES['pengantar']['size'] >= 5242880) { //2MB
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
                     $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar yang diupload Lebih 2MB!</div>');
                     redirect(base_url("home/s_online"));
                 } else {
@@ -233,7 +251,7 @@ class Home extends CI_Controller
             if (isset($_FILES['pernyataan'])) {
 
 
-                if ($_FILES['pernyataan']['size'] >= 5242880) { //2MB
+                if ($_FILES['pernyataan']['size'] >= 2097152) { //2MB
                     $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> File yang diupload Lebih 2MB!</div>');
                     redirect(base_url("home/s_online"));
                 } else {
@@ -265,7 +283,7 @@ class Home extends CI_Controller
                 'keperluan' => $keperluan,
                 'f_pengantar' => $f3['file_name'],
                 'f_pernyataan' => $f4['file_name'],
-                'status' => $status[1]
+                'status' => 1
             ];
             $this->pengajuan_track->insert_p_surat($data);
             $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
@@ -306,13 +324,21 @@ class Home extends CI_Controller
             $this->load->view('home/s_online', $data);
             $this->load->view('home/footer');
         } else {
-            $status = [
-                1 => 1,  // Pending
-                2 => 2,  // Diterima dan Dilanjutkan
-                3 => 3,  // Sudah Diketik dan Diparaf
-                4 => 4,  // Sudah Ditandatangani Camat dan Selesai
-            ];
 
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
             $nama = $this->input->post('nama', TRUE);
             $nik = $this->input->post('nik', TRUE);
             $no_hp = $this->input->post('no_hp', TRUE);
@@ -325,16 +351,38 @@ class Home extends CI_Controller
             $keperluan = $this->input->post('keperluan', TRUE);
             $surat = "SKTM";
 
-            // $ceknik = $this->penduduk->cek_penduduk($nik)->num_rows();
-
-            // var_dump($ceknik);
-            // die;
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
             if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
-                $this->penduduk->pengajuan($nik);
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
             } else {
 
                 if (isset($_FILES['ktp'])) {
-                    if ($_FILES['ktp']['size'] >= 5242880) { //5MB
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
                         $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
                         redirect(base_url("home/s_online"));
                     } else {
@@ -346,23 +394,16 @@ class Home extends CI_Controller
                         $config['max_size']             = 2048; // 2MB
                         $config['file_name']            = $ktp;
 
-                        // $this->load->library('upload', $config);
-
-
                         $this->load->library('upload', $config);
                         $this->upload->initialize($config);
-                        // $this->upload->do_upload("ktp");
                         if ($this->upload->do_upload('ktp')) {
                             $f1 = $this->upload->data();
                         }
-                        // $data = array('upload_data' => $this->upload->data());
-                        // $berkas_ktp = $data['upload_data']['file_name'];
-
                     }
                 }
                 if (isset($_FILES['kk'])) {
 
-                    if ($_FILES['kk']['size'] >= 5242880) { //2MB
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
                         $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
                         redirect(base_url("home/s_online"));
                     } else {
@@ -376,7 +417,6 @@ class Home extends CI_Controller
 
                         $this->load->library('upload', $config);
                         $this->upload->initialize($config);
-                        // $this->upload->do_upload("kk");
                         if ($this->upload->do_upload('kk')) {
                             $f2 = $this->upload->data();
                         }
@@ -405,19 +445,19 @@ class Home extends CI_Controller
 
             $cc = $this->db->count_all('pengajuan_surat') + 1;
             $count = str_pad($cc, 3, STR_PAD_LEFT);
-            $id = $surat . "/";
+            $id = $surat . "-";
             $d = date('d');
             $y = date('y');
             $mnth = date("m");
             $s = date('s');
             $randomize = $d + $y + $mnth + $s;
-            $id = $id . $rid3 . "/" . $randomize . "/" . $count . "/" . $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
 
             // var_dump($id);
             // die;
             if (isset($_FILES['pengantar'])) {
 
-                if ($_FILES['pengantar']['size'] >= 5242880) { //2MB
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
                     $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar yang diupload Lebih 2MB!</div>');
                     redirect(base_url("home/s_online"));
                 } else {
@@ -431,22 +471,16 @@ class Home extends CI_Controller
                     $config['file_name']            = $pengantar;
 
                     $this->load->library('upload', $config);
-
-                    // $this->upload->do_upload("pengantar");
                     $this->upload->initialize($config);
-                    // $this->upload->do_upload("kk");
                     if ($this->upload->do_upload('pengantar')) {
                         $f3 = $this->upload->data();
                     }
-                    // $data = array('upload_data' => $this->upload->data());
-                    // $b_pengantar = $data['upload_data']['file_name'];
-
                 }
             }
             if (isset($_FILES['pernyataan'])) {
 
 
-                if ($_FILES['pernyataan']['size'] >= 5242880) { //2MB
+                if ($_FILES['pernyataan']['size'] >= 2097152) { //2MB
                     $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> File yang diupload Lebih 2MB!</div>');
                     redirect(base_url("home/s_online"));
                 } else {
@@ -463,7 +497,6 @@ class Home extends CI_Controller
 
                         $this->load->library('upload', $config);
                         $this->upload->initialize($config);
-                        // $this->upload->do_upload("kk");
                         if ($this->upload->do_upload('pengantar')) {
                             $f4 = $this->upload->data();
                         }
@@ -471,14 +504,14 @@ class Home extends CI_Controller
                 }
             }
             $data = [
-                'id' => $id,
+                'id_pengaju' => $id,
                 'nik' => $nik,
                 'id_surat' => $surat,
                 'tgl' => date('d-m-Y'),
                 'keperluan' => $keperluan,
                 'f_pengantar' => $f3['file_name'],
                 'f_pernyataan' => $f4['file_name'],
-                'status' => $status[1]
+                'status' => 1
             ];
             $this->pengajuan_track->insert_p_surat($data);
             $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
@@ -519,13 +552,21 @@ class Home extends CI_Controller
             $this->load->view('home/s_online', $data);
             $this->load->view('home/footer');
         } else {
-            $status = [
-                1 => 1,  // Pending
-                2 => 2,  // Diterima dan Dilanjutkan
-                3 => 3,  // Sudah Diketik dan Diparaf
-                4 => 4,  // Sudah Ditandatangani Camat dan Selesai
-            ];
 
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
             $nama = $this->input->post('nama', TRUE);
             $nik = $this->input->post('nik', TRUE);
             $no_hp = $this->input->post('no_hp', TRUE);
@@ -537,17 +578,38 @@ class Home extends CI_Controller
             $rw = $this->input->post('rw', TRUE);
             $keperluan = $this->input->post('keperluan', TRUE);
             $surat = "SKBPR";
-
-            // $ceknik = $this->penduduk->cek_penduduk($nik)->num_rows();
-
-            // var_dump($ceknik);
-            // die;
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
             if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
-                $this->penduduk->pengajuan($nik);
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
             } else {
 
                 if (isset($_FILES['ktp'])) {
-                    if ($_FILES['ktp']['size'] >= 5242880) { //5MB
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
                         $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
                         redirect(base_url("home/s_online"));
                     } else {
@@ -561,7 +623,6 @@ class Home extends CI_Controller
 
                         $this->load->library('upload', $config);
                         $this->upload->initialize($config);
-                        // $this->upload->do_upload("ktp");
                         if ($this->upload->do_upload('ktp')) {
                             $f1 = $this->upload->data();
                         }
@@ -569,7 +630,7 @@ class Home extends CI_Controller
                 }
                 if (isset($_FILES['kk'])) {
 
-                    if ($_FILES['kk']['size'] >= 5242880) { //2MB
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
                         $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
                         redirect(base_url("home/s_online"));
                     } else {
@@ -583,7 +644,6 @@ class Home extends CI_Controller
 
                         $this->load->library('upload', $config);
                         $this->upload->initialize($config);
-                        // $this->upload->do_upload("kk");
                         if ($this->upload->do_upload('kk')) {
                             $f2 = $this->upload->data();
                         }
@@ -620,11 +680,9 @@ class Home extends CI_Controller
             $randomize = $d + $y + $mnth + $s;
             $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
 
-            // var_dump($id);
-            // die;
             if (isset($_FILES['pengantar'])) {
 
-                if ($_FILES['pengantar']['size'] >= 5242880) { //2MB
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
                     $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar yang diupload Lebih 2MB!</div>');
                     redirect(base_url("home/s_online"));
                 } else {
@@ -638,27 +696,21 @@ class Home extends CI_Controller
                     $config['file_name']            = $pengantar;
 
                     $this->load->library('upload', $config);
-
-                    // $this->upload->do_upload("pengantar");
                     $this->upload->initialize($config);
-                    // $this->upload->do_upload("kk");
                     if ($this->upload->do_upload('pengantar')) {
                         $f3 = $this->upload->data();
                     }
-                    // $data = array('upload_data' => $this->upload->data());
-                    // $b_pengantar = $data['upload_data']['file_name'];
-
                 }
             }
 
             $data = [
-                'id' => $id,
+                'id_pengaju' => $id,
                 'nik' => $nik,
                 'id_surat' => $surat,
                 'tgl' => date('d-m-Y'),
                 'keperluan' => $keperluan,
                 'f_pengantar' => $f3['file_name'],
-                'status' => $status[1]
+                'status' => 1
             ];
             $this->pengajuan_track->insert_p_surat($data);
             $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
@@ -667,6 +719,2144 @@ class Home extends CI_Controller
                                 <i class="icon fas fa-check"></i> Selamat!
                                 </h5>
                                 Berhasil Mengajukan <b>Surat Keterangan Belum Punya Rumah</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $id . '
+                                    </b>
+                                    </div>');
+            redirect(base_url("home/s_online"));
+        }
+    }
+
+    public function sku()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('kelurahan', 'kelurahan', 'required');
+        $this->form_validation->set_rules('rt', 'rt', 'required');
+        $this->form_validation->set_rules('rw', 'rw', 'required');
+        $this->form_validation->set_rules('keperluan', 'keperluan', 'required');
+        $this->form_validation->set_rules('nm_usaha', 'Nama Usaha', 'required');
+        $this->form_validation->set_rules('almt_usaha', 'Alamat Usaha', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+
+
+            $nama = $this->input->post('nama', TRUE);
+            $nik = $this->input->post('nik', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $surat = $this->input->post('surat', TRUE);
+            $email = $this->input->post('email', TRUE);
+            $alamat = $this->input->post('alamat', TRUE);
+            $kelurahan = $this->input->post('kelurahan', TRUE);
+            $rt = $this->input->post('rt', TRUE);
+            $rw = $this->input->post('rw', TRUE);
+            $keperluan = $this->input->post('keperluan', TRUE);
+            $nm_usaha = $this->input->post('nm_usaha', TRUE);
+            $almt_usaha = $this->input->post('almt_usaha', TRUE);
+            $surat = "SKU";
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+            if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
+            } else {
+
+                if (isset($_FILES['ktp'])) {
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['ktp']['name'], -7);
+                        $ktp = "KTP-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/ktp'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $ktp;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('ktp')) {
+                            $f1 = $this->upload->data();
+                        }
+                    }
+                }
+                if (isset($_FILES['kk'])) {
+
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['kk']['name'], -7);
+                        $kk = "KK-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/kk'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $kk;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('kk')) {
+                            $f2 = $this->upload->data();
+                        }
+                    }
+                }
+
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'kelurahan' => $kelurahan,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'ktp' => $f1['file_name'],
+                    'kk' => $f2['file_name'],
+                    'pengajuan' => 1
+                ];
+                $this->db->insert('penduduk', $save);
+            }
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "/";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
+
+            if (isset($_FILES['pengantar'])) {
+
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pengantar']['name'], -7);
+                    $pengantar = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pengantar;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pengantar')) {
+                        $f3 = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['permohonan'])) {
+
+                if ($_FILES['permohonan']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat permohonan yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['permohonan']['name'], -7);
+                    $permohonan = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/permohonan'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $permohonan;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('permohonan')) {
+                        $f4 = $this->upload->data();
+                    }
+                }
+            }
+
+            $data = [
+                'id_pengaju' => $id,
+                'nik' => $nik,
+                'id_surat' => $surat,
+                'tgl' => date('d-m-Y'),
+                'keperluan' => $keperluan,
+                'nm_usaha' => $nm_usaha,
+                'almt_usaha' => $almt_usaha,
+                'f_pengantar' => $f3['file_name'],
+                'f_permohonan' => $f4['file_name'],
+                'status' => 1
+            ];
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-check"></i> Selamat!
+                                </h5>
+                                Berhasil Mengajukan <b>Surat Keterangan Usaha</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $id . '
+                                    </b>
+                                    </div>');
+            redirect(base_url("home/s_online"));
+        }
+    }
+    public function skdp()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('kelurahan', 'kelurahan', 'required');
+        $this->form_validation->set_rules('rt', 'rt', 'required');
+        $this->form_validation->set_rules('rw', 'rw', 'required');
+        $this->form_validation->set_rules('keperluan', 'keperluan', 'required');
+        $this->form_validation->set_rules('nm_perusahaan', 'Nama Perusahaan', 'required');
+        $this->form_validation->set_rules('almt_perusahaan', 'Alamat Perusahaan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+
+
+            $nama = $this->input->post('nama', TRUE);
+            $nik = $this->input->post('nik', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $email = $this->input->post('email', TRUE);
+            $alamat = $this->input->post('alamat', TRUE);
+            $kelurahan = $this->input->post('kelurahan', TRUE);
+            $rt = $this->input->post('rt', TRUE);
+            $rw = $this->input->post('rw', TRUE);
+            $keperluan = $this->input->post('keperluan', TRUE);
+            $nm_perusahaan = $this->input->post('nm_perusahaan', TRUE);
+            $almt_perusahaan = $this->input->post('almt_perusahaan', TRUE);
+            $surat = "SKDP";
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+            if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
+            } else {
+
+                if (isset($_FILES['ktp'])) {
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['ktp']['name'], -7);
+                        $ktp = "KTP-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/ktp'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $ktp;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('ktp')) {
+                            $f1 = $this->upload->data();
+                        }
+                    }
+                }
+                if (isset($_FILES['kk'])) {
+
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['kk']['name'], -7);
+                        $kk = "KK-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/kk'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $kk;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('kk')) {
+                            $f2 = $this->upload->data();
+                        }
+                    }
+                }
+
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'kelurahan' => $kelurahan,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'ktp' => $f1['file_name'],
+                    'kk' => $f2['file_name'],
+                    'pengajuan' => 1
+                ];
+                $this->db->insert('penduduk', $save);
+            }
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "/";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
+
+            if (isset($_FILES['pengantar'])) {
+
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar Lurah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pengantar']['name'], -7);
+                    $pengantar = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pengantar;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pengantar')) {
+                        $f3 = $this->upload->data();
+                    }
+                }
+            }
+
+            if (isset($_FILES['spt'])) {
+
+                if ($_FILES['spt']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Kepemilikan Tanah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['spt']['name'], -7);
+                    $spt = "SPT-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pemilikan_tanah'; //lokasi folder
+                    $config['allowed_types']        = 'pdf'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $spt;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('spt')) {
+                        $f4  = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['srl'])) {
+
+                if ($_FILES['srl']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Rekomendasi Lembaga yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['srl']['name'], -7);
+                    $srl = "SRL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/rekomendasi_lembaga'; //lokasi folder
+                    $config['allowed_types']        = 'pdf'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $srl;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('srl')) {
+                        $f5 = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['domisili'])) {
+
+                if ($_FILES['domisili']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat domisili yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['domisili']['name'], -7);
+                    $domisili = "D-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/domisili'; //lokasi folder
+                    $config['allowed_types']        = 'pdf'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $domisili;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('domisili')) {
+                        $f6 = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['pbb'])) {
+
+                if ($_FILES['pbb']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat pbb yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pbb']['name'], -7);
+                    $pbb = "PBB-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pbb'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pbb;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pbb')) {
+                        $f7 = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['notaris'])) {
+
+                if ($_FILES['notaris']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Akte Notaris yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['notaris']['name'], -7);
+                    $notaris = "AN-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/akte_notaris'; //lokasi folder
+                    $config['allowed_types']        = 'pdf'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $notaris;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('notaris')) {
+                        $f8 = $this->upload->data();
+                    }
+                }
+            }
+
+            $data = [
+                'id_pengaju' => $id,
+                'nik' => $nik,
+                'id_surat' => $surat,
+                'tgl' => date('d-m-Y'),
+                'keperluan' => $keperluan,
+                'nm_perusahaan' => $nm_perusahaan,
+                'almt_perusahaan' => $almt_perusahaan,
+                'f_pengantar' => $f3['file_name'],
+                'spt' => $f4['file_name'],
+                'srl' => $f5['file_name'],
+                'sd' => $f6['file_name'],
+                'pbb' => $f7['file_name'],
+                'akte_notaris' => $f8['file_name'],
+                'status' => 1
+            ];
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-check"></i> Selamat!
+                                </h5>
+                                Berhasil Mengajukan <b>Surat Keterangan Domisili Perusahaan</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $id . '
+                                    </b>
+                                    </div>');
+            redirect(base_url("home/s_online"));
+        }
+    }
+    public function skn()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('kelurahan', 'kelurahan', 'required');
+        $this->form_validation->set_rules('rt', 'rt', 'required');
+        $this->form_validation->set_rules('rw', 'rw', 'required');
+        $this->form_validation->set_rules('mpria', 'mpria', 'required');
+        $this->form_validation->set_rules('mwanita', 'mwanita', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $nama = $this->input->post('nama', TRUE);
+            $nik = $this->input->post('nik', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $email = $this->input->post('email', TRUE);
+            $alamat = $this->input->post('alamat', TRUE);
+            $kelurahan = $this->input->post('kelurahan', TRUE);
+            $rt = $this->input->post('rt', TRUE);
+            $rw = $this->input->post('rw', TRUE);
+            $mpria = $this->input->post('mpria', TRUE);
+            $mwanita = $this->input->post('mwanita', TRUE);
+            $surat = "SKN";
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+            if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
+            } else {
+
+                if (isset($_FILES['ktp'])) {
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['ktp']['name'], -7);
+                        $ktp = "KTP-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/ktp'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $ktp;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('ktp')) {
+                            $f1 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KTP Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+                if (isset($_FILES['kk'])) {
+
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['kk']['name'], -7);
+                        $kk = "KK-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/kk'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $kk;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('kk')) {
+                            $f2 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KK Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'kelurahan' => $kelurahan,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'ktp' => $f1['file_name'],
+                    'kk' => $f2['file_name'],
+                    'pengajuan' => 1
+                ];
+                $this->db->insert('penduduk', $save);
+            }
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "/";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
+
+            if (isset($_FILES['pengantar'])) {
+
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar Lurah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pengantar']['name'], -7);
+                    $pengantar = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pengantar;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pengantar')) {
+                        $f3 = $this->upload->data();
+                    }
+                }
+            }
+
+            if (isset($_FILES['pnikah'])) {
+
+                if ($_FILES['pnikah']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar Nikah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pnikah']['name'], -7);
+                    $pnikah = "pnikah-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar_nikah'; //lokasi folder
+                    $config['allowed_types']        = 'pdf'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pnikah;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pnikah')) {
+                        $f4  = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['skbn'])) {
+
+                if ($_FILES['skbn']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Keterangan Belum Menikah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['skbn']['name'], -7);
+                    $skbn = "skbn-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/keterangan_nikah'; //lokasi folder
+                    $config['allowed_types']        = 'pdf'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $skbn;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('skbn')) {
+                        $f5 = $this->upload->data();
+                    }
+                }
+            }
+
+            $data = [
+                'id_pengaju' => $id,
+                'nik' => $nik,
+                'id_surat' => $surat,
+                'tgl' => date('d-m-Y'),
+                'nm_mempelai_pria' => $mpria,
+                'nm_mempelai_wanita' => $mwanita,
+                'f_pengantar' => $f3['file_name'],
+                'spn' => $f4['file_name'],
+                'skbn' => $f5['file_name'],
+                'status' => 1
+            ];
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-check"></i> Selamat!
+                                </h5>
+                                Berhasil Mengajukan <b>Surat Rekomendasi Nikah</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $id . '
+                                    </b>
+                                    </div>');
+            redirect(base_url("home/s_online"));
+        }
+    }
+    public function skd()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('kelurahan', 'kelurahan', 'required');
+        $this->form_validation->set_rules('rt', 'rt', 'required');
+        $this->form_validation->set_rules('rw', 'rw', 'required');
+        $this->form_validation->set_rules('keperluan', 'keperluan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+
+            $nama = $this->input->post('nama', TRUE);
+            $nik = $this->input->post('nik', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $email = $this->input->post('email', TRUE);
+            $alamat = $this->input->post('alamat', TRUE);
+            $kelurahan = $this->input->post('kelurahan', TRUE);
+            $rt = $this->input->post('rt', TRUE);
+            $rw = $this->input->post('rw', TRUE);
+            $keperluan = $this->input->post('keperluan', TRUE);
+            $surat = "SKD";
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+            if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
+            } else {
+
+                if (isset($_FILES['ktp'])) {
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['ktp']['name'], -7);
+                        $ktp = "KTP-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/ktp'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $ktp;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('ktp')) {
+                            $f1 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KTP Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+                if (isset($_FILES['kk'])) {
+
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['kk']['name'], -7);
+                        $kk = "KK-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/kk'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $kk;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('kk')) {
+                            $f2 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KK Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'kelurahan' => $kelurahan,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'ktp' => $f1['file_name'],
+                    'kk' => $f2['file_name'],
+                    'pengajuan' => 1
+                ];
+                $this->db->insert('penduduk', $save);
+            }
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "/";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
+
+            if (isset($_FILES['pengantar'])) {
+
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar Lurah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pengantar']['name'], -7);
+                    $pengantar = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pengantar;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pengantar')) {
+                        $f3 = $this->upload->data();
+                    }
+                }
+            }
+
+
+
+            $data = [
+                'id_pengaju' => $id,
+                'nik' => $nik,
+                'id_surat' => $surat,
+                'tgl' => date('d-m-Y'),
+                'keperluan' => $keperluan,
+                'f_pengantar' => $f3['file_name'],
+                'status' => 1
+            ];
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-check"></i> Selamat!
+                                </h5>
+                                Berhasil Mengajukan <b>Surat Keterangan Domisili</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $id . '
+                                    </b>
+                                    </div>');
+            redirect(base_url("home/s_online"));
+        }
+    }
+    public function skp()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('kelurahan', 'kelurahan', 'required');
+        $this->form_validation->set_rules('rt', 'rt', 'required');
+        $this->form_validation->set_rules('rw', 'rw', 'required');
+        $this->form_validation->set_rules('keperluan', 'keperluan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+            $nama = $this->input->post('nama', TRUE);
+            $nik = $this->input->post('nik', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $email = $this->input->post('email', TRUE);
+            $alamat = $this->input->post('alamat', TRUE);
+            $kelurahan = $this->input->post('kelurahan', TRUE);
+            $rt = $this->input->post('rt', TRUE);
+            $rw = $this->input->post('rw', TRUE);
+            $keperluan = $this->input->post('keperluan', TRUE);
+            $surat = "SKP";
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+            if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
+            } else {
+
+                if (isset($_FILES['ktp'])) {
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['ktp']['name'], -7);
+                        $ktp = "KTP-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/ktp'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $ktp;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('ktp')) {
+                            $f1 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KTP Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+                if (isset($_FILES['kk'])) {
+
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['kk']['name'], -7);
+                        $kk = "KK-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/kk'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $kk;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('kk')) {
+                            $f2 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KK Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'kelurahan' => $kelurahan,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'ktp' => $f1['file_name'],
+                    'kk' => $f2['file_name'],
+                    'pengajuan' => 1
+                ];
+                $this->db->insert('penduduk', $save);
+            }
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "/";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
+
+            if (isset($_FILES['pengantar'])) {
+
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar Lurah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pengantar']['name'], -7);
+                    $pengantar = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pengantar;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pengantar')) {
+                        $f3 = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['pernyataan'])) {
+
+                if ($_FILES['pernyataan']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pernyataan  yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pernyataan']['name'], -7);
+                    $pernyataan = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pernyataan'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pernyataan;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pernyataan')) {
+                        $f4 = $this->upload->data();
+                    }
+                }
+            }
+
+
+
+            $data = [
+                'id_pengaju' => $id,
+                'nik' => $nik,
+                'id_surat' => $surat,
+                'tgl' => date('d-m-Y'),
+                'keperluan' => $keperluan,
+                'f_pengantar' => $f3['file_name'],
+                'f_pernyataan' => $f4['file_name'],
+                'status' => 1
+            ];
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-check"></i> Selamat!
+                                </h5>
+                                Berhasil Mengajukan <b>Surat Keterangan Penghasilan</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $id . '
+                                    </b>
+                                    </div>');
+            redirect(base_url("home/s_online"));
+        }
+    }
+    public function skos()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('kelurahan', 'kelurahan', 'required');
+        $this->form_validation->set_rules('rt', 'rt', 'required');
+        $this->form_validation->set_rules('rw', 'rw', 'required');
+        $this->form_validation->set_rules('keperluan', 'keperluan', 'required');
+        $this->form_validation->set_rules('nm_pakai', 'nm_pakai', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $nama = $this->input->post('nama', TRUE);
+            $nik = $this->input->post('nik', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $email = $this->input->post('email', TRUE);
+            $alamat = $this->input->post('alamat', TRUE);
+            $kelurahan = $this->input->post('kelurahan', TRUE);
+            $rt = $this->input->post('rt', TRUE);
+            $rw = $this->input->post('rw', TRUE);
+            $keperluan = $this->input->post('keperluan', TRUE);
+            $nm_pakai = $this->input->post('nm_pakai', TRUE);
+            $surat = "SKOS";
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+            if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
+            } else {
+
+                if (isset($_FILES['ktp'])) {
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['ktp']['name'], -7);
+                        $ktp = "KTP-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/ktp'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $ktp;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('ktp')) {
+                            $f1 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KTP Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+                if (isset($_FILES['kk'])) {
+
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['kk']['name'], -7);
+                        $kk = "KK-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/kk'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $kk;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('kk')) {
+                            $f2 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KK Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'kelurahan' => $kelurahan,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'ktp' => $f1['file_name'],
+                    'kk' => $f2['file_name'],
+                    'pengajuan' => 1
+                ];
+                $this->db->insert('penduduk', $save);
+            }
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "/";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
+
+            if (isset($_FILES['pengantar'])) {
+
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar Lurah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pengantar']['name'], -7);
+                    $pengantar = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pengantar;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pengantar')) {
+                        $f3 = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['akte_kelahiran'])) {
+
+                if ($_FILES['akte_kelahiran']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat akte_kelahiran  yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['akte_kelahiran']['name'], -7);
+                    $akte_kelahiran = "akte-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/akte_kelahiran'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $akte_kelahiran;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('akte_kelahiran')) {
+                        $f = $this->upload->data();
+                    }
+                }
+            } else {
+                $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Akte kelahiran tidak boleh kosong!!</div>');
+                redirect(base_url("home/s_online"));
+            }
+
+
+
+            $data = [
+                'id_pengaju' => $id,
+                'nik' => $nik,
+                'id_surat' => $surat,
+                'tgl' => date('d-m-Y'),
+                'keperluan' => $keperluan,
+                'nm_yg_dipakai' => $nm_pakai,
+                'f_pengantar' => $f3['file_name'],
+                'akte_kelahiran' => $f['file_name'],
+                'status' => 1
+            ];
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-check"></i> Selamat!
+                                </h5>
+                                Berhasil Mengajukan <b>Surat Keterangan Orang Yang Sama</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $id . '
+                                    </b>
+                                    </div>');
+            redirect(base_url("home/s_online"));
+        }
+    }
+    public function spc()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('kelurahan', 'kelurahan', 'required');
+        $this->form_validation->set_rules('rt', 'rt', 'required');
+        $this->form_validation->set_rules('rw', 'rw', 'required');
+        $this->form_validation->set_rules('keperluan', 'keperluan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $nama = $this->input->post('nama', TRUE);
+            $nik = $this->input->post('nik', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $email = $this->input->post('email', TRUE);
+            $alamat = $this->input->post('alamat', TRUE);
+            $kelurahan = $this->input->post('kelurahan', TRUE);
+            $rt = $this->input->post('rt', TRUE);
+            $rw = $this->input->post('rw', TRUE);
+            $keperluan = $this->input->post('keperluan', TRUE);
+            $surat = "SPC";
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+            if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
+            } else {
+
+                if (isset($_FILES['ktp'])) {
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['ktp']['name'], -7);
+                        $ktp = "KTP-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/ktp'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $ktp;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('ktp')) {
+                            $f1 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KTP Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+                if (isset($_FILES['kk'])) {
+
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['kk']['name'], -7);
+                        $kk = "KK-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/kk'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $kk;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('kk')) {
+                            $f2 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KK Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'kelurahan' => $kelurahan,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'ktp' => $f1['file_name'],
+                    'kk' => $f2['file_name'],
+                    'pengajuan' => 1
+                ];
+                $this->db->insert('penduduk', $save);
+            }
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "/";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
+
+            if (isset($_FILES['pengantar'])) {
+
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar Lurah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pengantar']['name'], -7);
+                    $pengantar = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pengantar;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pengantar')) {
+                        $f3 = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['pernyataan'])) {
+
+                if ($_FILES['pernyataan']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pernyataan  yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pernyataan']['name'], -7);
+                    $pernyataan = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pernyataan'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pernyataan;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pernyataan')) {
+                        $f4 = $this->upload->data();
+                    }
+                }
+            }
+
+
+
+            $data = [
+                'id_pengaju' => $id,
+                'nik' => $nik,
+                'id_surat' => $surat,
+                'tgl' => date('d-m-Y'),
+                'keperluan' => $keperluan,
+                'f_pengantar' => $f3['file_name'],
+                'f_pernyataan' => $f4['file_name'],
+                'status' => 1
+            ];
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-check"></i> Selamat!
+                                </h5>
+                                Berhasil Mengajukan <b>Surat Pengantar Cerai</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $id . '
+                                    </b>
+                                    </div>');
+            redirect(base_url("home/s_online"));
+        }
+    }
+    public function spskck()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('kelurahan', 'kelurahan', 'required');
+        $this->form_validation->set_rules('rt', 'rt', 'required');
+        $this->form_validation->set_rules('rw', 'rw', 'required');
+        $this->form_validation->set_rules('keperluan', 'keperluan', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $nama = $this->input->post('nama', TRUE);
+            $nik = $this->input->post('nik', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $email = $this->input->post('email', TRUE);
+            $alamat = $this->input->post('alamat', TRUE);
+            $kelurahan = $this->input->post('kelurahan', TRUE);
+            $rt = $this->input->post('rt', TRUE);
+            $rw = $this->input->post('rw', TRUE);
+            $keperluan = $this->input->post('keperluan', TRUE);
+            $surat = "SPSKCK";
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+            if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
+            } else {
+                if (isset($_FILES['ktp'])) {
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['ktp']['name'], -7);
+                        $ktp = "KTP-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/ktp'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $ktp;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('ktp')) {
+                            $f1 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KTP Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+                if (isset($_FILES['kk'])) {
+
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['kk']['name'], -7);
+                        $kk = "KK-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/kk'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $kk;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('kk')) {
+                            $f2 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KK Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'kelurahan' => $kelurahan,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'ktp' => $f1['file_name'],
+                    'kk' => $f2['file_name'],
+                    'pengajuan' => 1
+                ];
+                $this->db->insert('penduduk', $save);
+            }
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "/";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
+
+            if (isset($_FILES['pengantar'])) {
+
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar Lurah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pengantar']['name'], -7);
+                    $pengantar = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pengantar;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pengantar')) {
+                        $f3 = $this->upload->data();
+                    }
+                }
+            }
+            if (isset($_FILES['pernyataan'])) {
+
+                if ($_FILES['pernyataan']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pernyataan  yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pernyataan']['name'], -7);
+                    $pernyataan = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pernyataan'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pernyataan;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pernyataan')) {
+                        $f4 = $this->upload->data();
+                    }
+                }
+            }
+
+
+
+            $data = [
+                'id_pengaju' => $id,
+                'nik' => $nik,
+                'id_surat' => $surat,
+                'tgl' => date('d-m-Y'),
+                'keperluan' => $keperluan,
+                'f_pengantar' => $f3['file_name'],
+                'f_pernyataan' => $f4['file_name'],
+                'status' => 1
+            ];
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-check"></i> Selamat!
+                                </h5>
+                                Berhasil Mengajukan <b>Surat Pengantar SKCK</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $id . '
+                                    </b>
+                                    </div>');
+            redirect(base_url("home/s_online"));
+        }
+    }
+    public function spik()
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+
+        $this->form_validation->set_rules('nik', 'nik', 'required');
+        $this->form_validation->set_rules('nama', 'nama', 'required');
+        $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('alamat', 'alamat', 'required');
+        $this->form_validation->set_rules('kelurahan', 'kelurahan', 'required');
+        $this->form_validation->set_rules('rt', 'rt', 'required');
+        $this->form_validation->set_rules('rw', 'rw', 'required');
+        $this->form_validation->set_rules('keperluan', 'keperluan', 'required');
+        $this->form_validation->set_rules('almt_keramaian', 'almt_keramaian', 'required');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/s_online', $data);
+            $this->load->view('home/footer');
+        } else {
+
+            $kode = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $nik = $this->input->post('nik', TRUE);
+            $nama = $this->input->post('nama', TRUE);
+            $no_hp = $this->input->post('no_hp', TRUE);
+            $email = $this->input->post('email', TRUE);
+            $alamat = $this->input->post('alamat', TRUE);
+            $kelurahan = $this->input->post('kelurahan', TRUE);
+            $rt = $this->input->post('rt', TRUE);
+            $rw = $this->input->post('rw', TRUE);
+            $keperluan = $this->input->post('keperluan', TRUE);
+            $almt_keramaian = $this->input->post('almt_keramaian', TRUE);
+            $surat = "SPIK";
+
+            $status = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+            if ($this->penduduk->cek_penduduk($nik)->num_rows() > 0) {
+                if ($this->penduduk->cek_pengajuan($nik)->num_rows() > 0) {
+                    $aju = $this->penduduk->cek_pengajuan($nik)->row_array();
+                    $this->session->set_flashdata('warning', '<div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-block"></i> Maaf!
+                                </h5>
+                                Maaf Anda telah mengajukan pembuatan ' . $kode[$aju['id_surat']] . '</b>, Berikut
+                                <b>ID</b>
+                                anda:
+                                <b>
+                                ' . $aju['id_pengaju'] . '
+                                    </b>
+                                    <br> Dengan Status ' . $status[$aju['status']] . '
+                                    </div>');
+
+                    redirect(base_url("home/s_online"));
+                } else {
+                    $this->penduduk->pengajuan($nik);
+                }
+            } else {
+
+                if (isset($_FILES['ktp'])) {
+                    if ($_FILES['ktp']['size'] >= 2097152) { //5MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KTP yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['ktp']['name'], -7);
+                        $ktp = "KTP-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/ktp'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $ktp;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('ktp')) {
+                            $f1 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KTP Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+                if (isset($_FILES['kk'])) {
+
+                    if ($_FILES['kk']['size'] >= 2097152) { //2MB
+                        $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> KK yang diupload Lebih 2MB!</div>');
+                        redirect(base_url("home/s_online"));
+                    } else {
+                        $namafile = substr($_FILES['kk']['name'], -7);
+                        $kk = "KK-" . $nik . $namafile;
+                        $config['upload_path']          = './upload/kk'; //lokasi folder
+                        $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                        $config['overwrite']            = true; // tindih file dengan file baru
+                        $config['max_size']             = 2048; // 2MB
+                        $config['file_name']            = $kk;
+
+                        $this->load->library('upload', $config);
+                        $this->upload->initialize($config);
+                        if ($this->upload->do_upload('kk')) {
+                            $f2 = $this->upload->data();
+                        }
+                    }
+                } else {
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Scan KK Wajib diupload</div>');
+                    redirect(base_url("home/s_online"));
+                }
+
+                $save = [
+                    'nik' => $nik,
+                    'nama' => $nama,
+                    'no_hp' => $no_hp,
+                    'email' => $email,
+                    'alamat' => $alamat,
+                    'kelurahan' => $kelurahan,
+                    'rt' => $rt,
+                    'rw' => $rw,
+                    'ktp' => $f1['file_name'],
+                    'kk' => $f2['file_name'],
+                    'pengajuan' => 1
+                ];
+                $this->db->insert('penduduk', $save);
+            }
+
+            //Output a v4 UUID
+            $rid = uniqid($surat, TRUE);
+            $rid2 = str_replace('.', '', $rid);
+            $rid3 = substr(str_shuffle($rid2), 0, 3);
+
+            $cc = $this->db->count_all('pengajuan_surat') + 1;
+            $count = str_pad($cc, 3, STR_PAD_LEFT);
+            $id = $surat . "/";
+            $d = date('d');
+            $y = date('y');
+            $mnth = date("m");
+            $s = date('s');
+            $randomize = $d + $y + $mnth + $s;
+            $id = $id . $rid3 . "-" . $randomize . "-" . $count . "-" . $s;
+
+            if (isset($_FILES['pengantar'])) {
+                if ($_FILES['pengantar']['size'] >= 2097152) { //2MB
+                    $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Pengantar Lurah yang diupload Lebih 2MB!</div>');
+                    redirect(base_url("home/s_online"));
+                } else {
+
+                    $namafile = substr($_FILES['pengantar']['name'], -7);
+                    $pengantar = "PL-" . $nik . $namafile;
+                    $config['upload_path']          = './upload/pengantar'; //lokasi folder
+                    $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
+                    $config['overwrite']            = true; // tindih file dengan file baru
+                    $config['max_size']             = 2048; // 2MB
+                    $config['file_name']            = $pengantar;
+
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    if ($this->upload->do_upload('pengantar')) {
+                        $f3 = $this->upload->data();
+                    }
+                }
+            }
+
+            $data = [
+                'id_pengaju' => $id,
+                'nik' => $nik,
+                'id_surat' => $surat,
+                'tgl' => date('d-m-Y'),
+                'keperluan' => $keperluan,
+                'almt_keramaian' => $almt_keramaian,
+                'f_pengantar' => $f3['file_name'],
+                'status' => 1
+            ];
+            $this->pengajuan_track->insert_p_surat($data);
+            $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h5>
+                                <i class="icon fas fa-check"></i> Selamat!
+                                </h5>
+                                Berhasil Mengajukan <b>Surat Pengantar Izin Keramaian</b>, Berikut
                                 <b>ID</b>
                                 anda:
                                 <b>
@@ -690,111 +2880,6 @@ class Home extends CI_Controller
         $this->load->view('home/navbar', $data);
         $this->load->view('home/s_online', $data);
         $this->load->view('home/footer');
-        // $this->form_validation->set_rules('nik', 'nik', 'required');
-        // $this->form_validation->set_rules('nama', 'nama', 'required');
-        // $this->form_validation->set_rules('no_hp', 'no_hp', 'required');
-        // $this->form_validation->set_rules('surat', 'surat', 'required');
-        // $this->form_validation->set_rules('email', 'email', 'required');
-
-        // if ($this->form_validation->run() == FALSE) {
-        // } else {
-        //     $status = [
-        //         1 => 1,  // Pending
-        //         2 => 2,  // Diterima dan Dilanjutkan
-        //         3 => 3,  // Sudah Diketik dan Diparaf
-        //         4 => 4,  // Sudah Ditandatangani Camat dan Selesai
-        //     ];
-
-        //     $nama = $this->input->post('nama', TRUE);
-        //     $nik = $this->input->post('nik', TRUE);
-        //     $no_hp = $this->input->post('no_hp', TRUE);
-        //     $surat = $this->input->post('surat', TRUE);
-        //     $email = $this->input->post('email', TRUE);
-
-        //     $ceknik = $this->penduduk->cek_penduduk($nik)->num_rows();
-
-        //     if ($ceknik <= 0) {
-        //         $save = [
-        //             'nik' => $nik,
-        //             'nama' => $nama,
-        //             'no_hp' => $no_hp,
-        //             'email' => $email,
-        //             'pengajuan' => 'pengajuan' + 1
-        //         ];
-
-        //         $this->db->insert('penduduk', $save);
-        //         // $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-cross"></i> Maaf!</h5> NIK Anda tidak Terdaftar!</div>');
-        //         // redirect(base_url("suratonline"));
-        //     }
-
-        //     //Output a v4 UUID
-        //     $rid = uniqid($surat, TRUE);
-        //     $rid2 = str_replace('.', '', $rid);
-        //     $rid3 = substr(str_shuffle($rid2), 0, 3);
-
-        //     $cc = $this->db->count_all('pengajuan_surat') + 1;
-        //     $count = str_pad($cc, 3, STR_PAD_LEFT);
-        //     $id = $surat . "-";
-        //     $d = date('d');
-        //     $y = date('y');
-        //     $mnth = date("m");
-        //     $s = date('s');
-        //     $randomize = $d + $y + $mnth + $s;
-        //     $id = $id . $rid3 . $randomize . $count . $y;
-
-        //     // var_dump($id);
-        //     // die;
-
-        //     if ($_FILES['file']['size'] >= 5242880) {
-        //         $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-ban"></i> MAAF!</h5> File Lebih 2MB!</div>');
-        //         redirect(base_url("home/s_online"));
-        //     }
-
-        //     if ($_FILES['file']['name'] == null) {
-        //         $file = '-';
-        //     } else {
-        //         $namafile = substr($_FILES['file']['name'], -7);
-        //         $file = $surat . uniqid() . $namafile;
-        //         $config['upload_path']          = './upload/berkas';
-        //         $config['allowed_types']        = '*';
-        //         $config['max_size']             = 5120; // 5MB
-        //         $config['file_name']            = $file;
-
-        //         $this->load->library('upload', $config);
-
-        //         if ($this->upload->do_upload("file")) {
-        //             $data = array('upload_data' => $this->upload->data());
-        //             $berkas = $data['upload_data']['file_name'];
-        //         }
-        //     }
-
-        //     $data = [
-        //         'id' => $id,
-        //         'nik' => $nik,
-        //         'id_surat' => $surat,
-        //         'file' => $file,
-        //         'tgl' => date('d-m-Y'),
-        //         'status' => $status[1]
-        //     ];
-
-        //     // var_dump($data);
-        //     // die;
-
-        //     $this->pengajuan_track->insert_p_surat($data);
-        //     $this->session->set_flashdata('success', '<div class="alert alert-success alert-dismissible">
-        //     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        //     <h5>
-        //     <i class="icon fas fa-check"></i> Selamat!
-        //     </h5>
-        //     Berhasil Mengajukan Surat! Berikut
-        //     <b>ID</b>
-        //     anda:
-        //     <b>
-        //  ' . $id . '
-        //     </b>
-        //     </div>');
-        //     redirect(base_url("home/s_online"));
-        // }
     }
     public function tracking()
     {
@@ -813,22 +2898,11 @@ class Home extends CI_Controller
         $this->load->view('home/tracking', $data);
         $this->load->view('home/footer');
     }
-    // public function detail()
-    // {
-    //     // $data = $this->dashboard->user();
-    //     $data['title'] = 'E-Kecamatan';
-
-    //     // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-    //     // var_dump($data);
-    //     $this->load->view('frontend/header', $data);
-    //     $this->load->view('frontend/detail', $data);
-    //     $this->load->view('frontend/footer');
-    // }
     public function cariSurat()
     {
 
         $id = $this->input->post('trackid', TRUE);
-        $row = $this->pengajuan_track->findById($id);
+        $row = $this->pengajuan_track->getPengajuanById($id);
 
         $data = [
             'id' => $id,
@@ -842,29 +2916,41 @@ class Home extends CI_Controller
             $this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fa-bank"></i> Maaf!</h5> ID yang anda masukkan Salah! <b>ID: </b><b>' . $id . '</b> <i>tidak ditemukan</i></div>');
             redirect(base_url("tracking"));
         } else {
-            redirect(base_url("home/tracked/") . $id);
+            $data['row'] = $this->pengajuan_track->getPengajuanById($id);
+            // $data['pengajuan_surat'] = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
+            $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+            // $this->load->model('M_penduduk', 'penduduk');
+            // $data['detail'] = $this->penduduk->getSurat();
+            $data['title'] = 'Tracking Surat';
+            $data['kode'] = [
+                'SKM' => 'SURAT KETERANGAN MISKIN',
+                'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+                'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+                'SKU' => 'SURAT KETERANGAN USAHA',
+                'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+                'SKN' => 'SURAT KETERANGAN NIKAH',
+                'SKD' => 'SURAT KETERANGAN DOMISILI',
+                'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+                'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+                'SPC' => 'SURAT PENGANTAR CERAI',
+                'SPSKCK' => 'SURAT PENGANTAR SKCK',
+                'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+            ];
+            $data['status'] = [
+                1 => 'Pending',
+                2 => 'Syarat Tidak Terpenuhi',
+                3 => 'Diterima dan Dilanjutkan',
+                4 => 'Surat Telah dibuat, dan Sedang diperiksa',
+                5 => 'Telah Selesai Dibuat',
+            ];
+
+            $this->load->view('home/header', $data);
+            $this->load->view('home/navbar', $data);
+            $this->load->view('home/result', $data);
+            $this->load->view('home/footer');
         }
     }
 
-    public function tracked()
-    {
-        $id = $this->uri->segment(3);
-        $data['row'] = $this->pengajuan_track->showById($id);
-        // $data['pengajuan_surat'] = $this->db->get_where('pengajuan_surat', ['id' => $id])->row_array();
-        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
-        // $this->load->model('M_penduduk', 'penduduk');
-        // $data['detail'] = $this->penduduk->getSurat();
-        $data['title'] = 'Tracking Surat';
-
-
-        // $data['sm'] = $this->db->get('surat_masuk')->row_array();
-        // var_dump($data);  $this->load->view('home/header', $data);
-
-        $this->load->view('home/header', $data);
-        $this->load->view('home/navbar', $data);
-        $this->load->view('home/result', $data);
-        $this->load->view('home/footer');
-    }
 
     public function cetak()
     {

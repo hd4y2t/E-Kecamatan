@@ -8,11 +8,13 @@ class Camat extends CI_Controller
         parent::__construct();
         // $this->load->model('Madmin');
 
-        $this->load->model('Mcamat');
-        $this->load->library('form_validation');
-        $this->load->helper(array('url', 'download'));
+        $this->load->model('Mpegawai', 'pegawai');
+        $this->load->model('Mcamat', 'camat');
+        $this->load->library('form_validation', 'Pdf');
+        $this->load->library('Pdf');
         is_logged_in();
     }
+
 
     public function index()
     {
@@ -25,116 +27,138 @@ class Camat extends CI_Controller
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $data['user_non'] = $this->db->get('user')->num_rows();
 
-
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);
         $this->load->view('camat/index', $data);
         $this->load->view('templates/footer');
     }
-    public function surat_masuk()
+    public function pembuatan_surat()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Surat Masuk';
-        $data['surat_masuk'] = $this->db->get_where('surat_masuk', ['status =' => 2])->result_array();
+        $data['title'] = 'Pembuatan Surat';
         $data['status'] = [
-            // 1 => 'Pending',
-            2 => 'Diketahui Sekcam',
-            3 => 'Diketahui Sekcam dan Camat',
+            1 => 'Surat Belum dibuat',
+            2 => 'Ditolak',
+            3 => 'Pending',
+            4 => 'Dilanjutkan',
+            5 => 'Telah Diparaf',
         ];
+        $data['surat'] = [
+            'SKM' => 'Surat Keterangan Miskin',
+            'SKTM' => 'Surat Keterangan Tidak Mampu',
+            'SKBPR' => 'Surat Keterangan Belum Punya Rumah',
+            'SKU' => 'Surat Keterangan Usaha',
+            'SKDP' => 'Surat Keterangan Domisili Perusahaan',
+            'SKN' => 'Surat Keterangan Nikah',
+            'SKD' => 'Surat Keterangan Domisili',
+            'SKP' => 'Surat Keterangan Penghasilan',
+            'SKOS' => 'Surat Keterangan Orang Yang Sama',
+            'SPC' => 'Surat Pengantar Cerai',
+            'SPSKCK' => 'Surat Pengantar SKCK',
+            'SPIK' => 'Surat Pengantar Izin Keramaian'
+        ];
+        $this->load->model('Mcamat', 'camat');
+        $data['ps'] = $this->camat->getSurat();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);
-        $this->load->view('camat/surat_masuk', $data);
+        $this->load->view('camat/pembuatan_surat', $data);
         $this->load->view('templates/footer');
     }
-    public function ketahuisurat($id)
+
+    public function terima($id)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Surat Masuk';
-        // $this->db->get('surat_masuk')->result_array();
-        $data['status'] = [
-            1 => 'Pending',
-            2 => 'Diketahui Sekcam',
-            3 => 'Diketahui Camat & Sekcam',
-        ];
-        $status = 3;
-        $this->db->set('status', $status);
-        $this->db->where(['id' => $id]);
-        $this->db->update('surat_masuk');
-        $this->session->set_flashdata('message', 'Status Surat Telah Diketahui!');
-        // var_dump($status);
-        // die();
-        redirect(base_url('camat/surat_masuk'));
-    }
-
-    public function surat_keluar()
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Surat Keluar';
-
-        $this->load->model('Mcamat', 'camat');
-        $data['surat_keluar'] = $this->camat->getSurat();
-        $data['surat'] = $this->db->get('surat')->result_array();
-
         $data['status'] = [
             1 => 'Belum ada file',
             2 => 'Pending',
             3 => 'Ditolak',
-            4 => 'Belum Diparaf',
-            5 => 'Telah Diparaf'
+            4 => 'Diketahui camat',
+            5 => 'Diketahui camat dan Camat'
         ];
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('camat/surat_keluar', $data);
-        $this->load->view('templates/footer');
+
+        $surat = $this->db->get_where('pembuatan_surat', ['no_surat' => $id])->row_array();
+        $status = 5;
+
+        $this->db->set('status', $status);
+        $this->db->where(['id_pengaju' => $surat['pengaju_id']]);
+        $this->db->update('pengajuan_surat');
+
+        $this->db->set('status_surat', $status);
+        $this->db->where(['no_surat' => $id]);
+        $this->db->update('pembuatan_surat');
+
+
+        $this->session->set_flashdata('success', 'Status Surat Nomor ' . $id . ' Telah Diketahui!');
+        // var_dump($status);
+        // die();
+        redirect(base_url('camat/pembuatan_surat'));
     }
 
-    public function ttd($id)
+    public function tolak($id)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Surat Keluar';
+        $data['title'] = 'Dashboard';
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Syarat Tidak Terpenuhi',
+            3 => 'Diterima dan Dilanjutkan',
+            3 => 'Telah diketahui camat dan Camat',
+        ];
+        $kode = [
+            'SKM' => 'SURAT KETERANGAN MISKIN',
+            'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+            'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+            'SKU' => 'SURAT KETERANGAN USAHA',
+            'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+            'SKN' => 'SURAT KETERANGAN NIKAH',
+            'SKD' => 'SURAT KETERANGAN DOMISILI',
+            'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+            'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+            'SPC' => 'SURAT PENGANTAR CERAI',
+            'SPSKCK' => 'SURAT PENGANTAR SKCK',
+            'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+        ];
+        $pSurat = $this->db->get_where('pembuatan_surat', ['no_surat' => $id])->row_array();
+
+        $this->form_validation->set_rules('catatan', 'Catatan', 'required');
+        $catatan =  $this->input->post("catatan", TRUE);
+        $dateNow = date('d-m-Y');
+
+
+        $this->db->set('status_surat', 2);
+        $this->db->set('catatan_surat', $catatan);
+        $this->db->set('tgl', $dateNow);
+        $this->db->where(['no_surat' => $id]);
+        $this->db->update('pembuatan_surat');
+        $this->session->set_flashdata('danger', 'Status Surat Nomor:  ' . $id  .  $kode[$pSurat['id_surat']]  . ' Telah Ditolak! <br>Dengan Catatan : ' . $catatan);
+        redirect(base_url('camat/pembuatan_surat'));
+    }
+
+    public function cetak_skm($id)
+    {
+        $data['title'] = 'E-Kecamatan';
+        $data['kode'] = [
+            'SKM' => 'SURAT KETERANGAN MISKIN',
+            'SKTM' => 'SURAT KETERANGAN TIDAK MAMPU',
+            'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+            'SKU' => 'SURAT KETERANGAN USAHA',
+            'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+            'SKN' => 'SURAT KETERANGAN NIKAH',
+            'SKD' => 'SURAT KETERANGAN DOMISILI',
+            'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+            'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+            'SPC' => 'SURAT PENGANTAR CERAI',
+            'SPSKCK' => 'SURAT PENGANTAR SKCK',
+            'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+        ];
+
+        $this->load->model('Mcamat', 'camat');
+        $data['surat'] = $this->camat->getSuratById($id);
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
-        $data['surat_keluar'] = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('camat/ttd', $data);
-        $this->load->view('templates/footer');
-
-        $file_surat =  $this->input->post("file_surat", TRUE);
-        $config['upload_path']          = './upload/surat_keluar';
-        $config['allowed_types']        = 'pdf|doc|docx';
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload('file_surat')) {
-            $data = array('upload_data' => $this->upload->data());
-            $file_surat = $data['upload_data']['file_name'];
-            $save = [
-                'file' => $file_surat,
-                'status' => 5
-            ];
-            $this->db->where('id', $id);
-            $this->db->update('surat_keluar', $save);
-            $this->session->set_flashdata('success', 'Berhasil Diperbaiki!');
-            redirect(base_url("camat/surat_keluar"));
-        }
-    }
-    public function download($id)
-    {
-        $data = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-        force_download('upload/surat_keluar/' . $data['file'], NULL);
-    }
-    public function paraf()
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Paraf';
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('camat/paraf', $data);
-        $this->load->view('templates/footer');
+        $this->load->view('cetak/cetak_skm', $data);
     }
 }

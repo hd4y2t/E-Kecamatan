@@ -4,78 +4,522 @@
             <div class="col-lg">
                 <div class="content">
                     <div class="container-fluid">
-                        <div class="card">
-                            <div class="card-header card-header-success">
+                        <!-- <div class="card"> -->
+                        <!-- <div class="card-header card-header-success">
                                 <h3 class="card-title"><?= $title ?></h3>
-                            </div>
-                            <div class="card-body">
-                                <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
-                                <?= $this->session->flashdata('message'); ?>
-                                <?php if ($this->session->flashdata('success') == TRUE) : ?>
-                                    <div class="alert alert-success">
-                                        <span><?= $this->session->flashdata('success'); ?></span>
+                            </div> -->
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-danger card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">info_outline</i>
+                                        </div>
+                                        <p class="card-category">Antrian Surat yang belum dicek</p>
+                                        <h3 class="card-title"><?= $antrian_non; ?></h3>
                                     </div>
-                                <?php endif; ?>
-                                <!-- <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a> -->
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="table-responsive">
-                                            <table class="table table-hover" id="myTable">
-                                                <thead class="text-success">
-
-                                                    <tr>
-                                                        <th scope="col"></th>
-                                                        <th scope="col">Nama Pengaju</th>
-                                                        <th scope="col">NIK</th>
-                                                        <th scope="col">Nomor Surat</th>
-                                                        <th scope="col">Surat</th>
-                                                        <th scope="col">Tanggal</th>
-                                                        <th scope="col">Keperluan</th>
-                                                        <th scope="col">Keterangan</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php $i = 1; ?>
-                                                    <?php foreach ($ps as $s) : ?>
-                                                        <tr>
-                                                            <th scope="row"><?= $i ?></th>
-                                                            <td><?= $s['nama']; ?></td>
-                                                            <td><?= $s['nik']; ?></td>
-                                                            <td><?= $s['no_surat']; ?></td>
-                                                            <td><?= $surat[$s['id_surat']]; ?></td>
-                                                            <td><?= $s['tgl']; ?></td>
-                                                            <td><?= $s['keperluan']; ?></td>
-                                                            <td><?= $s['keterangan']; ?></td>
-                                                            <td class="font-weight-bold"><?= $status[$s['status_surat']]; ?></td>
-                                                            <?php if ($s['status_surat'] <= 1) { ?>
-                                                                <td>
-                                                                    <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>">Buat Surat</button>
-                                                                </td>
-                                                            <?php } else if ($s['status_surat'] <= 4) {
-                                                            ?>
-                                                                <td>
-                                                                    <a class="btn btn-simple btn-info btn-sm text-light"><i class="material-icons"> update </i>
-                                                                    </a>
-                                                                </td>
-                                                            <?php
-                                                            } else {
-                                                            ?>
-                                                                <td>
-                                                                    <a href="<?= base_url('pegawai/cetak_skm/') . $s['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
-                                                                    </a>
-                                                                </td>
-                                                            <?php
-                                                            }
-                                                            $i++; ?>
-                                                        </tr>
-                                                    <?php endforeach ?>
-                                                </tbody>
-                                            </table>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons text-danger">warning</i>
+                                            Antrian yang belum di tangani
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-warning card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="material-icons">content_copy</i>
+                                        </div>
+                                        <p class="card-category">Antrian Surat yang ada</p>
+                                        <h3 class="card-title"><?= $antrian; ?>
+                                        </h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">local_offer</i> Antrian yang sedang diproses
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-success card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="fa fa-check-square"></i>
+                                        </div>
+                                        <p class="card-category">Antrian Surat yang selesai</p>
+                                        <h3 class="card-title"><?= $antrian_done; ?></h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">date_range</i> Antrian yang telah selesai
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="card card-stats">
+                                    <div class="card-header card-header-info card-header-icon">
+                                        <div class="card-icon">
+                                            <i class="fa fa-users"></i>
+                                        </div>
+                                        <p class="card-category">Penduduk yang memakai sistem</p>
+                                        <h3 class="card-title"><?= $warga; ?></h3>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="stats">
+                                            <i class="material-icons">update</i> Just Updated
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
+                            <?= $this->session->flashdata('message'); ?>
+                            <?php if ($this->session->flashdata('success') == TRUE) : ?>
+                                <div class="alert alert-success">
+                                    <span><?= $this->session->flashdata('success'); ?></span>
+                                </div>
+                            <?php endif; ?>
+                            <!-- <a href="" class="btn btn-success" data-toggle="modal" data-target="#newsuratModal">Tambah Surat</a> -->
+
+                        </div>
+                        <!-- </div> -->
+
+                        <div class="content" data-color="green" data-background-color="white" data-image="<?= base_url(); ?>assets/img/sidebar-2.jpg">
+                            <?= form_error('surat', '<div class="text-danger" surat="alert">', '</div>'); ?>
+                            <?= $this->session->flashdata('message'); ?>
+                            <?php if ($this->session->flashdata('success') == TRUE) : ?>
+                                <div class="alert alert-success">
+                                    <span><?= $this->session->flashdata('success'); ?></span>
+                                </div>
+                            <?php endif; ?>
+                            <?php if ($this->session->flashdata('danger') == TRUE) : ?>
+                                <div class="alert alert-danger">
+                                    <span><?= $this->session->flashdata('danger'); ?></span>
+                                </div>
+                            <?php endif; ?>
+                            <div class="card">
+                                <div class="card-header card-header-tabs card-header-success">
+                                    <h3>Antrian Surat Pelayanan Umum</h3>
+                                    <div class="nav-tabs-navigation">
+                                        <div class="nav-tabs-wrapper">
+                                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" href="#skm" data-toggle="tab">
+                                                        <i class="material-icons">description</i> Keterangan Miskin : <?= $countskm; ?>
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#sktm" data-toggle="tab">
+                                                        <i class="material-icons">description</i> Keterangan Tidak Mampu : <?= $countsktm; ?>
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#skbpr" data-toggle="tab">
+                                                        <i class="material-icons">description</i> Keterangan Belum Punya Rumah : <?= $countskbpr; ?>
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#skp" data-toggle="tab">
+                                                        <i class="material-icons">description</i> Keterangan Penghasilan : <?= $countskp; ?>
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#spskck" data-toggle="tab">
+                                                        <i class="material-icons">description</i> Pengantar SKCK : <?= $countspskck; ?>
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#spik" data-toggle="tab">
+                                                        <i class="material-icons">description</i> Pengantar Izin Keramaian : <?= $countspik; ?>
+                                                        <div class="ripple-container"></div>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="skm">
+                                                <table class="table" id="myTables">
+                                                    <thead class="text-success">
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">ID Pengajuan</th>
+                                                            <th scope="col">NIK</th>
+                                                            <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">No.HP</th>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($skm as $m) : ?>
+                                                            <tr>
+                                                                <th scope="row"><?= $i ?></th>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['no_hp']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+                                                                <?php if ($m['status_surat'] <= 1) { ?>
+                                                                    <td>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                    </td>
+                                                                <?php } else if ($m['status_surat'] <= 4) {
+                                                                ?>
+                                                                    <td>
+                                                                        <a class="btn btn-simple btn-info btn-sm text-light"><i class="material-icons"> update </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <td>
+                                                                        <a href="<?= base_url('pegawai/cetak_skm/') . $m['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                }
+                                                                $i++; ?>
+                                                            </tr>
+                                                        <?php endforeach ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane" id="sktm">
+                                                <table class="table" id="myTables">
+                                                    <thead class="text-success">
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">ID Pengajuan</th>
+                                                            <th scope="col">NIK</th>
+                                                            <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">No.HP</th>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($sktm as $m) : ?>
+                                                            <tr>
+                                                                <th scope="row"><?= $i ?></th>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['no_hp']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+                                                                <?php if ($m['status_surat'] <= 1) { ?>
+                                                                    <td>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                    </td>
+                                                                <?php } else if ($m['status_surat'] <= 4) {
+                                                                ?>
+                                                                    <td>
+                                                                        <a class="btn btn-simple btn-info btn-sm text-light"><i class="material-icons"> update </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <td>
+                                                                        <a href="<?= base_url('pegawai/cetak_skm/') . $m['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                }
+                                                                $i++; ?>
+                                                            </tr>
+                                                        <?php endforeach ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane" id="skbpr">
+                                                <table class="table" id="myTables">
+                                                    <thead class="text-success">
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">ID Pengajuan</th>
+                                                            <th scope="col">NIK</th>
+                                                            <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">No.HP</th>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($skbpr as $m) : ?>
+                                                            <tr>
+                                                                <th scope="row"><?= $i ?></th>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['no_hp']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+                                                                <?php if ($m['status_surat'] <= 1) { ?>
+                                                                    <td>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                    </td>
+                                                                <?php } else if ($m['status_surat'] <= 4) {
+                                                                ?>
+                                                                    <td>
+                                                                        <a class="btn btn-simple btn-info btn-sm text-light"><i class="material-icons"> update </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <td>
+                                                                        <a href="<?= base_url('pegawai/cetak_skm/') . $m['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                }
+                                                                $i++; ?>
+                                                            </tr>
+                                                        <?php endforeach ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane" id="spik">
+                                                <table class="table" id="myTables">
+                                                    <thead class="text-success">
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">ID Pengajuan</th>
+                                                            <th scope="col">NIK</th>
+                                                            <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">No.HP</th>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Alamat Keramaian</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($spik as $m) : ?>
+                                                            <tr>
+                                                                <th scope="row"><?= $i ?></th>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['no_hp']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td><?= $m['almt_keramaian']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+                                                                <?php if ($m['status_surat'] <= 1) { ?>
+                                                                    <td>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                    </td>
+                                                                <?php } else if ($m['status_surat'] <= 4) {
+                                                                ?>
+                                                                    <td>
+                                                                        <a class="btn btn-simple btn-info btn-sm text-light"><i class="material-icons"> update </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <td>
+                                                                        <a href="<?= base_url('pegawai/cetak_skm/') . $m['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                }
+                                                                $i++; ?>
+                                                            </tr>
+                                                        <?php endforeach ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane" id="skp">
+                                                <table class="table" id="myTables">
+                                                    <thead class="text-success">
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">ID Pengajuan</th>
+                                                            <th scope="col">NIK</th>
+                                                            <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">No.HP</th>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($skp as $m) : ?>
+                                                            <tr>
+                                                                <th scope="row"><?= $i ?></th>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['no_hp']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+                                                                <?php if ($m['status_surat'] <= 1) { ?>
+                                                                    <td>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                    </td>
+                                                                <?php } else if ($m['status_surat'] <= 4) {
+                                                                ?>
+                                                                    <td>
+                                                                        <a class="btn btn-simple btn-info btn-sm text-light"><i class="material-icons"> update </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <td>
+                                                                        <a href="<?= base_url('pegawai/cetak_skm/') . $m['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                }
+                                                                $i++; ?>
+                                                            </tr>
+                                                        <?php endforeach ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane" id="spskck">
+                                                <table class="table" id="myTables">
+                                                    <thead class="text-success">
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">ID Pengajuan</th>
+                                                            <th scope="col">NIK</th>
+                                                            <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">No.HP</th>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Status</th>
+                                                            <!-- <th scope="col">Detail Pengajuan</th> -->
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($spskck as $m) : ?>
+                                                            <tr>
+                                                                <th scope="row"><?= $i ?></th>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['no_hp']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+                                                                <?php if ($m['status_surat'] <= 1) { ?>
+                                                                    <td>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                    </td>
+                                                                <?php } else if ($m['status_surat'] <= 4) {
+                                                                ?>
+                                                                    <td>
+                                                                        <a class="btn btn-simple btn-info btn-sm text-light"><i class="material-icons"> update </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <td>
+                                                                        <a href="<?= base_url('pegawai/cetak_skm/') . $m['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                }
+                                                                $i++; ?>
+                                                            </tr>
+                                                        <?php endforeach ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!-- <div class="col">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover" id="myTable">
+                                                    <thead class="text-success">
+
+                                                        <tr>
+                                                            <th scope="col"></th>
+                                                            <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">NIK</th>
+                                                            <th scope="col">Nomor Surat</th>
+                                                            <th scope="col">Surat</th>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Keperluan</th>
+                                                            <th scope="col">Keterangan</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($ps as $s) : ?>
+                                                            <tr>
+                                                                <th scope="row"><?= $i ?></th>
+                                                                <td><?= $s['nama']; ?></td>
+                                                                <td><?= $s['nik_pengaju']; ?></td>
+                                                                <td><?= $s['no_surat']; ?></td>
+                                                                <td><?= $surat[$s['id_surat']]; ?></td>
+                                                                <td><?= $s['tgl']; ?></td>
+                                                                <td><?= $s['keperluan']; ?></td>
+                                                                <td><?= $s['keterangan']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$s['status_surat']]; ?></td>
+                                                                <?php if ($s['status_surat'] <= 1) { ?>
+                                                                    <td>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>">Buat Surat</button>
+                                                                    </td>
+                                                                <?php } else if ($s['status_surat'] <= 4) {
+                                                                ?>
+                                                                    <td>
+                                                                        <a class="btn btn-simple btn-info btn-sm text-light"><i class="material-icons"> update </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                } else {
+                                                                ?>
+                                                                    <td>
+                                                                        <a href="<?= base_url('pegawai/cetak_skm/') . $s['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
+                                                                        </a>
+                                                                    </td>
+                                                                <?php
+                                                                }
+                                                                $i++; ?>
+                                                            </tr>
+                                                        <?php endforeach ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div> -->
                             </div>
                         </div>
                     </div>
@@ -102,7 +546,7 @@
                                     <tbody>
                                         <tr>
                                             <td>ID Pengajuan</td>
-                                            <td><?= $m['id_pengaju'] ?></td>
+                                            <td><?= $m['pengaju_id'] ?></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -191,7 +635,7 @@
         </div>
     <?php endforeach; ?>
 
-    <?php foreach ($surat_keluar as $s) : ?>
+    <!-- <?php foreach ($surat_keluar as $s) : ?>
         <div class="modal fade" id="lihatSurat<?= $s['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-notice">
                 <div class="modal-content">
@@ -214,5 +658,5 @@
                 </div>
             </div>
         </div>
-    <?php endforeach; ?>
+    <?php endforeach; ?> -->
     </body>

@@ -4,15 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Mcamat extends CI_Model
 {
 
-    // public function getKategori()
-    // {
-    //     $query = "SELECT `surat`.*, `kategori`.`nm_kategori`
-    //                FROM `surat` JOIN `kategori`
-    //                ON `surat`.`id_kategori` = `kategori`.`id_kategori`
-    //                ";
-    //     return $this->db->query($query)->result_array();
-    // }
-
     public function joinDataSurat()
     {
         $query = "SELECT `surat`.* ,`kategori`.`nm_kategori`,`bidang`.`nm_bidang`
@@ -22,26 +13,27 @@ class Mcamat extends CI_Model
                                     ";
         return $this->db->query($query)->result_array();
     }
-
     public function getSurat()
     {
-        $query = "SELECT `pengajuan_surat`.*
-                   FROM `surat_keluar` JOIN `surat`
-                   ON `surat_keluar`.`surat_id` = `surat`.`id_surat`
-                   WHERE  `status`= 4
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.* , `kelurahan`.`nm_kelurahan`, `pengajuan_surat`.*
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE`pembuatan_surat`.`status_surat` = 4
                    ";
         return $this->db->query($query)->result_array();
     }
 
-
-    // public function inputsubmenu($array)
-    // {
-    //     $this->db->insert('user_sub_menu', $array);
-    // }
-
-    // public function deleteSubmenu($id)
-    // {
-    //     $this->db->where('id', $id);
-    //     $this->db->delete('user_sub_menu');
-    // }
+    public function getSuratById($id)
+    {
+        $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                    FROM `pembuatan_surat`
+                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju` 
+                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju`=`pembuatan_surat`.`pengaju_id`
+                    JOIN `kelurahan` ON `kelurahan`.`id_kelurahan`=`penduduk`.`kelurahan`
+                    WHERE `pembuatan_surat`.`no_surat` = '$id'
+                    ";
+        return $this->db->query($query)->row_array();
+    }
 }

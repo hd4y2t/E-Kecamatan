@@ -34,7 +34,7 @@ class Auth extends CI_Controller
             $query = "SELECT `user`.* ,`user_role`.*
                         FROM `user`
                         JOIN `user_role` ON `user`.`role_id` = `user_role`.`id`
-                        WHERE `user`.`username` = $username
+                        WHERE `user`.`username` = '$username'
                         ";
             $sesi = $this->db->query($query)->row_array();
             redirect($sesi['role']);
@@ -61,7 +61,9 @@ class Auth extends CI_Controller
                     if ($user['role_id'] == 1) {
                         redirect('admin');
                     } else if ($user['role_id'] == 2) {
-                        redirect('pegawai');
+                        redirect('pelayanan_umum');
+                    } else if ($user['role_id'] == 3) {
+                        redirect('pemerintahan');
                     } else if ($user['role_id'] == 4) {
                         redirect('camat');
                     } else if ($user['role_id'] == 5) {

@@ -277,23 +277,20 @@ https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js -->
             });
         });
 
-        // <?php
-            //     foreach ($grafik as $data) {
-            //         $kelurahan[] = $data->nm_kelurarahan;
-            //         $jumlah[] = (float) $data->pengajuan;
-            //     }
+        //     foreach ($grafik as $data) {
+        //         $kelurahan[] = $data->nm_kelurarahan;
+        //         $jumlah[] = (float) $data->pengajuan;
+        //     }
 
-            //     
-            ?>
+
         // var ctx = document.getElementById("myChart").getContext('2d');
         // var myChart = new Chart(ctx, {
         //     type: 'bar',
         //     data: {
-        //         labels: <?= $kelurahan; ?>,
+        //         labels:
         //         datasets: [{
         //             label: [],
         //             data: [
-        //                 <?= $jumlah; ?>
         //             ],
         //             backgroundColor: [
         //                 'rgba(232, 63, 60, 1)',
@@ -320,8 +317,6 @@ https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js -->
         //         }
         //     }
         // });
-
-
 
 
 

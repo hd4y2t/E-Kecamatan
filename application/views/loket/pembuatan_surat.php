@@ -26,7 +26,8 @@
                                                     <tr>
                                                         <th scope="col"></th>
                                                         <th scope="col">Nama Pengaju</th>
-                                                        <th scope="col">NIK</th>
+                                                        <th scope="col">Nik</th>
+                                                        <th scope="col">Surat</th>
                                                         <th scope="col">Tanggal</th>
                                                         <th scope="col">Keperluan</th>
                                                         <th scope="col">Status</th>
@@ -40,13 +41,10 @@
                                                             <th scope="row"><?= $i ?></th>
                                                             <td><?= $s['nama']; ?></td>
                                                             <td><?= $s['nik']; ?></td>
+                                                            <td><?= $kode[$s['id_surat']]; ?></td>
                                                             <td><?= $s['tgl']; ?></td>
                                                             <td><?= $s['keperluan']; ?></td>
                                                             <td class="font-weight-bold"><?= $status[$s['status_surat']]; ?></td>
-                                                            <!-- <td>
-                                                                <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $s['id']; ?>">Buat Surat</button>
-                                                            </td> -->
-
                                                             <?php $i++; ?>
                                                         </tr>
                                                     <?php endforeach ?>

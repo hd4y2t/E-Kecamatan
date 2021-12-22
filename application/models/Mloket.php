@@ -33,18 +33,17 @@ class Mloket extends CI_Model
         $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.*
                     FROM `pembuatan_surat`
                     JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju` 
-                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id`=`pembuatan_surat`.`pengaju_id`
+                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju`=`pembuatan_surat`.`pengaju_id`
+                    ORDER BY `pembuatan_surat`.`status_surat` DESC
                     ";
         return $this->db->query($query)->result_array();
     }
 
     public function getSurat()
     {
-        $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.*
-                    FROM `pembuatan_surat`
-                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju` 
-                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju`=`pembuatan_surat`.`pengaju_id`
-                    WHERE `pembuatan_surat`.`status_surat` = 1
+        $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
+                   FROM `pengajuan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
                     ";
         return $this->db->query($query)->result_array();
     }
@@ -62,6 +61,17 @@ class Mloket extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function Countskm()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat`
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skm'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function sktm()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
@@ -73,10 +83,21 @@ class Mloket extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+    public function Countsktm()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat`
+                   WHERE `pengajuan_surat`.`status` = 1
+                   AND `pengajuan_surat`.`id_surat` = 'sktm'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function skbpr()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
-                   FROM `pengajuan_surat` 
+                   FROM `pengajuan_surat`
                    JOIN `penduduk` ON `penduduk`.`nik` = `pengajuan_surat`.`nik`
                    WHERE `pengajuan_surat`.`status` = 1 
                    AND `pengajuan_surat`.`id_surat` = 'skbpr'
@@ -84,6 +105,18 @@ class Mloket extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+
+    public function Countskbpr()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat`
+                   WHERE `pengajuan_surat`.`status` = 1
+                   AND `pengajuan_surat`.`id_surat` = 'skbpr'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function sku()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
@@ -95,6 +128,17 @@ class Mloket extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+    public function Countsku()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat`
+                    WHERE `pengajuan_surat`.`status` = 1
+                   AND `pengajuan_surat`.`id_surat` = 'sku'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function skdp()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
@@ -105,6 +149,16 @@ class Mloket extends CI_Model
                    ORDER BY `tgl` DESC
                    ";
         return $this->db->query($query)->result_array();
+    }
+    public function Countskdp()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat`
+                    WHERE `pengajuan_surat`.`status` = 1
+                   AND `pengajuan_surat`.`id_surat` = 'skdp'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
     }
 
     public function skn()
@@ -118,6 +172,18 @@ class Mloket extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+
+    public function Countskn()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat` 
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skn'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function skd()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
@@ -129,6 +195,18 @@ class Mloket extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+
+    public function Countskd()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat`
+                   WHERE `pengajuan_surat`.`status` = 1
+                   AND `pengajuan_surat`.`id_surat` = 'skd'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function skp()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
@@ -140,6 +218,17 @@ class Mloket extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+    public function Countskp()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat` 
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skp'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function skos()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
@@ -151,6 +240,17 @@ class Mloket extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+    public function Countskos()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat` 
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'skos'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function spc()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
@@ -162,6 +262,17 @@ class Mloket extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+    public function Countspc()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat` 
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'spc'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function spskck()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
@@ -173,6 +284,17 @@ class Mloket extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
+    public function Countspskck()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat` 
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'spskck'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
     public function spik()
     {
         $query = "SELECT `pengajuan_surat`.*, `penduduk`.*
@@ -183,6 +305,16 @@ class Mloket extends CI_Model
                    ORDER BY `tgl` DESC
                    ";
         return $this->db->query($query)->result_array();
+    }
+    public function Countspik()
+    {
+        $query = "SELECT `pengajuan_surat`.*
+                   FROM `pengajuan_surat` 
+                   WHERE `pengajuan_surat`.`status` = 1 
+                   AND `pengajuan_surat`.`id_surat` = 'spik'
+                   ORDER BY `tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
     }
 
 

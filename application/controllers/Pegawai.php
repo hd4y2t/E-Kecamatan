@@ -16,28 +16,86 @@ class Pegawai extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Dashboard';
+        $data['warga'] = $this->db->get('penduduk')->num_rows();
+        $data['antrian'] = $this->db->get('pengajuan_surat')->num_rows();
+        $data['antrian_non'] = $this->db->get_where('pengajuan_surat', ['status !=' => 5])->num_rows();
+        $data['antrian_done'] = $this->db->get_where('pengajuan_surat', ['status' => 5])->num_rows();
+        $data['penduduk'] = $this->db->get('penduduk')->num_rows();
+        $data['user_non'] = $this->db->get('user')->num_rows();
+        $data['status'] = [
+            1 => 'Pending',
+            2 => 'Syarat Tidak Terpenuhi',
+            3 => 'Diterima dan Dilanjutkan',
+            4 => 'Surat Sedang Dibuat',
+            5 => 'Surat Telah Selesai!'
+
+        ];
+
+        $data['kode'] = [
+            'SKM' => 'SURAT KETERANGAN MISKIN',
+            'SKTM' => 'SURAT KETERANGAN TIDAK MAMPU',
+            'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+            'SKU' => 'SURAT KETERANGAN USAHA',
+            'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+            'SKN' => 'SURAT KETERANGAN NIKAH',
+            'SKD' => 'SURAT KETERANGAN DOMISILI',
+            'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+            'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+            'SPC' => 'SURAT PENGANTAR CERAI',
+            'SPSKCK' => 'SURAT PENGANTAR SKCK',
+            'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+        ];
+
+
+        $this->load->model('Mpegawai', 'pegawai');
+        $data['surat'] = $this->db->get('surat')->result_array();
+        // $data['antri'] = $this->db->get('pengajuan_surat')->result_array();
+        $data['antri'] = $this->pegawai->getSurat();
+
+        //  KASIH PELAYANAN UMUM
+        $data['skm'] = $this->pegawai->skm();
+        $data['countskm'] = $this->pegawai->Countskm();
+
+        $data['sktm'] = $this->pegawai->sktm();
+        $data['countsktm'] = $this->pegawai->Countsktm();
+
+        $data['skbpr'] = $this->pegawai->skbpr();
+        $data['countskbpr'] = $this->pegawai->Countskbpr();
+
+        $data['skp'] = $this->pegawai->skp();
+        $data['countskp'] = $this->pegawai->Countskp();
+
+        $data['spik'] = $this->pegawai->spik();
+        $data['countspik'] = $this->pegawai->Countspik();
+
+        $data['spskck'] = $this->pegawai->spskck();
+        $data['countspskck'] = $this->pegawai->Countspskck();
+
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Pembuatan Surat';
         $this->load->model('Mpegawai', 'pegawai');
         $data['ps'] = $this->pegawai->getSurat();
         $data['status'] = [
             1 => 'Surat Belum dibuat',
-            2 => 'Pending',
-            3 => 'Ditolak',
+            2 => 'Ditolak',
+            3 => 'Pending',
             4 => 'Dilanjutkan',
             5 => 'Telah Diparaf',
         ];
         $data['surat'] = [
-            'SKM' => 'Surat Keterangan Miskin',
-            'SKBPR' => 'Surat Keterangan Belum Punya Rumah',
-            'SKU' => 'Surat Keterangan Usaha',
-            'SKDP' => 'Surat Keterangan Domisili Perusahaan',
-            'SKN' => 'Surat Keterangan Nikah',
-            'SKD' => 'Surat Keterangan Domisili',
-            'SKP' => 'Surat Keterangan Penghasilan',
-            'SKOS' => 'Surat Keterangan Orang Yang Sama',
-            'SPC' => 'Surat Pengantar Cerai',
-            'SPSKCK' => 'Surat Pengantar SKCK',
-            'SPIK' => 'Surat Pengantar Izin Keramaian'
+            'SKM' => 'SURAT KETERANGAN MISKIN',
+            'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+            'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+            'SKU' => 'SURAT KETERANGAN USAHA',
+            'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+            'SKN' => 'SURAT KETERANGAN NIKAH',
+            'SKD' => 'SURAT KETERANGAN DOMISILI',
+            'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+            'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+            'SPC' => 'SURAT PENGANTAR CERAI',
+            'SPSKCK' => 'SURAT PENGANTAR SKCK',
+            'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
         ];
 
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
@@ -91,18 +149,15 @@ class Pegawai extends CI_Controller
         $data = [
             'no_pengantar' => $no_pengantar,
             'tgl_pengantar' => $tgl_pengantar,
-            'status' => 3
+            'status' => 2
         ];
-        // $this->db->set('no_pengantar', $no_surat);
-        // $this->db->set('tgl_pengantar', $tgl_pengantar);
-        // $this->db->set('status', 3);
         $this->db->where('id_pengaju', $id_pengaju);
         $this->db->update('pengajuan_surat', $data);
 
         $array = [
             'no_surat' => $no_surat,
             'keterangan' => $keterangan,
-            'status_surat' => 2
+            'status_surat' => 3
         ];
         $this->db->set('no_surat', $no_surat);
         $this->db->set('keterangan', $keterangan);
@@ -120,6 +175,7 @@ class Pegawai extends CI_Controller
         $data['title'] = 'E-Kecamatan';
         $data['kode'] = [
             'SKM' => 'SURAT KETERANGAN MISKIN',
+            'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
             'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
             'SKU' => 'SURAT KETERANGAN USAHA',
             'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
@@ -172,123 +228,6 @@ class Pegawai extends CI_Controller
                 '<div class="alert alert-success" role="alert"> surat berhasil di edit </div>'
             );
             redirect('pegawai');
-        }
-    }
-
-
-    public function kategori()
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Kategori Surat';
-
-        $data['kategori'] = $this->db->get('kategori')->result_array();
-
-        $this->form_validation->set_rules('kategori', 'kategori', 'required');
-
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('pegawai/kategori', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $array = [
-                'id_kategori' => "",
-                'nm_kategori' => $this->input->post('kategori', true)
-
-            ];
-            $this->db->insert('surat', $array);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert"> kategori Baru ditambahkan </div>'
-            );
-            redirect('pegawai/kategori');
-        }
-    }
-
-    public function editkategori($id_kategori)
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Edit Kategori';
-        $this->form_validation->set_rules('nm_kategori', 'Nama Kategori', 'required');
-        $data['edit_kategori'] = $this->db->get_where('kategori', ['id_kategori' => $id_kategori])->row_array();
-
-        $nm_kategori =  $this->input->post("nm_kategori", TRUE);
-        $array = [
-            'nm_kategori' => $nm_kategori
-        ];
-        $this->db->set('nm_kategori', $nm_kategori);
-        $this->db->where('id_kategori', $id_kategori);
-        $this->db->update('kategori', $array);
-        $this->session->set_flashdata(
-            'message',
-            '<div class="alert alert-success" role="alert"> kategori berhasil di edit </div>'
-        );
-        redirect('pegawai/kategori');
-    }
-    public function hapusKategori($id)
-    {
-        $this->Madmin->delete_role($id);
-        $this->session->set_flashdata('flash', 'Kategori Berhasil Dihapus');
-        redirect('pegawai/kategori');
-    }
-
-    public function bidang()
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Bidang Surat';
-
-        $data['bidang'] = $this->db->get('bidang')->result_array();
-
-        $this->form_validation->set_rules('bidang', 'bidang', 'required');
-
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('pegawai/bidang', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $array = [
-                'id' => "",
-                'nm_bidang' => $this->input->post('bidang', true)
-
-            ];
-            $this->db->insert('bidang', $array);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert"> bidang Baru ditambahkan </div>'
-            );
-            redirect('pegawai/bidang');
-        }
-    }
-
-    public function editbidang($id)
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Edit bidang';
-        $this->form_validation->set_rules('nm_bidang', 'Nama bidang', 'required');
-        // $data['edit_bidang'] = $this->db->get_where('bidang', ['id' => $id])->row_array();
-
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('pegawai/bidang', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $nm_bidang =  $this->input->post("nm_bidang", TRUE);
-            $array = [
-                'nm_bidang' => $nm_bidang
-            ];
-            $this->db->set('nm_bidang', $nm_bidang);
-            $this->db->where('id', $id);
-            $this->db->update('bidang', $array);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert"> bidang berhasil di edit </div>'
-            );
-            redirect('pegawai/bidang');
         }
     }
 
@@ -354,138 +293,6 @@ class Pegawai extends CI_Controller
         $this->session->set_flashdata('success', 'Status Pengajuan ID: ' . $id . ' Telah Diupdate!');
         redirect(base_url('pegawai/antrian'));
     }
-
-
-    public function surat_masuk()
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Surat Masuk';
-        $data['surat_masuk'] = $this->db->get('surat_masuk')->result_array();
-
-        $data['status'] = [
-            1 => 'Pending',
-            2 => 'Diketahui Sekcam',
-            3 => 'Diketahui Sekcam dan Camat ',
-        ];
-        $status = $this->input->post('status');
-        $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
-        $this->form_validation->set_rules('jenis', 'Jenis Surat', 'required');
-        $this->form_validation->set_rules('nm_surat_masuk', 'Nama Surat', 'required');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-        $this->form_validation->set_rules('file_surat', 'Keterangan', 'required');
-
-        if ($this->form_validation->run() == FALSE) {
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('pegawai/surat_masuk', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $no_surat =  $this->input->post("no_surat", TRUE);
-            $jenis =  $this->input->post("jenis", TRUE);
-            $nm_surat_masuk =  $this->input->post("nm_surat_masuk", TRUE);
-            $keterangan =  $this->input->post("keterangan", TRUE);
-            $file_surat =  $this->input->post("file_surat", TRUE);
-
-            $config['upload_path']          = './upload/surat_masuk';
-            $config['allowed_types']        = 'pdf|doc|docx';
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('file_surat')) {
-
-                $data = array('upload_data' => $this->upload->data());
-                $file_surat = $data['upload_data']['file_name'];
-
-                $save = [
-                    'id' => '',
-                    'no_surat' => $no_surat,
-                    'jenis' => $jenis,
-                    'nm_surat_masuk' => $nm_surat_masuk,
-                    'tgl' => date('d-m-Y'),
-                    'keterangan' => $keterangan,
-                    'file' => $file_surat,
-                    'status' => 1
-                ];
-
-                $this->db->insert('surat_masuk', $save);
-                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-                redirect(base_url("pegawai/surat_masuk"));
-            }
-        }
-    }
-
-    public function surat_keluar()
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Surat Keluar';
-        $this->load->model('Mpegawai', 'pegawai');
-        $data['surat_keluar'] = $this->pegawai->getSurat();
-        $data['surat'] = $this->db->get('surat')->result_array();
-        $data['status'] = [
-            1 => 'Belum ada file',
-            2 => 'Pending',
-            3 => 'Ditolak',
-            4 => 'Belum Diparaf Camat',
-            5 => 'Telah Diparaf '
-        ];
-
-        $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
-        $this->form_validation->set_rules('pengaju', 'Pengaju', 'required');
-        $this->form_validation->set_rules('surat', 'Surat', 'required');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-
-        if ($this->form_validation->run() == FALSE) {
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('pegawai/surat_keluar', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $no_surat =  $this->input->post("no_surat", TRUE);
-            $pengaju = $this->input->post("pengaju", true);
-            $surat = $this->input->post("surat", true);
-            $keterangan =  $this->input->post("keterangan", TRUE);
-            $file_surat =  $this->input->post("file_surat", TRUE);
-
-            $config['upload_path']          = './upload/surat_keluar';
-            $config['allowed_types']        = 'pdf|doc|docx';
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('file_surat')) {
-
-                $data = array('upload_data' => $this->upload->data());
-                $file_surat = $data['upload_data']['file_name'];
-
-                $save = [
-                    'id' => '',
-                    'no_surat' => $no_surat,
-                    'nm_surat_keluar' => $pengaju,
-                    'surat_id' => $surat,
-                    'tgl' => date('d-m-Y'),
-                    'keterangan' => $keterangan,
-                    'file' => $file_surat,
-                    'status' => 2
-                ];
-
-                $this->db->insert('surat_keluar', $save);
-                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-                redirect(base_url("pegawai/surat_keluar"));
-            }
-        }
-    }
-
-    public function hapusSuratKeluar($id)
-    {
-        $data = $this->db->get_where('surat_keluar', ['id' => $id])->row_array();
-        unlink("./upload/surat_keluar/" . $data['file_surat_keluar']);
-        $this->db->where(['id' => $id]);
-        $this->db->delete('surat_keluar');
-        $this->session->set_flashdata('success', 'Berhasil Dihapus!');
-        redirect(base_url('pegawai/surat_keluar'));
-    }
-
 
     public function isi_surat($id)
     {
@@ -581,9 +388,6 @@ class Pegawai extends CI_Controller
         }
     }
 
-
-
-
     public function penduduk()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
@@ -598,80 +402,7 @@ class Pegawai extends CI_Controller
         $this->load->view('pegawai/penduduk', $data);
         $this->load->view('templates/footer');
     }
-    public function berita()
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Berita';
-        $this->load->model('Mpegawai', 'pegawai');
-        $data['berita'] = $this->pegawai->getBerita();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/navbar', $data);
-        $this->load->view('pegawai/berita', $data);
-        $this->load->view('templates/footer');
-    }
-    public function tambah_berita()
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $user = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Berita';
-        $data['berita'] = $this->db->get('berita')->result_array();
-        $data['kategori_berita'] = $this->db->get('kategori_berita')->result_array();
-
-        $this->form_validation->set_rules('judul', 'Judul', 'required');
-        $this->form_validation->set_rules('body', 'body', 'required');
-        $this->form_validation->set_rules('kategori', 'kategori', 'required');
-        // $this->form_validation->set_rules('foto', 'foto', 'required');
-
-        if ($this->form_validation->run() == FALSE) {
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('pegawai/tambah_berita', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $judul = $this->input->post('judul', true);
-            $author = $user['username'];
-            $judulSlug = trim(strtolower($this->input->post('judul')));
-            $body =  $this->input->post("body", TRUE);
-            $kategori =  $this->input->post("kategori", TRUE);
-            $out = explode(" ", $judulSlug);
-            $slug = implode("-", $out);
-            $pecah = explode(".", $body);
-
-            $excerpt = $pecah[0];
-
-            // var_dump($excerpt);
-
-            $config['upload_path']          = './upload/berita';
-            $config['allowed_types']        = 'jpg|jpeg|png|JPG';
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('foto')) {
-
-                $data = array('upload_data' => $this->upload->data());
-                $foto = $data['upload_data']['file_name'];
-
-                $save = [
-                    'id_berita' => '',
-                    'author' => $author,
-                    'judul' => $judul,
-                    'kategori_id' => $kategori,
-                    'slug' => $slug,
-                    'excerpt' => $excerpt,
-                    'body' => $body,
-                    'foto' => $foto,
-                    'created_at' => date('d-m-Y')
-                ];
-
-                $this->db->insert('berita', $save);
-                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-                redirect(base_url("pegawai/berita"));
-            }
-        }
-    }
     public function edit_berita($id)
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
@@ -727,13 +458,72 @@ class Pegawai extends CI_Controller
         }
     }
 
-    public function hapus_berita($id)
+    public function profile()
     {
-        $data = $this->db->get_where('berita', ['id_berita' => $id])->row_array();
-        unlink("./upload/berita/" . $data['foto']);
-        $this->db->where(['id_berita' => $id]);
-        $this->db->delete('berita');
-        $this->session->set_flashdata('message', 'Berhasil Dihapus!');
-        redirect(base_url('pegawai/berita'));
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+        $data['title'] = 'Profile';
+        $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
+        $this->form_validation->set_rules('kecamatan', 'kecamatan', 'required');
+        $this->form_validation->set_rules('camat', 'camat', 'required');
+        $this->form_validation->set_rules('sekcam', 'sekcam', 'required');
+        $this->form_validation->set_rules('detail', 'detail', 'required');
+        $this->form_validation->set_rules('lokasi', 'lokasi', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('no', 'no', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/navbar', $data);
+            $this->load->view('admin/profile', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $foto_camat =  $this->input->post("foto_camat", TRUE);
+            $foto_sekcam =  $this->input->post("foto_sekcam", TRUE);
+            $camat =  $this->input->post("camat", TRUE);
+            $sekcam =  $this->input->post("sekcam", TRUE);
+            $kecamatan =  $this->input->post("kecamatan", TRUE);
+            $detail =  $this->input->post("detail", TRUE);
+            $lokasi =  $this->input->post("lokasi", TRUE);
+            $email =  $this->input->post("email", TRUE);
+            $no =  $this->input->post("no", TRUE);
+
+            $config['upload_path']          = './assets/img/testimonials';
+            $config['allowed_types']        = 'jpg|jpeg|png|JPG|PNG';
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('foto_camat,foto_sekcam')) {
+
+                $data = array('upload_data' => $this->upload->data());
+                $kecamatan = $this->input->post('kecamatan', true);
+                $camat = $this->input->post('camat', true);
+                $sekcam = $this->input->post('sekcam', true);
+                $foto_camat = $data['upload_data']['foto_camat'];
+                $foto_sekcam = $data['upload_data']['foto2'];
+                $detail = $this->input->post('detail', true);
+                $lokasi = $this->input->post('lokasi', true);
+                $email = $this->input->post('email', true);
+                $no = $this->input->post('no', true);
+
+                $save = [
+                    'kecamatan' => $kecamatan,
+                    'detail' => $detail,
+                    'camat' => $camat,
+                    'sekcam' => $sekcam,
+                    'f_camat' => $foto_camat,
+                    'f_sekcam' => $foto_sekcam,
+                    'lokasi' => $lokasi,
+                    'email' => $email,
+                    'no' => $no,
+                ];
+
+                // var_dump($save);
+                // die;
+                $this->db->where('id', 1);
+                $this->db->update('profile', $save);
+                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+                redirect(base_url("pegawai/profile"));
+            }
+        }
     }
 }

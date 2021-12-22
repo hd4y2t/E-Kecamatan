@@ -24,27 +24,18 @@ class Mpegawai extends CI_Model
                     ";
         return $this->db->query($query)->result_array();
     }
-    public function getSuratSKM($id)
+    public function getSuratById($id)
     {
-        $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
-                    FROM `pembuatan_surat`
-                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju` 
-                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju`=`pembuatan_surat`.`pengaju_id`
-                    JOIN `kelurahan` ON `kelurahan`.`id_kelurahan`=`penduduk`.`kelurahan`
-                    WHERE `pembuatan_surat`.`no_surat` = $id
-                    ";
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.* , `kelurahan`.`nm_kelurahan`, `pengajuan_surat`.*
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`id` = '$id'
+                   ";
         return $this->db->query($query)->row_array();
     }
 
-    public function getSuratBaru()
-    {
-        $query = "SELECT `surat_keluar`.*, `surat`.`nm_surat`
-                   FROM `surat_keluar` JOIN `surat`
-                   ON `surat_keluar`.`surat_id` = `surat`.`id_surat`
-                   WHERE `surat_keluar`.`status` = 1
-                   ";
-        return $this->db->query($query)->result_array();
-    }
     public function getKelurahan()
     {
         $query = "SELECT `penduduk`.*, `kelurahan`.`nm_kelurahan`
@@ -53,15 +44,7 @@ class Mpegawai extends CI_Model
                    ";
         return $this->db->query($query)->result_array();
     }
-    public function getDataAntrian($id)
-    {
-        $query = "SELECT `surat_keluar`.*, `pengajuan_surat`.*
-                   FROM `surat_keluar`
-                   JOIN `pengajuan_surat` ON `surat_keluar`.`pengaju_id` = `pengajuan_surat`.`id`
-                   WHERE `surat_keluar`.`id` = $id
-                   ";
-        return $this->db->query($query)->row_array();
-    }
+
     public function profile()
     {
         $query = "SELECT *
@@ -70,40 +53,261 @@ class Mpegawai extends CI_Model
                    ";
         return $this->db->query($query)->row_array();
     }
-    public function getBerita()
+
+    public function skm()
     {
-        $query = "SELECT `berita`.*,`user`.`nama`,`kategori_berita`.`nm_kategori`
-                   FROM berita
-                   JOIN `user` ON `berita`.`author` = `user`.`username`
-                   JOIN `kategori_berita` ON `berita`.`kategori_id` = `kategori_berita`.`id_kategori`
-                   ORDER BY id_berita DESC
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.* , `kelurahan`.`nm_kelurahan`, `pengajuan_surat`.*
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skm'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
                    ";
         return $this->db->query($query)->result_array();
     }
-    public function detailBerita($slug)
+
+    public function Countskm()
     {
-        $query = "SELECT `berita`.*,`user`.`nama`
-                   FROM berita
-                   JOIN `user` ON `berita`.`author` = `user`.`username`
-                   WHERE slug = '$slug'
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skm'
                    ";
-        return $this->db->query($query)->row_array();
+        return $this->db->query($query)->num_rows();
     }
-    public function getEditBerita($id)
+
+    public function sktm()
     {
-        $query = "SELECT *
-                   FROM berita
-                  WHERE id_berita = $id
-                   ";
-        return $this->db->query($query)->row_array();
-    }
-    public function getBeritaLimit()
-    {
-        $query = "SELECT `berita`.*,`user`.`nama`
-                   FROM berita
-                   JOIN `user` ON `berita`.`author` = `user`.`username`
-                   ORDER BY id_berita DESC LIMIT 4
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'sktm'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
                    ";
         return $this->db->query($query)->result_array();
+    }
+    public function Countsktm()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat`
+                   WHERE `pembuatan_surat`.`surat_id` = 'sktm'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function skbpr()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skbpr'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function Countskbpr()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skbpr'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function sku()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'sku'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function Countsku()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat`
+                   WHERE `pembuatan_surat`.`surat_id` = 'sku'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function skdp()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skdp'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function Countskdp()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skdp'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function skn()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skn'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function Countskn()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat` 
+                   WHERE `pembuatan_surat`.`surat_id` = 'skn'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function skd()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skd'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function Countskd()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skd'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function skp()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skdp'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function Countskp()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat` 
+                   WHERE `pembuatan_surat`.`surat_id` = 'skp'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function skos()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'skos'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function Countskos()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat` 
+                   WHERE `pembuatan_surat`.`surat_id` = 'skos'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function spc()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'spc'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function Countspc()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat` 
+                   WHERE `pembuatan_surat`.`surat_id` = 'spc'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function spskck()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'spskck'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function Countspskck()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat` 
+                   WHERE `pembuatan_surat`.`surat_id` = 'spskck'
+                   ";
+        return $this->db->query($query)->num_rows();
+    }
+
+    public function spik()
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.*, `pengajuan_surat`.* , `kelurahan`.`nm_kelurahan`
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`surat_id` = 'spik'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->result_array();
+    }
+    public function Countspik()
+    {
+        $query = "SELECT `pembuatan_surat`.*
+                   FROM `pembuatan_surat` 
+                   WHERE `pembuatan_surat`.`surat_id` = 'spik'
+                   ORDER BY `pembuatan_surat`.`tgl` DESC
+                   ";
+        return $this->db->query($query)->num_rows();
     }
 }
