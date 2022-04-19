@@ -77,6 +77,7 @@ class Pelayanan_umum extends CI_Controller
         $data['title'] = 'Pembuatan Surat';
         $this->load->model('Mpegawai', 'pegawai');
         $data['ps'] = $this->pegawai->getSurat();
+        $ps = $this->pegawai->getSurat();
         $data['status'] = [
             1 => 'Surat Belum dibuat',
             2 => 'Ditolak',
@@ -99,7 +100,24 @@ class Pelayanan_umum extends CI_Controller
             'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
         ];
 
+        // var_dump($ps[0]);
+        // die;
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/navbar', $data);
+        $this->load->view('pelayanan_umum/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+
+    public function buatSurat($id)
+    {
+        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+
+        $this->form_validation->set_rules('id_pengaju', 'Id Pengaju', 'required');
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
+        $this->form_validation->set_rules('no_pengantar', 'Nomor Pengantar', 'required');
+        $this->form_validation->set_rules('tgl_pengantar', 'Tanggal Pengantar', 'required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
         if ($this->form_validation->run() == FALSE) {
@@ -110,59 +128,29 @@ class Pelayanan_umum extends CI_Controller
             $this->load->view('pelayanan_umum/index', $data);
             $this->load->view('templates/footer');
         } else {
+
+            $id_pengajuan =  $this->input->post("id_pengaju", TRUE);
             $no_surat =  $this->input->post("no_surat", TRUE);
-            $tgl =  $this->input->post("tgl", TRUE);
+            $no_pengantar =  $this->input->post("no_pengantar", TRUE);
+            $tgl_pengantar =  $this->input->post("tgl_pengantar", TRUE);
             $keterangan =  $this->input->post("keterangan", TRUE);
-            // $file_surat =  $this->input->post("file_surat", TRUE);
 
-
-            $save = [
-                'id' => '',
-                'no_surat' => $no_surat,
-                'tgl' => date('d-m-Y', strtotime($tgl)),
-                'keterangan' => $keterangan,
-                'status' => 1
+            $data = [
+                'no_pengantar' => $no_pengantar,
+                'tgl_pengantar' => $tgl_pengantar,
+                'status' => 4
             ];
+            // var_dump($data);
+            $this->db->where('id', $id_pengajuan);
+            $this->db->update('pengajuan_surat', $data);
 
-            $this->db->update('pembuatan_surat', $save);
-            $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
-            redirect(base_url("pelayanan_umum/index"));
-        }
-    }
-
-    public function buatSurat($id)
-    {
-        $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-
-        $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
-        $this->form_validation->set_rules('no_pengantar', 'Nomor Pengantar', 'required');
-        $this->form_validation->set_rules('tgl_pengantar', 'Tanggal Pengantar', 'required');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
-        // $data['buat_surat'] = $this->db->get_where('pembuatan_surat', ['id' => $id])->row_array();
-
-        $id_pengaju = $this->db->get_where('pembuatan_surat', ['id' => $id])->row_array();
-        $id_pengajuan = $this->db->get_where('pengajuan_surat', ['id_pengaju' => $id_pengaju['pengaju_id']])->row_array();
-
-        $no_surat =  $this->input->post("no_surat", TRUE);
-        $no_pengantar =  $this->input->post("no_pengantar", TRUE);
-        $tgl_pengantar =  $this->input->post("tgl_pengantar", TRUE);
-        $keterangan =  $this->input->post("keterangan", TRUE);
-        $data = [
-            'no_pengantar' => $no_pengantar,
-            'tgl_pengantar' => $tgl_pengantar,
-            'status' => 4
-        ];
-        // var_dump($data);
-        $this->db->where('id', $id_pengajuan['id']);
-        $this->db->update('pengajuan_surat', $data);
-
-        if ($no_surat = true) {
             $array = [
                 'no_surat' => $no_surat,
                 'keterangan' => $keterangan,
                 'status_surat' => 3
             ];
-            // var_dump($array, $data, $id_pengaju);
+            // var_dump($id, $id_pengajuan);
+            // var_dump($array);
             // die;
             $this->db->where('id', $id);
             $this->db->update('pembuatan_surat', $array);
@@ -170,7 +158,8 @@ class Pelayanan_umum extends CI_Controller
                 'message',
                 '<div class="alert alert-success" role="alert"> Surat ' . $no_surat . ' Telah Dibuat </div>'
             );
-            redirect('pelayanan_umum/index');
+            // redirect('pelayanan_umum/index');
+            redirect(base_url("pelayanan_umum/index"));
         }
     }
 

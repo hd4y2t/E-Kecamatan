@@ -16,11 +16,11 @@ class Mpegawai extends CI_Model
 
     public function getSurat()
     {
-        $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.*
+        $query = "SELECT `pembuatan_surat`.* ,`penduduk`.*,`pengajuan_surat`.`id_pengaju`,`pengajuan_surat`.`keperluan`,`pengajuan_surat`.`catatan`,`pengajuan_surat`.`nm_usaha`,`pengajuan_surat`.`almt_usaha`,`pengajuan_surat`.`nm_perusahaan`,`pengajuan_surat`.`almt_perusahaan`,`pengajuan_surat`.`nm_mempelai_pria`,`pengajuan_surat`.`nm_mempelai_wanita`,`pengajuan_surat`.`nm_yg_dipakai`,`pengajuan_surat`.`almt_keramaian`,`pengajuan_surat`.`f_pengantar`,`pengajuan_surat`.`f_pernyataan`,`pengajuan_surat`.`f_permohonan`,`pengajuan_surat`.`spt`,`pengajuan_surat`.`srl`,`pengajuan_surat`.`sd`,`pengajuan_surat`.`sp`,`pengajuan_surat`.`pbb`,`pengajuan_surat`.`akte_notaris`,`pengajuan_surat`.`akte_kelahiran`,`pengajuan_surat`.`spn`,`pengajuan_surat`.`skbn`
                     FROM `pembuatan_surat`
                     JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju` 
                     JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju`=`pembuatan_surat`.`pengaju_id`
-                    ORDER BY `pembuatan_surat`.`status_surat` ASC
+                    ORDER BY `pembuatan_surat`.`id` DESC
                     ";
         return $this->db->query($query)->result_array();
     }
@@ -31,7 +31,7 @@ class Mpegawai extends CI_Model
                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
                    JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
-                   WHERE `pembuatan_surat`.`id` = '$id'
+                   WHERE `pembuatan_surat`.`no_surat` = '$id'
                    ";
         return $this->db->query($query)->row_array();
     }

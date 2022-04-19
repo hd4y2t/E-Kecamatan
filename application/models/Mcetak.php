@@ -40,7 +40,7 @@ class Mcetak extends CI_Model
     {
         $query = "SELECT `penduduk`.*, `kelurahan`.`nm_kelurahan`
                    FROM `penduduk`
-                   JOIN `kelurahan` ON `penduduk`.`kelurahan` = `kelurahan`.`id_kelurahan`
+                   JOIN `kelurahan` ON `penduduk`.`kelurahanaq` = `kelurahan`.`id_kelurahan`
                    ";
         return $this->db->query($query)->result_array();
     }

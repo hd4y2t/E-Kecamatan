@@ -120,28 +120,29 @@
                         </div>
                     </div>
                 </div>
-
-                <table class="table">
-                    <tbody>
-                        <form action="<?= base_url("sekcam/tolak/") . $s['no_surat'] ?>" method="post">
-                            <tr>
-                                <td>Catatan </td>
-                                <td> <input type="text" class="form-control" name="catatan" id="catatan" placeholder="Jika ditolak">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Status</td>
-                                <div class="content">
-                                    <td>
-                                        <a class="btn btn-success" href="<?= base_url("sekcam/terima/") . $s['no_surat'] ?>">Terima</a>
-                                        <button type="submit" class="btn btn-danger">Tolak</button>
+                <?php if ($s['status_surat'] < 4) { ?>
+                    <table class="table">
+                        <tbody>
+                            <form action="<?= base_url("sekcam/tolak/") . $s['no_surat'] ?>" method="post">
+                                <tr>
+                                    <td>Catatan </td>
+                                    <td> <input type="text" class="form-control" name="catatan" id="catatan" placeholder="Jika ditolak">
                                     </td>
-                                </div>
-                                </td>
-                            </tr>
-                        </form>
-                    </tbody>
-                </table>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <div class="content">
+                                        <td>
+                                            <a class="btn btn-success" href="<?= base_url("sekcam/terima/") . $s['no_surat'] ?>">Terima</a>
+                                            <button type="submit" class="btn btn-danger">Tolak</button>
+                                        </td>
+                                    </div>
+                                    </td>
+                                </tr>
+                            </form>
+                        </tbody>
+                    </table>
+                <?php } ?>
             </div>
         </div>
     </div>

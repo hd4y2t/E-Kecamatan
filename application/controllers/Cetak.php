@@ -25,6 +25,7 @@ class Cetak extends CI_Controller
         $data['title'] = 'E-Kecamatan';
         $data['kode'] = [
             'SKM' => 'SURAT KETERANGAN MISKIN',
+            'SKTM' => 'SURAT KETERANGAN TIDAK MAMPU',
             'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
             'SKU' => 'SURAT KETERANGAN USAHA',
             'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',

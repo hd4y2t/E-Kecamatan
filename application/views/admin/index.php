@@ -72,20 +72,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="card card-chart">
-                            <div class="card-header card-header-secondary">
-                                <canvas class="ct-chart" id="myChart"> </canvas>
+                <div class="col-md">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-secondary">
+                            <canvas class="ct-chart" id="myChart"> </canvas>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Grafik pengajuan surat</h4>
+                            <p class="card-category">Berdasarkan kelurahan</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i>update terakhirs <?= $last['tgl']; ?>
                             </div>
-                            <div class="card-body">
-                                <h4 class="card-title">Grafik pengajuan surat</h4>
-                                <p class="card-category">Berdasarkan kelurahan</p>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="card card-chart">
+                        <div class="card-header card-header-secondary">
+                            <canvas class="ct-chart" id="myChart1"> </canvas>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Grafik pengajuan surat</h4>
+                            <p class="card-category">Berdasarkan Surat Yang Diajukan</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">access_time</i>update terakhirs <?= $last['tgl']; ?>
                             </div>
                         </div>
                     </div>
@@ -99,3 +113,40 @@
 
 </div> -->
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [<?php foreach ($chart as $d) {
+                            echo "'" . $d->nm_kelurahan . "',";
+                        } ?>],
+            datasets: [{
+                label: 'Jumlah Penduduk',
+                backgroundColor: '#D6FAD6',
+                borderColor: '#10BC8F',
+                data: [<?php foreach ($chart as $d) {
+                            echo $d->pengajuan . ",";
+                        } ?>],
+            }]
+        },
+    });
+    var ctx = document.getElementById('myChart1').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [<?php foreach ($chart as $d) {
+                            echo "'" . $d->nm_kelurahan . "',";
+                        } ?>],
+            datasets: [{
+                label: 'Jumlah Penduduk',
+                backgroundColor: '#10BC8F',
+                borderColor: '#D6FAD6',
+                data: [<?php foreach ($chart as $d) {
+                            echo $d->pengajuan . ",";
+                        } ?>],
+            }]
+        },
+    });
+</script>

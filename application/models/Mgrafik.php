@@ -9,7 +9,12 @@ class Mgrafik extends CI_Model
                     FROM penduduk
                     join kelurahan
                     on kelurahan.id_kelurahan = penduduk.kelurahan
-                    GROUP BY kelurahan")->result();
-        return $query;
+                    GROUP BY kelurahan");
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $data) {
+                $hasil[] = $data;
+            }
+            return $hasil;
+        }
     }
 }

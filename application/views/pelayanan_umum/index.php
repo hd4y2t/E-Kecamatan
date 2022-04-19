@@ -144,14 +144,15 @@
                                                     <thead class="text-success">
                                                         <tr>
                                                             <th scope="col"></th>
+                                                            <th scope="col">Action</th>
                                                             <th scope="col">ID Pengajuan</th>
                                                             <th scope="col">NIK</th>
                                                             <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">Nomor Surat</th>
                                                             <th scope="col">Tanggal</th>
                                                             <th scope="col">Kelurahan</th>
                                                             <th scope="col">Keperluan</th>
                                                             <th scope="col">Status</th>
-                                                            <th scope="col">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -159,16 +160,9 @@
                                                         <?php foreach ($skm as $m) : ?>
                                                             <tr>
                                                                 <th scope="row"><?= $i ?></th>
-                                                                <td><?= $m['pengaju_id']; ?></td>
-                                                                <td><?= $m['nik_pengaju']; ?></td>
-                                                                <td><?= $m['nama']; ?></td>
-                                                                <td><?= $m['tgl']; ?></td>
-                                                                <td><?= $m['nm_kelurahan']; ?></td>
-                                                                <td><?= $m['keperluan']; ?></td>
-                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
                                                                 <?php if ($m['status_surat'] <= 1) { ?>
                                                                     <td>
-                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['pengaju_id']; ?>">Buat Surat</button>
                                                                     </td>
                                                                 <?php } else if ($m['status_surat'] <= 4) {
                                                                 ?>
@@ -185,6 +179,18 @@
                                                                     </td>
                                                                 <?php
                                                                 }
+                                                                ?>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['no_surat']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td><?= $m['nm_kelurahan']; ?></td>
+                                                                <td><?= $m['keperluan']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+
+                                                                <?php
+
                                                                 $i++; ?>
                                                             </tr>
                                                         <?php endforeach ?>
@@ -196,14 +202,15 @@
                                                     <thead class="text-success">
                                                         <tr>
                                                             <th scope="col"></th>
+                                                            <th scope="col">Action</th>
                                                             <th scope="col">ID Pengajuan</th>
                                                             <th scope="col">NIK</th>
                                                             <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">Nomor Surat</th>
                                                             <th scope="col">Tanggal</th>
                                                             <th scope="col">Kelurahan</th>
                                                             <th scope="col">Keperluan</th>
                                                             <th scope="col">Status</th>
-                                                            <th scope="col">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -211,16 +218,9 @@
                                                         <?php foreach ($sktm as $m) : ?>
                                                             <tr>
                                                                 <th scope="row"><?= $i ?></th>
-                                                                <td><?= $m['pengaju_id']; ?></td>
-                                                                <td><?= $m['nik_pengaju']; ?></td>
-                                                                <td><?= $m['nama']; ?></td>
-                                                                <td><?= $m['tgl']; ?></td>
-                                                                <td><?= $m['nm_kelurahan']; ?></td>
-                                                                <td><?= $m['keperluan']; ?></td>
-                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
                                                                 <?php if ($m['status_surat'] <= 1) { ?>
                                                                     <td>
-                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['pengaju_id']; ?>">Buat Surat</button>
                                                                     </td>
                                                                 <?php } else if ($m['status_surat'] <= 4) {
                                                                 ?>
@@ -235,8 +235,18 @@
                                                                         <a href="<?= base_url('pelayanan_umum/cetak_skm/') . $m['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
                                                                         </a>
                                                                     </td>
+                                                                <?php } ?>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['no_surat']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td><?= $m['nm_kelurahan']; ?></td>
+                                                                <td><?= $m['keperluan']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+
                                                                 <?php
-                                                                }
+
                                                                 $i++; ?>
                                                             </tr>
                                                         <?php endforeach ?>
@@ -251,6 +261,7 @@
                                                             <th scope="col">ID Pengajuan</th>
                                                             <th scope="col">NIK</th>
                                                             <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">Nomor Surat</th>
                                                             <th scope="col">Tanggal</th>
                                                             <th scope="col">Kelurahan</th>
                                                             <th scope="col">Keperluan</th>
@@ -263,16 +274,9 @@
                                                         <?php foreach ($skbpr as $m) : ?>
                                                             <tr>
                                                                 <th scope="row"><?= $i ?></th>
-                                                                <td><?= $m['pengaju_id']; ?></td>
-                                                                <td><?= $m['nik_pengaju']; ?></td>
-                                                                <td><?= $m['nama']; ?></td>
-                                                                <td><?= $m['tgl']; ?></td>
-                                                                <td><?= $m['nm_kelurahan']; ?></td>
-                                                                <td><?= $m['keperluan']; ?></td>
-                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
                                                                 <?php if ($m['status_surat'] <= 1) { ?>
                                                                     <td>
-                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['pengaju_id']; ?>">Buat Surat</button>
                                                                     </td>
                                                                 <?php } else if ($m['status_surat'] <= 4) {
                                                                 ?>
@@ -287,8 +291,17 @@
                                                                         <a href="<?= base_url('pelayanan_umum/cetak_skm/') . $m['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
                                                                         </a>
                                                                     </td>
+                                                                <?php } ?>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['no_surat']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td><?= $m['nm_kelurahan']; ?></td>
+                                                                <td><?= $m['keperluan']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+
                                                                 <?php
-                                                                }
                                                                 $i++; ?>
                                                             </tr>
                                                         <?php endforeach ?>
@@ -300,14 +313,15 @@
                                                     <thead class="text-success">
                                                         <tr>
                                                             <th scope="col"></th>
+                                                            <th scope="col">Action</th>
                                                             <th scope="col">ID Pengajuan</th>
                                                             <th scope="col">NIK</th>
+                                                            <th scope="col">Nomor Surat</th>
                                                             <th scope="col">Nama Pengaju</th>
                                                             <th scope="col">Tanggal</th>
                                                             <th scope="col">Kelurahan</th>
                                                             <th scope="col">Keperluan</th>
                                                             <th scope="col">Status</th>
-                                                            <th scope="col">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -315,16 +329,9 @@
                                                         <?php foreach ($spik as $m) : ?>
                                                             <tr>
                                                                 <th scope="row"><?= $i ?></th>
-                                                                <td><?= $m['pengaju_id']; ?></td>
-                                                                <td><?= $m['nik_pengaju']; ?></td>
-                                                                <td><?= $m['nama']; ?></td>
-                                                                <td><?= $m['tgl']; ?></td>
-                                                                <td><?= $m['nm_kelurahan']; ?></td>
-                                                                <td><?= $m['keperluan']; ?></td>
-                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
                                                                 <?php if ($m['status_surat'] <= 1) { ?>
                                                                     <td>
-                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['pengaju_id']; ?>">Buat Surat</button>
                                                                     </td>
                                                                 <?php } else if ($m['status_surat'] <= 4) {
                                                                 ?>
@@ -339,8 +346,18 @@
                                                                         <a href="<?= base_url('pelayanan_umum/cetak_skm/') . $m['no_surat'] ?>" class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> download </i>
                                                                         </a>
                                                                     </td>
+                                                                <?php } ?>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['no_surat']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td><?= $m['nm_kelurahan']; ?></td>
+                                                                <td><?= $m['keperluan']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+
                                                                 <?php
-                                                                }
+
                                                                 $i++; ?>
                                                             </tr>
                                                         <?php endforeach ?>
@@ -352,31 +369,24 @@
                                                     <thead class="text-success">
                                                         <tr>
                                                             <th scope="col"></th>
+                                                            <th scope="col">Action</th>
                                                             <th scope="col">ID Pengajuan</th>
                                                             <th scope="col">NIK</th>
                                                             <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">Nomor Surat</th>
                                                             <th scope="col">Tanggal</th>
                                                             <th scope="col">Kelurahan</th>
                                                             <th scope="col">Keperluan</th>
                                                             <th scope="col">Status</th>
-                                                            <th scope="col">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $i = 1; ?>
                                                         <?php foreach ($skp as $m) : ?>
                                                             <tr>
-                                                                <th scope="row"><?= $i ?></th>
-                                                                <td><?= $m['pengaju_id']; ?></td>
-                                                                <td><?= $m['nik_pengaju']; ?></td>
-                                                                <td><?= $m['nama']; ?></td>
-                                                                <td><?= $m['tgl']; ?></td>
-                                                                <td><?= $m['nm_kelurahan']; ?></td>
-                                                                <td><?= $m['keperluan']; ?></td>
-                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
                                                                 <?php if ($m['status_surat'] <= 1) { ?>
                                                                     <td>
-                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['pengaju_id']; ?>">Buat Surat</button>
                                                                     </td>
                                                                 <?php } else if ($m['status_surat'] <= 4) {
                                                                 ?>
@@ -393,6 +403,19 @@
                                                                     </td>
                                                                 <?php
                                                                 }
+                                                                ?>
+                                                                <th scope="row"><?= $i ?></th>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['no_surat']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td><?= $m['nm_kelurahan']; ?></td>
+                                                                <td><?= $m['keperluan']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+
+                                                                <?php
+
                                                                 $i++; ?>
                                                             </tr>
                                                         <?php endforeach ?>
@@ -404,14 +427,15 @@
                                                     <thead class="text-success">
                                                         <tr>
                                                             <th scope="col"></th>
+                                                            <th scope="col">Action</th>
                                                             <th scope="col">ID Pengajuan</th>
                                                             <th scope="col">NIK</th>
                                                             <th scope="col">Nama Pengaju</th>
+                                                            <th scope="col">Nomor Surat</th>
                                                             <th scope="col">Tanggal</th>
                                                             <th scope="col">Kelurahan</th>
                                                             <th scope="col">Keperluan</th>
                                                             <th scope="col">Status</th>
-                                                            <th scope="col">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -419,16 +443,9 @@
                                                         <?php foreach ($spskck as $m) : ?>
                                                             <tr>
                                                                 <th scope="row"><?= $i ?></th>
-                                                                <td><?= $m['pengaju_id']; ?></td>
-                                                                <td><?= $m['nik_pengaju']; ?></td>
-                                                                <td><?= $m['nama']; ?></td>
-                                                                <td><?= $m['tgl']; ?></td>
-                                                                <td><?= $m['nm_kelurahan']; ?></td>
-                                                                <td><?= $m['keperluan']; ?></td>
-                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
                                                                 <?php if ($m['status_surat'] <= 1) { ?>
                                                                     <td>
-                                                                        <button class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['id']; ?>">Buat Surat</button>
+                                                                        <a class="btn btn-simple btn-warning btn-sm" data-toggle="modal" data-target="#lihatSurat<?= $m['pengaju_id']; ?>">Buat Surat</a>
                                                                     </td>
                                                                 <?php } else if ($m['status_surat'] <= 4) {
                                                                 ?>
@@ -445,6 +462,16 @@
                                                                     </td>
                                                                 <?php
                                                                 }
+                                                                ?>
+                                                                <td><?= $m['pengaju_id']; ?></td>
+                                                                <td><?= $m['nik_pengaju']; ?></td>
+                                                                <td><?= $m['no_surat']; ?></td>
+                                                                <td><?= $m['nama']; ?></td>
+                                                                <td><?= $m['tgl']; ?></td>
+                                                                <td><?= $m['nm_kelurahan']; ?></td>
+                                                                <td><?= $m['keperluan']; ?></td>
+                                                                <td class="font-weight-bold"><?= $status[$m['status_surat']]; ?></td>
+                                                                <?php
                                                                 $i++; ?>
                                                             </tr>
                                                         <?php endforeach ?>
@@ -472,7 +499,7 @@
             <div class=" modal-content">
                 <div class="card">
                     <div class="card-header card-header-tabs card-header-success">
-                        <h3><?= $surat[$m['surat_id']] ?></h3>
+                        <h3>Surat Keterangan Miskin</h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -510,88 +537,27 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                Scan KTP
+                                                Surat Pengantar Kelurahan
                                             </td>
                                             <td>
-                                                <img type="application/pdf" width="500px" height="350px;" src="<?= base_url('upload/ktp') ?>/<?= $m['ktp'] ?>" width="200" height="600"></img>
+                                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pengantar') ?>/<?= $m['f_pengantar'] ?>" width="200" height="600"></embed>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                Scan KK
+                                                Surat Pernyataan
                                             </td>
                                             <td>
-                                                <img type="application/pdf" width="500px" height="350px;" src="<?= base_url('upload/kk') ?>/<?= $m['kk'] ?>" width="200" height="600"></img>
+                                                <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pernyataan') ?>/<?= $m['f_pernyataan'] ?>" width="200" height="600"></embed>
                                             </td>
                                         </tr>
-                                        <?php if ($m['nm_usaha'] == true) { ?> <tr>
-                                                <td>
-                                                    Nama Usaha
-                                                </td>
-                                                <td><?= $m['nm_usaha'] ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                        <?php if ($m['almt_usaha'] == true) { ?> <tr>
-                                                <td>
-                                                    Alamat Usaha
-                                                </td>
-                                                <td><?= $m['almt_usaha'] ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                        <?php if ($m['nm_perusahaan'] == true) { ?> <tr>
-                                                <td>
-                                                    Nama Perusahaan
-                                                </td>
-                                                <td><?= $m['nm_perusahaan'] ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                        <?php if ($m['almt_perusahaan'] == true) { ?> <tr>
-                                                <td>
-                                                    Alamat Perusahaan
-                                                </td>
-                                                <td><?= $m['almt_perusahaan'] ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                        <?php if ($m['f_pengantar'] == true) { ?> <tr>
-                                                <td>
-                                                    Surat Pengantar Kelurahan
-                                                </td>
-                                                <td>
-                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pengantar') ?>/<?= $m['f_pengantar'] ?>" width="200" height="600"></embed>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                        <?php if ($m['f_pernyataan'] == true) { ?> <tr>
-                                                <td>
-                                                    Surat Pernyataan
-                                                </td>
-                                                <td>
-                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pernyataan') ?>/<?= $m['f_pernyataan'] ?>" width="200" height="600"></embed>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-                                        <?php if ($m['f_permohonan'] == true) { ?> <tr>
-                                                <td>
-                                                    Surat Pernyataan
-                                                </td>
-                                                <td>
-                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/permohonan') ?>/<?= $m['f_permohonan'] ?>" width="200" height="600"></embed>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
-
-
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <div class="card bg-light">
-                            <form method="post" action="<?= base_url('pelayanan_umum/buatSurat/') . $m['id'] ?>">
 
-                                <div class="card-header card-header-tabs card-header-success">
-                                    <h3>Isi Surat</h3>
-                                </div>
-                                <div class="card-body">
+                                <form method="post" action="<?= base_url('pemerintahan/buatSurat/') . $m['id'] ?>">
+                                    <tr>
+                                        <h3>Isi Surat</h3>
+                                    </tr>
                                     <tr>
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Nomor Surat *(wajib diisi)</label>
@@ -606,11 +572,12 @@
                                     </tr>
                                     <tr>
                                         <div class="form-group">
-                                            <!-- <label>Tanggal Surat Pengantar Kelurahan</label> -->
-                                            <input type="date" class="form-control" id="tgl_pengantar" name="tgl_pengantar" placeholder="Tanggal">
+                                            <label>Tanggal Surat Pengantar Kelurahan</label>
+                                            <input type="date" class="form-control" id="tgl_pengantar" name="tgl_pengantar">
                                         </div>
                                     </tr>
                                     <tr>
+
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Keterangan</label>
                                             <input type="text" class="form-control" id="keterangan" name="keterangan">
@@ -623,9 +590,8 @@
                                             </td>
                                         </div>
                                     </tr>
-
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

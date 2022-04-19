@@ -30,7 +30,7 @@
                   <div class="col-lg-8 mb-3" data-aos="fade-up" data-aos-delay="100">
 
                       <!-- daftar surat yang dapat diajukan -->
-                      <div class="info">
+                      <div class="info mb-3">
                           <a href="" data-toggle="modal" data-target="#ketMiskin">
                               <i class="icofont-file-alt"></i>
 
@@ -43,7 +43,7 @@
                               <p class="font-weight">Surat Pernyataan</p>
                           </a>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <i class="icofont-file-alt"></i>
                           <a href="" data-toggle="modal" data-target="#skTidakMampu">
                               <h4>Surat Keterangan Tidak Mampu</h4>
@@ -54,7 +54,7 @@
                           <p class="font-weight">Surat Pengantar Lurah</p>
                           <p class="font-weight">Surat Pernyataan</p>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <a href="" data-toggle="modal" data-target="#skBelumPunyaRumah">
                               <i class="icofont-file-alt"></i>
 
@@ -66,7 +66,7 @@
                               <p class="font-weight">Surat pengantar Lurah</p>
                           </a>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <a href="" data-toggle="modal" data-target="#skUsaha">
                               <i class="icofont-file-alt"></i>
                               <h4>Surat Keterangan Usaha</h4>
@@ -79,7 +79,7 @@
 
                           </a>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <i class="icofont-file-alt"></i>
                           <a href="" data-toggle="modal" data-target="#skDomisiliPerusahaan">
                               <h4>Surat Keterangan Domisili Perusahaan</h4>
@@ -95,7 +95,7 @@
                           <p class="font-weight">Scan KTP</p>
                           <p class="font-weight">Scan KK</p>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <a href="" data-toggle="modal" data-target="#rekomenNikah">
                               <i class="icofont-file-alt"></i>
 
@@ -109,7 +109,7 @@
                               <p class="font-weight">Surat Keterangan Belum Menikah</p>
                           </a>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <i class="icofont-file-alt"></i>
                           <a href="" data-toggle="modal" data-target="#skDomisili">
                               <h4>Surat Keterangan Domisili</h4>
@@ -119,7 +119,7 @@
                           <p class="font-weight">Scan KK</p>
                           <p class="font-weight">Surat Pengantar Lurah</p>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <i class="icofont-file-alt"></i>
                           <a href="" data-toggle="modal" data-target="#skPenghasilan">
                               <h4>Surat Keterangan Penghasilan</h4>
@@ -129,7 +129,7 @@
                           <p class="font-weight">Scan KK</p>
                           <p class="font-weight">Surat Pengantar Lurah</p>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <i class="icofont-file-alt"></i>
                           <a href="" data-toggle="modal" data-target="#skOrgSama">
                               <h4>Surat Keterangan Orang yang Sama</h4>
@@ -140,7 +140,7 @@
                           <p class="font-weight">Scan Akte Kelahiran</p>
                           <p class="font-weight">Surat Pengantar Lurah</p>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <i class="icofont-file-alt"></i>
                           <a href="" data-toggle="modal" data-target="#spCerai">
                               <h4>Surat Pengantar Cerai</h4>
@@ -151,7 +151,7 @@
                           <p class="font-weight">Surat Pernyataan</p>
                           <p class="font-weight">Surat Pengantar Lurah</p>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <i class="icofont-file-alt"></i>
                           <a href="" data-toggle="modal" data-target="#spSKCK">
                               <h4>Surat Pengantar SKCK</h4>
@@ -162,7 +162,7 @@
                           <p class="font-weight">Surat Pernyataan</p>
                           <p class="font-weight">Surat Pengantar Lurah</p>
                       </div>
-                      <div class="info">
+                      <div class="info mb-3">
                           <i class="icofont-file-alt"></i>
                           <a href="" data-toggle="modal" data-target="#spIzinKeramaian">
                               <h4>Surat Pengantar Izin Keramaian</h4>

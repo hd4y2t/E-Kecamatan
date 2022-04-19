@@ -6,7 +6,7 @@
 
       <h1>E-Kecamatan <?= $profile['kecamatan'] ?></h1>
       <h2>Web Portal Kecamatan <?= $profile['kecamatan'] ?></h2>
-      <a href="<?= base_url('home/cetak') ?>" class="btn-get-started scrollto">Lihat Berita</a>
+      <a href="<?= base_url('home/s_online') ?>" class="btn-get-started scrollto">Ajui Surat</a>
     </div>
   </section><!-- End Hero -->
 

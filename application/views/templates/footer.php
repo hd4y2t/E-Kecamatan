@@ -1,80 +1,16 @@
 </body>
 <footer>
-    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.0.js"></script> -->
-
-    <!--Data Table-->
-    <!-- <script type=" text/javascript" src=" https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script> -->
-
     <!--Export table buttons-->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
-    <!-- https://code.jquery.com/jquery-3.5.1.js
-
-https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js -->
-
     <!--Export table button CSS-->
 
-    <script src=" <?= base_url(); ?>assets/js/core/jquery.min.js"></script>
-    <script src="<?= base_url(); ?>assets/js/core/popper.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/core/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/datatables/dataTables.bootstrap4.js"></script>
     <script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js"></script>
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script> -->
-    <!-- Plugin for the momentJs  -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/moment.min.js"></script> -->
-    <!--  Plugin for Sweet Alert -->
-    <script src="<?= base_url(); ?>assets/js/plugins/sweetalert2.js"></script>
-
-    <!-- Tables -->
-    <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script> -->
-    <!-- Forms Validations Plugin -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/jquery.validate.min.js"></script> -->
-    <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
     <script src="<?= base_url(); ?>assets/js/plugins/jquery.bootstrap-wizard.js"></script>
-    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-    <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-selectpicker.js"></script>
-    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-datetimepicker.min.js"></script> -->
-    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/jquery.dataTables.min.js"></script> -->
-
-    <!-- <script src="<?= base_url() ?> assets/plugins/datatables-responsive/js/responsive.bootstrap4.js"></script>
-<script src="<?= base_url() ?> assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script> -->
-    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-tagsinput.js"></script> -->
-    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/jasny-bootstrap.min.js"></script> -->
-    <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/fullcalendar.min.js"></script> -->
-    <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/jquery-jvectormap.js"></script> -->
-    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/nouislider.min.js"></script> -->
-    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script> -->
-    <!-- Library for adding dinamically elements -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/arrive.min.js"></script> -->
-
-    <!--  Google Maps Plugin    -->
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
-    <!-- Chartist JS -->
-    <script src="<?= base_url(); ?>assets/js/plugins/chartist.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script> -->
-    <!--  Notifications Plugin    -->
-    <!-- <script src="<?= base_url(); ?>assets/js/plugins/bootstrap-notify.js"></script> -->
-    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="<?= base_url(); ?>assets/js/material-dashboard.js" type="text/javascript"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="<?= base_url(); ?>assets/demo/demo.js"></script>
-
-    <!-- jQuery -->
-    <!-- <script src="<?= base_url(); ?>plugins/jquery/jquery.min.js"></script> -->
-    <!-- jQuery UI 1.11.4 -->
-    <!-- <script src="<?= base_url(); ?>plugins/jquery-ui/jquery-ui.min.js"></script> -->
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
 
@@ -276,49 +212,6 @@ https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js -->
                 ]
             });
         });
-
-        //     foreach ($grafik as $data) {
-        //         $kelurahan[] = $data->nm_kelurarahan;
-        //         $jumlah[] = (float) $data->pengajuan;
-        //     }
-
-
-        // var ctx = document.getElementById("myChart").getContext('2d');
-        // var myChart = new Chart(ctx, {
-        //     type: 'bar',
-        //     data: {
-        //         labels:
-        //         datasets: [{
-        //             label: [],
-        //             data: [
-        //             ],
-        //             backgroundColor: [
-        //                 'rgba(232, 63, 60, 1)',
-        //                 'rgba(252, 146, 8, 1)',
-        //                 'rgba(8, 172, 128, 1)',
-        //                 'rgba(24, 188, 209, 1)'
-        //             ],
-        //             borderColor: [
-        //                 'rgba(242, 7, 7, 1)',
-        //                 'rgba(242, 176, 7, 1)',
-        //                 'rgba(64, 242, 7, 1)',
-        //                 'rgba(0, 111, 236, 1)'
-        //             ],
-        //             borderWidth: 1
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             yAxes: [{
-        //                 ticks: {
-        //                     beginAtZero: true
-        //                 }
-        //             }]
-        //         }
-        //     }
-        // });
-
-
 
         $('.form-check-input').on('click', function() {
             const menuId = $(this).data('menu');

@@ -11,7 +11,6 @@ class Sekcam extends CI_Controller
         $this->load->model('Mpegawai', 'pegawai');
         $this->load->model('Msekcam', 'sekcam');
         $this->load->library('form_validation', 'Pdf');
-        $this->load->library('Pdf');
         is_logged_in();
     }
 
@@ -45,18 +44,18 @@ class Sekcam extends CI_Controller
             5 => 'Telah Diketahui Camat',
         ];
         $data['surat'] = [
-            'SKM' => 'Surat Keterangan Miskin',
-            'SKTM' => 'Surat Keterangan Tidak Mampu',
-            'SKBPR' => 'Surat Keterangan Belum Punya Rumah',
-            'SKU' => 'Surat Keterangan Usaha',
-            'SKDP' => 'Surat Keterangan Domisili Perusahaan',
-            'SKN' => 'Surat Keterangan Nikah',
-            'SKD' => 'Surat Keterangan Domisili',
-            'SKP' => 'Surat Keterangan Penghasilan',
-            'SKOS' => 'Surat Keterangan Orang Yang Sama',
-            'SPC' => 'Surat Pengantar Cerai',
-            'SPSKCK' => 'Surat Pengantar SKCK',
-            'SPIK' => 'Surat Pengantar Izin Keramaian'
+            'SKM' => 'SURAT KETERANGAN MISKIN',
+            'SKTM' => 'SURAT KETERANGAN TIDAK MAMPU',
+            'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+            'SKU' => 'SURAT KETERANGAN USAHA',
+            'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+            'SKN' => 'SURAT KETERANGAN NIKAH',
+            'SKD' => 'SURAT KETERANGAN DOMISILI',
+            'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+            'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+            'SPC' => 'SURAT PENGANTAR CERAI',
+            'SPSKCK' => 'SURAT PENGANTAR SKCK',
+            'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
         ];
         $this->load->model('Msekcam', 'sekcam');
         $data['ps'] = $this->sekcam->getSurat();
@@ -109,7 +108,7 @@ class Sekcam extends CI_Controller
         ];
         $kode = [
             'SKM' => 'SURAT KETERANGAN MISKIN',
-            'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+            'SKTM' => 'SURAT KETERANGAN TIDAK MAMPU',
             'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
             'SKU' => 'SURAT KETERANGAN USAHA',
             'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',

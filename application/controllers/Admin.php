@@ -25,11 +25,33 @@ class Admin extends CI_Controller
         $data['user_non'] = $this->db->get('user')->num_rows();
 
         $this->load->model('Mgrafik', 'grafik');
-        $data['grafik'] = $this->grafik->getDataGrafik();
-        // echo json_encode($dt);
+        // $grafik = $this->grafik->getDataGrafik();
+        // var_dump($grafik);
         $this->load->model('Madmin', 'admin');
         $data['hasil'] = $this->admin->getDataKelurahan(); //untuk grafik
         $data['kelurahan'] = $this->db->get('kelurahan')->result_array();
+
+        $data['kode'] = [
+            'SURAT KETERANGAN MISKIN',
+            'SURAT KETERANGAN TIDAK MAMPU',
+            'SURAT KETERANGAN BELUM PUNYA RUMAH',
+            'SURAT KETERANGAN USAHA',
+            'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+            'SURAT KETERANGAN NIKAH',
+            'SURAT KETERANGAN DOMISILI',
+            'SURAT KETERANGAN PENGHASILAN',
+            'SURAT KETERANGAN ORANG YANG SAMA',
+            'SURAT PENGANTAR CERAI',
+            'SURAT PENGANTAR SKCK',
+            'SURAT PENGANTAR IZIN KERAMAIAN'
+        ];
+        // var_dump($kode);
+
+        $query = "SELECT `tgl` FROM `pembuatan_surat` ORDER BY `tgl` DESC LIMIT 1";
+        $data['last'] = $this->db->query($query)->row_array();
+
+        $data['chart'] = $this->grafik->getDataGrafik();
+        // $chart = $this->galery_model->getDataGrafik();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

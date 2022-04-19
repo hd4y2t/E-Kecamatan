@@ -540,12 +540,37 @@
                                         </div>
                                     </tr>
                                     <tr>
-
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Keterangan</label>
                                             <input type="text" class="form-control" id="keterangan" name="keterangan">
                                         </div>
                                     </tr>
+                                    <?php if ($m['id_surat'] == 'SKDP') { ?>
+                                        <tr>
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Akte Pendiri</label>
+                                                <input type="text" class="form-control" id="no_akte" name="no_akte">
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Bergerak dibidang</label>
+                                                <input type="text" class="form-control" id="bidang" name="bidang">
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Jumlah Karyawan</label>
+                                                <input type="text" class="form-control" id="karyawan" name="karyawan">
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                            <div class="form-group">
+                                                <label class="bmd-label-floating">Jam Kerja</label>
+                                                <input type="text" class="form-control" id="jam_kerja" name="jam_kerja">
+                                            </div>
+                                        </tr>
+                                    <?php } ?>
                                     <tr>
                                         <div class="content">
                                             <td>
