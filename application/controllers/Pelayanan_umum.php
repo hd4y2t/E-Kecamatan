@@ -77,13 +77,12 @@ class Pelayanan_umum extends CI_Controller
         $data['title'] = 'Pembuatan Surat';
         $this->load->model('Mpegawai', 'pegawai');
         $data['ps'] = $this->pegawai->getSurat();
-        $ps = $this->pegawai->getSurat();
         $data['status'] = [
             1 => 'Surat Belum dibuat',
             2 => 'Ditolak',
             3 => 'Pending',
             4 => 'Dilanjutkan',
-            5 => 'Telah Diparaf',
+            5 => 'Selesai',
         ];
         $data['surat'] = [
             'SKM' => 'SURAT KETERANGAN MISKIN',
@@ -120,47 +119,37 @@ class Pelayanan_umum extends CI_Controller
         $this->form_validation->set_rules('tgl_pengantar', 'Tanggal Pengantar', 'required');
         $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
 
-        if ($this->form_validation->run() == FALSE) {
+        $id_pengajuan =  $this->input->post("id_pengaju", TRUE);
+        $no_surat =  $this->input->post("no_surat", TRUE);
+        $no_pengantar =  $this->input->post("no_pengantar", TRUE);
+        $tgl_pengantar =  $this->input->post("tgl_pengantar", TRUE);
+        $keterangan =  $this->input->post("keterangan", TRUE);
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('pelayanan_umum/index', $data);
-            $this->load->view('templates/footer');
-        } else {
+        $data = [
+            'no_pengantar' => $no_pengantar,
+            'tgl_pengantar' => $tgl_pengantar,
+            'status' => 4
+        ];
+        // var_dump($data);
+        $this->db->where('id_pengaju', $id);
+        $this->db->update('pengajuan_surat', $data);
 
-            $id_pengajuan =  $this->input->post("id_pengaju", TRUE);
-            $no_surat =  $this->input->post("no_surat", TRUE);
-            $no_pengantar =  $this->input->post("no_pengantar", TRUE);
-            $tgl_pengantar =  $this->input->post("tgl_pengantar", TRUE);
-            $keterangan =  $this->input->post("keterangan", TRUE);
+        $array = [
+            'no_surat' => $no_surat,
+            'keterangan' => $keterangan,
+            'status_surat' => 3
+        ];
+        // var_dump($array, $id_pengajuan);
+        // die;
+        $this->db->where('pengaju_id', $id);
+        $this->db->update('pembuatan_surat', $array);
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success" role="alert"> Surat ' . $no_surat . ' Telah Dibuat </div>'
+        );
 
-            $data = [
-                'no_pengantar' => $no_pengantar,
-                'tgl_pengantar' => $tgl_pengantar,
-                'status' => 4
-            ];
-            // var_dump($data);
-            $this->db->where('id', $id_pengajuan);
-            $this->db->update('pengajuan_surat', $data);
-
-            $array = [
-                'no_surat' => $no_surat,
-                'keterangan' => $keterangan,
-                'status_surat' => 3
-            ];
-            // var_dump($id, $id_pengajuan);
-            // var_dump($array);
-            // die;
-            $this->db->where('id', $id);
-            $this->db->update('pembuatan_surat', $array);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert"> Surat ' . $no_surat . ' Telah Dibuat </div>'
-            );
-            // redirect('pelayanan_umum/index');
-            redirect(base_url("pelayanan_umum/index"));
-        }
+        redirect(base_url("pelayanan_umum/index"));
+        // redirect('pelayanan_umum/index');
     }
 
     public function cetak_skm($id)
@@ -187,7 +176,6 @@ class Pelayanan_umum extends CI_Controller
         $this->load->view('cetak/cetak_skm', $data);
     }
 
-
     public function penduduk()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
@@ -195,7 +183,20 @@ class Pelayanan_umum extends CI_Controller
         $this->load->model('Mpegawai', 'pegawai');
         $data['warga'] = $this->pegawai->getKelurahan();
         $data['surat'] = $this->db->get('surat')->result_array();
-
+        $data['kode'] = [
+            'SKM' => 'SURAT KETERANGAN MISKIN',
+            'SKM' => 'SURAT KETERANGAN TIDAK MAMPU',
+            'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
+            'SKU' => 'SURAT KETERANGAN USAHA',
+            'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
+            'SKN' => 'SURAT KETERANGAN NIKAH',
+            'SKD' => 'SURAT KETERANGAN DOMISILI',
+            'SKP' => 'SURAT KETERANGAN PENGHASILAN',
+            'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',
+            'SPC' => 'SURAT PENGANTAR CERAI',
+            'SPSKCK' => 'SURAT PENGANTAR SKCK',
+            'SPIK' => 'SURAT PENGANTAR IZIN KERAMAIAN'
+        ];
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);

@@ -16,7 +16,7 @@
                                     <div class="col">
 
                                         <div class="table-responsive">
-                                            <table class="table table-hover" id="myTable">
+                                            <table class="table table-hover" id="myTables">
                                                 <thead class="text-success">
                                                     <tr>
                                                         <th scope="col"></th>

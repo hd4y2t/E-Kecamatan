@@ -1413,27 +1413,24 @@ protected function _readint($f)
 
 protected function _parsegif($file)
 {
-	// Extract info from a GIF file (via PNG conversion)
-	if(!function_exists('imagepng'))
-		$this->Error('GD extension is required for GIF support');
-	if(!function_exists('imagecreatefromgif'))
-		$this->Error('GD has no GIF read support');
-	$im = imagecreatefromgif($file);
-	if(!$im)
-		$this->Error('Missing or incorrect image file: '.$file);
-	imageinterlace($im,0);
-	ob_start();
-	imagepng($im);
-	$data = ob_get_clean();
-	imagedestroy($im);
-	$f = fopen('php://temp','rb+');
-	if(!$f)
-		$this->Error('Unable to create memory stream');
-	fwrite($f,$data);
-	rewind($f);
-	$info = $this->_parsepngstream($f,$file);
-	fclose($f);
-	return $info;
+ //Extract info from a GIF file (via PNG conversion)
+    if(!function_exists('imagepng'))
+        $this->Error('GD extension is required for GIF support');
+    if(!function_exists('imagecreatefromgif'))
+        $this->Error('GD has no GIF read support');
+    $im=imagecreatefromgif($file);
+    if(!$im)
+        $this->Error('Missing or incorrect image file: '.$file);
+    imageinterlace($im,0);
+    $tmp=tempnam('.','gif');
+    if(!$tmp)
+        $this->Error('Unable to create a temporary file');
+    if(!imagepng($im,$tmp))
+        $this->Error('Error while saving to temporary file');
+    imagedestroy($im);
+    $info=$this->_parsepng($tmp);
+    unlink($tmp);
+    return $info;
 }
 
 protected function _out($s)

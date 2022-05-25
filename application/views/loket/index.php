@@ -740,22 +740,6 @@
                                                     <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/domisili') ?>/<?= $m['sd'] ?>" width="200" height="600"></embed>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    PBB Lunas
-                                                </td>
-                                                <td>
-                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/pbb') ?>/<?= $m['pbb'] ?>" width="200" height="600"></embed>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    Akte Notaris
-                                                </td>
-                                                <td>
-                                                    <embed type="application/pdf" width="100%" height="450px;" src="<?= base_url('upload/akte_notaris') ?>/<?= $m['akte_notaris'] ?>" width="200" height="600"></embed>
-                                                </td>
-                                            </tr>
                                         <?php } else if ($m['id_surat'] == "SKU") {
                                         ?>
                                             <tr>
@@ -807,6 +791,15 @@
                                                     Alamat Keramaian
                                                 </td>
                                                 <td><?= $m['almt_keramaian'] ?></td>
+                                            </tr>
+                                        <?php
+                                        } else if ($m['id_surat'] == "SKP") {
+                                        ?>
+                                            <tr>
+                                                <td>
+                                                    Pekerjaan
+                                                </td>
+                                                <td><?= $m['pekerjaan'] ?></td>
                                             </tr>
                                         <?php
                                         } ?>
@@ -886,9 +879,5 @@
         </div>
     </div>
 <?php endforeach; ?>
-
-
-
-</div>
 </div>
 </body>

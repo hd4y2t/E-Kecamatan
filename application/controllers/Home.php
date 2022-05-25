@@ -672,7 +672,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");
@@ -877,7 +877,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");
@@ -1105,7 +1105,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");
@@ -1202,50 +1202,6 @@
                             }
                         }
                     }
-                    if (isset($_FILES['pbb'])) {
-
-                        if ($_FILES['pbb']['size'] >= 2097152) { //2MB
-                            $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat pbb yang diupload Lebih 2MB!</div>');
-                            redirect(base_url("home/s_online"));
-                        } else {
-
-                            $namafile = substr($_FILES['pbb']['name'], -7);
-                            $pbb = "PBB-" . $nik . $namafile;
-                            $config['upload_path']          = './upload/pbb'; //lokasi folder
-                            $config['allowed_types']        = 'pdf|jpg|jpeg|png'; //tipe data yang di upload
-                            $config['overwrite']            = true; // tindih file dengan file baru
-                            $config['max_size']             = 2048; // 2MB
-                            $config['file_name']            = $pbb;
-
-                            $this->load->library('upload', $config);
-                            $this->upload->initialize($config);
-                            if ($this->upload->do_upload('pbb')) {
-                                $f7 = $this->upload->data();
-                            }
-                        }
-                    }
-                    if (isset($_FILES['notaris'])) {
-
-                        if ($_FILES['notaris']['size'] >= 2097152) { //2MB
-                            $this->session->set_flashdata('success', '<div class="alert alert-warning alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><h5><i class="icon fas fas-ban"></i> MAAF!</h5> Surat Akte Notaris yang diupload Lebih 2MB!</div>');
-                            redirect(base_url("home/s_online"));
-                        } else {
-
-                            $namafile = substr($_FILES['notaris']['name'], -7);
-                            $notaris = "AN-" . $nik . $namafile;
-                            $config['upload_path']          = './upload/akte_notaris'; //lokasi folder
-                            $config['allowed_types']        = 'pdf'; //tipe data yang di upload
-                            $config['overwrite']            = true; // tindih file dengan file baru
-                            $config['max_size']             = 2048; // 2MB
-                            $config['file_name']            = $notaris;
-
-                            $this->load->library('upload', $config);
-                            $this->upload->initialize($config);
-                            if ($this->upload->do_upload('notaris')) {
-                                $f8 = $this->upload->data();
-                            }
-                        }
-                    }
 
                     $data = [
                         'id_pengaju' => $id,
@@ -1259,8 +1215,6 @@
                         'spt' => $f4['file_name'],
                         'srl' => $f5['file_name'],
                         'sd' => $f6['file_name'],
-                        'pbb' => $f7['file_name'],
-                        'akte_notaris' => $f8['file_name'],
                         'status' => 1
                     ];
                     $this->pengajuan_track->insert_p_surat($data);
@@ -1429,7 +1383,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");
@@ -1681,7 +1635,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");
@@ -1755,6 +1709,7 @@
                 $this->form_validation->set_rules('rt', 'rt', 'required');
                 $this->form_validation->set_rules('rw', 'rw', 'required');
                 $this->form_validation->set_rules('keperluan', 'keperluan', 'required');
+                $this->form_validation->set_rules('pekerjaan', 'pekerjaan', 'required');
 
                 if ($this->form_validation->run() == FALSE) {
                     $this->load->view('home/header', $data);
@@ -1771,6 +1726,7 @@
                     $rt = $this->input->post('rt', TRUE);
                     $rw = $this->input->post('rw', TRUE);
                     $keperluan = $this->input->post('keperluan', TRUE);
+                    $pekerjaan = $this->input->post('pekerjaan', TRUE);
                     $surat = "SKP";
                     $kode = [
                         'SKM' => 'SURAT KETERANGAN MISKIN',
@@ -1868,6 +1824,7 @@
                             'nik' => $nik,
                             'nama' => $nama,
                             'no_hp' => $no_hp,
+                            'pekerjaan' => $pekerjaan,
                             'email' => $email,
                             'alamat' => $alamat,
                             'kelurahan' => $kelurahan,
@@ -1886,7 +1843,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");
@@ -2116,7 +2073,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");
@@ -2349,7 +2306,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");
@@ -2577,7 +2534,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");
@@ -2810,7 +2767,7 @@
 
                     $cc = $this->db->count_all('pengajuan_surat') + 1;
                     $count = str_pad($cc, 3, STR_PAD_LEFT);
-                    $id = $surat . "/";
+                    $id = $surat . "-";
                     $d = date('d');
                     $y = date('y');
                     $mnth = date("m");

@@ -102,13 +102,13 @@
                                             <td>
                                                 Alamat Lengkap
                                             </td>
-                                            <td><?= $w['alamat'] . " RT: " . $w['rt'] . " RW: " . $w['rw']; ?></td>
+                                            <td><?= $m['alamat'] . " RT: " . $m['rt'] . " RW: " . $m['rw']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>
                                                 Kelurahan
                                             </td>
-                                            <td><?= $w['nm_kelurahan']; ?></td>
+                                            <td><?= $m['nm_kelurahan']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>
@@ -130,7 +130,7 @@
                                             <td>
                                                 Daftar Surat yang pernah diajukan
                                             </td>
-                                            <td></td>
+                                            <td><?= $kode[$m['id_surat']] ?></td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -27,6 +27,16 @@ class Camat extends CI_Controller
         $data['penduduk'] = $this->db->get('penduduk')->num_rows();
         $data['user_non'] = $this->db->get('user')->num_rows();
 
+
+        $chartPie = 'SELECT surat_id as name ,COUNT(surat_id) AS value FROM `pembuatan_surat` group BY surat_id';
+        $data['pie'] = $this->db->query($chartPie)->result();
+
+        $this->load->model('Mgrafik', 'grafik');
+        $query = "SELECT `tgl` FROM `pembuatan_surat` ORDER BY `tgl` DESC LIMIT 1";
+        $data['last'] = $this->db->query($query)->row_array();
+
+        $data['chart'] = $this->grafik->getDataGrafik();
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);

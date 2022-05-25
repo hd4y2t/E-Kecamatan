@@ -45,14 +45,16 @@ class Admin extends CI_Controller
             'SURAT PENGANTAR SKCK',
             'SURAT PENGANTAR IZIN KERAMAIAN'
         ];
-        // var_dump($kode);
+
+        $chartPie = 'SELECT surat_id as name ,COUNT(surat_id) AS value FROM `pembuatan_surat` group BY surat_id';
+        $data['pie'] = $this->db->query($chartPie)->result();
 
         $query = "SELECT `tgl` FROM `pembuatan_surat` ORDER BY `tgl` DESC LIMIT 1";
         $data['last'] = $this->db->query($query)->row_array();
 
         $data['chart'] = $this->grafik->getDataGrafik();
         // $chart = $this->galery_model->getDataGrafik();
-
+        // var_dump($a);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/navbar', $data);
@@ -275,29 +277,72 @@ class Admin extends CI_Controller
             redirect('admin/user');
         }
     }
-    public function paraf($id = 1)
+    public function profile()
     {
         $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Paraf';
+        $data['title'] = 'Profile';
         $data['profile'] = $this->db->get_where('profile', ['id' => 1])->row_array();
-        $this->form_validation->set_rules('paraf', 'paraf', 'required');
+        $this->form_validation->set_rules('kecamatan', 'kecamatan', 'required');
+        $this->form_validation->set_rules('camat', 'camat', 'required');
+        $this->form_validation->set_rules('sekcam', 'sekcam', 'required');
+        $this->form_validation->set_rules('detail', 'detail', 'required');
+        $this->form_validation->set_rules('lokasi', 'lokasi', 'required');
+        $this->form_validation->set_rules('email', 'email', 'required');
+        $this->form_validation->set_rules('no', 'no', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/navbar', $data);
-            $this->load->view('admin/paraf', $data);
+            $this->load->view('pelayanan_umum/profile', $data);
             $this->load->view('templates/footer');
         } else {
-            $link = $this->input->post('paraf', true);
-            $data = array(
-                'paraf' => $link
-            );
+            $foto_camat =  $this->input->post("foto_camat", TRUE);
+            $foto_sekcam =  $this->input->post("foto_sekcam", TRUE);
+            $camat =  $this->input->post("camat", TRUE);
+            $sekcam =  $this->input->post("sekcam", TRUE);
+            $kecamatan =  $this->input->post("kecamatan", TRUE);
+            $detail =  $this->input->post("detail", TRUE);
+            $lokasi =  $this->input->post("lokasi", TRUE);
+            $email =  $this->input->post("email", TRUE);
+            $no =  $this->input->post("no", TRUE);
 
-            $this->db->where('id', $id);
-            $this->db->update('profile', $data);
-            $this->session->set_flashdata('message', 'Berhasil Diperbarui!');
-            redirect(base_url("admin/paraf"));
+            $config['upload_path']          = './assets/img/testimonials';
+            $config['allowed_types']        = 'jpg|jpeg|png|JPG|PNG';
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('foto_camat,foto_sekcam')) {
+
+                $data = array('upload_data' => $this->upload->data());
+                $kecamatan = $this->input->post('kecamatan', true);
+                $camat = $this->input->post('camat', true);
+                $sekcam = $this->input->post('sekcam', true);
+                $foto_camat = $data['upload_data']['foto_camat'];
+                $foto_sekcam = $data['upload_data']['foto2'];
+                $detail = $this->input->post('detail', true);
+                $lokasi = $this->input->post('lokasi', true);
+                $email = $this->input->post('email', true);
+                $no = $this->input->post('no', true);
+
+                $save = [
+                    'kecamatan' => $kecamatan,
+                    'detail' => $detail,
+                    'camat' => $camat,
+                    'sekcam' => $sekcam,
+                    'f_camat' => $foto_camat,
+                    'f_sekcam' => $foto_sekcam,
+                    'lokasi' => $lokasi,
+                    'email' => $email,
+                    'no' => $no,
+                ];
+
+                // var_dump($save);
+                // die;
+                $this->db->where('id', 1);
+                $this->db->update('profile', $save);
+                $this->session->set_flashdata('success', 'Berhasil Ditambahkan!');
+                redirect(base_url("pelayanan_umum/profile"));
+            }
         }
     }
 }

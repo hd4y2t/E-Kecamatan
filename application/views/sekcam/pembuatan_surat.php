@@ -40,6 +40,7 @@
                                                         <th scope="col">Status</th>
                                                         <th scope="col">Berkas</th>
                                                         <th scope="col">Lihat Surat</th>
+                                                        <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -71,7 +72,7 @@
                                                             } else if ($s['status_surat'] == 4) {
                                                             ?>
                                                                 <td>
-                                                                    <a class="btn btn-simple btn-success btn-sm text-light"><i class="material-icons"> update </i>
+                                                                    <a class="btn btn-simple btn-outline-success btn-sm text-success"><i class="material-icons"> update </i>
                                                                     </a>
                                                                 </td>
                                                             <?php

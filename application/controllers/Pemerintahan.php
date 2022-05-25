@@ -82,7 +82,7 @@ class Pemerintahan extends CI_Controller
             2 => 'Ditolak',
             3 => 'Pending',
             4 => 'Dilanjutkan',
-            5 => 'Telah Diparaf',
+            5 => 'Selesai'
         ];
         $data['surat'] = [
             'SKM' => 'SURAT KETERANGAN MISKIN',
@@ -138,49 +138,62 @@ class Pemerintahan extends CI_Controller
         $this->form_validation->set_rules('no_surat', 'Nomor Surat', 'required');
         $this->form_validation->set_rules('no_pengantar', 'Nomor Pengantar', 'required');
         $this->form_validation->set_rules('tgl_pengantar', 'Tanggal Pengantar', 'required');
-        $this->form_validation->set_rules('keterangan', 'Keterangan', 'required');
+        $this->form_validation->set_rules('no_akte', 'no_akte');
+        $this->form_validation->set_rules('bidang', 'bidang');
+        $this->form_validation->set_rules('karyawan', 'karyawan');
+        $this->form_validation->set_rules('jam_kerja', 'jam_kerja');
 
-        if ($this->form_validation->run() == FALSE) {
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/navbar', $data);
-            $this->load->view('pemerintahan/index', $data);
-            $this->load->view('templates/footer');
+
+        $id_pengajuan =  $this->input->post("id_pengaju", TRUE);
+        $no_surat =  $this->input->post("no_surat", TRUE);
+        $no_pengantar =  $this->input->post("no_pengantar", TRUE);
+        $tgl_pengantar =  $this->input->post("tgl_pengantar", TRUE);
+        $keterangan =  $this->input->post("keterangan");
+        $no_akte =  $this->input->post("no_akte");
+        $bidang =  $this->input->post("bidang");
+        $karyawan =  $this->input->post("karyawan");
+        $jam_kerja =  $this->input->post("jam_kerja");
+
+        if ($no_akte != null) {
+            $data = [
+                'no_pengantar' => $no_pengantar,
+                'tgl_pengantar' => $tgl_pengantar,
+                'no_akte' => $no_akte,
+                'bidang_usaha' => $bidang,
+                'jml_karyawan' => $karyawan,
+                'jam_kerja' => $jam_kerja,
+                'status' => 4
+            ];
+            // var_dump($data);
+            $this->db->where('id_pengaju', $id);
+            $this->db->update('pengajuan_surat', $data);
         } else {
-
-            $id_pengajuan =  $this->input->post("id_pengaju", TRUE);
-            $no_surat =  $this->input->post("no_surat", TRUE);
-            $no_pengantar =  $this->input->post("no_pengantar", TRUE);
-            $tgl_pengantar =  $this->input->post("tgl_pengantar", TRUE);
-            $keterangan =  $this->input->post("keterangan", TRUE);
-
             $data = [
                 'no_pengantar' => $no_pengantar,
                 'tgl_pengantar' => $tgl_pengantar,
                 'status' => 4
             ];
             // var_dump($data);
-            $this->db->where('id', $id_pengajuan);
+            $this->db->where('id_pengaju', $id);
             $this->db->update('pengajuan_surat', $data);
-
-            $array = [
-                'no_surat' => $no_surat,
-                'keterangan' => $keterangan,
-                'status_surat' => 3
-            ];
-            // var_dump($id, $id_pengajuan);
-            // var_dump($array);
-            // die;
-            $this->db->where('id', $id);
-            $this->db->update('pembuatan_surat', $array);
-            $this->session->set_flashdata(
-                'message',
-                '<div class="alert alert-success" role="alert"> Surat ' . $no_surat . ' Telah Dibuat </div>'
-            );
-            // redirect('pemerintahan/index');
-            redirect(base_url("pemerintahan/index"));
         }
+        $array = [
+            'no_surat' => $no_surat,
+            'keterangan' => $keterangan,
+            'status_surat' => 3
+        ];
+        // var_dump($id, $id_pengajuan);
+        // var_dump($array);
+        // die;
+        $this->db->where('pengaju_id', $id);
+        $this->db->update('pembuatan_surat', $array);
+        $this->session->set_flashdata(
+            'message',
+            '<div class="alert alert-success" role="alert"> Surat ' . $no_surat . ' Telah Dibuat </div>'
+        );
+        // redirect('pemerintahan/index');
+        redirect(base_url("pemerintahan/index"));
     }
 
     public function cetak_skm($id)

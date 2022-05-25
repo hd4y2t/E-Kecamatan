@@ -34,7 +34,7 @@
                           <a href="" data-toggle="modal" data-target="#ketMiskin">
                               <i class="icofont-file-alt"></i>
 
-                              <h4>Surat Keterangan miskin</h4>
+                              <h4>Surat Keterangan Miskin</h4>
                               <!-- persyaratan -->
                               <p class="font-weight-bold">Persyaratan : </p>
                               <p class="font-weight">Scan KTP</p>
@@ -90,8 +90,6 @@
                           <p class="font-weight">Surat Rekomendasi Lembaga</p>
                           <p class="font-weight">Surat Domisili</p>
                           <p class="font-weight">Surat Pengantar Lurah</p>
-                          <p class="font-weight">PBB Lunas</p>
-                          <p class="font-weight">Akte Notaris</p>
                           <p class="font-weight">Scan KTP</p>
                           <p class="font-weight">Scan KK</p>
                       </div>
@@ -247,7 +245,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -259,7 +257,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -365,7 +363,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -377,7 +375,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -482,7 +480,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -494,7 +492,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -595,7 +593,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -607,7 +605,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -763,37 +761,13 @@
                       </div>
                   </div>
                   <div class="form-group">
-                      <label class="label-control">PBB Lunas</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="pbb" id="pbb" />
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label class="label-control">Akte Notaris</label>
-                      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-
-                          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                          <div>
-                              <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="notaris" id="notaris" />
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group">
                       <label class="label-control">Scan KTP</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -805,7 +779,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -890,7 +864,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -902,7 +876,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1018,7 +992,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1030,7 +1004,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1117,13 +1091,17 @@
                       <input type="text" class="form-control" id="keperluan" name="keperluan">
                   </div>
                   <div class="form-group">
+                      <label class="bmd-label-floating">Pekerjaan</label>
+                      <input type="text" class="form-control" id="pekerjaan" name="pekerjaan">
+                  </div>
+                  <div class="form-group">
                       <label class="label-control">Scan KTP</label>
                       <div class="fileinput fileinput-new text-center" data-provides="fileinput">
 
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1135,7 +1113,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1243,7 +1221,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1255,7 +1233,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1361,7 +1339,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1373,7 +1351,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1478,7 +1456,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1490,7 +1468,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1600,7 +1578,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="ktp" id="ktp" />
+                                  <input type="file" name="ktp" id="ktp" accept="image/*" />
                               </span>
                           </div>
                       </div>
@@ -1612,7 +1590,7 @@
                           <div class="fileinput-preview fileinput-exists thumbnail"></div>
                           <div>
                               <span class="btn btn-outline-success btn-file">
-                                  <input type="file" name="kk" id="kk" />
+                                  <input type="file" name="kk" id="kk" accept="image/*" />
                               </span>
                           </div>
                       </div>

@@ -35,12 +35,23 @@ class Mpegawai extends CI_Model
                    ";
         return $this->db->query($query)->row_array();
     }
-
+    public function joinPengajuan($id)
+    {
+        $query = "SELECT `pembuatan_surat`.*, `penduduk`.* , `kelurahan`.`nm_kelurahan`, `pengajuan_surat`.*
+                   FROM `pembuatan_surat` 
+                   JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
+                   JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
+                   WHERE `pembuatan_surat`.`no_surat` = '$id'
+                   ";
+        return $this->db->query($query)->row_array();
+    }
     public function getKelurahan()
     {
-        $query = "SELECT `penduduk`.*, `kelurahan`.`nm_kelurahan`
+        $query = "SELECT `penduduk`.*, `kelurahan`.`nm_kelurahan`, `pengajuan_surat`.`id_surat`
                    FROM `penduduk`
                    JOIN `kelurahan` ON `penduduk`.`kelurahan` = `kelurahan`.`id_kelurahan`
+                   JOIN `pengajuan_surat` ON `pengajuan_surat`.`nik` = `penduduk`.`nik`
                    ";
         return $this->db->query($query)->result_array();
     }
@@ -104,7 +115,7 @@ class Mpegawai extends CI_Model
                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
                    JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
-                   WHERE `pembuatan_surat`.`surat_id` = 'skbpr'
+                   WHERE `pembuatan_surat`.`surat_id` = 'SKBPR'
                    ORDER BY `pembuatan_surat`.`tgl` DESC
                    ";
         return $this->db->query($query)->result_array();
@@ -114,7 +125,7 @@ class Mpegawai extends CI_Model
     {
         $query = "SELECT `pembuatan_surat`.*
                    FROM `pembuatan_surat`
-                   WHERE `pembuatan_surat`.`surat_id` = 'skbpr'
+                   WHERE `pembuatan_surat`.`surat_id` = 'SKBPR'
                    ";
         return $this->db->query($query)->num_rows();
     }
@@ -212,7 +223,7 @@ class Mpegawai extends CI_Model
                    JOIN `penduduk` ON `penduduk`.`nik` = `pembuatan_surat`.`nik_pengaju`
                    JOIN `kelurahan` ON `kelurahan`.`id_kelurahan` = `penduduk`.`kelurahan`
                    JOIN `pengajuan_surat` ON `pengajuan_surat`.`id_pengaju` = `pembuatan_surat`.`pengaju_id`
-                   WHERE `pembuatan_surat`.`surat_id` = 'skdp'
+                   WHERE `pembuatan_surat`.`surat_id` = 'skp'
                    ORDER BY `pembuatan_surat`.`tgl` DESC
                    ";
         return $this->db->query($query)->result_array();

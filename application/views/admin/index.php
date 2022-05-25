@@ -88,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md">
+                <div class="col-mg">
                     <div class="card card-chart">
                         <div class="card-header card-header-secondary">
                             <canvas class="ct-chart" id="myChart1"> </canvas>
@@ -115,37 +115,45 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script type="text/javascript">
+    var xValue = [<?php foreach ($chart as $d) {
+                        echo "'" . $d->nm_kelurahan . "',";
+                    } ?>];
+    var yValue = [<?php foreach ($chart as $d) {
+                        echo $d->pengajuan . ",";
+                    } ?>];
+    var barColors = ['#EA4743', '#FE9F1A', '#0EB78A', '#11B7CC'];
+
     var ctx = document.getElementById('myChart').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: [<?php foreach ($chart as $d) {
-                            echo "'" . $d->nm_kelurahan . "',";
-                        } ?>],
+            labels: xValue,
             datasets: [{
-                label: 'Jumlah Penduduk',
-                backgroundColor: '#D6FAD6',
-                borderColor: '#10BC8F',
-                data: [<?php foreach ($chart as $d) {
-                            echo $d->pengajuan . ",";
-                        } ?>],
+                label: 'Kelurahan',
+                backgroundColor: barColors,
+                data: yValue,
             }]
         },
     });
+
+
+    var aValue = [<?php foreach ($pie as $a) {
+                        echo "'" . $a->name . "',";
+                    } ?>];
+    var bValue = [<?php foreach ($pie as $a) {
+                        echo $a->value . ",";
+                    } ?>];
+    var barColors = ['#EA4743', '#FE9F1A', '#0EB78A', '#11B7CC', '#59C837', '#373737', '#19568E', '#D1EBFF', '#EA4743', '#FE9F1A', '#FF7043', '#966F3F'];
+
     var ctx = document.getElementById('myChart1').getContext('2d');
     var chart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: [<?php foreach ($chart as $d) {
-                            echo "'" . $d->nm_kelurahan . "',";
-                        } ?>],
+            labels: aValue,
             datasets: [{
-                label: 'Jumlah Penduduk',
-                backgroundColor: '#10BC8F',
-                borderColor: '#D6FAD6',
-                data: [<?php foreach ($chart as $d) {
-                            echo $d->pengajuan . ",";
-                        } ?>],
+                label: aValue,
+                backgroundColor: barColors,
+                data: bValue,
             }]
         },
     });

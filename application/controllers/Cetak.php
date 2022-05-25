@@ -29,7 +29,7 @@ class Cetak extends CI_Controller
             'SKBPR' => 'SURAT KETERANGAN BELUM PUNYA RUMAH',
             'SKU' => 'SURAT KETERANGAN USAHA',
             'SKDP' => 'SURAT KETERANGAN DOMISILI PERUSAHAAN',
-            'SKN' => 'SURAT KETERANGAN NIKAH',
+            'SKN' => 'SURAT KETERANGAN UNTUK MENIKAH',
             'SKD' => 'SURAT KETERANGAN DOMISILI',
             'SKP' => 'SURAT KETERANGAN PENGHASILAN',
             'SKOS' => 'SURAT KETERANGAN ORANG YANG SAMA',

@@ -6,11 +6,17 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <!--Export table button CSS-->
 
-    <script src="<?= base_url(); ?>assets/js/core/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
     <script src="<?= base_url(); ?>assets/js/datatables/dataTables.bootstrap4.js"></script>
-    <script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/core/jquery.min.js"></script>
+    <script src="<?= base_url(); ?>assets/js/core/popper.min.js"></script>
+
     <script src="<?= base_url(); ?>assets/js/plugins/jquery.bootstrap-wizard.js"></script>
-    <script src="<?= base_url(); ?>assets/js/material-dashboard.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>assets/js/main.js" type="text/javascript"></script>
+    <script src="<?= base_url(); ?>assets/demo/demo.js" type="text/javascript"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button)
 
@@ -202,7 +208,7 @@
         });
 
         $(document).ready(function() {
-            $('#myTable').dataTable({
+            $('#myTable').DataTable({
                 responsive: {
                     details: true
                 },
