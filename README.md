@@ -1,8 +1,8 @@
-<h3><b>
+<h3>
 	 Sistem informasi E-Kecamatan
-</b>
 	<h3>
 <h5> Screenshot aplikasi </h5>
+		
 <p>
 Sistem pembuatan surat perizinan dan non perizinan disebuah kecamatan,
 Link demo
