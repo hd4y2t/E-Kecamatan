@@ -26,5 +26,5 @@ Jika terdapat kendala dalam penggunaan/pengembangan aplikasi ini dapat menghubun
 
 <p>atau dapat scan barcode berikut</p>
     <a href="https://saweria.co/hd4y2t">
-        <img src="https://raw.githubusercontent.com/hd4y2t/hd4y2t/main/assets/img/qrcode.png" alt="QR Code">
+        <img src="https://raw.githubusercontent.com/hd4y2t/hd4y2t/main/assets/img/qrcode.png" height="100" witdh="100">
     </a>
